@@ -1,0 +1,13 @@
+.acc{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 20px;
+}
