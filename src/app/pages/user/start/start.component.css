@@ -1,13 +1,44 @@
-.acc{
+.acc {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-h3{
+h3 {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
   font-size: 20px;
+}
+
+
+.img-box {
+  width: 100%;
+  min-height: 60px;
+  height: auto;
+}
+
+.number-boxes {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px
+}
+
+.number-boxes:hover {
+  cursor: pointer;
+  background-color: darkcyan;
+  color: white;
 }

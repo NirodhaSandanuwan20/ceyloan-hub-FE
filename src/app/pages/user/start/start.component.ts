@@ -1,6 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import {Question} from '../../../model/Question';
 import {map} from 'rxjs/operators';
 import {ImageProcessingService} from '../../../services/ImageProcessingService';
+import {any} from "codelyzer/util/function";
 
 @Component({
   selector: 'app-start',
@@ -24,6 +25,7 @@ export class StartComponent implements OnInit {
   timer: any;
   mm;
   ss;
+  qNumber;
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -142,4 +144,8 @@ export class StartComponent implements OnInit {
   }
 
 
+  seekQuestion(number: number) {
+    console.log(number);
+  }
 }
+

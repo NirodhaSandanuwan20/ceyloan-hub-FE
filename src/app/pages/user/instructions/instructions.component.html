@@ -14,7 +14,7 @@
           <mat-card-content class="ml20">
             <!-- content  -->
 
-            <h1>{{ quiz.title }}</h1>
+            <h1>{{ quiz.title }} - {{quiz.category.title}}</h1>
             <p>{{ quiz.description }}</p>
 
             <mat-divider></mat-divider>
@@ -27,7 +27,7 @@
               <!-- Let the time of each questions is  2 minutes -->
               <li>
                 You have to submit quiz with in
-                <b> {{ quiz.numberOfQuestions * 2 }} Minutes.</b>
+                <b> {{ quiz.timeDuration }} Minutes.</b>
               </li>
               <li>You can attempt the quiz any number of time .</li>
               <li>
@@ -53,12 +53,8 @@
               <li>
                 You can not resume this quiz, if interrupted due to any reason.
               </li>
-              <li>Scroll downl to move to next question.</li>
+              <li>Scroll down to move to next question.</li>
               <li>Click on Submit Quiz button on completion of the quiz.</li>
-              <li>
-                Report of the test is automatically generated in the form of PDF
-                copy
-              </li>
             </ul>
           </mat-card-content>
           <mat-card-actions class="text-center">
