@@ -43,6 +43,11 @@ import { StartComponent } from './pages/user/start/start.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatRadioModule} from "@angular/material/radio";
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CantactUsComponent } from './components/cantact-us/cantact-us.component';
+import { DonationComponent } from './components/donation/donation.component';
+import { NewsLetterComponent } from './components/news-letter/news-letter.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +73,10 @@ import {MatGridListModule} from "@angular/material/grid-list";
     LoadQuizComponent,
     InstructionsComponent,
     StartComponent,
+    AboutUsComponent,
+    CantactUsComponent,
+    DonationComponent,
+    NewsLetterComponent,
   ],
     imports: [
         BrowserModule,
@@ -92,6 +101,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
             showForeground: true,
         }),
         MatGridListModule,
+        MatRadioModule,
     ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

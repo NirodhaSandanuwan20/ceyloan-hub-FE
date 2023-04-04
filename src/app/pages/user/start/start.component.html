@@ -10,7 +10,7 @@
             On Going Quiz <b>{{questions[0].quiz.title}} - {{questions[0].quiz.category.title}}</b>
           </h1>
         </ng-container>
-        <mat-card *ngFor="let q of questions; let i = index; "class="mt10">
+        <mat-card *ngFor="let q of questions; let i = index; " class="mt10">
           <mat-card-content #myElement>
             <p>
               <b>Q {{ i + 1 }})</b>
@@ -25,12 +25,16 @@
 
             <div class="row">
               <div class="col-md-6">
-                <input
-                  type="radio"
-                  [value]="q.option1"
-                  [name]="i"
-                  [(ngModel)]="q.givenAnswer"
-                />{{ q.option1 }}
+
+                 <input
+                   type="radio"
+                   [value]="q.option1"
+                   [name]="i"
+                   [(ngModel)]="q.givenAnswer"
+                 /><b>{{ q.option1 }}</b>
+
+
+
               </div>
               <div class="col-md-6">
                 <input
@@ -38,7 +42,7 @@
                   [value]="q.option2"
                   [name]="i"
                   [(ngModel)]="q.givenAnswer"
-                />{{ q.option2 }}
+                /><b>{{ q.option2 }}</b>
               </div>
             </div>
 
@@ -49,7 +53,7 @@
                   [value]="q.option3"
                   [name]="i"
                   [(ngModel)]="q.givenAnswer"
-                />{{ q.option3 }}
+                /><b>{{ q.option3 }}</b>
               </div>
               <div class="col-md-6">
                 <input
@@ -57,7 +61,7 @@
                   [value]="q.option4"
                   [name]="i"
                   [(ngModel)]="q.givenAnswer"
-                />{{ q.option4 }}
+                /><b>{{ q.option4 }}</b>
               </div>
               <div class="row mt20">
                 <div class="col-md-12" style="margin-left:15px">
@@ -66,7 +70,7 @@
                     [value]="q.option5"
                     [name]="i"
                     [(ngModel)]="q.givenAnswer"
-                  />{{ q.option5 }}
+                  /><b>{{ q.option5 }}</b>
                 </div>
               </div>
             </div>
@@ -99,89 +103,89 @@
           <mat-card-content>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(1)">1</div>
-                <div #id class="number-boxes"(click)="seekQuestion(2)">2</div>
-                <div #id class="number-boxes"(click)="seekQuestion(3)">3</div>
-                <div #id class="number-boxes"(click)="seekQuestion(4)">4</div>
-                <div #id class="number-boxes"(click)="seekQuestion(5)">5</div>
-                <div #id class="number-boxes"(click)="seekQuestion(6)">6</div>
+                <div #id class="number-boxes" (click)="seekQuestion(1)">1</div>
+                <div #id class="number-boxes" (click)="seekQuestion(2)">2</div>
+                <div #id class="number-boxes" (click)="seekQuestion(3)">3</div>
+                <div #id class="number-boxes" (click)="seekQuestion(4)">4</div>
+                <div #id class="number-boxes" (click)="seekQuestion(5)">5</div>
+                <div #id class="number-boxes" (click)="seekQuestion(6)">6</div>
               </div>
             </div>
 
             <div class="box">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(7)">7</div>
-                <div #id class="number-boxes"(click)="seekQuestion(8)">8</div>
-                <div #id class="number-boxes"(click)="seekQuestion(9)">9</div>
-                <div #id class="number-boxes"(click)="seekQuestion(10)">10</div>
-                <div #id class="number-boxes"(click)="seekQuestion(11)">11</div>
-                <div #id class="number-boxes"(click)="seekQuestion(12)">12</div>
+                <div #id class="number-boxes"  (click)="seekQuestion(7)">7</div>
+                <div #id class="number-boxes" (click)="seekQuestion(8)">8</div>
+                <div #id class="number-boxes" (click)="seekQuestion(9)">9</div>
+                <div #id class="number-boxes" (click)="seekQuestion(10)">10</div>
+                <div #id class="number-boxes" (click)="seekQuestion(11)">11</div>
+                <div #id class="number-boxes" (click)="seekQuestion(12)">12</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(13)">13</div>
-                <div #id class="number-boxes"(click)="seekQuestion(14)">14</div>
-                <div #id class="number-boxes"(click)="seekQuestion(15)">15</div>
-                <div #id class="number-boxes"(click)="seekQuestion(16)">16</div>
-                <div #id class="number-boxes"(click)="seekQuestion(17)">17</div>
-                <div #id class="number-boxes"(click)="seekQuestion(18)">18</div>
+                <div #id class="number-boxes" (click)="seekQuestion(13)">13</div>
+                <div #id class="number-boxes" (click)="seekQuestion(14)">14</div>
+                <div #id class="number-boxes" (click)="seekQuestion(15)">15</div>
+                <div #id class="number-boxes" (click)="seekQuestion(16)">16</div>
+                <div #id class="number-boxes" (click)="seekQuestion(17)">17</div>
+                <div #id class="number-boxes" (click)="seekQuestion(18)">18</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(19)">19</div>
-                <div #id class="number-boxes"(click)="seekQuestion(20)">20</div>
-                <div #id class="number-boxes"(click)="seekQuestion(21)">21</div>
-                <div #id class="number-boxes"(click)="seekQuestion(22)">22</div>
-                <div #id class="number-boxes"(click)="seekQuestion(23)">23</div>
-                <div #id class="number-boxes"(click)="seekQuestion(24)">24</div>
+                <div #id class="number-boxes" (click)="seekQuestion(19)">19</div>
+                <div #id class="number-boxes" (click)="seekQuestion(20)">20</div>
+                <div #id class="number-boxes" (click)="seekQuestion(21)">21</div>
+                <div #id class="number-boxes" (click)="seekQuestion(22)">22</div>
+                <div #id class="number-boxes" (click)="seekQuestion(23)">23</div>
+                <div #id class="number-boxes" (click)="seekQuestion(24)">24</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(25)">25</div>
-                <div #id class="number-boxes"(click)="seekQuestion(26)">26</div>
-                <div #id class="number-boxes"(click)="seekQuestion(27)">27</div>
-                <div #id class="number-boxes"(click)="seekQuestion(28)">28</div>
-                <div #id class="number-boxes"(click)="seekQuestion(29)">29</div>
+                <div #id class="number-boxes" (click)="seekQuestion(25)">25</div>
+                <div #id class="number-boxes" (click)="seekQuestion(26)">26</div>
+                <div #id class="number-boxes" (click)="seekQuestion(27)">27</div>
+                <div #id class="number-boxes" (click)="seekQuestion(28)">28</div>
+                <div #id class="number-boxes" (click)="seekQuestion(29)">29</div>
                 <div class="number-boxes">30</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(31)">31</div>
-                <div #id class="number-boxes"(click)="seekQuestion(32)">32</div>
-                <div #id class="number-boxes"(click)="seekQuestion(33)">33</div>
-                <div #id class="number-boxes"(click)="seekQuestion(34)">34</div>
-                <div #id class="number-boxes"(click)="seekQuestion(35)">35</div>
-                <div #id class="number-boxes"(click)="seekQuestion(36)">36</div>
+                <div #id class="number-boxes" (click)="seekQuestion(31)">31</div>
+                <div #id class="number-boxes" (click)="seekQuestion(32)">32</div>
+                <div #id class="number-boxes" (click)="seekQuestion(33)">33</div>
+                <div #id class="number-boxes" (click)="seekQuestion(34)">34</div>
+                <div #id class="number-boxes" (click)="seekQuestion(35)">35</div>
+                <div #id class="number-boxes" (click)="seekQuestion(36)">36</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(37)">37</div>
-                <div #id class="number-boxes"(click)="seekQuestion(38)">38</div>
-                <div #id class="number-boxes"(click)="seekQuestion(39)">39</div>
-                <div #id class="number-boxes"(click)="seekQuestion(40)">40</div>
-                <div #id class="number-boxes"(click)="seekQuestion(41)">41</div>
-                <div #id class="number-boxes"(click)="seekQuestion(42)">42</div>
+                <div #id class="number-boxes" (click)="seekQuestion(37)">37</div>
+                <div #id class="number-boxes" (click)="seekQuestion(38)">38</div>
+                <div #id class="number-boxes" (click)="seekQuestion(39)">39</div>
+                <div #id class="number-boxes" (click)="seekQuestion(40)">40</div>
+                <div #id class="number-boxes" (click)="seekQuestion(41)">41</div>
+                <div #id class="number-boxes" (click)="seekQuestion(42)">42</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(43)">43</div>
-                <div #id class="number-boxes"(click)="seekQuestion(44)">44</div>
-                <div #id class="number-boxes"(click)="seekQuestion(45)">45</div>
-                <div #id class="number-boxes"(click)="seekQuestion(46)">46</div>
-                <div #id class="number-boxes"(click)="seekQuestion(47)">47</div>
-                <div #id class="number-boxes"(click)="seekQuestion(48)">48</div>
+                <div #id class="number-boxes" (click)="seekQuestion(43)">43</div>
+                <div #id class="number-boxes" (click)="seekQuestion(44)">44</div>
+                <div #id class="number-boxes" (click)="seekQuestion(45)">45</div>
+                <div #id class="number-boxes" (click)="seekQuestion(46)">46</div>
+                <div #id class="number-boxes" (click)="seekQuestion(47)">47</div>
+                <div #id class="number-boxes" (click)="seekQuestion(48)">48</div>
               </div>
             </div>
             <div class="box" style="display: flex;align-items: center;justify-content: center;margin-bottom: 5px">
               <div class="row">
-                <div #id class="number-boxes"(click)="seekQuestion(49)">49</div>
-                <div #id class="number-boxes"(click)="seekQuestion(50)">50</div>
+                <div #id class="number-boxes" (click)="seekQuestion(49)">49</div>
+                <div #id class="number-boxes" (click)="seekQuestion(50)">50</div>
               </div>
             </div>
 

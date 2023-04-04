@@ -1,5 +1,5 @@
 <!-- <h1>this is navbar</h1> -->
-<mat-toolbar color="primary" >
+<!--<mat-toolbar color="primary" >
   <a
     routerLink="/"
     mat-icon-button
@@ -10,45 +10,81 @@
   </a>
   <span>ExamArchive.com</span>
   <span class="example-spacer"></span>
-  <a
+
+
+  <button
     *ngIf="!isLoggedIn"
     [routerLink]="'/login'"
-    mat-icon-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-  >
-    Login
-  </a>
+    mat-raised-button
+    color="accent">Login</button>
 
-  <a
+  <button
     *ngIf="!isLoggedIn"
     [routerLink]="'/signup'"
-    mat-icon-button
-    class="example-icon favorite-icon mr20 ml20"
-    aria-label="Example icon-button with heart icon"
-  >
-    Register
-  </a>
+    mat-raised-button
+    color="accent">Sing up</button>
 
   <button
-    (click)="logout()"
     *ngIf="isLoggedIn"
-    mat-button
-    style="border: 1px solid white"
-    class="example-icon favorite-icon mr20 ml20"
-    aria-label="Example icon-button with heart icon"
-  >
-    Logout
-  </button>
+    (click)="logout()"
+    mat-raised-button
+    color="accent">Logout</button>
 
   <button
-    style="border: 1px solid white"
     *ngIf="isLoggedIn && user"
-    class="example-icon favorite-icon ml20"
-    mat-button
-    routerLink="/admin/profile"
-    aria-label="Example icon-button with heart icon"
-  >
-    {{ user.username }}
+    mat-raised-button
+    color="accent"
+    routerLink="/admin/profile"> {{ user.username }} </button>
+
+
+</mat-toolbar>-->
+
+
+<nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #3F51B5;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+          aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
   </button>
-</mat-toolbar>
+
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+    <a class="navbar-brand" routerLink="/">Ewings.lk</a>
+
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+      <li class="nav-item  nav-box">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active"><b>Home</b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item  nav-box">
+        <a class="nav-link" routerLink="/contact-us" routerLinkActive="active"><b>Contact Us</b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item  nav-box">
+        <a class="nav-link" routerLink="/about-us" routerLinkActive="active"><b>About Us </b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item  nav-box">
+        <a class="nav-link" routerLink="/donation" routerLinkActive="active"><b>Donations</b><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item  nav-box">
+        <a class="nav-link" routerLink="/news-letter" routerLinkActive="active"><b>News letter</b><span class="sr-only">(current)</span></a>
+      </li>
+
+    </ul>
+
+      <ul class="navbar-nav ">
+
+        <li class="nav-item  nav-box">
+          <a class="nav-link" *ngIf="!isLoggedIn" [routerLink]="'/login'"  routerLinkActive="active"><b>Login</b> <span
+            class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item  nav-box">
+          <a class="nav-link" *ngIf="!isLoggedIn" [routerLink]="'/signup'"  routerLinkActive="active"><b>Signup</b><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item  nav-box">
+          <a style="background-color: red;" class="nav-link" *ngIf="isLoggedIn" (click)="logout()"><b>Logout</b><span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+
+  </div>
+</nav>

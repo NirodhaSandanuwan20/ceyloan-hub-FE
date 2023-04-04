@@ -50,7 +50,7 @@ export class StartComponent implements OnInit {
       .subscribe(
       (data: any) => {
         this.questions = data;
-        console.log(data);
+        console.log(this.questions);
         console.log(this.questions[0].quiz.timeDuration);
         this.timer = this.questions[0].quiz.timeDuration * 60;
         this.startTimer();
@@ -127,8 +127,7 @@ export class StartComponent implements OnInit {
        if (q.givenAnswer === q.answer) {
          q.accuracy = true;
          this.correctAnswers++;
-         const marksSingle = this.questions[0].quiz.maxMarks / this.questions.length;
-         this.marksGot += marksSingle;
+         this.marksGot=this.correctAnswers;
        }else{
          q.accuracy = false;
        }
@@ -146,6 +145,7 @@ export class StartComponent implements OnInit {
 
   seekQuestion(number: number) {
     console.log(number);
+    console.log(this.questions);
   }
 }
 

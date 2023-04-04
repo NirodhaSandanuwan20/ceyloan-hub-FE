@@ -42,3 +42,9 @@ h3 {
   background-color: darkcyan;
   color: white;
 }
+
+input{
+  width: 15px;
+  height: 15px;
+  accent-color: crimson;
+}
