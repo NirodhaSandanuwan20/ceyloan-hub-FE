@@ -103,7 +103,7 @@ export class StartComponent implements OnInit {
   getFormattedTime() {
     let mm = Math.floor(this.timer / 60);
     let ss = this.timer - mm * 60;
-    return `${mm} min : ${ss} sec`;
+    return `${mm} m : ${ss} s`;
   }
 
   // tslint:disable-next-line:typedef

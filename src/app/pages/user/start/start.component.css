@@ -12,6 +12,40 @@ h3 {
   font-size: 20px;
 }
 
+.timer-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.timer-inner {
+  margin-top: 70px;
+  position: fixed;
+  background-color: white;
+  padding: 10px;
+  color: black;
+}
+
+.navq-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 300px;
+
+}
+
+.navq-inner {
+  width: auto;
+  height: auto;
+  position: fixed;
+  background-color: #3F51B5;
+  padding: 5px;
+  min-width: 150px;
+  max-height: 400px;
+  overflow: auto;
+  border: 2px solid white;
+}
 
 .img-box {
   width: 100%;
@@ -27,14 +61,14 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 5px
+  margin: 3px;
 }
 
-.box {
+.boxes {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 5px
+  padding: 10px;
 }
 
 .number-boxes:hover {
@@ -43,8 +77,31 @@ h3 {
   color: white;
 }
 
-input{
+input {
   width: 15px;
   height: 15px;
   accent-color: crimson;
 }
+
+.phone-timer {
+  width: 100%;
+  background-color: #3F51B5;
+  color: white;
+  font-weight: bold;
+  height: 60px;
+  display: none;
+  z-index: 1;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+
+@media screen and (max-width: 767px ) {
+  .phone-timer {
+    display: inline;
+  }
+
+}
+
+
