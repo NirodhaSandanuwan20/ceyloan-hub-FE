@@ -6,7 +6,7 @@
           <mat-card-header>
             <!-- heading -->
             <mat-card-title>
-              Read the instructions of this page carefully
+              පහත උපදෙස් කියවන්න
             </mat-card-title>
             <mat-card-subtitle> One step more to go </mat-card-subtitle>
           </mat-card-header>
@@ -19,27 +19,22 @@
 
             <mat-divider></mat-divider>
             <br />
-            <h1>Important Instructions</h1>
+            <h1>වැදගත් උපදෙස්</h1>
 
             <ul>
-              <li>This quiz is only for practice purpose.</li>
+              <li>ඔබට <b>මිනිත්තු {{ quiz.timeDuration }} </b> ක කාලයක් ලැබේ.</li>
 
               <!-- Let the time of each questions is  2 minutes -->
               <li>
-                You have to submit quiz with in
-                <b> {{ quiz.timeDuration }} Minutes.</b>
-              </li>
-              <li>You can attempt the quiz any number of time .</li>
-              <li>
-                There are <b>{{ quiz.numberOfQuestions }} questions</b> in this
-                quiz.
+                නියමිත කාලය අවසන් උවහොත් ඒ වන විට අවසන් කර ඇති  ප්‍රශ්න වලට ස්වයංක්රීයව ලකුණු ලැබේ.
               </li>
               <li>
-                Each questions carries
-                <b>{{ quiz.maxMarks / quiz.numberOfQuestions }} marks</b>. No
-                negative marking for wrong ones.
+                මුළු ප්‍රශ්න <b>{{ quiz.numberOfQuestions }} </b> ක් ඇතුලත්  වේ.
               </li>
-              <li>All questions is of MCQ Types.</li>
+              <li>
+                එක් ප්‍රශ්නක් සදහා ලකුණු 1 බැගින් හිමි වේ
+              </li>
+              <li>සියලු ප්‍රශ්න බහුවරණ ගණයට ඇතුලත් වේ.</li>
             </ul>
 
             <mat-divider></mat-divider>

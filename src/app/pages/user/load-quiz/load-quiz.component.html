@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <h1 class="mt20">Available Quizzes</h1>
     <div class="row mt20" *ngIf="quizzes">
-      <div class="col-md-4" *ngFor="let q of quizzes">
+      <div class="col-md-3" *ngFor="let q of quizzes">
         <mat-card class="mb20">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -13,23 +13,21 @@
               {{ q.category.title }}
             </mat-card-subtitle>
           </mat-card-header>
-          <mat-card-content>
+          <!--<mat-card-content>
             <p class="truncate">{{ q.description }}</p>
-          </mat-card-content>
+          </mat-card-content>-->
           <mat-card-action>
-            <button mat-button color="primary">View</button>
             <button
-              mat-button
-              color="accent"
+              mat-raised-button
+              color="primary"
               [routerLink]="'/user-dashboard/instructions/' + q.qId"
               class="ml10"
+              style="width: 90%"
             >
-              Start
+              Start MCQ
             </button>
-            <button mat-button color="accent">
-              Questions :{{ q.numberOfQuestions }}
-            </button>
-            <button mat-button color="accent">M.M :{{ q.maxMarks }}</button>
+
+            <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary">Second Paper</button>
           </mat-card-action>
         </mat-card>
       </div>
