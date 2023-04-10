@@ -11,7 +11,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
@@ -48,6 +48,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CantactUsComponent } from './components/cantact-us/cantact-us.component';
 import { DonationComponent } from './components/donation/donation.component';
 import { NewsLetterComponent } from './components/news-letter/news-letter.component';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -77,32 +78,34 @@ import { NewsLetterComponent } from './components/news-letter/news-letter.compon
     CantactUsComponent,
     DonationComponent,
     NewsLetterComponent,
+    VerificationComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        FormsModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatCardModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatListModule,
-        MatSlideToggleModule,
-        MatSelectModule,
-        CKEditorModule,
-        MatProgressSpinnerModule,
-        NgxUiLoaderModule,
-        NgxUiLoaderHttpModule.forRoot({
-            showForeground: true,
-        }),
-        MatGridListModule,
-        MatRadioModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    FormsModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    CKEditorModule,
+    MatProgressSpinnerModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground: true,
+    }),
+    MatGridListModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+  ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],
 })

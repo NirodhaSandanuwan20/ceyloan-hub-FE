@@ -24,6 +24,7 @@ import {AboutUsComponent} from "./components/about-us/about-us.component";
 import {CantactUsComponent} from "./components/cantact-us/cantact-us.component";
 import {DonationComponent} from "./components/donation/donation.component";
 import {NewsLetterComponent} from "./components/news-letter/news-letter.component";
+import {VerificationComponent} from "./pages/verification/verification.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
     path: 'news-letter',
     component: NewsLetterComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'verify/:email',
+    component: VerificationComponent,
   },
   {
     path: 'contact-us',

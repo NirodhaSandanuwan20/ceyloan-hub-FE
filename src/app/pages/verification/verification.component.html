@@ -1,0 +1,21 @@
+<div class="outer">
+  <div class="inner">
+    <form  [formGroup]="verifyForm">
+      <h1>Verify Here !</h1>
+      <mat-form-field  appearance="outline">
+        <mat-label>Enter Verification Code</mat-label>
+        <input
+          required
+          formControlName="code"
+          type="number"
+          matInput
+        />
+      </mat-form-field>
+      <br>
+
+      <button style="width: 100%" type="submit" [disabled]="verifyForm.invalid" mat-raised-button color="primary" (click)="verify()">
+        Verify Now
+      </button>
+    </form>
+  </div>
+</div>
