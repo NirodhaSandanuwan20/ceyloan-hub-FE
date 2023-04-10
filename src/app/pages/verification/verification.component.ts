@@ -38,6 +38,16 @@ export class VerificationComponent implements OnInit {
       console.log(response);
       Swal.fire('Verification Success', 'Explore Now', 'success');
       this.router.navigateByUrl('/login');
-    })
+    },error =>{
+      Swal.fire('Verification Code Invalid!! Try again', '', 'error');
+    } );
+  }
+
+  resendMail() {
+    this.userService.resendMail(this.email).subscribe(resp=>{
+      Swal.fire('Email Sent', 'Check out your mail & And spam Folder ', 'success');
+    },error => {
+        Swal.fire('Try again', '', 'error');
+      });
   }
 }

@@ -13,6 +13,7 @@
       </mat-form-field>
       <br>
 
+      <h5>nothing after 2 minuets ?&nbsp;&nbsp;<span (click)="resendMail()" class="anchor">Resend code</span></h5>
       <button style="width: 100%" type="submit" [disabled]="verifyForm.invalid" mat-raised-button color="primary" (click)="verify()">
         Verify Now
       </button>

@@ -19,4 +19,8 @@ export class UserService {
     console.log(email);
     return this.http.post(`${baseUrl}/user/`+code+'?email='+email,{});
   }
+
+  resendMail(email: string) {
+    return this.http.post(`${baseUrl}/user/`+'?email='+email,{});
+  }
 }

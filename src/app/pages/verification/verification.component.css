@@ -14,3 +14,16 @@
   height: 400px;
   background-color:white;
 }
+
+.anchor:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.anchor{
+  color: #3F51B5;
+}
+
+.form-outer{
+
+}
