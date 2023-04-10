@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import {Router} from "@angular/router";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-signup',
@@ -14,44 +15,31 @@ export class SignupComponent implements OnInit {
               private snack: MatSnackBar,
               private router: Router) {}
 
-  public user = {
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-  };
+
+  signupForm = new FormGroup({
+    email: new FormControl('', [Validators.required,Validators.email]),
+    phone: new FormControl('', Validators.required,),
+    password: new FormControl('', [Validators.required,Validators.min(4)]),
+  });
+
 
   ngOnInit(): void {}
 
   formSubmit() {
-    console.log(this.user);
-    if (this.user.username == '' || this.user.username == null) {
-      // alert('User is required !!');
-      this.snack.open('Username is required !! ', '', {
-        duration: 3000,
-      });
-      return;
-    }
 
-    if (this.user.password == '' || this.user.password == null) {
-      // alert('User is required !!');
-      this.snack.open('Password is required !! ', '', {
-        duration: 3000,
-      });
-      return;
-    }
-
-    //validate
+    let user = {
+      email: this.signupForm.get('email')?.value!,
+      phone: this.signupForm.get('phone')?.value!,
+      password: this.signupForm.get('password')?.value!
+    };
 
     //addUser: userservice
-    this.userService.addUser(this.user).subscribe(
+    this.userService.addUser(user).subscribe(
       (data: any) => {
        console.log(data);
         //alert('success');
         Swal.fire('Now Verify Your Email !!', '', 'info');
-        this.router.navigateByUrl('verify/'+this.user.email).then()
+        this.router.navigateByUrl('verify/'+user.email).then()
       },
       (error) => {
         //error

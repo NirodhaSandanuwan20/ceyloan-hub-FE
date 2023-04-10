@@ -11,95 +11,53 @@
 
           <!-- {{ user | json }} -->
 
-          <form (ngSubmit)="formSubmit()">
+          <form [formGroup] = "signupForm">
             <!-- Username field -->
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label>User Name</mat-label>
+              <mat-label>Email</mat-label>
               <input
-                required
-                [(ngModel)]="user.username"
-                name="username"
+                formControlName="email"
                 matInput
-                placeholder="Enter here"
+                placeholder="Enter email as a username"
+                type="email"
               />
-              <mat-hint>Username must be unique !!</mat-hint>
             </mat-form-field>
 
             <!-- Password field -->
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label>User Password</mat-label>
-              <input
-                required
-                [(ngModel)]="user.password"
-                name="password"
-                type="password"
-                matInput
-                placeholder="Enter here"
-              />
-            </mat-form-field>
-
-            <!-- first name  -->
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>First Name</mat-label>
-              <input
-                required
-                [(ngModel)]="user.firstName"
-                name="firstName"
-                matInput
-                placeholder="Enter here"
-              />
-            </mat-form-field>
-
-            <!-- lastname -->
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <input
-                required
-                [(ngModel)]="user.lastName"
-                name="lastName"
-                matInput
-                placeholder="Enter here"
-              />
-            </mat-form-field>
-
-            <!-- email -->
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Email Address</mat-label>
-              <input
-                required
-                [(ngModel)]="user.email"
-                name="email"
-                type="email"
-                matInput
-                placeholder="Enter here"
-              />
-            </mat-form-field>
-
-            <!-- phone number -->
-            <mat-form-field class="full-width" appearance="outline">
               <mat-label>Phone Number</mat-label>
               <input
-                required
-                [(ngModel)]="user.phone"
-                name="phone"
-                type="number"
+                formControlName="phone"
+                type="phone"
                 matInput
-                placeholder="Enter here"
               />
             </mat-form-field>
 
-            <div class="container text-center">
-              <button type="submit" mat-raised-button color="primary">
-                Register
-              </button>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                type="password"
+                placeholder="Create own strong Password"
+                matInput
+              />
+            </mat-form-field>
+
+            <div class=" text-center">
               <button
-                type="button"
-                style="margin-left: 20px"
+                style="width: 100%;margin-bottom: 5px"
+                type="submit"
+                mat-raised-button
+                color="primary"
+                [disabled]="signupForm.invalid"
+                (click)="formSubmit()">Register</button>
+              <p>already registered ? then login now !</p>
+              <button
+                style="width: 100%"
+                type="submit"
                 mat-raised-button
                 color="accent"
-              >
-                Clear
-              </button>
+                routerLink="/login">Login Here</button>
             </div>
           </form>
         </mat-card>
