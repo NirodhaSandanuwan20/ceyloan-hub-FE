@@ -27,7 +27,7 @@ export class UserService {
     return this.http.post(`${baseUrl}/user/`+'?email='+email,{});
   }
 
-  changePassword(otp: string, email: string, newPassword: string) {
-    return this.http.post(`${baseUrl}/user/`+otp+'?email='+email+'?newPassword='+newPassword,{});
+  forgotPassowrd(emails: string) {
+    return this.http.post(`${baseUrl}/user/`+emails,{});
   }
 }
