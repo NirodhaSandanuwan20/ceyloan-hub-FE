@@ -28,14 +28,13 @@ export class ViewQuizzesComponent implements OnInit {
   //
   deleteQuiz(qId) {
     Swal.fire({
-      icon: 'info',
+      icon: 'warning',
       title: 'Are you sure ?',
       confirmButtonText: 'Delete',
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
         //delete...
-
         this._quiz.deleteQuiz(qId).subscribe(
           (data) => {
             this.quizzes = this.quizzes.filter((quiz) => quiz.qId != qId);

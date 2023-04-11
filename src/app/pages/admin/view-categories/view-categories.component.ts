@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { error, log } from 'console';
 import { CategoryService } from 'src/app/services/category.service';
 import Swal from 'sweetalert2';
 
@@ -10,10 +11,10 @@ import Swal from 'sweetalert2';
 export class ViewCategoriesComponent implements OnInit {
   categories = [];
 
-  constructor(private _category: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this._category.categories().subscribe(
+    this.categoryService.categories().subscribe(
       (data: any) => {
         //css
         this.categories = data;
@@ -27,4 +28,30 @@ export class ViewCategoriesComponent implements OnInit {
       }
     );
   }
+
+  
+
+  deleteCategory(categoryId: number) {
+    Swal.fire({
+      title: 'Are you sure ?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3F51B5',
+      confirmButtonText: 'Yes, Delete it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.deleteCategory(categoryId).subscribe(resp => {
+          Swal.fire('Deleted', 'Category has been deleted', 'success');
+          this.ngOnInit();
+        },
+          error => {
+            Swal.fire('Oops! Try Again', 'Erorr', 'error');
+          });
+
+      }
+    });
+    console.log(categoryId);
+
+  }
+
 }

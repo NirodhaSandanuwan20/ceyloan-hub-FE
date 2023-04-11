@@ -5,6 +5,11 @@
       <mat-icon mat-list-icon>category</mat-icon>
       <div mat-line>{{ c.title }}</div>
       <div mat-line>{{ c.description }}</div>
+
+      <span class="material-symbols-outlined">
+        <mat-icon class="icon" mat-list-icon style="color: red;margin-left: 20px;"
+          (click)="deleteCategory(c.cid)">delete</mat-icon>
+      </span>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
