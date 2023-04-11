@@ -7,10 +7,13 @@ import {Observable} from "rxjs";
   providedIn: 'root',
 })
 export class UserService {
+  
   constructor(private http: HttpClient) {}
 
   //add user
   public addUser(user: any) {
+    console.log(user);
+    
     return this.http.post(`${baseUrl}/user/`, user);
   }
 
@@ -22,5 +25,9 @@ export class UserService {
 
   resendMail(email: string) {
     return this.http.post(`${baseUrl}/user/`+'?email='+email,{});
+  }
+
+  changePassword(otp: string, email: string, newPassword: string) {
+    return this.http.post(`${baseUrl}/user/`+otp+'?email='+email+'?newPassword='+newPassword,{});
   }
 }

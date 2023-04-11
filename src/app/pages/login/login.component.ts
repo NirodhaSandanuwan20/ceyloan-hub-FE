@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/services/login.service';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginData = {
-    username: '',
-    password: '',
-  };
+  loginForm = new FormGroup({
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  })
+
 
   constructor(
     private snack: MatSnackBar,
@@ -26,28 +28,12 @@ export class LoginComponent implements OnInit {
   formSubmit() {
     console.log('login btn clicked');
 
-    if (
-      this.loginData.username.trim() == '' ||
-      this.loginData.username == null
-    ) {
-      this.snack.open('Username is required !! ', '', {
-        duration: 3000,
-      });
-      return;
-    }
-
-    if (
-      this.loginData.password.trim() == '' ||
-      this.loginData.password == null
-    ) {
-      this.snack.open('Password is required !! ', '', {
-        duration: 3000,
-      });
-      return;
-    }
-
+   let loginData = {
+      username: this.loginForm.get('username').value!,
+      password: this.loginForm.get('password').value!
+    };
     //request to server to generate token
-    this.login.generateToken(this.loginData).subscribe(
+    this.login.generateToken(loginData).subscribe(
       (data: any) => {
         console.log('success');
         console.log(data);

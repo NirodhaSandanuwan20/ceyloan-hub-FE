@@ -49,6 +49,7 @@ import { CantactUsComponent } from './components/cantact-us/cantact-us.component
 import { DonationComponent } from './components/donation/donation.component';
 import { NewsLetterComponent } from './components/news-letter/news-letter.component';
 import { VerificationComponent } from './pages/verification/verification.component';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
     DonationComponent,
     NewsLetterComponent,
     VerificationComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,

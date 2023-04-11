@@ -3,25 +3,22 @@
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <mat-card>
-          <div class="container text-center">
+          <div class="text-center">
             <img src="../../../assets/logo.png" alt="" />
           </div>
 
-          <h1 class="text-center">Login Here !!</h1>
+          <h1 class="text-center">Login Here</h1>
 
           <!-- {{ loginData | json }} -->
-          <form (ngSubmit)="formSubmit()">
+          <form [formGroup]="loginForm">
             <!-- username field -->
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label>User Name</mat-label>
+              <mat-label>Username</mat-label>
               <input
-                [(ngModel)]="loginData.username"
-                name="username"
-                required
+                formControlName="username"
                 matInput
-                placeholder="Enter here"
               />
-              <mat-hint>Valid User Name</mat-hint>
+              <mat-hint>your username</mat-hint>
             </mat-form-field>
 
             <!-- password field  -->
@@ -29,21 +26,21 @@
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>User Password</mat-label>
               <input
-                [(ngModel)]="loginData.password"
-                name="password"
+                formControlName="password"
                 type="password"
-                required
                 matInput
                 placeholder="Enter here"
               />
             </mat-form-field>
 
-            <div class="container text-center">
-              <button mat-raised-button color="primary" type="submit">
+            <div class="text-center">
+              <button style="width: 100%;" [disabled]="loginForm.invalid" (click)="formSubmit()" mat-raised-button color="primary" type="submit">
                 Login
               </button>
-              <button class="ml10" mat-raised-button color="accent">
-                Reset
+              <h5 class="forgot" routerLink="/forgot-password"> Forgot password ?</h5>
+              <h5>not register yet ? click signup here</h5>
+              <button routerLink="/signup" style="width:100%;margin-top: 1px;"  mat-raised-button color="accent">
+                Signup Here
               </button>
             </div>
           </form>

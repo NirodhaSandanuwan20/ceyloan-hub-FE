@@ -7,7 +7,7 @@
             <img src="../../../assets/logo.png" alt="" />
           </div>
 
-          <h1 class="text-center">Register Here !!</h1>
+          <h1 class="text-center">Register Here</h1>
 
           <!-- {{ user | json }} -->
 
@@ -18,19 +18,21 @@
               <input
                 formControlName="email"
                 matInput
-                placeholder="Enter email as a username"
+                placeholder="Enter email"
                 type="email"
               />
             </mat-form-field>
 
             <!-- Password field -->
             <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Phone Number</mat-label>
+              <mat-label>Username</mat-label>
               <input
-                formControlName="phone"
-                type="phone"
+              placeholder="this is your login credential"
+                formControlName="Username"
+                type="text"
                 matInput
               />
+              <mat-hint>use email as your username</mat-hint>
             </mat-form-field>
 
             <mat-form-field class="full-width" appearance="outline">

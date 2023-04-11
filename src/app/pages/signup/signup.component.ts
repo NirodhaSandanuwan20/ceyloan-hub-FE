@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
 
   signupForm = new FormGroup({
     email: new FormControl('', [Validators.required,Validators.email]),
-    phone: new FormControl('', Validators.required,),
+    Username: new FormControl('', [Validators.required,Validators.min(4)]),
     password: new FormControl('', [Validators.required,Validators.min(4)]),
   });
 
@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
 
     let user = {
       email: this.signupForm.get('email')?.value!,
-      phone: this.signupForm.get('phone')?.value!,
+      username: this.signupForm.get('Username')?.value!,
       password: this.signupForm.get('password')?.value!
     };
 
