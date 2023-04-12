@@ -21,6 +21,21 @@
             </mat-form-field>
 
             <mat-form-field class="w100" appearance="outline">
+              <mat-label>For who ?</mat-label>
+
+             <input
+                required
+                autofocus
+                type="text"
+                name="title"
+                matInput
+                placeholder="Enter here"
+                [(ngModel)]="category.audience"
+              />
+            </mat-form-field>
+
+
+            <mat-form-field class="w100" appearance="outline">
               <mat-label>Description</mat-label>
 
               <textarea
@@ -28,7 +43,7 @@
                 matInput
                 placeholder="Enter Category Description"
                 [(ngModel)]="category.description"
-                rows="15"
+                rows="1"
               ></textarea>
             </mat-form-field>
 

@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 export class AddCategoryComponent implements OnInit {
   category = {
     title: '',
+    audience: '',
     description: '',
   };
 
@@ -29,11 +30,19 @@ export class AddCategoryComponent implements OnInit {
       return;
     }
 
+    if (this.category.audience.trim() == '' || this.category.audience == null) {
+      this._snack.open('Title Required !!', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
     //all done
 
     this._category.addCategory(this.category).subscribe(
       (data: any) => {
         this.category.title = '';
+        this.category.audience = '';
         this.category.description = '';
         Swal.fire('Success !!', 'Category is added successfuly', 'success');
       },
