@@ -50,6 +50,8 @@ import { DonationComponent } from './components/donation/donation.component';
 import { NewsLetterComponent } from './components/news-letter/news-letter.component';
 import { VerificationComponent } from './pages/verification/verification.component';
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
+import { AudienceComponent } from './pages/user/audience/audience.component';
+import { FilterLevelPipe } from './pages/user/sidebar/filter-level.pipe';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-pas
     NewsLetterComponent,
     VerificationComponent,
     ForgotPasswordComponent,
+    AudienceComponent,
+    FilterLevelPipe,
   ],
   imports: [
     BrowserModule,

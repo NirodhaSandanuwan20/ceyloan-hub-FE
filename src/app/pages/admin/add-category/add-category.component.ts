@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-category.component.css'],
 })
 export class AddCategoryComponent implements OnInit {
+ 
   category = {
     title: '',
     audience: '',
@@ -31,7 +32,7 @@ export class AddCategoryComponent implements OnInit {
     }
 
     if (this.category.audience.trim() == '' || this.category.audience == null) {
-      this._snack.open('Title Required !!', '', {
+      this._snack.open('Audience Required !!', '', {
         duration: 3000,
       });
       return;

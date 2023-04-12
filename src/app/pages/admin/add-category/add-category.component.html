@@ -20,20 +20,18 @@
               />
             </mat-form-field>
 
-            <mat-form-field class="w100" appearance="outline">
-              <mat-label>For who ?</mat-label>
+            
 
-             <input
-                required
-                autofocus
-                type="text"
-                name="title"
-                matInput
-                placeholder="Enter here"
-                [(ngModel)]="category.audience"
-              />
+            <mat-form-field appearance="fill" class="mt20 w100">
+              <mat-label>Select Audience</mat-label>
+              <mat-select name="category" [(ngModel)]="category.audience">
+                <mat-option  value = "Advanced_Level">Advanced Level Student</mat-option>
+                <mat-option  value = "Ordinary_level">Ordinary Level Student</mat-option>
+                <mat-option  value = "Shithshathwa_Level">Shithshathwa Level Student</mat-option>
+                <mat-option  value = "Primary_Level">Primary Level Student</mat-option>
+                <mat-option  value = "Advanced_Level">Primary Level Student</mat-option>
+              </mat-select>
             </mat-form-field>
-
 
             <mat-form-field class="w100" appearance="outline">
               <mat-label>Description</mat-label>

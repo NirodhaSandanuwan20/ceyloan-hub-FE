@@ -3,27 +3,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
-  selector: 'app-sidebar-user',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css'],
+  selector: 'app-audience',
+  templateUrl: './audience.component.html',
+  styleUrls: ['./audience.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class AudienceComponent implements OnInit {
+
   categories;
-  selectLevel='';
   constructor(private _cat: CategoryService, private _snack: MatSnackBar) {}
 
   ngOnInit(): void {
-    this._cat.categories().subscribe(
+    /* this._cat.categories().subscribe(
       (data: any) => {
         this.categories = data;
-        console.log(data);
-        console.log('sidebar');
       },
       (error) => {
         this._snack.open('Error in loading categories from server', '', {
           duration: 3000,
         });
       }
-    );
+    ); */
   }
 }
