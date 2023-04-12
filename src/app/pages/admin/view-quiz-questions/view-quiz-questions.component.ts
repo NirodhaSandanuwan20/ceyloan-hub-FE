@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Question } from 'src/app/model/Question';
+import { ImageProcessingService } from 'src/app/services/ImageProcessingService';
 import { QuestionService } from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 
@@ -12,10 +15,11 @@ import Swal from 'sweetalert2';
 export class ViewQuizQuestionsComponent implements OnInit {
   qId;
   qTitle;
-  qCategory;
-  questions = [];
+  category;
+  questions;
 
   constructor(
+    private imageProcessingService: ImageProcessingService,
     private _route: ActivatedRoute,
     private _question: QuestionService,
     private _snak: MatSnackBar
@@ -24,12 +28,12 @@ export class ViewQuizQuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.qId = this._route.snapshot.params.qid;
     this.qTitle = this._route.snapshot.params.title;
-    this.qCategory = this._route.snapshot.params.category;
   
-    this._question.getQuestionsOfQuiz(this.qId).subscribe(
+    this._question.getQuestionsOfQuiz(this.qId).pipe(
+      map((x: Question[],i) => x.map((question: Question) => this.imageProcessingService.creatImages(question)))
+    ).subscribe(
       (data: any) => {
         console.log(data);
-        console.log(this.qCategory);
         this.questions = data;
       },
       (error) => {

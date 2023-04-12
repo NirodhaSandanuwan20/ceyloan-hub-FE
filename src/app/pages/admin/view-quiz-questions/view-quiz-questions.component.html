@@ -1,4 +1,4 @@
-<h1 class="mt20">Questions of {{ qTitle }} - {{ qCategory }}</h1>
+<h1 class="mt20">Questions of {{ qTitle }} - {{ category }}</h1>
 
 <div class="bootstrap-wrapper">
   <div class="row">
@@ -7,7 +7,7 @@
         <button
           mat-raised-button
           color="accent"
-          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle  + '/' + qCategory"
+          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle "
         >
           Add Question
         </button>
@@ -19,6 +19,11 @@
             <b> Q {{ i + 1 }})</b>
             <span class="ml20" [innerHTML]="q.content"></span>
           </p>
+          
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
+          </div>
+          
 
           <div class="container-fluid">
             <div class="row">

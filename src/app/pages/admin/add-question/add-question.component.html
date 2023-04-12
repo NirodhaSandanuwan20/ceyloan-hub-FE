@@ -149,18 +149,19 @@
                 >
               </div>
 
+              
+
 
               <div class="row">
-                <mat-grid-list cols="4" rowHeight="1:1">
-                  <mat-grid-tile *ngFor="let file of question.questionImages; let i =index;">
-                    <div style="position: relative">
+                
+                    <div *ngFor="let file of question.questionImages; let i =index;" style="position: relative">
                       <span class="btn-remove-image" (click)="removeImage(i)">x</span>
-                      <img [src]="file.url" width="100px" height="100px">
+                      <img [src]="file.url" width="auto">
                     </div>
-                  </mat-grid-tile>
-                </mat-grid-list>
+                  
               </div>
-
+              
+              
 
 
 
@@ -168,8 +169,10 @@
               <button mat-raised-button color="primary">Add</button>
             </div>
           </form>
+          
         </mat-card-content>
       </mat-card>
+      
     </div>
   </div>
 </div>
