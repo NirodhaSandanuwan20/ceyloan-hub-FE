@@ -1,30 +1,35 @@
-<mat-card style="margin-top: 70px">
+<mat-card class="side-bar" style="margin-top: 70px">
  
-<mat-form-field appearance="fill" class="mt20 w100">
+<mat-form-field  appearance="fill" class="mt20 w100">
     <mat-label>Select Your Level</mat-label>
     <mat-select [(ngModel)]="selectLevel">
       <mat-option  value = "Advanced_Level">Advanced Level Student</mat-option>
       <mat-option  value = "Ordinary_level">Ordinary Level Student</mat-option>
       <mat-option  value = "Shithshathwa_Level">Shithshathwa Level Student</mat-option>
       <mat-option  value = "Primary_Level">Primary Level Student</mat-option>
-      <mat-option  value = "Advanced_Level">Primary Level Student</mat-option>
+      <mat-option  value = "">None</mat-option>
+      
     </mat-select>
   </mat-form-field>
-  <mat-action-list>
-    <div mat-subheader>Available Categories</div>
 
-   <!--  <button mat-list-item routerLink="/user-dashboard/0">
+
+
+  <mat-action-list >
+    <!-- <div mat-subheader>Available Categories</div> -->
+
+   <button routerLinkActive="active" class="btn" mat-list-item routerLink="/user-dashboard/0">
       <mat-icon mat-list-icon>quiz</mat-icon> All Quizzes
-    </button> -->
-
+    </button> 
+    <mat-divider></mat-divider>
 
     <button
+    class="btn"
+      routerLinkActive="active"
       [routerLink]="'/user-dashboard/' + c.cid"
       mat-list-item
       *ngFor="let c of categories|filterLevel:selectLevel"
-    >
-    
-      <mat-icon mat-list-icon>quiz</mat-icon> {{ c.title }}
+    ><mat-icon mat-list-icon>circle</mat-icon> {{ c.title }}
+    <mat-divider></mat-divider>
     </button>
 
 

@@ -1,0 +1,13 @@
+.side-bar{
+    background-color:white;
+}
+
+.active{
+    background-color: #808bc7!important;
+    color: white;
+    border: none;
+}
+
+.btn:hover{
+background-color: burlywood;
+}
