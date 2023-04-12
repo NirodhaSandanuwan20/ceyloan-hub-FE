@@ -112,11 +112,11 @@ const routes: Routes = [
         component: UpdateQuizComponent,
       },
       {
-        path: 'view-questions/:qid/:title',
+        path: 'view-questions/:qid/:title/:category',
         component: ViewQuizQuestionsComponent,
       },
       {
-        path: 'add-question/:qid/:title',
+        path: 'add-question/:qid/:title/:qCategory',
         component: AddQuestionComponent,
       },
     ],

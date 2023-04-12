@@ -14,21 +14,28 @@ import {FileHandle} from "../../../model/FileHandle";
   styleUrls: ['./add-question.component.css'],
 })
 export class AddQuestionComponent implements OnInit {
+  value1:string = 'පිළිතුර 1';
+  value2:string = 'පිළිතුර 2';
+  value3:string = 'පිළිතුර 3';
+  value4:string = 'පිළිතුර 4';
+  value5:string = 'පිළිතුර 5';
+
+  
   public Editor = ClassicEditor;
   qId;
   qTitle;
+  qCategory;
   question: Question = {
     quiz: {},
     content: '',
-    option1: '',
-    option2: '',
-    option3: '',
-    option4: '',
-    option5: '',
+    option1: this.value1,
+    option2: this.value2,
+    option3: this.value3,
+    option4: this.value4,
+    option5: this.value5,
     answer: '',
     questionImages: []
   };
-
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
@@ -38,6 +45,9 @@ export class AddQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
     this.qTitle = this.route.snapshot.params.title;
+    this.qCategory = this.route.snapshot.params.qCategory; 
+    console.log(this.qCategory);
+    
     // tslint:disable-next-line:no-unused-expression
     this.question.quiz['qId'] = this.qId;
   }

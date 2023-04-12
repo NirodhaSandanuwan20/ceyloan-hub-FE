@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class ViewQuizQuestionsComponent implements OnInit {
   qId;
   qTitle;
+  qCategory;
   questions = [];
 
   constructor(
@@ -19,13 +20,16 @@ export class ViewQuizQuestionsComponent implements OnInit {
     private _question: QuestionService,
     private _snak: MatSnackBar
   ) {}
-
+  
   ngOnInit(): void {
     this.qId = this._route.snapshot.params.qid;
     this.qTitle = this._route.snapshot.params.title;
+    this.qCategory = this._route.snapshot.params.category;
+  
     this._question.getQuestionsOfQuiz(this.qId).subscribe(
       (data: any) => {
         console.log(data);
+        console.log(this.qCategory);
         this.questions = data;
       },
       (error) => {

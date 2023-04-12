@@ -1,4 +1,4 @@
-<h1 class="mt20">Questions of {{ qTitle }}</h1>
+<h1 class="mt20">Questions of {{ qTitle }} - {{ qCategory }}</h1>
 
 <div class="bootstrap-wrapper">
   <div class="row">
@@ -7,7 +7,7 @@
         <button
           mat-raised-button
           color="accent"
-          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle"
+          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle  + '/' + qCategory"
         >
           Add Question
         </button>
