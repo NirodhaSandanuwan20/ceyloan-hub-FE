@@ -22,6 +22,8 @@ export class SignupComponent implements OnInit {
     password: new FormControl('', [Validators.required,Validators.min(4)]),
   });
 
+  show:boolean = true;
+  changeType:boolean = true;
 
   ngOnInit(): void {}
 
@@ -52,5 +54,8 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  //this.user
+  showPassword(){
+    this.show=!this.show;
+    this.changeType=!this.changeType
+  }
 }

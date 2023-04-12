@@ -11,3 +11,7 @@ color: brown;
   cursor: pointer;
   color: blue;
 }
+
+mat-icon:hover{
+cursor: pointer;
+}

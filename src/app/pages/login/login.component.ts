@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   })
 
-
+show:boolean = true;
+changeType:boolean = true;
   constructor(
     private snack: MatSnackBar,
     private login: LoginService,
@@ -69,5 +70,9 @@ export class LoginComponent implements OnInit {
         });
       }
     );
+  }
+  showPassword(){
+    this.show=!this.show;
+    this.changeType=!this.changeType
   }
 }

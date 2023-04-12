@@ -4,7 +4,7 @@
       <div class="col-md-6 offset-md-3">
         <mat-card>
           <div class="container text-center">
-            <img src="../../../assets/logo.png" alt="" />
+            <img width="200px" src="../../../assets/logo.jpg" alt="logo" />
           </div>
 
           <h1 class="text-center">Register Here</h1>
@@ -39,10 +39,12 @@
               <mat-label>Password</mat-label>
               <input
                 formControlName="password"
-                type="password"
+                [type]="changeType?'password':'text'"
                 placeholder="Create own strong Password"
                 matInput
               />
+              <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
+              <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
             </mat-form-field>
 
             <div class=" text-center">
