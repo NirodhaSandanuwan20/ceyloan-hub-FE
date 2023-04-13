@@ -21,7 +21,7 @@ import { error, log } from 'console';
 })
 export class StartComponent implements OnInit {
 
-  date;
+  date:string;
   myDate = new Date();
   qid;
   questions;
@@ -153,7 +153,7 @@ export class StartComponent implements OnInit {
     console.log('Marks Got ' + this.marksGot);
     console.log('attempted ' + this.attempted);
     console.log(this.questions);
-    console.log(JSON.parse(localStorage.getItem('user')));
+    console.log(JSON.parse(localStorage.getItem('user')).id);
     console.log();
     this.saveHistory();
 }
@@ -165,12 +165,16 @@ export class StartComponent implements OnInit {
   }
 
   saveHistory() {
-    this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    this.date= this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    let userId = JSON.parse(localStorage.getItem('user')).id;
     let h = {
       date: this.date,
       paper: this.questions[0].quiz.title + "-" + this.questions[0].quiz.category.title,
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
+      user: {
+        id:userId,
+      },
     };
     this.historyService.addHistory(h).subscribe(response => {
       console.log(response);

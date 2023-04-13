@@ -42,6 +42,8 @@ export class AddCategoryComponent implements OnInit {
 
     this._category.addCategory(this.category).subscribe(
       (data: any) => {
+        console.log(data);
+        
         this.category.title = '';
         this.category.audience = '';
         this.category.description = '';
