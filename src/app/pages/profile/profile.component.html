@@ -11,7 +11,6 @@
                 class="profile-image"
               />
             </div>
-    
             <div class="row">
               <div class="col-md-10 offset-md-1">
                 <!-- //table Details  -->
@@ -22,7 +21,7 @@
                   </tr>
                   <tr>
                     <td>Userid</td>
-                    <td>EXAM{{ user.id }}</td>
+                    <td>EXAM-{{ user.id }}</td>
                   </tr>
                   <tr>
                     <td>Phone</td>
@@ -34,7 +33,7 @@
                   </tr>
                   <tr>
                     <td>Status</td>
-                    <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+                    <td>{{ user.isEnabled ? "ACTIVE" : "NOT-ACTIVE" }}</td>
                   </tr>
                 </table>
               </div>
@@ -48,7 +47,7 @@
   <div class="col-md-6">
     <div class="left-outer">
       <div class="left-inner">
-        <h1>Your Progress</h1>
+        <button mat-button (click)="check()">Your Progress</button>
       </div>
     </div>
   </div>

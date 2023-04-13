@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+
   user = null;
   constructor(private loginService: LoginService) {}
 
@@ -20,5 +21,12 @@ export class ProfileComponent implements OnInit {
     //     alert('error');
     //   }
     // );
+   
   }
+
+  check() {
+    console.log(this.user);
+    
+    }
+  
 }
