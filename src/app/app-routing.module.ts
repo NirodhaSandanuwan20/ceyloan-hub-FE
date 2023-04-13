@@ -20,13 +20,12 @@ import { StartComponent } from './pages/user/start/start.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { AdminGuard } from './services/admin.guard';
 import { NormalGuard } from './services/normal.guard';
-import {AboutUsComponent} from "./components/about-us/about-us.component";
-import {CantactUsComponent} from "./components/cantact-us/cantact-us.component";
-import {DonationComponent} from "./components/donation/donation.component";
-import {NewsLetterComponent} from "./components/news-letter/news-letter.component";
-import {VerificationComponent} from "./pages/verification/verification.component";
+import { AboutUsComponent } from "./components/about-us/about-us.component";
+import { CantactUsComponent } from "./components/cantact-us/cantact-us.component";
+import { DonationComponent } from "./components/donation/donation.component";
+import { NewsLetterComponent } from "./components/news-letter/news-letter.component";
+import { VerificationComponent } from "./pages/verification/verification.component";
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
-import { AudienceComponent } from './pages/user/audience/audience.component';
 
 const routes: Routes = [
   {
@@ -134,7 +133,7 @@ const routes: Routes = [
         path: 'instructions/:qid',
         component: InstructionsComponent,
       }
-      
+
     ],
   },
   {
@@ -142,10 +141,15 @@ const routes: Routes = [
     component: StartComponent,
     canActivate: [NormalGuard],
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [NormalGuard],
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
