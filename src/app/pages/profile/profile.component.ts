@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { error } from 'console';
+import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
 
@@ -10,27 +11,26 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
+  categories = [];
   user = null;
   userHistory;
+  selectSubject='';
   constructor(private loginService: LoginService,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private categoryService: CategoryService
     ) {}
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
-    this.check();
-    // this.login.getCurrentUser().subscribe(
-    //   (user: any) => {
-    //     this.user = user;
-    //   },
-    //   (error) => {
-    //     alert('error');
-    //   }
-    // );
-   
+    this.loadData();
+    this.categoryService.categories().subscribe((data: any) => {
+      //categories load
+      this.categories = data;
+      // console.log(this.categories);
+    });
   }
 
-  check() {
+  loadData() {
     console.log();
     this.profileService.getUserHistory(JSON.parse(localStorage.getItem('user')).id).subscribe(response=>{
       console.log(response);

@@ -1,3 +1,6 @@
+*{
+  margin: 0;
+}
 .profile-image {
   margin-top: 0px;
   max-width: 100px;
@@ -21,7 +24,8 @@
 
 .left-outer{
 width: 100%;
-min-height: 400px;
+height: 400px;
 margin: 0;
 padding: 0;
+overflow: auto;
 }

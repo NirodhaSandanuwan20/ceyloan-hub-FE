@@ -165,11 +165,12 @@ export class StartComponent implements OnInit {
   }
 
   saveHistory() {
-    this.date= this.datePipe.transform(this.myDate, 'yyyy-MM-dd');
+    this.date= this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
     let userId = JSON.parse(localStorage.getItem('user')).id;
     let h = {
       date: this.date,
-      paper: this.questions[0].quiz.title + "-" + this.questions[0].quiz.category.title,
+      category: this.questions[0].quiz.category.title,
+      title: this.questions[0].quiz.title ,
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
       user: {
