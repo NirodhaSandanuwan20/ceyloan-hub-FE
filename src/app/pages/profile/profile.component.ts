@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { error } from 'console';
 import { LoginService } from 'src/app/services/login.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +11,9 @@ import { LoginService } from 'src/app/services/login.service';
 export class ProfileComponent implements OnInit {
 
   user = null;
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService,
+    private profileService: ProfileService
+    ) {}
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
@@ -25,7 +29,13 @@ export class ProfileComponent implements OnInit {
   }
 
   check() {
-    console.log(this.user);
+    console.log();
+    this.profileService.getUserHistory(JSON.parse(localStorage.getItem('user')).id).subscribe(response=>{
+      console.log(response);
+      
+    },erorr=>{
+      console.log(erorr);
+    });
     
     }
   
