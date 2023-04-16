@@ -11,12 +11,14 @@ import { ProfileService } from 'src/app/services/profile.service';
 export class ProfileComponent implements OnInit {
 
   user = null;
+  userHistory;
   constructor(private loginService: LoginService,
     private profileService: ProfileService
     ) {}
 
   ngOnInit(): void {
     this.user = this.loginService.getUser();
+    this.check();
     // this.login.getCurrentUser().subscribe(
     //   (user: any) => {
     //     this.user = user;
@@ -32,6 +34,8 @@ export class ProfileComponent implements OnInit {
     console.log();
     this.profileService.getUserHistory(JSON.parse(localStorage.getItem('user')).id).subscribe(response=>{
       console.log(response);
+      this.userHistory = response;
+      console.log(this.userHistory);
       
     },erorr=>{
       console.log(erorr);
