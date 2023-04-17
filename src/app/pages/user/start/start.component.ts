@@ -1,7 +1,7 @@
 
 import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -42,7 +42,8 @@ export class StartComponent implements OnInit {
     private _question: QuestionService,
     private _quiz: QuizService,
     private historyService: HistoryService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {
 
   }
@@ -63,15 +64,14 @@ export class StartComponent implements OnInit {
       .subscribe(
         (data: any) => {
           this.questions = data;
-          console.log(this.questions);
-          console.log(this.questions[0].quiz.timeDuration);
           this.timer = this.questions[0].quiz.timeDuration * 60;
           this.startTimer();
         },
 
         (error) => {
           console.log(error);
-          Swal.fire('Error', 'Error in loading questions of quiz', 'error');
+          Swal.fire('Oops', 'Empty Question For Now. Questions Will Be Added ASAP', 'error');
+          this.router.navigateByUrl('user-dashboard/0');
         }
       );
 
@@ -167,12 +167,15 @@ export class StartComponent implements OnInit {
   saveHistory() {
     this.date= this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
     let userId = JSON.parse(localStorage.getItem('user')).id;
+    let nowTime:any = this.getFormattedTime();
+    
     let h = {
       date: this.date,
       category: this.questions[0].quiz.category.title,
       title: this.questions[0].quiz.title ,
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
+      savedTime: nowTime,
       user: {
         id:userId,
       },

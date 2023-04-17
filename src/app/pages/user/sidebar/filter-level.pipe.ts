@@ -12,18 +12,14 @@ export class FilterLevelPipe implements PipeTransform {
 
     if(value.length === 0 || filterLevel === '' || audience === ''){
       return value;
-      console.log('first if');
     }
     
     for(const item of value){
       if(item.audience === filterLevel){
         filteredArray.push(item);
-        console.log('sec if');
       }
       
     }
-    
-    
     return filteredArray;
   }
 
