@@ -21,10 +21,10 @@ import { error, log } from 'console';
 })
 export class StartComponent implements OnInit {
 
-  date:string;
+  date: string;
   myDate = new Date();
   qid;
-  questions;
+  questions = [];
   marksGot = 0;
   correctAnswers = 0;
   attempted = 0;
@@ -34,6 +34,8 @@ export class StartComponent implements OnInit {
   ss;
   qNumber;
   pipe: any;
+  pageNumber = 0;
+  showMoreBtn;
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -57,13 +59,19 @@ export class StartComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   loadQuestions() {
-    this._question.getQuestionsOfQuizForTest(this.qid)
+    this._question.getQuestionsOfQuizForTest(this.qid,this.pageNumber)
       .pipe(
         map((x: Question[], i) => x.map((question: Question) => this.imageProcessingService.creatImages(question)))
       )
       .subscribe(
-        (data: any) => {
-          this.questions = data;
+        (data: Question[]) => {
+          if (data.length === 5) {
+            this.showMoreBtn = true;
+          } else {
+            this.showMoreBtn = false;
+          }
+          console.log(data);
+          data.forEach(p => this.questions.push(p));
           this.timer = this.questions[0].quiz.timeDuration * 60;
           this.startTimer();
         },
@@ -76,8 +84,8 @@ export class StartComponent implements OnInit {
       );
 
   }
-
-  // tslint:disable-next-line:typedef
+ 
+  
   preventBackButton() {
     history.pushState(null, null, location.href);
     this.locationSt.onPopState(() => {
@@ -85,7 +93,7 @@ export class StartComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
+  
   submitQuiz() {
     Swal.fire({
       title: 'Do you want to submit the quiz?',
@@ -99,7 +107,7 @@ export class StartComponent implements OnInit {
     });
   }
 
-  // tslint:disable-next-line:typedef
+  
   startTimer() {
     const t = window.setInterval(() => {
       // code
@@ -112,14 +120,14 @@ export class StartComponent implements OnInit {
     }, 1000);
   }
 
-  // tslint:disable-next-line:typedef
+  
   getFormattedTime() {
     let mm = Math.floor(this.timer / 60);
     let ss = this.timer - mm * 60;
     return `${mm} m : ${ss} s`;
   }
 
-  // tslint:disable-next-line:typedef
+  
   evalQuiz() {
     // calculation
     // call to sever  to check questions
@@ -156,35 +164,40 @@ export class StartComponent implements OnInit {
     console.log(JSON.parse(localStorage.getItem('user')).id);
     console.log();
     this.saveHistory();
-}
-
-
-  seekQuestion(number: number) {
-    console.log(number);
-    console.log(this.questions);
   }
 
+
+ 
+
   saveHistory() {
-    this.date= this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
+    this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
     let userId = JSON.parse(localStorage.getItem('user')).id;
-    let nowTime:any = this.getFormattedTime();
-    
+    let nowTime: any = this.getFormattedTime();
+
     let h = {
       date: this.date,
       category: this.questions[0].quiz.category.title,
-      title: this.questions[0].quiz.title ,
+      title: this.questions[0].quiz.title,
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
       savedTime: nowTime,
       user: {
-        id:userId,
+        id: userId,
       },
     };
     this.historyService.addHistory(h).subscribe(response => {
       console.log(response);
     }, error => {
       console.log(error);
-      });
+    });
+  }
+ 
+
+
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.loadQuestions();
   }
 
 }

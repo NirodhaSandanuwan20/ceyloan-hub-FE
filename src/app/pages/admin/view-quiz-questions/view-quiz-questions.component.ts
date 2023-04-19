@@ -16,7 +16,9 @@ export class ViewQuizQuestionsComponent implements OnInit {
   qId;
   qTitle;
   category;
-  questions;
+  questions = [];
+  showMoreBtn;
+  pageNumber = 0;
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -29,12 +31,17 @@ export class ViewQuizQuestionsComponent implements OnInit {
     this.qId = this._route.snapshot.params.qid;
     this.qTitle = this._route.snapshot.params.title;
   
-    this._question.getQuestionsOfQuiz(this.qId).pipe(
+    this._question.getQuestionsOfQuiz(this.qId,this.pageNumber).pipe(
       map((x: Question[],i) => x.map((question: Question) => this.imageProcessingService.creatImages(question)))
     ).subscribe(
-      (data: any) => {
+      (data: Question[]) => {
         console.log(data);
-        this.questions = data;
+        if (data.length === 5) {
+          this.showMoreBtn = true;
+        } else {
+          this.showMoreBtn = false;
+        }
+        data.forEach(p => this.questions.push(p));
       },
       (error) => {
         console.log(error);
@@ -70,4 +77,10 @@ export class ViewQuizQuestionsComponent implements OnInit {
       }
     });
   }
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.ngOnInit();
+  }
+
 }

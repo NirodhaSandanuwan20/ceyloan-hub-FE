@@ -2,6 +2,11 @@
   margin: 0;
 }
 
+.outer{
+  width: 100%;
+  height: 100%vh;
+}
+
 
 .upper{
   width: 100%;
@@ -10,8 +15,9 @@
 }
 
 .upper-inner{
-width: auto;
+width: 50%;
 min-height: 200px;
+height: 100%;
 }
 
 .profile-image {
@@ -37,8 +43,22 @@ min-height: 200px;
 
 .left-outer{
 width: 100%;
-height: 400px;
+height: 360px;
 margin: 0;
 padding: 0;
 overflow: auto;
+}
+
+.bottom{
+  border: 1px solid rebeccapurple;
+  width: 100%;
+  height: 50%vh;
+  position: absolute;
+}
+
+.left-bottom{
+  width: 50%;
+  height: 100%;
+  background-color:#ff4081;
+  border: 1px solid white;
 }

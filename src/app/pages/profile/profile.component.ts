@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { error } from 'console';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProfileService } from 'src/app/services/profile.service';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +11,8 @@ import { ProfileService } from 'src/app/services/profile.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
+
+ 
 
   categories = [];
   user = null;

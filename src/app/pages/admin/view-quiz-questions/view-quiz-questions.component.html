@@ -56,7 +56,16 @@
           </button>
           <button mat-button color="primary">Update</button>
         </mat-card-action>
+
+        
+
       </mat-card>
+
+      <div class="container text-center mt20 mb20">
+        <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+          Load More
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -8,12 +8,12 @@ import baseUrl from './helper';
 export class QuestionService {
   constructor(private _http: HttpClient) {}
 
-  public getQuestionsOfQuiz(qid) {
-    return this._http.get(`${baseUrl}/question/quiz/all/${qid}`);
+  public getQuestionsOfQuiz(qid,pageNumber) {
+    return this._http.get(`${baseUrl}/question/quiz/all/${qid}`+'?pageNumber='+pageNumber);
   }
 
-  public getQuestionsOfQuizForTest(qid) {
-    return this._http.get(`${baseUrl}/question/quiz/${qid}`);
+  public getQuestionsOfQuizForTest(qid,pageNumber) {
+    return this._http.get(`${baseUrl}/question/quiz/${qid}`+"?pageNumber="+pageNumber);
   }
 
   //add question

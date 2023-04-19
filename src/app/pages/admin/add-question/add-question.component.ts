@@ -73,13 +73,13 @@ export class AddQuestionComponent implements OnInit {
     this.questionService.addQuestion(questionFormData).subscribe(
       (data: any) => {
         Swal.fire('Success ', 'Question Added. Add Another one', 'success');
-        this.question.content = '';
+        /* this.question.content = '';
         this.question.option1 = '';
         this.question.option2 = '';
         this.question.option3 = '';
         this.question.option4 = '';
         this.question.option5 = '';
-        this.question.answer = '';
+        this.question.answer = ''; */
         this.question.questionImages = [];
       },
       (error) => {

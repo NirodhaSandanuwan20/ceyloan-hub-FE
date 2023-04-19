@@ -68,10 +68,12 @@
         </mat-card>
 
         <div class="container text-center mt20 mb20">
-          <button (click)="submitQuiz()" mat-raised-button color="primary">
-            Submit Quiz
+          <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+            Load More
           </button>
         </div>
+
+
       </div>
 
       
@@ -81,8 +83,13 @@
           <mat-card class="timer-inner">
             <mat-card-content>
               <h4 style="color: black;font-weight: bold;">{{ getFormattedTime() }}</h4>
+              <div class="container text-center mt20 mb20">
+                <button (click)="submitQuiz()" mat-raised-button color="primary">
+                  Submit Quiz
+                </button>
+              </div>
             </mat-card-content>
-          </mat-card>
+         </mat-card>
         </div>
 
         <div class="navq-outer">
