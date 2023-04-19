@@ -1,7 +1,7 @@
 
 import { ThisReceiver } from '@angular/compiler';
 import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Route, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -48,10 +48,11 @@ export class StartComponent implements OnInit {
     private router: Router
   ) {
 
+    
   }
 
   ngOnInit(): void {
-    this.preventBackButton();
+   this.preventBackButton();
     this.qid = this._route.snapshot.params.qid;
     console.log(this.qid);
     this.loadQuestions();
@@ -72,8 +73,12 @@ export class StartComponent implements OnInit {
           }
           console.log(data);
           data.forEach(p => this.questions.push(p));
-          this.timer = this.questions[0].quiz.timeDuration * 60;
-          this.startTimer();
+          console.log(this.questions.length);
+          if(this.questions.length === 5){
+            this.timer = this.questions[0].quiz.timeDuration * 60;
+            this.startTimer();
+          }
+          
         },
 
         (error) => {
@@ -93,6 +98,8 @@ export class StartComponent implements OnInit {
     });
   }
 
+
+  
   
   submitQuiz() {
     Swal.fire({
@@ -151,10 +158,6 @@ export class StartComponent implements OnInit {
         this.marksGot = this.correctAnswers;
       } else {
         q.accuracy = false;
-      }
-
-      if (q.givenAnswer.trim() !== '') {
-        this.attempted++;
       }
     });
     console.log('Correct Answers :' + this.correctAnswers);
