@@ -8,3 +8,7 @@ a{
   color: white;
   text-decoration: none;
 }
+
+mat-icon:hover{
+   cursor: pointer;
+}

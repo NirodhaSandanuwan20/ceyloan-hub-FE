@@ -39,10 +39,10 @@ export class QuizService {
     return this._http.get(`${baseUrl}/quiz/category/${cid}`);
   }
   //qet active quizzes
-  public getActiveQuizzes(pageNumber,searchText: string = '') {
-    console.log(searchText);
-    
-    return this._http.get(`${baseUrl}/quiz/active`+"?pageNumber="+pageNumber+"&searchText="+searchText);
+  public getActiveQuizzes(pageNumber,searchText2,searchText1) {
+    console.log(searchText1);
+    console.log(searchText2);
+    return this._http.get(`${baseUrl}/quiz/active`+"?pageNumber="+pageNumber+"&searchText2="+searchText2+"&searchText1="+searchText1);
   }
 
   //get active quizzes of category pageNumberEpic

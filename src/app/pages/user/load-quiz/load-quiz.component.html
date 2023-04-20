@@ -2,22 +2,37 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <form >
-          <mat-form-field class="w100" style="width: 74%; margin-right: 30px;" appearance="outline">
-            <mat-label>Search Here For Your Need !!!</mat-label>
+        <form>
+<h1 class="text-center">Filter Your Paper :</h1>
+
+          <mat-form-field class="w100" style="width: 35%; margin-right: 30px;" appearance="outline">
+            <mat-label>Enter Subject Here !!!</mat-label>
     
             <input
-              autofocus
               type="search"
-              name="searchText"
+              name="searchText2"
               matInput
-              placeholder="  Ex: Physics 2018 AL"
-              [(ngModel)]="searchText"
+              placeholder=" EX: Physics / Chemistry "
+              [(ngModel)]="searchText2"
             />
-            <mat-icon matSuffix >search</mat-icon>
+            <mat-icon (click)="clear2()" matSuffix >clear</mat-icon>
+          </mat-form-field>
+
+
+          <mat-form-field class="w100" style="width: 35%; margin-right: 30px;" appearance="outline">
+            <mat-label>Enter Year !!!</mat-label>
+    
+            <input
+              type="search"
+              name="searchText1"
+              matInput
+              placeholder="  Ex: 2018 AL / 2015 OL "
+              [(ngModel)]="searchText1"
+            />
+            <mat-icon (click)="clear1()" matSuffix>clear</mat-icon>
           </mat-form-field>
     
-          <button style="width: 23%;height: 45px;" mat-raised-button color="primary" (click)="search()">Serach</button>
+          <button style="width: 24%;height: 45px;" mat-raised-button color="primary" (click)="search()">Serach</button>
         </form >
       </div>
     </div>
@@ -116,7 +131,7 @@
             </button>
           </div> -->
   
-        <div class="col-md-12" *ngIf="quizzes.length == 0">
+        <div class="col-md-12" *ngIf="epicQuizzes.length == 0">
           <mat-card>
             <mat-card-content>
               <h1>No data in this category</h1>

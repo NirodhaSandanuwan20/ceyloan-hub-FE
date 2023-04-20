@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -18,9 +18,11 @@ export class LoadQuizComponent implements OnInit {
   showMoreBtn;
   showMoreBtnEpic;
   allQues;
-  searchText:string = '';
+  searchText1:string = '';
+  searchText2:string = '';
 
-  constructor(private _route: ActivatedRoute, private _quiz: QuizService) { }
+  constructor(private _route: ActivatedRoute, private _quiz: QuizService
+    , private router: Router) { }
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
@@ -35,7 +37,7 @@ export class LoadQuizComponent implements OnInit {
 
     if (this.catId == 0) {
       this.allQues = true;
-      this._quiz.getActiveQuizzes(this.pageNumber,this.searchText).subscribe(
+      this._quiz.getActiveQuizzes(this.pageNumber,this.searchText2, this.searchText1).subscribe(
         (data: any) => {
           console.log(data);
           if (data.length === 4) {
@@ -89,8 +91,21 @@ export class LoadQuizComponent implements OnInit {
 
     this.pageNumber = 0;
     this.quizzes = [];
-    this.ngOnInit();
+    this.getAllQuiz();
+    if(this.catId != 0){
+      this.router.navigateByUrl('/user-dashboard/0');
+    }
     
+  }
+
+  clear2(){
+    this.searchText2 = '';
+    this.search();
+  }
+  
+  clear1(){
+    this.searchText1 = '';
+    this.search();
   }
 
 }
