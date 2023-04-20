@@ -19,6 +19,7 @@ export class AddQuizComponent implements OnInit {
     numberOfQuestions: '',
     timeDuration: '',
     active: true,
+    paperLink: '',
     category: {
       cid: '',
     },
@@ -66,6 +67,7 @@ export class AddQuizComponent implements OnInit {
           numberOfQuestions: '',
           timeDuration: '',
           active: true,
+          paperLink: '',
           category: {
             cid: '',
           },
