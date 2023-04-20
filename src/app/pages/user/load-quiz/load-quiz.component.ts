@@ -9,18 +9,31 @@ import { QuizService } from 'src/app/services/quiz.service';
 })
 export class LoadQuizComponent implements OnInit {
   catId;
-  quizzes;
-  constructor(private _route: ActivatedRoute, private _quiz: QuizService) {}
+  quizzes = [];
+  epicQuizzes = [];
+  tempEpicQuizzes = [];
+  pageNumber = 0;
+  pageNumberEpic = 0;
+  showMoreBtn;
+  showMoreBtnEpic;
+  allQues;
+  constructor(private _route: ActivatedRoute, private _quiz: QuizService) { }
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
       this.catId = params.catId;
       if (this.catId == 0) {
-        console.log('Load all the quiz');
-
-        this._quiz.getActiveQuizzes().subscribe(
+        this.allQues = true;
+        console.log(this.pageNumber);
+        this._quiz.getActiveQuizzes(this.pageNumber).subscribe(
           (data: any) => {
-            this.quizzes = data;
+            console.log(data);
+            if (data.length === 4) {
+              this.showMoreBtn = true;
+            } else {
+              this.showMoreBtn = false;
+            }
+            data.forEach(p => this.quizzes.push(p));
             console.log(this.quizzes);
           },
           (error) => {
@@ -29,12 +42,17 @@ export class LoadQuizComponent implements OnInit {
           }
         );
       } else {
-        console.log('Load specific quiz');
-
-        this._quiz.getActiveQuizzesOfCategory(this.catId).subscribe(
+        this.allQues = false;
+        this._quiz.getActiveQuizzesOfCategory(this.catId,this.pageNumberEpic).subscribe(
           (data: any) => {
-            this.quizzes = data;
-            console.log(this.quizzes);
+            console.log(data);
+            if (data.length === 1) {
+              this.showMoreBtnEpic = true;
+            } else {
+              this.showMoreBtnEpic = false;
+            }
+            data.forEach(p => this.epicQuizzes.push(p));
+            console.log(this.epicQuizzes);
           },
           (error) => {
             alert('error in loading quiz data');
@@ -43,4 +61,17 @@ export class LoadQuizComponent implements OnInit {
       }
     });
   }
+
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.ngOnInit();
+  }
+
+
+  loadMoreEpic() {
+    this.pageNumberEpic = this.pageNumberEpic + 1;
+    this.ngOnInit();
+  }
+
 }

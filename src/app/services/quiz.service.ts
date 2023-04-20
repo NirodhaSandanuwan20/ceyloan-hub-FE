@@ -39,12 +39,12 @@ export class QuizService {
     return this._http.get(`${baseUrl}/quiz/category/${cid}`);
   }
   //qet active quizzes
-  public getActiveQuizzes() {
-    return this._http.get(`${baseUrl}/quiz/active`);
+  public getActiveQuizzes(pageNumber) {
+    return this._http.get(`${baseUrl}/quiz/active`+"?pageNumber="+pageNumber);
   }
 
-  //get active quizzes of category
-  public getActiveQuizzesOfCategory(cid) {
-    return this._http.get(`${baseUrl}/quiz/category/active/${cid}`);
+  //get active quizzes of category pageNumberEpic
+  public getActiveQuizzesOfCategory(cid,pageNumberEpic) {
+    return this._http.get(`${baseUrl}/quiz/category/active/${cid}`+"?pageNumberEpic="+pageNumberEpic);
   }
 }

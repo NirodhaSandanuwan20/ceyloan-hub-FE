@@ -1,44 +1,117 @@
 <div class="bootstrap-wrapper">
   <div class="container-fluid">
     <h1 class="mt20">Available Quizzes</h1>
-    <div class="row mt20" *ngIf="quizzes">
-      <div class="col-md-3" *ngFor="let q of quizzes">
-        <mat-card class="mb20">
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>
-              {{ q.title }}
-            </mat-card-title>
-            <mat-card-subtitle>
-              {{ q.category.title }}
-            </mat-card-subtitle>
-          </mat-card-header>
-          <!--<mat-card-content>
-            <p class="truncate">{{ q.description }}</p>
-          </mat-card-content>-->
-          <mat-card-action>
-            <button
-              mat-raised-button
-              color="primary"
-              [routerLink]="'/user-dashboard/instructions/' + q.qId"
-              class="ml10"
-              style="width: 90%"
-            >
-              Start MCQ
+
+
+
+
+    <div *ngIf="allQues">
+      <div class="row mt20" *ngIf="quizzes">
+        <div class="col-md-3" *ngFor="let q of quizzes">
+          <mat-card class="mb20">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <!--<mat-card-content>
+              <p class="truncate">{{ q.description }}</p>
+            </mat-card-content>-->
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/user-dashboard/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+  
+              <button class="ml10 mt10" style="width: 90%"  mat-raised-button color="primary" ><a target="popup" [href]="q.paperLink">Second Paper</a></button>
+            </mat-card-action>
+          </mat-card>
+          </div>
+
+          <div class="container text-center mt20 mb20">
+            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+              Load More
             </button>
-
-            <button class="ml10 mt10" style="width: 90%"  mat-raised-button color="primary" ><a target="popup" [href]="q.paperLink">Second Paper</a></button>
-          </mat-card-action>
-        </mat-card>
-      </div>
-
-      <div class="col-md-12" *ngIf="quizzes.length == 0">
-        <mat-card>
-          <mat-card-content>
-            <h1>No data in this category</h1>
-          </mat-card-content>
-        </mat-card>
+          </div>
+  
+        <div class="col-md-12" *ngIf="quizzes.length == 0">
+          <mat-card>
+            <mat-card-content>
+              <h1>No data in this category</h1>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
+    
+
+
+
+
+
+    <div *ngIf="!allQues">
+      <div class="row mt20" *ngIf="epicQuizzes">
+        <div class="col-md-3" *ngFor="let q of epicQuizzes">
+          <mat-card class="mb20">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <!--<mat-card-content>
+              <p class="truncate">{{ q.description }}</p>
+            </mat-card-content>-->
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/user-dashboard/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+  
+              <button class="ml10 mt10" style="width: 90%"  mat-raised-button color="primary" ><a target="popup" [href]="q.paperLink">Second Paper</a></button>
+            </mat-card-action>
+          </mat-card>
+          </div>
+          
+          <div class="container text-center mt20 mb20">
+            <button (click)="loadMoreEpic()" mat-raised-button *ngIf="showMoreBtnEpic" color="primary">
+              Load More
+            </button>
+          </div>
+  
+        <div class="col-md-12" *ngIf="quizzes.length == 0">
+          <mat-card>
+            <mat-card-content>
+              <h1>No data in this category</h1>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
   </div>
 </div>
