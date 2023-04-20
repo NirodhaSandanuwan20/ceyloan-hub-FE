@@ -9,20 +9,15 @@ import Swal from 'sweetalert2';
 })
 export class ViewQuizzesComponent implements OnInit {
   quizzes = [];
+  pageNumber = 0;
+  searchText1 = '';
+  searchText2 = '';
+  showMoreBtn;
 
   constructor(private _quiz: QuizService) {}
 
   ngOnInit(): void {
-    this._quiz.quizzes().subscribe(
-      (data: any) => {
-        this.quizzes = data;
-        console.log(this.quizzes);
-      },
-      (error) => {
-        console.log(error);
-        Swal.fire('Error !', 'Error in loading data !', 'error');
-      }
-    );
+    this.getAllQuiz();
   }
 
   //
@@ -47,4 +42,52 @@ export class ViewQuizzesComponent implements OnInit {
       }
     });
   }
+
+  getAllQuiz(){
+
+    this._quiz.quizzes(this.pageNumber,this.searchText2,this.searchText1).subscribe(
+      (data: any) => {
+        console.log(data);
+        if (data.length === 4) {
+          this.showMoreBtn = true;
+        } else {
+          this.showMoreBtn = false;
+        }
+
+
+        data.forEach(p=>this.quizzes.push(p));
+        console.log(this.quizzes);
+      },
+      (error) => {
+        console.log(error);
+        Swal.fire('Error !', 'Error in loading data !', 'error');
+      }
+    );
+
+  }
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.ngOnInit();
+  }
+
+
+  search() {
+
+    this.pageNumber = 0;
+    this.quizzes = [];
+    this.getAllQuiz();
+    
+  }
+
+  clear2(){
+    this.searchText2 = '';
+    this.search();
+  }
+  
+  clear1(){
+    this.searchText1 = '';
+    this.search();
+  }
+
 }

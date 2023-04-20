@@ -8,8 +8,8 @@ import baseUrl from './helper';
 export class QuizService {
   constructor(private _http: HttpClient) {}
 
-  public quizzes() {
-    return this._http.get(`${baseUrl}/quiz/`);
+  public quizzes(pageNumber,searchText2,searchText1) {
+    return this._http.get(`${baseUrl}/quiz/`+"?pageNumber="+pageNumber+"&searchText2="+searchText2+"&searchText1="+searchText1);
   }
 
   //add quiz
