@@ -9,9 +9,10 @@ import { HistoryService } from 'src/app/services/history.service';
   styleUrls: ['./quiz-attempt-history.component.css']
 })
 export class QuizAttemptHistoryComponent implements OnInit {
-
+category;
+title;
   qid: number;
-
+  quizHistory;
   constructor(
     private activeRoute: ActivatedRoute,
     private userHistoryService: HistoryService
@@ -26,7 +27,10 @@ export class QuizAttemptHistoryComponent implements OnInit {
 
   getQuizAttempts() {
     this.userHistoryService.getQuizAttempts(this.qid).subscribe(response => {
-      console.log(response);
+      this.quizHistory = response;
+      this.category = this.quizHistory[0].category;
+      this.title = this.quizHistory[0].title;
+      
 
     }, error => {
       console.log(error);

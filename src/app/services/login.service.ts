@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import baseUrl from './helper';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +72,8 @@ export class LoginService {
 
   public getUserRole() {
     let user = this.getUser();
+    console.log(user.authorities[0].authority);
+    
     return user.authorities[0].authority;
   }
 }

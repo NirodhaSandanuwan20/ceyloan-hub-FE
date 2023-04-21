@@ -44,6 +44,7 @@ export class ViewQuizQuestionsComponent implements OnInit {
           this.showMoreBtn = false;
         }
         data.forEach(p => this.questions.push(p));
+        this.category = this.questions[0].quiz.category.title;
       },
       (error) => {
         console.log(error);
