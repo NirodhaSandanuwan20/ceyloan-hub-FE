@@ -48,7 +48,7 @@ export class ViewQuizzesComponent implements OnInit {
     this._quiz.quizzes(this.pageNumber,this.searchText2,this.searchText1).subscribe(
       (data: any) => {
         console.log(data);
-        if (data.length === 4) {
+        if (data.length === 1) {
           this.showMoreBtn = true;
         } else {
           this.showMoreBtn = false;

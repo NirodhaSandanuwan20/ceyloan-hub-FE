@@ -1,6 +1,42 @@
 <h1 class="text-center">{{this.category}} - {{this.title}} Attempt History</h1>
 
 
+<div class="row">
+  <div class="col-md-12">
+    <form>
+<h1 class="text-center">Filter Attempt History :</h1>
+
+      <mat-form-field class="w100" style="width: 35%; margin-right: 30px;" appearance="outline">
+        <mat-label>Enter Username Here !!!</mat-label>
+
+        <input
+          type="search"
+          name="searchText1"
+          matInput
+          [(ngModel)]="searchText1"
+        />
+        <mat-icon (click)="clear1()" matSuffix >clear</mat-icon>
+      </mat-form-field>
+
+
+      <mat-form-field class="w100" style="width: 35%; margin-right: 30px;" appearance="outline">
+        <mat-label>Enter Date Here !!!</mat-label>
+
+        <input
+          type="search"
+          name="searchText2"
+          matInput
+          [(ngModel)]="searchText2"
+        />
+        <mat-icon (click)="clear2()" matSuffix>clear</mat-icon>
+      </mat-form-field>
+
+      <button style="width: 24%;height: 45px;" mat-raised-button color="primary" (click)="search()">Serach</button>
+    </form >
+  </div>
+</div>
+
+
 
 <table class="table table-striped table-bordered">
     <thead>
@@ -24,3 +60,9 @@
       </tr>
     </tbody>
   </table>
+
+  
+    <button class="text-center" (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+      Load More
+    </button>
+  

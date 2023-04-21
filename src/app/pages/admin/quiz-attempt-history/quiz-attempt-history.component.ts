@@ -12,7 +12,11 @@ export class QuizAttemptHistoryComponent implements OnInit {
 category;
 title;
   qid: number;
-  quizHistory;
+  quizHistory = [];
+  pageNumber = 0 ;
+  searchText1 = '';
+  searchText2 = '';
+  showMoreBtn;
   constructor(
     private activeRoute: ActivatedRoute,
     private userHistoryService: HistoryService
@@ -26,8 +30,17 @@ title;
   }
 
   getQuizAttempts() {
-    this.userHistoryService.getQuizAttempts(this.qid).subscribe(response => {
-      this.quizHistory = response;
+    this.userHistoryService.getQuizAttempts(this.qid,this.pageNumber,this.searchText1,this.searchText2).subscribe((response:any) => {
+      console.log(response);
+        if (response.length === 4) {
+          this.showMoreBtn = true;
+        } else {
+          this.showMoreBtn = false;
+        }
+
+
+        response.forEach(p=>this.quizHistory.push(p));
+        console.log(this.quizHistory);
       this.category = this.quizHistory[0].category;
       this.title = this.quizHistory[0].title;
       
@@ -38,5 +51,33 @@ title;
 
 
   }
+
+
+
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.getQuizAttempts();
+  }
+
+
+  search() {
+
+    this.pageNumber = 0;
+    this.quizHistory = [];
+    this.getQuizAttempts();
+    
+  }
+
+  clear2(){
+    this.searchText2 = '';
+    this.search();
+  }
+  
+  clear1(){
+    this.searchText1 = '';
+    this.search();
+  }
+
 
 }
