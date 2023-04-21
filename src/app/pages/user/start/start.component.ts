@@ -184,6 +184,7 @@ export class StartComponent implements OnInit {
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
       savedTime: nowTime,
+      qid: this.qid,
       user: {
         id: userId,
       },

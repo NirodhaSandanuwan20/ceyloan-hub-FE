@@ -52,6 +52,7 @@ import { VerificationComponent } from './pages/verification/verification.compone
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { FilterLevelPipe } from './pages/user/sidebar/filter-level.pipe';
 import { FilterSubjectPipe } from './pages/profile/filter-subject.pipe';
+import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { FilterSubjectPipe } from './pages/profile/filter-subject.pipe';
     VerificationComponent,
     ForgotPasswordComponent,
     FilterLevelPipe,
-    FilterSubjectPipe
+    FilterSubjectPipe,
+    QuizAttemptHistoryComponent
 ],
   imports: [
     BrowserModule,

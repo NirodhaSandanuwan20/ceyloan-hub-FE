@@ -14,4 +14,9 @@ export class HistoryService {
     return this.http.post(`${baseUrl}/history/`, h);
   }
 
+  public getQuizAttempts(qid:number) {
+    console.log(qid);
+    return this.http.get(`${baseUrl}/history/`+"?qid="+qid );
+  }
+
 }

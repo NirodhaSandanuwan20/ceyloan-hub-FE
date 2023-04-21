@@ -28,9 +28,11 @@ export class ViewQuizQuestionsComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.qId = this._route.snapshot.params.qid;
-    this.qTitle = this._route.snapshot.params.title;
-  
+    
+    this._route.params.subscribe((params) => {
+      this.qId = params.qid;
+      this.qTitle = params.title;
+    });
     this._question.getQuestionsOfQuiz(this.qId,this.pageNumber).pipe(
       map((x: Question[],i) => x.map((question: Question) => this.imageProcessingService.creatImages(question)))
     ).subscribe(
