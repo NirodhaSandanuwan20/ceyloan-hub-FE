@@ -54,25 +54,25 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active"><b>Home</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/home" routerLinkActive="active"><b>Home</b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/user-dashboard/0" routerLinkActive="active"><b>DashBoard</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/user-dashboard/0" routerLinkActive="active"><b>DashBoard</b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/contact-us" routerLinkActive="active"><b>Contact Us</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/contact-us" routerLinkActive="active"><b>Contact Us</b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/about-us" routerLinkActive="active"><b>About Us </b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/about-us" routerLinkActive="active"><b>About Us </b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/donation" routerLinkActive="active"><b>Donations</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/donation" routerLinkActive="active"><b>Donations</b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/news-letter" routerLinkActive="active"><b>News letter</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/news-letter" routerLinkActive="active"><b>News letter</b></a>
       </li>
       <li class="nav-item  nav-box">
-        <a class="nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin"><b>Admin DashBoard</b><span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin"><b>Admin DashBoard</b></a>
       </li>
 
     </ul>
@@ -84,13 +84,15 @@
             class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item  nav-box">
-          <a class="nav-link" *ngIf="!isLoggedIn" [routerLink]="'/signup'"  routerLinkActive="active"><b>Signup</b><span class="sr-only">(current)</span></a>
+          <a class="nav-link" *ngIf="!isLoggedIn" [routerLink]="'/signup'"  routerLinkActive="active"><b>Signup</b></a>
         </li>
         <li class="nav-item  nav-box">
-          <a style="background-color: red;" class="nav-link" *ngIf="isLoggedIn" (click)="logout()"><b>Logout</b><span class="sr-only">(current)</span></a>
+          <a  class="nav-link" *ngIf="isLoggedIn" (click)="logout()"><b><mat-icon>logout</mat-icon></b></a>
         </li>
-        <li class="nav-item  nav-box">
-          <a style="background-color: red;" class="nav-link" *ngIf="isLoggedIn" [routerLink]="'/profile'"><b>My Profile</b><span class="sr-only">(current)</span></a>
+        <li style="margin-left: 10px;" class="nav-item  nav-box">
+          <a routerLinkActive="active" class="nav-link" *ngIf="isLoggedIn" [routerLink]="'/profile'">
+            <b><mat-icon>account_box</mat-icon></b>
+          </a>
         </li>
       </ul>
 

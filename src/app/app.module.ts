@@ -53,6 +53,7 @@ import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-pas
 import { FilterLevelPipe } from './pages/user/sidebar/filter-level.pipe';
 import { FilterSubjectPipe } from './pages/profile/filter-subject.pipe';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -113,6 +114,9 @@ import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/
     MatGridListModule,
     MatRadioModule,
     ReactiveFormsModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent],

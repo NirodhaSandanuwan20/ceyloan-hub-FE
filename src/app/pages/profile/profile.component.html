@@ -91,17 +91,76 @@
       </div>
   
     </div>
+
+
+
+
+    <div class="bottom" >
+      <div class="row">
+        <div class="col-sm-6 col-lg-6 " >
+    
+          <mat-card style="margin-top: 50px;">
+            <mat-card-content>
+
+
+              <table>
+                <tr>
+                    <td>
+                        <ngx-charts-pie-grid 
+                        [results]="productSales" 
+                        [view]="view" 
+                        [scheme]="colorScheme" 
+                        (select)="onSelect($event)" 
+                        (activate)="onActivate($event)" 
+                        (deactivate)="onDeactivate($event)">
+                        </ngx-charts-pie-grid>
+                    </td>
+                </tr>
+              </table> 
+
+
+            </mat-card-content>
+    
+          </mat-card>
+    
+        </div>
+    
+        <div class="col-sm-6 col-lg-6 "  >
+    
+          <mat-card style="margin-top: 50px;">
+            <mat-card-content>
+
+             
+              <table>
+                <tr>
+                    <td>
+                        <ngx-charts-pie-chart 
+                        [results]="productSales" 
+                        [view]="view" 
+                        [scheme]="colorScheme" 
+                        [gradient]="gradient" 
+                        [legend]="showLegend" 
+                        [legendPosition]="legendPosition" 
+                        [labels]="showLabels" 
+                        [doughnut]="isDoughnut" 
+                        (select)="onSelect($event)" 
+                        (activate)="onActivate($event)"
+                        (deactivate)="onDeactivate($event)">
+                        </ngx-charts-pie-chart>
+                    </td>
+                </tr>
+                </table>
+
+
+            </mat-card-content>
+          </mat-card>
+    
+        </div>
+    
+      </div>
+    
+  
+  
   </div>
   
   
-  <div class="bottom">
-    <div class="left-bottom">
-      
-    </div>
-    <div class="left-bottom"></div>
-  </div>
-
-
-
-
-</div>
