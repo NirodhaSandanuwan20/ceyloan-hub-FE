@@ -11,6 +11,7 @@ import { productSales, productSalesMulti } from './product';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
+
 export class ProfileComponent implements OnInit {
 
  
@@ -66,7 +67,7 @@ export class ProfileComponent implements OnInit {
     gradient: boolean = false;
     isDoughnut: boolean = true;
   
-    legendPosition: string = 'below';
+    legendPosition: string = 'right';
   
     colorScheme = {
       domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
