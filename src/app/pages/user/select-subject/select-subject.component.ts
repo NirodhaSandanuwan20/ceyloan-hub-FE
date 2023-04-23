@@ -49,7 +49,7 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   addCategory(cid, title) {
-
+let text = "Do you want to Add "+ title +" as your subject ?"
 
     console.log(cid);
     console.log(title);
@@ -67,7 +67,7 @@ export class SelectSubjectComponent implements OnInit {
     };
 
     Swal.fire({
-      title: 'Do you want to Add this Subject ?',
+      title: text,
       showCancelButton: true,
       confirmButtonText: `Submit`,
       icon: 'info',
@@ -95,7 +95,7 @@ export class SelectSubjectComponent implements OnInit {
   getAllSelectedCategories() {
     console.log(this.userId);
 
-    this.selectSubjectServeice.getUserCategory(this.userId).subscribe(response => {
+    this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
       console.log(response);
       this.selectedCategories = response;
     },
@@ -107,6 +107,37 @@ export class SelectSubjectComponent implements OnInit {
     );
   }
 
+
+
+
+  deleteCategory(userCategoryId,cTitle){
+  console.log(userCategoryId);
+  let text = 'Do you really want delete this '+cTitle+' Subject ?'
+
+    Swal.fire({
+      title: text,
+      showCancelButton: true,
+      confirmButtonText: `Submit`,
+      icon: 'info',
+    }).then((e) => {
+
+      if (e.isConfirmed) {
+        this.selectSubjectServeice.deleteSelectedUserCategory(userCategoryId).subscribe((Response) => {
+          console.log(Response);
+          this.ngOnInit();
+        },
+          (error) => {
+            this.snackBar.open("Error !! Try Again later", 'Oops !!', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
+
+          });
+      }
+    });
+
+  }
 
 
 

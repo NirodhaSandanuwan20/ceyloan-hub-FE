@@ -6,6 +6,7 @@ import baseUrl from './helper';
   providedIn: 'root'
 })
 export class SelectSubjectService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -15,8 +16,15 @@ export class SelectSubjectService {
   }
 
 
-  public getUserCategory(cid:number) {
-    console.log(cid);
-    return this.http.get(`${baseUrl}/my-category/`+cid,{});
+  public getSelectedUserCategory(userId:number) {
+    console.log(userId);
+    return this.http.get(`${baseUrl}/my-category/`+userId);
   }
+
+  public deleteSelectedUserCategory(userCategoryId:number) {
+    console.log(userCategoryId);
+    return this.http.delete(`${baseUrl}/my-category/`+"?userCategoryId="+userCategoryId);
+  }
+
+
 }
