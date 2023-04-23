@@ -27,6 +27,7 @@ import { NewsLetterComponent } from "./components/news-letter/news-letter.compon
 import { VerificationComponent } from "./pages/verification/verification.component";
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
+import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 
 const routes: Routes = [
   {
@@ -130,6 +131,10 @@ const routes: Routes = [
     component: UserDashboardComponent,
     canActivate: [NormalGuard],
     children: [
+      {
+        path: 'select-subject',
+        component: SelectSubjectComponent,
+      },
       {
         path: ':catId',
         component: LoadQuizComponent,

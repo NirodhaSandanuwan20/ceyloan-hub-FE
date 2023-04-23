@@ -54,6 +54,7 @@ import { FilterLevelPipe } from './pages/user/sidebar/filter-level.pipe';
 import { FilterSubjectPipe } from './pages/profile/filter-subject.pipe';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ForgotPasswordComponent,
     FilterLevelPipe,
     FilterSubjectPipe,
-    QuizAttemptHistoryComponent
+    QuizAttemptHistoryComponent,
+    SelectSubjectComponent
 ],
   imports: [
     BrowserModule,
