@@ -19,7 +19,21 @@
         </div>
 
         <div class="col-md-6">
+            <mat-list>
+                <h1 class="text-center">Subscribed Subjects</h1>
+                <mat-list-item *ngFor="let c of selectedCategories">
 
+                    <div mat-line>{{ c.cTitle }}</div>
+
+                    <span class="material-symbols-outlined" >
+                        <mat-icon class="icon"  mat-list-icon style="color:green;margin-left: 20px;">done</mat-icon>
+                    </span>
+                    <mat-divider></mat-divider>
+
+
+
+                </mat-list-item>
+            </mat-list>
         </div>
 
     </div>

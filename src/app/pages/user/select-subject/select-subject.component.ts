@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { error } from 'console';
 import { CategoryService } from 'src/app/services/category.service';
 import { SelectSubjectService } from 'src/app/services/select-subject.service';
 import Swal from 'sweetalert2';
@@ -11,8 +12,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./select-subject.component.css']
 })
 export class SelectSubjectComponent implements OnInit {
-
+  userId;
   categories = [];
+  selectedCategories: any = [];
   date = 'not yet';
   /* myDate = new Date(); */
 
@@ -25,7 +27,9 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.getAllCategories();
+    this.getAllSelectedCategories();
   }
 
 
@@ -45,18 +49,20 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   addCategory(cid, title) {
+
+
     console.log(cid);
     console.log(title);
 
     /* this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a'); */
-    let userId = JSON.parse(localStorage.getItem('user')).id;
+
 
     let c = {
       cid: cid,
       date: this.date,
       cTitle: title,
       user: {
-        id: userId,
+        id: this.userId,
       },
     };
 
@@ -67,18 +73,38 @@ export class SelectSubjectComponent implements OnInit {
       icon: 'info',
     }).then((e) => {
       console.log(c);
-      
-      if (e.isConfirmed) {
-        this.selectSubjectServeice.addUserCategory(c).subscribe(Response => {
-          console.log(Response);
 
+      if (e.isConfirmed) {
+        this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
+          console.log(Response);
+          this.ngOnInit();
         },
-          erorr => {
-            console.log(erorr);
+          (error) => {
+            this.snackBar.open(error.error.text, 'Oops !!', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
+
           });
       }
     });
 
+  }
+
+  getAllSelectedCategories() {
+    console.log(this.userId);
+
+    this.selectSubjectServeice.getUserCategory(this.userId).subscribe(response => {
+      console.log(response);
+      this.selectedCategories = response;
+    },
+      (error) => {
+        //error
+        console.log(error);
+
+      }
+    );
   }
 
 

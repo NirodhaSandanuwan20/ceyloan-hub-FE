@@ -13,4 +13,10 @@ export class SelectSubjectService {
     console.log(c);
     return this.http.post(`${baseUrl}/my-category/`, c);
   }
+
+
+  public getUserCategory(cid:number) {
+    console.log(cid);
+    return this.http.get(`${baseUrl}/my-category/`+cid,{});
+  }
 }
