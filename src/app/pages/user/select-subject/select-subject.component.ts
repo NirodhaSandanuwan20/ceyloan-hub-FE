@@ -11,7 +11,10 @@ import Swal from 'sweetalert2';
   templateUrl: './select-subject.component.html',
   styleUrls: ['./select-subject.component.css']
 })
+
+
 export class SelectSubjectComponent implements OnInit {
+
   userId;
   categories = [];
   selectedCategories: any = [];
@@ -49,7 +52,7 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   addCategory(cid, title) {
-let text = "Do you want to Add "+ title +" as your subject ?"
+    let text = "Do you want to Add " + title + " as your subject ?"
 
     console.log(cid);
     console.log(title);
@@ -110,9 +113,9 @@ let text = "Do you want to Add "+ title +" as your subject ?"
 
 
 
-  deleteCategory(userCategoryId,cTitle){
-  console.log(userCategoryId);
-  let text = 'Do you really want delete this '+cTitle+' Subject ?'
+  deleteCategory(userCategoryId, cTitle) {
+    console.log(userCategoryId);
+    let text = 'Do you really want delete this ' + cTitle + ' Subject ?'
 
     Swal.fire({
       title: text,

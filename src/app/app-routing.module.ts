@@ -127,6 +127,11 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'select-subject',
+    component: SelectSubjectComponent,
+    canActivate: [NormalGuard]
+  },
+  {
     path: 'user-dashboard',
     component: UserDashboardComponent,
     canActivate: [NormalGuard],
