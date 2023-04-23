@@ -11,7 +11,7 @@ import { SelectSubjectService } from 'src/app/services/select-subject.service';
 export class SidebarComponent implements OnInit {
   selectedCategories;
   selectLevel='';
-  userId; 
+  userId;
 
 
   constructor(
@@ -49,6 +49,7 @@ getSelectedCategory(){
   this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
     console.log(response);
     this.selectedCategories = response;
+    
   },
     (error) => {
       //error
