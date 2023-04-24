@@ -23,11 +23,19 @@
     <mat-divider></mat-divider>
 
     <button class="btn" routerLinkActive="active" [routerLink]="'/user-dashboard/' + c.cid" mat-list-item
-      *ngFor="let c of selectedCategories"> {{ c.cTitle}}
+      *ngFor="let c of selectedCategories"><mat-icon mat-list-icon>quiz</mat-icon> {{ c.cTitle}}
       <mat-divider></mat-divider>
     </button>
     
-    
+    <div class="col-md-12" *ngIf="selectedCategories.length == 0">
+      
+        <mat-card-content class="mt20">
+          <h3>Empty Subject</h3>
+        </mat-card-content>
+
+        <button mat-raised-button color="Primary"  routerLink = "/select-subject" > Add Subject </button>
+      
+    </div>
 
   </mat-action-list>
 </mat-card>

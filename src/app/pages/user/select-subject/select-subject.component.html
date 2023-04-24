@@ -38,6 +38,13 @@
 
 
                 </mat-list-item>
+                <div class="col-md-12" *ngIf="selectedCategories.length == 0">
+                    <mat-card>
+                      <mat-card-content>
+                        <h3>Seems like you have not subscribed any subject yet. First off all subscribe subject that you need.</h3>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
             </mat-list>
         </div>
 
