@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit {
 
         fullMakrs = parseInt(element.yourMarks) + fullMakrs;
         one.push(fullMakrs);
-        console.log(this.fullMakrs);
+        console.log(fullMakrs);
 
       });
 
