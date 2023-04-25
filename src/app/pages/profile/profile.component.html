@@ -96,13 +96,13 @@
       <h3 class="text-center">Physics</h3>
       <tr>
           <td>
-              <ngx-charts-pie-chart 
-              [results]="productSales" 
+              <ngx-charts-pie-chart
+              [results]="pieChartArray" 
               [view]="viewPie" 
-              [scheme]="colorScheme" 
+              [scheme]="colorSchemePie" 
               [gradient]="gradient" 
               [legend]="showLegend" 
-              [legendPosition]="legendPosition" 
+              [legendPosition]="legendPositionPie" 
               [labels]="showLabels" 
               [doughnut]="false" 
               (select)="onSelect($event)" 
@@ -125,20 +125,18 @@
         <tr>
             <td>
                 <ngx-charts-bar-vertical
-                [results]="productSales" 
+                [results]="BarChartArray" 
                 [view]="viewBar" 
-                [scheme]="colorScheme" 
+                [scheme]="colorSchemeBar" 
                 [schemeType]="schemeType" 
                 [gradient]="gradient" 
                 [xAxis]="xAxis" 
-                [yAxis]="yAxis" 
-                [legend]="legend" 
+                [yAxis]="yAxis"
+                [noBarWhenZero]="noBarWhenZero"
                 [showXAxisLabel]="showXAxisLabel" 
                 [showYAxisLabel]="showYAxisLabel"
                 [xAxisLabel]="xAxisLabel" 
-                [yAxisLabel]="yAxisLabel" 
-                [legendTitle]="legendTitleMulti" 
-                [legendPosition]="legendPosition" 
+                [yAxisLabel]="yAxisLabel"
                 [animations]="animations" 
                 [showGridLines]="showGridLines" 
                 [barPadding]="barPadding" 
