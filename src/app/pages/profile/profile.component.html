@@ -7,10 +7,7 @@
           <mat-card-content>
             <div class="bootstrap-wrapper">
               <div class="container">
-                <div class="container text-center">
-                  <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                    alt="" class="profile-image" />
-                </div>
+                
                 <div class="row">
                   <div class="col-md-10 offset-md-1">
                     <table class="table text-center">
@@ -18,21 +15,15 @@
                         <td>Username</td>
                         <td>{{ user.username }}</td>
                       </tr>
+
                       <tr>
-                        <td>Userid</td>
-                        <td>EXAM-{{ user.id }}</td>
+                        <td>Email</td>
+                        <td>{{ user.email }}</td>
                       </tr>
-                      <tr>
-                        <td>Phone</td>
-                        <td>{{ user.phone }}</td>
-                      </tr>
-                      <tr>
-                        <td>Role</td>
-                        <td>{{ user.authorities[0].authority }}</td>
-                      </tr>
+                      
                       <tr>
                         <td>Status</td>
-                        <td>{{ user.isEnabled ? "ACTIVE" : "NOT-ACTIVE" }}</td>
+                        <td>{{ user.enabled ? "ACTIVE" : "NOT-ACTIVE" }}</td>
                       </tr>
                     </table>
                   </div>
@@ -53,16 +44,16 @@
               <h1>Check out user working history</h1>
               <div class="left-inner">
                 <mat-form-field appearance="fill" class="" style="width: 100%;">
-                  <mat-label>Select a subject and get past history</mat-label>
+                  <mat-label>Filter history :</mat-label>
                   <mat-select name="category" [(ngModel)]="selectSubject">
-                    <mat-option *ngFor="let c of categories" [value]="c.title">
-                      {{ c.title }}
+                    <mat-option *ngFor="let c of selectedCategories" [value]="c.cTitle" (click)="setAnalyse()">
+                      {{ c.cTitle }}
                     </mat-option>
-                    <mat-option value="">None</mat-option>
                   </mat-select>
                 </mat-form-field>
   
                 <table class="table table-striped table-bordered">
+
                   <thead>
                     <tr>
                       <th>Category</th>
@@ -72,6 +63,7 @@
                       <th>Saved time</th>
                     </tr>
                   </thead>
+
                   <tbody>
                     <tr *ngFor="let c of userHistory|filterSubject:selectSubject">
                       <td>{{c.category}}</td>
@@ -81,7 +73,9 @@
                       <td>{{c.savedTime}}</td>
                     </tr>
                   </tbody>
+
                 </table>
+                <button (click)="setAnalyse()">set analyse</button>
   
               </div>
             </div>
@@ -91,76 +85,81 @@
       </div>
   
     </div>
-
-
-
-
-    <div class="bottom"style="margin-top: 50px;" >
-      <div class="row">
-        <div class="col-sm-6 col-lg-6 " >
-    
-          <mat-card >
-            <mat-card-content>
-
-
-              <table>
-                <tr>
-                    <td>
-                        <ngx-charts-pie-grid 
-                        [results]="productSales" 
-                        [view]="view" 
-                        [scheme]="colorScheme" 
-                        (select)="onSelect($event)" 
-                        (activate)="onActivate($event)" 
-                        (deactivate)="onDeactivate($event)">
-                        </ngx-charts-pie-grid>
-                    </td>
-                </tr>
-              </table> 
-
-
-            </mat-card-content>
-    
-          </mat-card>
-    
-        </div>
-    
-        <div class="col-sm-6 col-lg-6 "  >
-    
-          <mat-card >
-            <mat-card-content>
-
-             
-              <table>
-                <tr>
-                    <td>
-                        <ngx-charts-pie-chart 
-                        [results]="productSales" 
-                        [view]="view" 
-                        [scheme]="colorScheme" 
-                        [gradient]="gradient" 
-                        [legend]="showLegend" 
-                        [legendPosition]="legendPosition" 
-                        [labels]="showLabels" 
-                        [doughnut]="isDoughnut" 
-                        (select)="onSelect($event)" 
-                        (activate)="onActivate($event)"
-                        (deactivate)="onDeactivate($event)">
-                        </ngx-charts-pie-chart>
-                    </td>
-                </tr>
-                </table>
-
-
-            </mat-card-content>
-          </mat-card>
-    
-        </div>
-    
-      </div>
-    
-  
-  
   </div>
+
+  </div>
+
+
+
+  <div class="chart" style="width: 100%; height: 100px;padding-top: 100px;">
+    <table>
+      <h3 class="text-center">Physics</h3>
+      <tr>
+          <td>
+              <ngx-charts-pie-chart 
+              [results]="productSales" 
+              [view]="viewPie" 
+              [scheme]="colorScheme" 
+              [gradient]="gradient" 
+              [legend]="showLegend" 
+              [legendPosition]="legendPosition" 
+              [labels]="showLabels" 
+              [doughnut]="false" 
+              (select)="onSelect($event)" 
+              (activate)="onActivate($event)"
+              (deactivate)="onDeactivate($event)">
+              </ngx-charts-pie-chart>
+          </td>
+      </tr>
+      </table>
+
+
+<div class="div" style="padding-top: 100px;"></div>
+
+     
+    
+   
+    
+    
+    <table >
+        <tr>
+            <td>
+                <ngx-charts-bar-vertical
+                [results]="productSales" 
+                [view]="viewBar" 
+                [scheme]="colorScheme" 
+                [schemeType]="schemeType" 
+                [gradient]="gradient" 
+                [xAxis]="xAxis" 
+                [yAxis]="yAxis" 
+                [legend]="legend" 
+                [showXAxisLabel]="showXAxisLabel" 
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxisLabel]="xAxisLabel" 
+                [yAxisLabel]="yAxisLabel" 
+                [legendTitle]="legendTitleMulti" 
+                [legendPosition]="legendPosition" 
+                [animations]="animations" 
+                [showGridLines]="showGridLines" 
+                [barPadding]="barPadding" 
+                [tooltipDisabled]="tooltipDisabled">
+                </ngx-charts-bar-vertical>
+            </td>
+        </tr>
+        
+    </table>
+
+  </div>
+    
+        
+    
+
+
+      
+    
+       
+
+           
+            
   
   

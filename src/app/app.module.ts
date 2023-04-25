@@ -120,7 +120,7 @@ import { SelectSubjectComponent } from './pages/user/select-subject/select-subje
     BrowserAnimationsModule,
     NgxChartsModule,
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

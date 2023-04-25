@@ -121,7 +121,7 @@ export class SelectSubjectComponent implements OnInit {
       title: text,
       showCancelButton: true,
       confirmButtonText: `Submit`,
-      icon: 'info',
+      icon: 'warning',
     }).then((e) => {
 
       if (e.isConfirmed) {

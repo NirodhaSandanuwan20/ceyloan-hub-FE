@@ -11,7 +11,6 @@ export class FilterSubjectPipe implements PipeTransform {
 
     if(value.length === 0 || filterSubject === '' || category === ''){
       return value;
-      console.log('first if');
     }
     
     for(const item of value){
