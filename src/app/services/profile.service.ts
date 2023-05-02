@@ -13,5 +13,10 @@ export class ProfileService {
   public getUserHistory(id: number, pageNumber: number) {
     return this.http.get(`${baseUrl}/history/${id}` + '?pageNumber=' + pageNumber);
   }
+  public getHistoryForSub(category, userId: number) {
+    console.log(category);
+    console.log(userId);
+    return this.http.get(`${baseUrl}/history/specific/` + '?category=' + category + '&userId=' + userId );
+  }
 
 }

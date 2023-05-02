@@ -1,3 +1,4 @@
+<!--
 <div class="outer">
   <div class="upper">
     <div class="row">
@@ -49,6 +50,8 @@
                     <mat-option *ngFor="let c of selectedCategories" [value]="c.cTitle" (click)="setAnalyse()">
                       {{ c.cTitle }}
                     </mat-option>
+                    <mat-option value="">None
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
 
@@ -98,11 +101,7 @@
 
 
 
-  <div class="chart" style="width: 100%; height: 100px;padding-top: 100px;">
-    <table>
-      <h3 class="text-center">Physics</h3>
-      <tr>
-          <td>
+
               <ngx-charts-pie-chart
               [results]="pieChartArray"
               [view]="viewPie"
@@ -116,21 +115,17 @@
               (activate)="onActivate($event)"
               (deactivate)="onDeactivate($event)">
               </ngx-charts-pie-chart>
-          </td>
-      </tr>
-      </table>
-
-
-<div class="div" style="padding-top: 100px;"></div>
 
 
 
 
 
 
-    <table >
-        <tr>
-            <td>
+
+
+
+
+
                 <ngx-charts-bar-vertical
                 [results]="BarChartArray"
                 [view]="viewBar"
@@ -149,12 +144,6 @@
                 [barPadding]="barPadding"
                 [tooltipDisabled]="tooltipDisabled">
                 </ngx-charts-bar-vertical>
-            </td>
-        </tr>
-
-    </table>
-
-  </div>
 
 
 
@@ -166,5 +155,181 @@
 
 
 
+
+
+
+
+-->
+
+
+<div class="outer">
+
+  <mat-tab-group>
+
+    <mat-tab label="Profile">
+
+      <mat-card *ngIf="user">
+
+        <mat-card-content>
+          <div class="bootstrap-wrapper">
+            <div class="container">
+              <div class="container text-center">
+                <img
+                  src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                  alt=""
+                  class="profile-image"
+                />
+
+                <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
+              </div>
+
+              <div class="row">
+                <div class="col-md-10 offset-md-1">
+                  <!-- //table Details  -->
+                  <table class="table text-center">
+                    <tr>
+                      <td>Username</td>
+                      <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                      <td>Userid</td>
+                      <td>EXAM{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                      <td>Phone</td>
+                      <td>{{ user.phone }}</td>
+                    </tr>
+                    <tr>
+                      <td>Role</td>
+                      <td>{{ user.authorities[0].authority }}</td>
+                    </tr>
+                    <tr>
+                      <td>Status</td>
+                      <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="text-center">
+          <button mat-raised-button color="primary">UPDATE</button>
+          <button mat-raised-button color="accent">SHARE</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </mat-tab>
+
+    <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle" (click)="getHistoryForSubject(c.cTitle)">
+
+      <button mat-raised-button (click)="getHistoryForSubject(c.cTitle)">click</button>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-9">
+            <!--begin-->
+            <table class="table table-striped table-bordered">
+
+              <thead>
+              <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Your Marks</th>
+                <th>Date & Time (Finished time)</th>
+                <th>Saved time</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <tr *ngFor="let c of userHistory; let i =index">
+                <td>{{i + 1}}</td>
+                <td>{{c.category}}</td>
+                <td>{{c.title}}</td>
+                <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
+                <td>{{c.date}}</td>
+                <td>{{c.savedTime}}</td>
+              </tr>
+              </tbody>
+
+            </table>
+
+            <!-- <div class=" text-center mt20 mb20">
+               <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                 Load More
+               </button>
+             </div>-->
+
+            <!--end table & begin pie chart-->
+          </div>
+
+
+          <div class="col-2">
+            <ngx-charts-pie-chart
+              [results]="pieChartArray"
+              [view]="viewPie"
+              [scheme]="colorSchemePie"
+              [gradient]="gradient"
+              [legend]="showLegend"
+              [legendPosition]="legendPositionPie"
+              [labels]="showLabels"
+              [doughnut]="false"
+              (select)="onSelect($event)"
+              (activate)="onActivate($event)"
+              (deactivate)="onDeactivate($event)">
+            </ngx-charts-pie-chart>
+          </div>
+        </div>
+
+
+
+      <!--  <div class="row">
+
+          <table>
+            <tr>
+              <td>
+                <ngx-charts-line-chart [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                       [timeline]="timeline">
+                </ngx-charts-line-chart>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ngx-charts-area-chart [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                       [timeline]="timeline">
+                </ngx-charts-area-chart>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ngx-charts-area-chart-stacked [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                               [timeline]="timeline">
+                </ngx-charts-area-chart-stacked>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <ngx-charts-area-chart-normalized [results]="productSalesMulti" [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+                                                  [timeline]="timeline">
+                </ngx-charts-area-chart-normalized>
+              </td>
+            </tr>
+          </table>
+
+        </div>-->
+
+      </div>
+
+
+      <!--end pie chart-->
+
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+</div>
 
 

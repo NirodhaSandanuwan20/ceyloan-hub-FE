@@ -55,6 +55,7 @@ import { FilterSubjectPipe } from './pages/profile/filter-subject.pipe';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { SelectSubjectComponent } from './pages/user/select-subject/select-subje
     MatSlideToggleModule,
     MatSelectModule,
     CKEditorModule,
+    MatTabsModule,
     MatProgressSpinnerModule,
     NgxUiLoaderModule,
     NgxUiLoaderHttpModule.forRoot({

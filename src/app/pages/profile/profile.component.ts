@@ -33,20 +33,20 @@ export class ProfileComponent implements OnInit {
     private selectSubjectServeice: SelectSubjectService,
     private pipe: FilterSubjectPipe
   ) {
+    Object.assign(this, { productSalesMulti });
   }
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.user = this.loginService.getUser();
-    this.loadData();
+    //this.loadData();
     this.getAllSelectedCategories();
-    this.setAnalyse();
   }
 
 
-  loadData() {
+/*  loadData() {
     console.log(this.user);
-    this.profileService.getUserHistory(this.userId, this.pageNumber).subscribe((response:any) => {
+    this.profileService.getUserHistory(this.userId, this.pageNumber).subscribe((response: any) => {
       if (response.length === 4) {
         this.showMoreBtn = true;
       } else {
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
       console.log(erorr);
     });
 
-  }
+  }*/
 
 
   getAllSelectedCategories() {
@@ -118,10 +118,11 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  loadMore() {
+  /*loadMore() {
+    this.selectSubject = '';
     this.pageNumber = this.pageNumber + 1;
     this.ngOnInit();
-  }
+  }*/
 
 
   /* productSales: any[] */
@@ -130,7 +131,7 @@ export class ProfileComponent implements OnInit {
   viewPie: any[] = [700, 300];
 
   // options
-  showLegend: boolean = true;
+  showLegend: boolean = false;
   showLabels: boolean = true;
   legendPositionPie: string = 'right';
 
@@ -161,6 +162,7 @@ export class ProfileComponent implements OnInit {
   //legendTitle: string = 'Marks';
   //legendPosition: string = 'below'; // ['right', 'below']
   //legend: boolean = true;
+
   colorSchemeBar = {
     domain: ['#4e3295']
   };
@@ -199,6 +201,32 @@ export class ProfileComponent implements OnInit {
   yScaleMax: number = 9000;
 
   roundEdges: boolean = false;
+
+
+  getHistoryForSubject(cTitle: string) {
+    this.userHistory = [];
+    console.log(cTitle);
+    console.log(this.userId);
+    console.log(this.pageNumber);
+    this.profileService.getHistoryForSub(cTitle, this.userId).subscribe((response:any) => {
+        /*if (response.length === 4) {
+          this.showMoreBtn = true;
+        } else {
+          this.showMoreBtn = false;
+        }*/
+        response.forEach(p => this.userHistory.push(p));
+        console.log(response);
+        this.setAnalyse();
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+
+
+
+
 
 
 }
