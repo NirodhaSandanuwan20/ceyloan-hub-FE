@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   userHistory = [];
   selectSubject = '';
   showMoreBtn;
+  lineChart;
 
   constructor(
     private loginService: LoginService,
@@ -39,27 +40,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.user = this.loginService.getUser();
-    //this.loadData();
     this.getAllSelectedCategories();
   }
-
-
-/*  loadData() {
-    console.log(this.user);
-    this.profileService.getUserHistory(this.userId, this.pageNumber).subscribe((response: any) => {
-      if (response.length === 4) {
-        this.showMoreBtn = true;
-      } else {
-        this.showMoreBtn = false;
-      }
-      response.forEach(p => this.userHistory.push(p));
-      // this.userHistory = response;
-    }, erorr => {
-      console.log(erorr);
-    });
-
-  }*/
-
 
   getAllSelectedCategories() {
     this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe((response: any) => {
@@ -78,19 +60,13 @@ export class ProfileComponent implements OnInit {
     let allMarks = 0;
     let length = 0;
     this.analyseArray = this.pipe.transform(this.userHistory, this.selectSubject, 'a');
-    console.log(this.analyseArray);
-    console.log(this.analyseArray[0].category);
     this.analyseArray.forEach((p, i) => {
-      console.log(p.yourMarks);
-      console.log(p.date);
-      console.log(i + 1);
       allMarks = allMarks + parseInt(p.yourMarks);
-      console.log(allMarks);
-      length = i
+      length = i;
 
       this.BarChartArray.push(
         {
-          "name": p.date,
+          "name": i+1,
           "value": p.yourMarks
         }
       );
@@ -109,11 +85,11 @@ export class ProfileComponent implements OnInit {
         "value": (length + 1) * 50 - allMarks
       }
     ];
-
-
-    console.log(this.pieChartArray);
-    console.log(this.BarChartArray);
-
+    this.lineChart = [{
+      "name": "Marks",
+      "series":this.BarChartArray
+    }]
+    console.log(this.lineChart);
 
   }
 
@@ -125,82 +101,6 @@ export class ProfileComponent implements OnInit {
   }*/
 
 
-  /* productSales: any[] */
-  /* productSalesMulti: any[] */
-
-  viewPie: any[] = [700, 300];
-
-  // options
-  showLegend: boolean = false;
-  showLabels: boolean = true;
-  legendPositionPie: string = 'right';
-
-  gradient: boolean = false;
-  isDoughnut: boolean = true;
-
-  colorSchemePie = {
-    domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
-  };
-
-
-  onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-
-  viewBar: any[] = [1000, 370];
-
-  // options
-  //legendTitle: string = 'Marks';
-  //legendPosition: string = 'below'; // ['right', 'below']
-  //legend: boolean = true;
-
-  colorSchemeBar = {
-    domain: ['#4e3295']
-  };
-
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-
-  yAxisLabel: string = 'Marks';
-  xAxisLabel: string = 'Date';
-  showXAxisLabel: boolean = true;
-  showYAxisLabel: boolean = true;
-
-  maxXAxisTickLength: number = 30;
-  maxYAxisTickLength: number = 30;
-  trimXAxisTicks: boolean = false;
-  trimYAxisTicks: boolean = false;
-  rotateXAxisTicks: boolean = false;
-
-
-  /* xAxisTicks: any[] = ['Genre 1', 'Genre 2', 'Genre 3', 'Genre 4', 'Genre 5', 'Genre 6', 'Genre 7']
-  yAxisTicks: any[] = [100, 1000, 2000, 5000, 7000, 10000] */
-
-  animations: boolean = true; // animations on load
-
-  showGridLines: boolean = true; // grid lines
-
-  showDataLabel: boolean = true; // numbers on bars
-
-  noBarWhenZero: boolean = true;
-
-
-  schemeType: string = 'ordinal'; // 'ordinal' or 'linear'
-  barPadding: number = 1;
-  tooltipDisabled: boolean = false;
-
-  yScaleMax: number = 9000;
-
-  roundEdges: boolean = false;
 
 
   getHistoryForSubject(cTitle: string) {
@@ -223,8 +123,44 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  colorSchemePie = {
+    domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
+  };
 
+  viewPie: any[] = [800, 300];
+/*Line CHart Begin*/
+  productSalesMulti: any[];
+  view: any[] = [700, 370];
 
+  // options
+  legendLineChart: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Date';
+  yAxisLabel: string = 'Marks';
+  timeline: boolean = true;
+
+  colorSchemeLineChart = {
+    domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
+  };
+
+  onSelect(event) {
+    console.log(event);
+  }
+
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
+  }
+
+  /*Line Chart End*/
 
 
 
