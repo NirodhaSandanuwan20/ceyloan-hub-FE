@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { QuizService } from 'src/app/services/quiz.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {QuizService} from 'src/app/services/quiz.service';
 
 @Component({
   selector: 'app-load-quiz',
@@ -13,16 +13,17 @@ export class LoadQuizComponent implements OnInit {
   quizzes = [];
   epicQuizzes = [];
   tempEpicQuizzes = [];
-  pageNumber:number = 0;
+  pageNumber: number = 0;
   pageNumberEpic = 0;
   showMoreBtn;
   showMoreBtnEpic;
   allQues;
-  searchText1:string = '';
-  searchText2:string = '';
+  searchText1: string = '';
+  searchText2: string = '';
 
   constructor(private _route: ActivatedRoute, private _quiz: QuizService
-    , private router: Router) { }
+    , private router: Router) {
+  }
 
   ngOnInit(): void {
     this._route.params.subscribe((params) => {
@@ -32,12 +33,11 @@ export class LoadQuizComponent implements OnInit {
   }
 
 
-
-  getAllQuiz(){
+  getAllQuiz() {
 
     if (this.catId == 0) {
       this.allQues = true;
-      this._quiz.getActiveQuizzes(this.pageNumber,this.searchText2, this.searchText1).subscribe(
+      this._quiz.getActiveQuizzes(this.pageNumber, this.searchText2, this.searchText1).subscribe(
         (data: any) => {
           console.log(data);
           if (data.length === 4) {
@@ -72,7 +72,7 @@ export class LoadQuizComponent implements OnInit {
         }
       );
     }
-    
+
   }
 
   loadMore() {
@@ -81,29 +81,29 @@ export class LoadQuizComponent implements OnInit {
   }
 
 
- /*  loadMoreEpic() {
-    this.pageNumberEpic = this.pageNumberEpic + 1;
-    this.ngOnInit();
-  }
- */
+  /*  loadMoreEpic() {
+     this.pageNumberEpic = this.pageNumberEpic + 1;
+     this.ngOnInit();
+   }
+  */
 
   search() {
 
     this.pageNumber = 0;
     this.quizzes = [];
     this.getAllQuiz();
-    if(this.catId != 0){
+    if (this.catId != 0) {
       this.router.navigateByUrl('/user-dashboard/0');
     }
-    
+
   }
 
-  clear2(){
+  clear2() {
     this.searchText2 = '';
     this.search();
   }
-  
-  clear1(){
+
+  clear1() {
     this.searchText1 = '';
     this.search();
   }

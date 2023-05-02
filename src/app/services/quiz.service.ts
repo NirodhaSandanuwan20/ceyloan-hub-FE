@@ -1,15 +1,16 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import baseUrl from './helper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizService {
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) {
+  }
 
-  public quizzes(pageNumber,searchText2,searchText1) {
-    return this._http.get(`${baseUrl}/quiz/`+"?pageNumber="+pageNumber+"&searchText2="+searchText2+"&searchText1="+searchText1);
+  public quizzes(pageNumber, searchText2, searchText1) {
+    return this._http.get(`${baseUrl}/quiz/` + "?pageNumber=" + pageNumber + "&searchText2=" + searchText2 + "&searchText1=" + searchText1);
   }
 
   //add quiz
@@ -38,11 +39,12 @@ export class QuizService {
   public getQuizzesOfCategory(cid) {
     return this._http.get(`${baseUrl}/quiz/category/${cid}`);
   }
+
   //qet active quizzes
-  public getActiveQuizzes(pageNumber,searchText2,searchText1) {
+  public getActiveQuizzes(pageNumber, searchText2, searchText1) {
     console.log(searchText1);
     console.log(searchText2);
-    return this._http.get(`${baseUrl}/quiz/active`+"?pageNumber="+pageNumber+"&searchText2="+searchText2+"&searchText1="+searchText1);
+    return this._http.get(`${baseUrl}/quiz/active` + "?pageNumber=" + pageNumber + "&searchText2=" + searchText2 + "&searchText1=" + searchText1);
   }
 
   //get active quizzes of category pageNumberEpic

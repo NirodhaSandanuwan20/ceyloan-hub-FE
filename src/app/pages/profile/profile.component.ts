@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/services/category.service';
-import { LoginService } from 'src/app/services/login.service';
-import { ProfileService } from 'src/app/services/profile.service';
-import { productSales, productSalesMulti } from './product';
-import { SelectSubjectService } from 'src/app/services/select-subject.service';
-import { log } from 'console';
-import { FilterSubjectPipe } from './filter-subject.pipe';
-
+import {Component, OnInit} from '@angular/core';
+import {CategoryService} from 'src/app/services/category.service';
+import {LoginService} from 'src/app/services/login.service';
+import {ProfileService} from 'src/app/services/profile.service';
+import {productSales, productSalesMulti} from './product';
+import {SelectSubjectService} from 'src/app/services/select-subject.service';
+import {log} from 'console';
+import {FilterSubjectPipe} from './filter-subject.pipe';
 
 
 @Component({
@@ -20,10 +19,12 @@ export class ProfileComponent implements OnInit {
   selectedCategories = [];
   BarChartArray = [];
   pieChartArray = [];
+  pageNumber: number = 0;
   userId;
   user = null;
-  userHistory;
+  userHistory = [];
   selectSubject = '';
+  showMoreBtn;
 
   constructor(
     private loginService: LoginService,
@@ -31,7 +32,8 @@ export class ProfileComponent implements OnInit {
     private categoryService: CategoryService,
     private selectSubjectServeice: SelectSubjectService,
     private pipe: FilterSubjectPipe
-     ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
@@ -44,8 +46,14 @@ export class ProfileComponent implements OnInit {
 
   loadData() {
     console.log(this.user);
-    this.profileService.getUserHistory(this.userId).subscribe(response => {
-      this.userHistory = response;
+    this.profileService.getUserHistory(this.userId, this.pageNumber).subscribe((response:any) => {
+      if (response.length === 4) {
+        this.showMoreBtn = true;
+      } else {
+        this.showMoreBtn = false;
+      }
+      response.forEach(p => this.userHistory.push(p));
+      // this.userHistory = response;
     }, erorr => {
       console.log(erorr);
     });
@@ -55,8 +63,8 @@ export class ProfileComponent implements OnInit {
 
   getAllSelectedCategories() {
     this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe((response: any) => {
-      this.selectedCategories = response;
-    },
+        this.selectedCategories = response;
+      },
       (error) => {
         //error
         console.log(error);
@@ -85,7 +93,7 @@ export class ProfileComponent implements OnInit {
           "name": p.date,
           "value": p.yourMarks
         }
-    );
+      );
 
 
     });
@@ -98,7 +106,7 @@ export class ProfileComponent implements OnInit {
       },
       {
         "name": "Wrong",
-        "value": (length+1) * 50 - allMarks
+        "value": (length + 1) * 50 - allMarks
       }
     ];
 
@@ -107,15 +115,13 @@ export class ProfileComponent implements OnInit {
     console.log(this.BarChartArray);
 
 
-
-
-
   }
 
 
-
-
-
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    this.ngOnInit();
+  }
 
 
   /* productSales: any[] */
@@ -136,8 +142,6 @@ export class ProfileComponent implements OnInit {
   };
 
 
-
-
   onActivate(data): void {
     console.log('Activate', JSON.parse(JSON.stringify(data)));
   }
@@ -149,14 +153,6 @@ export class ProfileComponent implements OnInit {
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
-
-
-
-
-
-
-
-
 
 
   viewBar: any[] = [1000, 370];
@@ -182,7 +178,7 @@ export class ProfileComponent implements OnInit {
   trimXAxisTicks: boolean = false;
   trimYAxisTicks: boolean = false;
   rotateXAxisTicks: boolean = false;
-  
+
 
   /* xAxisTicks: any[] = ['Genre 1', 'Genre 2', 'Genre 3', 'Genre 4', 'Genre 5', 'Genre 6', 'Genre 7']
   yAxisTicks: any[] = [100, 1000, 2000, 5000, 7000, 10000] */
@@ -197,30 +193,12 @@ export class ProfileComponent implements OnInit {
 
 
   schemeType: string = 'ordinal'; // 'ordinal' or 'linear'
-
-  activeEntries: any[] = ['book']
-  barPadding: number = 1
+  barPadding: number = 1;
   tooltipDisabled: boolean = false;
 
   yScaleMax: number = 9000;
 
   roundEdges: boolean = false;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

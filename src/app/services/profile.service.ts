@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import baseUrl from './helper';
 
 @Injectable({
@@ -7,10 +7,11 @@ import baseUrl from './helper';
 })
 export class ProfileService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  public getUserHistory(id:number) {
-    return this.http.get(`${baseUrl}/history/${id}`);
+  public getUserHistory(id: number, pageNumber: number) {
+    return this.http.get(`${baseUrl}/history/${id}` + '?pageNumber=' + pageNumber);
   }
 
 }
