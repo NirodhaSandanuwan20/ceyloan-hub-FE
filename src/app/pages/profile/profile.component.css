@@ -70,7 +70,18 @@ overflow: auto;
 }
 
 
-
-.left{
+.col-9{
+  padding-top: 10px;
+  box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+  -webkit-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+  -moz-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+}
+.line,.pie{
+  padding-top: 10px;
+  min-width: 600px;
+  box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+  -webkit-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+  -moz-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
 
 }
+

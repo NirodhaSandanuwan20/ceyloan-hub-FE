@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from 'src/app/services/category.service';
 import {LoginService} from 'src/app/services/login.service';
 import {ProfileService} from 'src/app/services/profile.service';
@@ -6,6 +6,7 @@ import {productSales, productSalesMulti} from './product';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import {log} from 'console';
 import {FilterSubjectPipe} from './filter-subject.pipe';
+import {MatTabChangeEvent} from "@angular/material/tabs";
 
 
 @Component({
@@ -15,15 +16,14 @@ import {FilterSubjectPipe} from './filter-subject.pipe';
 })
 
 export class ProfileComponent implements OnInit {
-  analyseArray = [];
+  cTitle;
   selectedCategories = [];
-  BarChartArray = [];
+  series = [];
   pieChartArray = [];
   pageNumber: number = 0;
   userId;
   user = null;
   userHistory = [];
-  selectSubject = '';
   showMoreBtn;
   lineChart;
 
@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
     private selectSubjectServeice: SelectSubjectService,
     private pipe: FilterSubjectPipe
   ) {
-    Object.assign(this, { productSalesMulti });
   }
 
   ngOnInit(): void {
@@ -48,32 +47,42 @@ export class ProfileComponent implements OnInit {
         this.selectedCategories = response;
       },
       (error) => {
-        //error
         console.log(error);
 
       }
     );
   }
 
+
+  getHistoryForSubject(cTitle: string) {
+    console.log(this.userHistory);
+    this.profileService.getHistoryForSub(cTitle, this.userId, this.pageNumber).subscribe((response: any) => {
+        if (response.length === 4) {
+          this.showMoreBtn = true;
+        } else {
+          this.showMoreBtn = false;
+        }
+        response.forEach(p => this.userHistory.push(p));
+        this.setAnalyse();
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
   setAnalyse() {
-    this.BarChartArray = [];
+    this.series = [];
     let allMarks = 0;
     let length = 0;
-    this.analyseArray = this.pipe.transform(this.userHistory, this.selectSubject, 'a');
-    this.analyseArray.forEach((p, i) => {
+
+    this.userHistory.forEach((p, i) => {
       allMarks = allMarks + parseInt(p.yourMarks);
       length = i;
-
-      this.BarChartArray.push(
-        {
-          "name": i+1,
+      this.series.push({
+          "name": i + 1,
           "value": p.yourMarks
-        }
-      );
-
-
-    });
-
+        });
+      });
 
     this.pieChartArray = [
       {
@@ -87,48 +96,39 @@ export class ProfileComponent implements OnInit {
     ];
     this.lineChart = [{
       "name": "Marks",
-      "series":this.BarChartArray
-    }]
-    console.log(this.lineChart);
+      "series": this.series
+    }];
 
   }
 
 
-  /*loadMore() {
-    this.selectSubject = '';
-    this.pageNumber = this.pageNumber + 1;
-    this.ngOnInit();
-  }*/
 
 
 
-
-  getHistoryForSubject(cTitle: string) {
+  myTabFocusChange(changeEvent: MatTabChangeEvent) {
+    this.pageNumber = 0;
     this.userHistory = [];
-    console.log(cTitle);
-    console.log(this.userId);
-    console.log(this.pageNumber);
-    this.profileService.getHistoryForSub(cTitle, this.userId).subscribe((response:any) => {
-        /*if (response.length === 4) {
-          this.showMoreBtn = true;
-        } else {
-          this.showMoreBtn = false;
-        }*/
-        response.forEach(p => this.userHistory.push(p));
-        console.log(response);
-        this.setAnalyse();
-      },
-      error => {
-        console.log(error);
-      });
+    console.log(changeEvent.tab.textLabel);
+    this.cTitle = changeEvent.tab.textLabel;
+    this.getHistoryForSubject(changeEvent.tab.textLabel);
   }
+
+
+  loadMore() {
+    this.pageNumber = this.pageNumber + 1;
+    console.log(this.cTitle);
+    this.getHistoryForSubject(this.cTitle);
+  }
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   colorSchemePie = {
     domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
   };
 
   viewPie: any[] = [800, 300];
-/*Line CHart Begin*/
+  /*Line CHart Begin*/
   productSalesMulti: any[];
   view: any[] = [700, 370];
 
@@ -163,6 +163,6 @@ export class ProfileComponent implements OnInit {
   /*Line Chart End*/
 
 
-
+  ///////////////////////////////////////////////
 
 }

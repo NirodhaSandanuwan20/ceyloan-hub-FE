@@ -164,7 +164,9 @@
 
 <div class="outer">
 
-  <mat-tab-group>
+  <mat-tab-group
+    (selectedTabChange)="myTabFocusChange($event)">
+  >
 
     <mat-tab label="Profile">
 
@@ -221,9 +223,8 @@
 
     </mat-tab>
 
-    <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle" (click)="getHistoryForSubject(c.cTitle)">
+    <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle">
 
-      <button mat-raised-button (click)="getHistoryForSubject(c.cTitle)">click</button>
 
       <div class="container">
         <div class="row">
@@ -235,6 +236,7 @@
               <tr>
                 <th>No</th>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Your Marks</th>
                 <th>Date & Time (Finished time)</th>
                 <th>Saved time</th>
@@ -244,6 +246,7 @@
               <tbody>
               <tr *ngFor="let c of userHistory; let i =index">
                 <td>{{i + 1}}</td>
+                <td>{{c.category}}</td>
                 <td>{{c.title}}</td>
                 <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
                 <td>{{c.date}}</td>
@@ -253,6 +256,12 @@
 
             </table>
 
+            <div class="container text-center mt20 mb20">
+              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                Load More
+              </button>
+            </div>
+
 
           </div>
 
@@ -260,7 +269,8 @@
           <div class="col-2 text-center">
 
 
-                <div class="line">
+                <div class="line text-center">
+                  <h3>Chart of Marks by date</h3>
                   <ngx-charts-line-chart
                     [results]="lineChart"
                     [view]="view"
@@ -276,7 +286,7 @@
                   </ngx-charts-line-chart>
                 </div>
 
-                <div class="pie text-center">
+                <div class="pie text-center" style="margin-top: 20px!important;">
                   <h3>Chart of wrong and correct answers</h3>
                   <ngx-charts-advanced-pie-chart
                     [results]="pieChartArray"
