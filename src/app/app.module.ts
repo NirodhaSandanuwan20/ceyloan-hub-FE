@@ -56,6 +56,7 @@ import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     FilterLevelPipe,
     FilterSubjectPipe,
     QuizAttemptHistoryComponent,
-    SelectSubjectComponent
+    SelectSubjectComponent,
+    PaymentComponent
 ],
   imports: [
     BrowserModule,

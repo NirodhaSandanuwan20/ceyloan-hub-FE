@@ -28,6 +28,7 @@ import { VerificationComponent } from "./pages/verification/verification.compone
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
+import {PaymentComponent} from "./payment/payment.component";
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'about-us',
     component: AboutUsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'payment-plans',
+    component: PaymentComponent,
     pathMatch: 'full'
   },
   {
