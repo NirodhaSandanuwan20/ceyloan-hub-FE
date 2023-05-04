@@ -2,9 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from 'src/app/services/category.service';
 import {LoginService} from 'src/app/services/login.service';
 import {ProfileService} from 'src/app/services/profile.service';
-import {productSales, productSalesMulti} from './product';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
-import {log} from 'console';
 import {FilterSubjectPipe} from './filter-subject.pipe';
 import {MatTabChangeEvent} from "@angular/material/tabs";
 
@@ -57,7 +55,7 @@ export class ProfileComponent implements OnInit {
   getHistoryForSubject(cTitle: string) {
     console.log(this.userHistory);
     this.profileService.getHistoryForSub(cTitle, this.userId, this.pageNumber).subscribe((response: any) => {
-        if (response.length === 4) {
+        if (response.length === 10) {
           this.showMoreBtn = true;
         } else {
           this.showMoreBtn = false;
