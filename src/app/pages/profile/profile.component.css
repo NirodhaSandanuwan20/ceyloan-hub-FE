@@ -1,22 +1,22 @@
-*{
-  margin: 0!important;
+* {
+  margin: 0 !important;
 }
 
-.outer{
+.outer {
   width: 100%;
   height: 100vh;
 }
 
 
-.upper{
+.upper {
   width: 100%;
   height: 50vh;
 }
 
-.upper-inner{
-width: 50%;
-min-height: 200px;
-height: 100%;
+.upper-inner {
+  width: 50%;
+  min-height: 200px;
+  height: 100%;
 }
 
 .profile-image {
@@ -38,17 +38,17 @@ height: 100%;
 }
 
 
-.left-outer{
-width: 100%;
-height: 360px;
-margin: 0;
-padding: 0;
-overflow: auto;
+.left-outer {
+  width: 100%;
+  height: 360px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
 }
 
-.bottom{
+.bottom {
   width: 100%;
-  height: 50%vh;
+  height: 50% vh;
   position: absolute;
 }
 
@@ -69,19 +69,25 @@ overflow: auto;
   border: 0.5px solid #e2e2e2;
 }
 
-
-.col-9{
-  padding-top: 10px;
-  box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
-  -webkit-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
-  -moz-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+.header {
+   margin: 0 auto!important;
+  padding: 50px;
 }
-.line,.pie{
+
+
+.col-9 {
+  padding-top: 10px;
+  box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
+  -webkit-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
+  -moz-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
+}
+
+.line, .pie {
   padding-top: 10px;
   min-width: 600px;
-  box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
-  -webkit-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
-  -moz-box-shadow: -8px 2px 14px 5px rgba(7,6,6,0.71);
+  box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
+  -webkit-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
+  -moz-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
 
 }
 
