@@ -1,9 +1,9 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { error } from 'console';
-import { CategoryService } from 'src/app/services/category.service';
-import { SelectSubjectService } from 'src/app/services/select-subject.service';
+import {DatePipe} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {error} from 'console';
+import {CategoryService} from 'src/app/services/category.service';
+import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,6 +19,8 @@ export class SelectSubjectComponent implements OnInit {
   categories = [];
   selectedCategories: any = [];
   date = 'not yet';
+  hashcode;
+
   /* myDate = new Date(); */
 
   constructor(
@@ -79,9 +81,9 @@ export class SelectSubjectComponent implements OnInit {
 
       if (e.isConfirmed) {
         this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
-          console.log(Response);
-          this.ngOnInit();
-        },
+            console.log(Response);
+            this.ngOnInit();
+          },
           (error) => {
             this.snackBar.open(error.error.text, 'Oops !!', {
               duration: 3000,
@@ -99,9 +101,9 @@ export class SelectSubjectComponent implements OnInit {
     console.log(this.userId);
 
     this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
-      console.log(response);
-      this.selectedCategories = response;
-    },
+        console.log(response);
+        this.selectedCategories = response;
+      },
       (error) => {
         //error
         console.log(error);
@@ -109,8 +111,6 @@ export class SelectSubjectComponent implements OnInit {
       }
     );
   }
-
-
 
 
   deleteCategory(userCategoryId, cTitle) {
@@ -126,9 +126,9 @@ export class SelectSubjectComponent implements OnInit {
 
       if (e.isConfirmed) {
         this.selectSubjectServeice.deleteSelectedUserCategory(userCategoryId).subscribe((Response) => {
-          console.log(Response);
-          this.ngOnInit();
-        },
+            console.log(Response);
+            this.ngOnInit();
+          },
           (error) => {
             this.snackBar.open("Error !! Try Again later", 'Oops !!', {
               duration: 3000,
@@ -145,4 +145,15 @@ export class SelectSubjectComponent implements OnInit {
 
 
 
+  generateHash() {
+    console.log('abc');
+    this.selectSubjectServeice.getHashCode(this.userId).subscribe(response => {
+        console.log(response);
+      }/*, (error) => {
+      console.log(error);
+      console.log(error.error.text);
+      this.hashcode = error.error.text;
+      console.log(this.hashcode);
+      }*/);
+  }
 }
