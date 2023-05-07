@@ -31,6 +31,10 @@
   --index: 4;
 }
 
+#card_5 {
+  --index: 4;
+}
+
 .card {
   position: sticky;
   top: 0;

@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-
+show = true;
+mail;
   constructor(
     private userService: UserService,
     private router: Router
@@ -32,28 +33,38 @@ export class ForgotPasswordComponent implements OnInit {
     newPassword: new FormControl('', [Validators.required])
   });
 
-  forgotPassword() {
+  sendOtp() {
+    this.mail = this.mailForm.get('email')?.value!;
     console.log(this.mailForm.get('email')?.value!);
-    this.userService.forgotPassowrd(this.mailForm.get('email')?.value!).subscribe(response => {
+    this.userService.resendMail(this.mailForm.get('email')?.value!).subscribe(response => {
       console.log(response);
-      Swal.fire('Loging credential sent to your email.Check your inbox and spam box as well.', 'Successfull', 'success');
-      this.router.navigateByUrl('/login');
+      Swal.fire('OTP send Successfully. Check your inbox and spam box as well.', '', 'success');
+      this.show = false;
+
     }, error => {
       Swal.fire('Recheck your mail and try again !! ', 'Error', 'error');
     });
   }
 
-  /*changePassword(){
+  verifyAndSend(){
     console.log(this.changeForm.get('otp')?.value!);
-    console.log(this.changeForm.get('newPassword')?.value!);
-    console.log(this.email);
-    this.userService.changePassword(this.changeForm.get('otp')?.value!,this.email,this.changeForm.get('newPassword')?.value!).subscribe(response => {
+    console.log(this.mail);
+    this.userService.forgotPassowrd(this.changeForm.get('otp')?.value!, this.mail).subscribe(response => {
       console.log(response);
-      Swal.fire('Password Change Successfully', 'Done', 'success');
-
+      Swal.fire('Loging credential sent to your email.Check your inbox and spam box as well.', 'Done', 'success');
+      this.router.navigateByUrl('/login');
     }, error => {
-      Swal.fire('Oops!! try again !! ', '', 'error');
+      Swal.fire('OTP is not matching !! ', '', 'error');
     });
-  }*/
+  }
+
+
+  resendMail() {
+    this.userService.resendMail(this.mail).subscribe(resp=>{
+      Swal.fire('Email sent', 'Check out your mail & and spam folder ', 'success');
+    },error => {
+      Swal.fire('Try again', '', 'error');
+    });
+  }
 
 }
