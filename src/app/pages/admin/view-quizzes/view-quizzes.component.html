@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <form>
-<h1 class="text-center">Filter Papers :</h1>
+      <h1 class="text-center">Filter Papers :</h1>
 
       <mat-form-field class="w100" style="width: 35%; margin-right: 30px;" appearance="outline">
         <mat-label>Enter Subject Here !!!</mat-label>
@@ -13,7 +13,7 @@
           placeholder=" EX: Physics / Chemistry "
           [(ngModel)]="searchText2"
         />
-        <mat-icon (click)="clear2()" matSuffix >clear</mat-icon>
+        <mat-icon (click)="clear2()" matSuffix>clear</mat-icon>
       </mat-form-field>
 
 
@@ -31,12 +31,16 @@
       </mat-form-field>
 
       <button style="width: 24%;height: 45px;" mat-raised-button color="primary" (click)="search()">Serach</button>
-    </form >
+    </form>
   </div>
 </div>
+<div class="text-center">
+  <button style="margin-left: 10px;" routerLink="/admin/add-quiz" mat-raised-button color="primary">
+    + Add New Quiz
+  </button>
+</div>
 
-<mat-card class="mt10 mr20 ml20"  *ngFor="let q of quizzes">
-
+<mat-card class="mt10 mr20 ml20" *ngFor="let q of quizzes">
 
 
   <mat-card-header>
@@ -73,7 +77,8 @@
     >
       Update
     </button>
-    <button mat-flat-button color="primary" class="ml20"  [routerLink]="'/admin/attempts-history/' + q.qId">Attempts</button>
+    <button mat-flat-button color="primary" class="ml20" [routerLink]="'/admin/attempts-history/' + q.qId">Attempts
+    </button>
 
     <button
       mat-flat-button
@@ -87,13 +92,10 @@
 </mat-card>
 
 
-
 <div class="container text-center mt20 mb20 ">
   <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
     Load More
   </button>
 
-  <button  style="margin-left: 10px;" routerLink="/admin/add-quiz" mat-raised-button color="primary">
-    Add New Quiz
-  </button>
+
 </div>
