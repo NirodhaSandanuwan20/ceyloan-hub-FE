@@ -39,17 +39,20 @@ export class AddQuestionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private _route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
-    this.qTitle = this.route.snapshot.params.qTitle;
-    this.qCategory = this.route.snapshot.params.qCategory;
     console.log(this.qCategory);
-
-    // tslint:disable-next-line:no-unused-expression
     this.question.quiz['qId'] = this.qId;
+    this._route.params.subscribe((params) => {
+      this.qId = params.qid;
+      this.qTitle = params.title;
+      this.qCategory = params.category;
+    });
+
   }
 
   // tslint:disable-next-line:typedef
@@ -67,7 +70,7 @@ export class AddQuestionComponent implements OnInit {
     if (this.question.answer.trim() === '' || this.question.answer == null) {
       return;
     }
-
+    console.log(this.question);
 
     const questionFormData = this.prepareFormData(this.question);
     this.questionService.addQuestion(questionFormData).subscribe(
@@ -125,7 +128,5 @@ export class AddQuestionComponent implements OnInit {
     this.question.questionImages.splice(i, 1);
   }
 
-  fileDropped(fileHandle: FileHandle) {
-    this.question.questionImages.push(fileHandle);
-  }
+
 }

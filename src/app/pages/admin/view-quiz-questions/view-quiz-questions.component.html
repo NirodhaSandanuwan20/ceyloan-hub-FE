@@ -7,7 +7,7 @@
         <button
           mat-raised-button
           color="accent"
-          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle "
+          [routerLink]="'/admin/add-question/' + qId + '/' + qTitle+ '/' + category "
         >
           Add Question
         </button>
@@ -19,11 +19,11 @@
             <b> Q {{ i + 1 }})</b>
             <span class="ml20" [innerHTML]="q.content"></span>
           </p>
-          
+
           <div class="img-box" style="overflow: hidden">
             <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
           </div>
-          
+
 
           <div class="container-fluid">
             <div class="row">
@@ -57,7 +57,7 @@
           <button mat-button color="primary">Update</button>
         </mat-card-action>
 
-        
+
 
       </mat-card>
 
