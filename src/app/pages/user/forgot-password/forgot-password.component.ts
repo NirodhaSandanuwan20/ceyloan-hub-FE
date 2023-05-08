@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {UserService} from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import {passwordMatch} from "../../../model/passwordMatch";
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,17 +11,20 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent implements OnInit {
-show = true;
-mail;
+  show = true;
+  mail;
+  showPasswordFlag: boolean = true;
+  changeType: boolean = true;
+
   constructor(
     private userService: UserService,
     private router: Router
-  ) { }
-
-  ngOnInit(): void {
+  ) {
   }
 
+  ngOnInit(): void {
 
+  }
 
 
   mailForm = new FormGroup({
@@ -29,9 +33,13 @@ mail;
 
 
   changeForm = new FormGroup({
-    otp: new FormControl('', [Validators.required]),
-    newPassword: new FormControl('', [Validators.required])
-  });
+      otp: new FormControl('', [Validators.required]),
+      newPassword: new FormControl('', [Validators.required]),
+      confirm: new FormControl('', [Validators.required])
+    }
+    , [passwordMatch('newPassword', 'confirm')]
+  );
+
 
   sendOtp() {
     this.mail = this.mailForm.get('email')?.value!;
@@ -46,12 +54,12 @@ mail;
     });
   }
 
-  verifyAndSend(){
+  verifyAndSend() {
     console.log(this.changeForm.get('otp')?.value!);
     console.log(this.mail);
-    this.userService.forgotPassowrd(this.changeForm.get('otp')?.value!, this.mail).subscribe(response => {
+    this.userService.forgotPassowrd(this.changeForm.get('otp')?.value!, this.changeForm.get('newPassword')?.value!, this.mail).subscribe(response => {
       console.log(response);
-      Swal.fire('Loging credential sent to your email.Check your inbox and spam box as well.', 'Done', 'success');
+      Swal.fire('Your password changed success .', 'Done', 'success');
       this.router.navigateByUrl('/login');
     }, error => {
       Swal.fire('OTP is not matching !! ', '', 'error');
@@ -60,11 +68,16 @@ mail;
 
 
   resendMail() {
-    this.userService.resendMail(this.mail).subscribe(resp=>{
+    this.userService.resendMail(this.mail).subscribe(resp => {
       Swal.fire('Email sent', 'Check out your mail & and spam folder ', 'success');
-    },error => {
+    }, error => {
       Swal.fire('Try again', '', 'error');
     });
+  }
+
+  showPassword() {
+    this.showPasswordFlag = !this.showPasswordFlag;
+    this.changeType = !this.changeType;
   }
 
 }

@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {passwordMatch} from "../../model/passwordMatch";
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,10 @@ export class SignupComponent implements OnInit {
     email: new FormControl('', [Validators.required,Validators.email]),
     Username: new FormControl('', [Validators.required,Validators.min(4)]),
     password: new FormControl('', [Validators.required,Validators.min(4)]),
-  });
+      confirm: new FormControl('', [Validators.required,Validators.min(4)])
+  },
+    [ passwordMatch('password', 'confirm') ]
+  );
 
   show:boolean = true;
   changeType:boolean = true;

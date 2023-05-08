@@ -1,8 +1,8 @@
 <div class="outer">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-2">
       <mat-list>
-        <h1 class="text-center">Select Your Subjects</h1>
+        <h1 class="text-center">Available Subjects</h1>
         <mat-list-item *ngFor="let c of categories">
 
           <div mat-line>{{ c.title }}</div>
@@ -11,8 +11,6 @@
                         <mat-icon class="icon" (click)="addCategory(c.cid,c.title)" mat-list-icon
                                   style="color:green;margin-left: 20px;">add</mat-icon>
 
-            <mat-icon class="icon"  mat-list-icon
-                      style="color:black;margin-left: 20px;">info</mat-icon>
                      </span>
 
 
@@ -23,7 +21,7 @@
       </mat-list>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-2">
       <mat-list>
         <h1 class="text-center">Subscribed Subjects</h1>
         <mat-list-item *ngFor="let c of selectedCategories">

@@ -47,6 +47,23 @@
               <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
             </mat-form-field>
 
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Re enter password</mat-label>
+              <input
+                formControlName="confirm"
+                [type]="changeType?'password':'text'"
+                placeholder="Re enter password"
+                matInput
+              />
+              <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
+              <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
+              <div *ngIf="signupForm.errors?.['passwordMismatcgError']">
+
+                <small class="text-danger"><b>Error : Password mismatched !!</b></small>
+
+              </div>
+            </mat-form-field>
+
             <div class=" text-center">
               <button
                 style="width: 100%;margin-bottom: 5px"
