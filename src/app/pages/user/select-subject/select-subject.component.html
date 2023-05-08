@@ -3,7 +3,16 @@
     <div class="col-md-2">
       <mat-list>
         <h1 class="text-center">Available Subjects</h1>
+        <div class="col-md-12" *ngIf="categories.length == 0">
+          <mat-card>
+            <mat-card-content>
+              <h3>Seems like admin have not added any subject yet. Please Be patient. We well add ASAP !!
+                need.</h3>
+            </mat-card-content>
+          </mat-card>
+        </div>
         <mat-list-item *ngFor="let c of categories">
+
 
           <div mat-line>{{ c.title }}</div>
 
@@ -25,6 +34,8 @@
       <mat-list>
         <h1 class="text-center">Subscribed Subjects</h1>
         <mat-list-item *ngFor="let c of selectedCategories">
+
+
 
           <div mat-line>{{ c.cTitle }}</div>
 

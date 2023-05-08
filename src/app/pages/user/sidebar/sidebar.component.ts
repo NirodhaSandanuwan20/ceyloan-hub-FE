@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
 
 
   constructor(
-    private cat: CategoryService, 
+    private cat: CategoryService,
     private snack: MatSnackBar,
     private selectSubjectServeice: SelectSubjectService,
     ) {}
@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
     this.getSelectedCategory();
   }
 
-/* 
+/*
 getCategory(){
   this.cat.categories().subscribe(
     (data: any) => {
@@ -49,7 +49,7 @@ getSelectedCategory(){
   this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
     console.log(response);
     this.selectedCategories = response;
-    
+
   },
     (error) => {
       //error

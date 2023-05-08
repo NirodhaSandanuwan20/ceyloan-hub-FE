@@ -40,7 +40,7 @@ export class LoadQuizComponent implements OnInit {
       this._quiz.getActiveQuizzes(this.pageNumber, this.searchText2, this.searchText1).subscribe(
         (data: any) => {
           console.log(data);
-          if (data.length === 4) {
+          if (data.length === 20) {
             this.showMoreBtn = true;
           } else {
             this.showMoreBtn = false;

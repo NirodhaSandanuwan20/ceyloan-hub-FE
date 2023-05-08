@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
-import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Question} from '../../../model/Question';
-import {FileHandle} from "../../../model/FileHandle";
+import {FileHandle} from '../../../model/FileHandle';
 
 @Component({
   selector: 'app-add-question',
   templateUrl: './add-question.component.html',
   styleUrls: ['./add-question.component.css'],
 })
+
 export class AddQuestionComponent implements OnInit {
   value1:string = 'පිළිතුර 1';
   value2:string = 'පිළිතුර 2';
@@ -20,7 +20,7 @@ export class AddQuestionComponent implements OnInit {
   value4:string = 'පිළිතුර 4';
   value5:string = 'පිළිතුර 5';
 
-  
+
   public Editor = ClassicEditor;
   qId;
   qTitle;
@@ -44,10 +44,10 @@ export class AddQuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
-    this.qTitle = this.route.snapshot.params.title;
-    this.qCategory = this.route.snapshot.params.qCategory; 
+    this.qTitle = this.route.snapshot.params.qTitle;
+    this.qCategory = this.route.snapshot.params.qCategory;
     console.log(this.qCategory);
-    
+
     // tslint:disable-next-line:no-unused-expression
     this.question.quiz['qId'] = this.qId;
   }

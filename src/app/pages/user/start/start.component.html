@@ -200,19 +200,20 @@
 <!-- result div -->
 <div class="bootstrap-wrapper" *ngIf="isSubmit">
   <div class="row mt20">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
       <mat-card>
 
         <mat-card-content class="text-center">
           <h1 style="color: blue;font-size: 25px; align-items: center"> {{questions[0].quiz.title}}
             - {{questions[0].quiz.category.title}}</h1>
-          <h1>Marks Got : {{ marksGot }}</h1>
           <h1>Correct Answers : {{ correctAnswers }}</h1>
           <h1>Check out your mistakes now</h1>
         </mat-card-content>
         <mat-card-actions class="text-center">
           <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">
-            Dash Board
+            Dashboard
           </button>
         </mat-card-actions>
       </mat-card>
@@ -278,6 +279,12 @@
 
         </mat-card-content>
       </mat-card>
+      <div class="text-center">
+        <button class="text-center mt20" mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">
+          Dashboard
+        </button>
+      </div>
+
 
     </div>
     <div class="col-md-2"></div>

@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './view-quiz-questions.component.html',
   styleUrls: ['./view-quiz-questions.component.css'],
 })
+
 export class ViewQuizQuestionsComponent implements OnInit {
   qId;
   qTitle;
@@ -26,9 +27,9 @@ export class ViewQuizQuestionsComponent implements OnInit {
     private _question: QuestionService,
     private _snak: MatSnackBar
   ) {}
-  
+
   ngOnInit(): void {
-    
+
     this._route.params.subscribe((params) => {
       this.qId = params.qid;
       this.qTitle = params.title;
