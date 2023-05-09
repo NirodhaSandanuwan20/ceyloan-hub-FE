@@ -29,6 +29,8 @@ import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-pas
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 import {PaymentComponent} from "./payment/payment.component";
+import {ChangePasswordComponent} from "./pages/user/change-password/change-password.component";
+import {ChangeEmailComponent} from "./pages/user/change-email/change-email.component";
 
 const routes: Routes = [
   {
@@ -166,6 +168,14 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     canActivate: [NormalGuard],
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent
+  },
+  {
+    path: 'change-email',
+    component: ChangeEmailComponent
   }
 ];
 

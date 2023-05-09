@@ -5,6 +5,9 @@ import {ProfileService} from 'src/app/services/profile.service';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import {FilterSubjectPipe} from './filter-subject.pipe';
 import {MatTabChangeEvent} from "@angular/material/tabs";
+import {UserService} from "../../services/user.service";
+import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -30,7 +33,9 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private categoryService: CategoryService,
     private selectSubjectServeice: SelectSubjectService,
-    private pipe: FilterSubjectPipe
+    private userService: UserService,
+    private pipe: FilterSubjectPipe,
+    private router: Router
   ) {
   }
 
@@ -77,10 +82,10 @@ export class ProfileComponent implements OnInit {
       allMarks = allMarks + parseInt(p.yourMarks);
       length = i;
       this.series.push({
-          "name": i + 1,
-          "value": p.yourMarks
-        });
+        "name": i + 1,
+        "value": p.yourMarks
       });
+    });
 
     this.pieChartArray = [
       {
@@ -100,9 +105,6 @@ export class ProfileComponent implements OnInit {
   }
 
 
-
-
-
   myTabFocusChange(changeEvent: MatTabChangeEvent) {
     this.pageNumber = 0;
     this.userHistory = [];
@@ -116,6 +118,19 @@ export class ProfileComponent implements OnInit {
     this.pageNumber = this.pageNumber + 1;
     console.log(this.cTitle);
     this.getHistoryForSubject(this.cTitle);
+  }
+
+  changePassword() {
+    this.userService.resendMail(this.user.email).subscribe(response => {
+      Swal.fire('OTP send Successfully. Check your inbox and spam box as well.', '', 'success');
+      this.router.navigateByUrl('/change-password');
+    },error => {
+      Swal.fire('Recheck your mail and try again !! ', 'Error', 'error');
+    });
+  }
+
+  changeEmail() {
+
   }
 
 
@@ -162,5 +177,7 @@ export class ProfileComponent implements OnInit {
 
 
   ///////////////////////////////////////////////
+
+
 
 }

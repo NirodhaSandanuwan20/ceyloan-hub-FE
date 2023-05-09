@@ -58,6 +58,8 @@ import { SelectSubjectComponent } from './pages/user/select-subject/select-subje
 import {MatTabsModule} from '@angular/material/tabs';
 import { PaymentComponent } from './payment/payment.component';
 import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
+import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
+import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
     QuizAttemptHistoryComponent,
     SelectSubjectComponent,
     PaymentComponent,
-    TodoListComponent
+    TodoListComponent,
+    ChangePasswordComponent,
+    ChangeEmailComponent
 ],
   imports: [
     BrowserModule,

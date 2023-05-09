@@ -204,8 +204,9 @@
             </tr>
             <tr>
               <td>Actions</td>
-              <td><button mat-raised-button>Change Password</button>
-                <button mat-raised-button style="margin-left: 5px!important;">Change Email</button></td>
+              <td>
+                <button mat-raised-button (click)="changePassword()">Change Password</button>
+                <button mat-raised-button style="margin-left: 5px!important;" (click)="changeEmail()"  routerLink="/change-email">Change Email</button></td>
             </tr>
           </table>
 
