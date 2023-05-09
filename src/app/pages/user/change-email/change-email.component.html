@@ -1,0 +1,39 @@
+<div class="outer">
+  <div class="inner">
+
+    <form [formGroup]="mailForm" class="form" *ngIf="show">
+      <h1 class="text-center" style=" font-family: 'Lobster', cursive;
+  font-family: 'Roboto Mono', monospace;">Do you want to change email ? </h1>
+      <h3 class="text-center" style=" font-family: 'Lobster', cursive;
+  font-family: 'Roboto Mono', monospace;">No worry just enter your email & verify it</h3>
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Enter your new email</mat-label>
+        <input formControlName="email" type="email" matInput/>
+      </mat-form-field>
+      <br>
+
+
+      <button style="width: 100%" type="submit" [disabled]="mailForm.invalid" mat-raised-button color="primary"
+              (click)="sendOtpToNewMail()">
+        Send OTP
+      </button>
+    </form>
+
+
+    <form [formGroup]="changeForm" class="form" *ngIf="!show">
+      <h1 class="text-center">Enter Your Verification Code</h1>
+      <h3 class="text-center">We have send a verification code to <b>{{mail}}</b></h3>
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Verification Code</mat-label>
+        <input formControlName="otp" type="text" matInput/>
+      </mat-form-field>
+      <h5>nothing after 2 minuets ?&nbsp;&nbsp;<span (click)="resendMail()" class="anchor"><b>Resend code</b></span>
+      </h5>
+      <br>
+      <button style="width: 100%" type="submit" [disabled]="changeForm.invalid" mat-raised-button color="primary"
+              (click)="verifyNewMail()">
+        Verify & Change password
+      </button>
+    </form>
+  </div>
+</div>
