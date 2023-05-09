@@ -57,6 +57,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { PaymentComponent } from './payment/payment.component';
+import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { PaymentComponent } from './payment/payment.component';
     FilterSubjectPipe,
     QuizAttemptHistoryComponent,
     SelectSubjectComponent,
-    PaymentComponent
+    PaymentComponent,
+    TodoListComponent
 ],
   imports: [
     BrowserModule,

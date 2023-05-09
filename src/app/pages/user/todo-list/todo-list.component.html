@@ -1,0 +1,49 @@
+<div class="outer">
+  <h1 style="text-align: center;font-family: 'Lobster', cursive;
+  font-family: 'Roboto Mono', monospace;">Daily Todo List</h1><br>
+  <div class="container">
+
+        <div class="row">
+          <mat-form-field appearance="fill" class="form">
+            <mat-label>Enter task here</mat-label>
+            <input
+              matInput
+              placeholder="Describe your task"
+              [(ngModel)]="newTodo"
+              type="text"
+            >
+          </mat-form-field>
+          <button style="width:100%;" mat-raised-button color="primary" (click)="saveTodo()" >
+            + Add Todo
+          </button>
+<p>(*You can change your task status clicking on task*)</p>
+        </div>
+
+        <table  class="table table-striped mt20">
+          <thead>
+          <tr>
+            <th>No</th>
+            <th>Task</th>
+            <th>Current Status</th>
+            <th>Delete task</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let todo of todos;let i = index;">
+            <th scope="row">{{i+1}}</th>
+            <td class="{{(!todo.isCompleted)?'done':''}} task" (click)="done(i)" >{{todo.name}}</td>
+            <td style="color: red" >
+              <mat-icon class="{{(!todo.isCompleted)?'hide':'show'}}">close</mat-icon>
+              <mat-icon class="{{(!todo.isCompleted)?'hide':'show'}}">sentiment_very_dissatisfied</mat-icon>
+              <mat-icon style="color: green" class="{{(!todo.isCompleted)?'show':'hide'}}">done</mat-icon>
+              <mat-icon style="color: green" class="{{(!todo.isCompleted)?'show':'hide'}}">mood</mat-icon>
+
+            </td>
+            <th (click)="remove(i)"><mat-icon>delete</mat-icon></th>
+          </tr>
+          <h2 *ngIf="todos.length==0">Empty task yet </h2>
+          </tbody>
+        </table>
+
+  </div>
+</div>

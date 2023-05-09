@@ -167,60 +167,55 @@
   <mat-tab-group
     style="margin-bottom: 10px"
     (selectedTabChange)="myTabFocusChange($event)">
-  >
+    >
 
     <mat-tab label="Profile">
 
-      <mat-card *ngIf="user">
+      <div class="row" id="profile-outer">
+        <div class="col-8" id="profile-details">
 
-        <mat-card-content>
-          <div class="bootstrap-wrapper">
-            <div class="container">
-              <div class="container text-center">
-                <img
-                  src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                  alt=""
-                  class="profile-image"
-                />
-
-                <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
-              </div>
-
-              <div class="row">
-                <div class="col-md-10 offset-md-1">
-                  <!-- //table Details  -->
-                  <table class="table text-center">
-                    <tr>
-                      <td>Username</td>
-                      <td>{{ user.username }}</td>
-                    </tr>
-                    <tr>
-                      <td>Userid</td>
-                      <td>EXAM{{ user.id }}</td>
-                    </tr>
-                    <tr>
-                      <td>Phone</td>
-                      <td>{{ user.phone }}</td>
-                    </tr>
-                    <tr>
-                      <td>Role</td>
-                      <td>{{ user.authorities[0].authority }}</td>
-                    </tr>
-                    <tr>
-                      <td>Status</td>
-                      <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
+          <div class="text-center">
+            <img
+              src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+              alt=""
+              class="profile-image"
+            />
+            <h3>Add your photo</h3>
           </div>
-        </mat-card-content>
-        <mat-card-actions class="text-center">
-          <button mat-raised-button color="primary">UPDATE</button>
-          <button mat-raised-button color="accent">SHARE</button>
-        </mat-card-actions>
-      </mat-card>
+
+
+          <!-- //table Details  -->
+          <table class="table text-center">
+            <tr>
+              <td>Username</td>
+              <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td>******</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+            </tr>
+            <tr>
+              <td>Actions</td>
+              <td><button mat-raised-button>Change Password</button>
+                <button mat-raised-button style="margin-left: 5px!important;">Change Email</button></td>
+            </tr>
+          </table>
+
+
+        </div>
+        <div class="col-4" id="profile-control">
+          <app-todo-list></app-todo-list>
+        </div>
+      </div>
+
 
     </mat-tab>
 
@@ -274,37 +269,37 @@
           <div class="col-3 text-center">
 
 
-                <div class="line text-center">
-                  <h3>Chart of Marks by date</h3>
-                  <ngx-charts-line-chart
-                    [results]="lineChart"
-                    [view]="view"
-                    [scheme]="colorSchemeLineChart"
-                    [legend]="legendLineChart"
-                    [showXAxisLabel]="showXAxisLabel"
-                    [showYAxisLabel]="showYAxisLabel"
-                    [xAxis]="xAxis"
-                    [yAxis]="yAxis"
-                    [xAxisLabel]="xAxisLabel"
-                    [yAxisLabel]="yAxisLabel"
-                    [timeline]="timeline">
-                  </ngx-charts-line-chart>
-                </div>
-
-                <div class="pie text-center" style="margin-top: 20px!important;">
-                  <h3>Chart of wrong and correct answers</h3>
-                  <ngx-charts-advanced-pie-chart
-                    [results]="pieChartArray"
-                    [view]="viewPie"
-                    [scheme]="colorSchemePie"
-                    (select)="onSelect($event)"
-                    (activate)="onActivate($event)"
-                    (deactivate)="onDeactivate($event)">
-                  </ngx-charts-advanced-pie-chart>
-                </div>
-
-
+            <div class="line text-center">
+              <h3>Chart of Marks by date</h3>
+              <ngx-charts-line-chart
+                [results]="lineChart"
+                [view]="view"
+                [scheme]="colorSchemeLineChart"
+                [legend]="legendLineChart"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxis]="xAxis"
+                [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [timeline]="timeline">
+              </ngx-charts-line-chart>
             </div>
+
+            <div class="pie text-center" style="margin-top: 20px!important;">
+              <h3>Chart of wrong and correct answers</h3>
+              <ngx-charts-advanced-pie-chart
+                [results]="pieChartArray"
+                [view]="viewPie"
+                [scheme]="colorSchemePie"
+                (select)="onSelect($event)"
+                (activate)="onActivate($event)"
+                (deactivate)="onDeactivate($event)">
+              </ngx-charts-advanced-pie-chart>
+            </div>
+
+
+          </div>
 
         </div>
 

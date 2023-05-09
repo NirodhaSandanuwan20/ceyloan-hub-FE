@@ -1,0 +1,23 @@
+.outer{
+}
+
+.done{
+  text-decoration: line-through;
+}
+.show{
+  display: inline;
+}
+.hide{
+  display: none;
+}
+
+.task:hover{
+  cursor: pointer;
+}
+.form{
+  width: 100%!important;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+}
