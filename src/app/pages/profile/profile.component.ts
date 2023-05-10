@@ -4,10 +4,10 @@ import {LoginService} from 'src/app/services/login.service';
 import {ProfileService} from 'src/app/services/profile.service';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import {FilterSubjectPipe} from './filter-subject.pipe';
-import {MatTabChangeEvent} from "@angular/material/tabs";
-import {UserService} from "../../services/user.service";
-import Swal from "sweetalert2";
-import {Router} from "@angular/router";
+import {MatTabChangeEvent} from '@angular/material/tabs';
+import {UserService} from '../../services/user.service';
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -17,16 +17,6 @@ import {Router} from "@angular/router";
 })
 
 export class ProfileComponent implements OnInit {
-  cTitle;
-  selectedCategories = [];
-  series = [];
-  pieChartArray = [];
-  pageNumber: number = 0;
-  userId;
-  user = null;
-  userHistory = [];
-  showMoreBtn;
-  lineChart;
 
   constructor(
     private loginService: LoginService,
@@ -38,11 +28,61 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {
   }
+  cTitle;
+  selectedCategories = [];
+  series = [];
+  pieChartArray = [];
+  pageNumber = 0;
+  userId;
+  user = null;
+  userHistory = [];
+  showMoreBtn;
+  lineChart;
+  usermail;
+
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  colorSchemePie = {
+    domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
+  };
+
+  viewPie: any[] = [800, 300];
+  /*Line CHart Begin*/
+  productSalesMulti: any[];
+  view: any[] = [700, 370];
+
+  // options
+  legendLineChart = true;
+  showLabels = true;
+  animations = true;
+  xAxis = true;
+  yAxis = true;
+  showYAxisLabel = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Date';
+  yAxisLabel = 'Marks';
+  timeline = true;
+
+  colorSchemeLineChart = {
+    domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
+  };
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.user = this.loginService.getUser();
     this.getAllSelectedCategories();
+    this.getUserDetails();
+  }
+
+  getUserDetails(){
+    this.userService.getUser(this.userId).subscribe((response: any) => {
+      console.log(response);
+      this.usermail = response.email;
+    }, error => {
+      console.log(error);
+    });
   }
 
   getAllSelectedCategories() {
@@ -82,24 +122,24 @@ export class ProfileComponent implements OnInit {
       allMarks = allMarks + parseInt(p.yourMarks);
       length = i;
       this.series.push({
-        "name": i + 1,
-        "value": p.yourMarks
+        name: i + 1,
+        value: p.yourMarks
       });
     });
 
     this.pieChartArray = [
       {
-        "name": "Correct",
-        "value": allMarks
+        name: 'Correct',
+        value: allMarks
       },
       {
-        "name": "Wrong",
-        "value": (length + 1) * 50 - allMarks
+        name: 'Wrong',
+        value: (length + 1) * 50 - allMarks
       }
     ];
     this.lineChart = [{
-      "name": "Marks",
-      "series": this.series
+      name: 'Marks',
+      series: this.series
     }];
 
   }
@@ -124,42 +164,10 @@ export class ProfileComponent implements OnInit {
     this.userService.resendMail(this.user.email).subscribe(response => {
       Swal.fire('OTP send Successfully. Check your inbox and spam box as well.', '', 'success');
       this.router.navigateByUrl('/change-password');
-    },error => {
+    }, error => {
       Swal.fire('Recheck your mail and try again !! ', 'Error', 'error');
     });
   }
-
-  changeEmail() {
-
-  }
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  colorSchemePie = {
-    domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
-  };
-
-  viewPie: any[] = [800, 300];
-  /*Line CHart Begin*/
-  productSalesMulti: any[];
-  view: any[] = [700, 370];
-
-  // options
-  legendLineChart: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Date';
-  yAxisLabel: string = 'Marks';
-  timeline: boolean = true;
-
-  colorSchemeLineChart = {
-    domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
-  };
 
   onSelect(event) {
     console.log(event);
@@ -177,7 +185,5 @@ export class ProfileComponent implements OnInit {
 
 
   ///////////////////////////////////////////////
-
-
 
 }

@@ -41,4 +41,8 @@ export class UserService {
     return this.http.post(`${baseUrl}/user/verify-newMail` + '?otp=' + otp + '&newEmail=' + newEmail + '&oldEmail=' + oldEmail,{});
   }
 
+  public getUser(userId: number){
+    return this.http.get(`${baseUrl}/user/id/` + userId);
+  }
+
 }
