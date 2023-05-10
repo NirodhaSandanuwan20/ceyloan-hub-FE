@@ -48,14 +48,12 @@ export class ProfileComponent implements OnInit {
     domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
   };
 
-  viewPie: any[] = [800, 300];
+  viewPie: any[] = [700, 370];
   /*Line CHart Begin*/
-  productSalesMulti: any[];
   view: any[] = [700, 370];
 
   // options
   legendLineChart = true;
-  showLabels = true;
   animations = true;
   xAxis = true;
   yAxis = true;

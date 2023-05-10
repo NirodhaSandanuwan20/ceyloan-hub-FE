@@ -27,7 +27,7 @@
 
 
           <!-- //table Details  -->
-          <table class="table text-center">
+          <table class="table-1 text-center table-striped table-bordered">
             <tr>
               <td>Username</td>
               <td>{{ user.username }}</td>
@@ -69,90 +69,6 @@
 
     <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle">
 
-
-      <!--<div class="container">
-        <div class="row">
-          <div class="header">
-            <h1 style="font-size:30px;font-family: 'Lobster', cursive;
-  font-family: 'Roboto Mono', monospace;text-decoration: underline">Let's take a look what you have done so far</h1>
-          </div>
-          <div class="col-9">
-
-            <table class="table table-striped table-bordered">
-
-              <thead>
-              <tr>
-                <th>No</th>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Your Marks</th>
-                <th>Date & Time (Finished time)</th>
-                <th>Saved time</th>
-              </tr>
-              </thead>
-
-              <tbody>
-              <tr *ngFor="let c of userHistory; let i =index">
-                <td>{{i + 1}}</td>
-                <td>{{c.category}}</td>
-                <td>{{c.title}}</td>
-                <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
-                <td>{{c.date}}</td>
-                <td>{{c.savedTime}}</td>
-              </tr>
-              </tbody>
-
-            </table>
-
-            <div class="container text-center mt20 mb20">
-              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
-                Load More
-              </button>
-            </div>
-
-
-          </div>
-
-
-          <div class="col-3 text-center">
-
-
-            <div class="line text-center">
-              <h3>Chart of Marks by date</h3>
-              <ngx-charts-line-chart
-                [results]="lineChart"
-                [view]="view"
-                [scheme]="colorSchemeLineChart"
-                [legend]="legendLineChart"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxis]="xAxis"
-                [yAxis]="yAxis"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [timeline]="timeline">
-              </ngx-charts-line-chart>
-            </div>
-
-            <div class="pie text-center" style="margin-top: 20px!important;">
-              <h3>Chart of wrong and correct answers</h3>
-              <ngx-charts-advanced-pie-chart
-                [results]="pieChartArray"
-                [view]="viewPie"
-                [scheme]="colorSchemePie"
-                (select)="onSelect($event)"
-                (activate)="onActivate($event)"
-                (deactivate)="onDeactivate($event)">
-              </ngx-charts-advanced-pie-chart>
-            </div>
-
-
-          </div>
-
-        </div>
-
-
-      </div>-->
       <div class="row">
         <div class="col-12 text-center">
           <div class="header">
@@ -167,9 +83,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-12" id="table-div">
 
-          <table class="table table-striped table-bordered">
+          <table class="table-2 table-striped table-bordered align-items-center justify-content-center">
 
             <thead>
             <tr>
@@ -203,7 +119,7 @@
 
         </div>
 
-        <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-12" id="chart-div">
           <div class="row">
             <div class="col-12">
               <div class="line text-center">
@@ -240,6 +156,7 @@
 
 
         </div>
+
       </div>
 
 
