@@ -1,30 +1,28 @@
-<mat-card class="side-bar">
-  <mat-action-list>
-    <!-- <div mat-subheader>Available Categories</div> -->
+<div class="row">
+  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
 
-    <button routerLinkActive="active" class="btn" mat-list-item routerLink="/user-dashboard/0">
-      <mat-icon mat-list-icon>quiz</mat-icon> All Quizzes
-    </button>
+    <div class="inner">
+      <button routerLinkActive="active" style="width:100%!important;" class="btn" mat-raised-button routerLink="/user-dashboard/0"> All Quizzes
+             </button>
+             <button mat-raised-button  class="btn" routerLinkActive="active" [routerLink]="'/user-dashboard/' + c.cid"
+                     *ngFor="let c of selectedCategories">{{c.cTitle}}
+             </button>
 
-    <mat-divider></mat-divider>
+             <div class="col-md-12" *ngIf="selectedCategories.length == 0">
 
-    <button class="btn" routerLinkActive="active" [routerLink]="'/user-dashboard/' + c.cid" mat-list-item
-      *ngFor="let c of selectedCategories"><mat-icon mat-list-icon>quiz</mat-icon> {{ c.cTitle}}
-      <mat-divider></mat-divider>
-    </button>
+               <mat-card-content class="mt20">
+                 <h3>Empty Subject</h3>
+               </mat-card-content>
 
-    <div class="col-md-12" *ngIf="selectedCategories.length == 0">
+               <button mat-raised-button color="Primary"  routerLink = "/select-subject" > Add Subject </button>
 
-        <mat-card-content class="mt20">
-          <h3>Empty Subject</h3>
-        </mat-card-content>
-
-        <button mat-raised-button color="Primary"  routerLink = "/select-subject" > Add Subject </button>
-
+             </div>
     </div>
 
-  </mat-action-list>
-</mat-card>
+
+  </div>
+</div>
+
 
 
 

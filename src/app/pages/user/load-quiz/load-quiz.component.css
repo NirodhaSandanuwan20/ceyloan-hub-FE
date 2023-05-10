@@ -1,7 +1,16 @@
 
+
 .example-header-image {
   background-image: url("/assets/exam1.png");
   background-size: cover;
+}
+
+.outer{
+  width: 100%;
+  min-height:100vh;
+  height: auto;
+  border: 1px solid red;
+  margin: 5px;
 }
 
 a{
@@ -12,6 +21,22 @@ a{
 mat-icon:hover{
    cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

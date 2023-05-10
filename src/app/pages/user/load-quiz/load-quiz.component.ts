@@ -21,8 +21,11 @@ export class LoadQuizComponent implements OnInit {
   searchText1: string = '';
   searchText2: string = '';
 
-  constructor(private _route: ActivatedRoute, private _quiz: QuizService
-    , private router: Router) {
+  constructor(
+    private _route: ActivatedRoute,
+    private _quiz: QuizService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -81,11 +84,11 @@ export class LoadQuizComponent implements OnInit {
   }
 
 
-  /*  loadMoreEpic() {
+   loadMoreEpic() {
      this.pageNumberEpic = this.pageNumberEpic + 1;
      this.ngOnInit();
    }
-  */
+
 
   search() {
 

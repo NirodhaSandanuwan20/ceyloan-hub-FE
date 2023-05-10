@@ -1,15 +1,33 @@
-<div class="bootstrap-wrapper" style="margin-top: 10px">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2">
+<div class="row" >
+  <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+    <div class="sidebar">
 
-        <app-sidebar-user></app-sidebar-user>
-      </div>
+      <button routerLinkActive="active" style="width:100%!important;" class="btn" mat-raised-button
+              routerLink="/user-dashboard/0"> All Quizzes
+      </button>
 
-      <div class="col-md-10">
-        <router-outlet></router-outlet>
+      <button mat-raised-button class="btn" routerLinkActive="active" [routerLink]="'/user-dashboard/' + c.cid"
+              *ngFor="let c of selectedCategories">{{c.cTitle}}
+      </button>
+
+      <div class="col-md-12" *ngIf="selectedCategories.length == 0">
+
+        <span class="mt20 text-center">
+          <h3 style="padding: 3px">Add subject then start the learning journey</h3>
+          <button style="width: 100%" mat-raised-button color="accent" routerLink="/select-subject">+ Add Subject</button>
+        </span>
+
+
+
       </div>
     </div>
+
+
+  </div>
+
+  <div class="col-xl-10 col-lg-9 col-md-8 col-sm-12">
+    <router-outlet></router-outlet>
   </div>
 </div>
+
 
