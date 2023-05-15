@@ -147,21 +147,21 @@ const routes: Routes = [
       {
         path: 'select-subject',
         component: SelectSubjectComponent,
-      },
-      {
+      }
+      /*{
         path: ':catId',
         component: LoadQuizComponent,
-      },
-      {
-        path: 'instructions/:qid',
-        component: InstructionsComponent,
-      }
-
-    ],
+      },*/
+      ],
   },
   {
     path: 'start/:qid',
     component: StartComponent,
+    canActivate: [NormalGuard],
+  },
+  {
+    path: 'instructions/:qid',
+    component: InstructionsComponent,
     canActivate: [NormalGuard],
   },
   {

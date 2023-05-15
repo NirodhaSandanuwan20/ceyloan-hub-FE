@@ -44,11 +44,11 @@ export class QuizService {
   public getActiveQuizzes(pageNumber, searchText2, searchText1) {
     console.log(searchText1);
     console.log(searchText2);
-    return this._http.get(`${baseUrl}/quiz/active` + "?pageNumber=" + pageNumber + "&searchText2=" + searchText2 + "&searchText1=" + searchText1);
+    return this._http.get(`${baseUrl}/quiz/active` + '?pageNumber=' + pageNumber + '&searchText2=' + searchText2 + '&searchText1=' + searchText1);
   }
 
-  //get active quizzes of category pageNumberEpic
-  public getActiveQuizzesOfCategory(cid) {
-    return this._http.get(`${baseUrl}/quiz/category/active/${cid}`);
+
+  public getActiveQuizzesOfCategory(categoryName , pageNumber: number) {
+    return this._http.get(`${baseUrl}/quiz/category/active` + '?categoryName=' + categoryName + '&pageNumber=' + pageNumber);
   }
 }

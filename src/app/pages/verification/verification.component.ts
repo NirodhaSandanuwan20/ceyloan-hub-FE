@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {validate} from "codelyzer/walkerFactory/walkerFn";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
 import {UserService} from "../../services/user.service";
@@ -26,7 +25,7 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
     this.selectedRoute.paramMap.subscribe(response => {
       this.email = response.get('email')!;
-    })
+    });
   }
 
   verify() {

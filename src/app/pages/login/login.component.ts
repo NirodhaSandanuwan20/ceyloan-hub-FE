@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
-import { LoginService } from 'src/app/services/login.service';
+import {LoginService} from 'src/app/services/login.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -16,20 +16,23 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   })
 
-show:boolean = true;
-changeType:boolean = true;
+  show: boolean = true;
+  changeType: boolean = true;
+
   constructor(
     private snack: MatSnackBar,
     private login: LoginService,
     private router: Router
-  ) {}
+  ) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   formSubmit() {
     console.log('login btn clicked');
 
-   let loginData = {
+    let loginData = {
       username: this.loginForm.get('username').value!,
       password: this.loginForm.get('password').value!
     };
@@ -56,7 +59,7 @@ changeType:boolean = true;
             //normal user dashbaord
             // window.location.href = '/user-dashboard';
             /* this.router.navigate(['user-dashboard/0']); */
-            this.router.navigate(['user-dashboard/0']);
+            this.router.navigate(['user-dashboard']);
             this.login.loginStatusSubject.next(true);
           } else {
             this.login.logout();
@@ -72,8 +75,9 @@ changeType:boolean = true;
       }
     );
   }
-  showPassword(){
-    this.show=!this.show;
-    this.changeType=!this.changeType
+
+  showPassword() {
+    this.show = !this.show;
+    this.changeType = !this.changeType;
   }
 }

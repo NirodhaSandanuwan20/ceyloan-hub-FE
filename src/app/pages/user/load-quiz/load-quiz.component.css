@@ -1,4 +1,6 @@
-
+.row{
+  margin-left: 5px;
+}
 
 .example-header-image {
   background-image: url("/assets/exam1.png");
@@ -6,11 +8,14 @@
 }
 
 .outer{
+  padding-top: 10px;
   width: 100%;
   min-height:100vh;
   height: auto;
   border: 1px solid red;
-  margin: 5px;
+}
+.template{
+  margin-right: 10px;
 }
 
 a{
@@ -19,9 +24,8 @@ a{
 }
 
 mat-icon:hover{
-   cursor: pointer;
+  cursor: pointer;
 }
-
 
 
 
