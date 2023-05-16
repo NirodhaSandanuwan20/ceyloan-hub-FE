@@ -1,3 +1,7 @@
+*{
+  margin: 0!important;
+}
+
 #outer {
   width: 100%!important;
   height: 100vh;
