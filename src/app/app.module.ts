@@ -12,7 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
 import { MatCardModule } from '@angular/material/card';
@@ -60,6 +60,15 @@ import { PaymentComponent } from './payment/payment.component';
 import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
 import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
+
+
+import { InternationalizationModule } from './internationalization/internationalization.module';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/locales/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -129,6 +138,14 @@ import { ChangeEmailComponent } from './pages/user/change-email/change-email.com
     BrowserModule,
     BrowserAnimationsModule,
     NgxChartsModule,
+    InternationalizationModule.forRoot({ locale_id: 'en-US' }), // iniating with default language: en-US
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],
