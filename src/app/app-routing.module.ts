@@ -28,7 +28,7 @@ import { VerificationComponent } from "./pages/verification/verification.compone
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
-import {PaymentComponent} from "./payment/payment.component";
+import {PaymentComponent} from "./components/payment/payment.component";
 import {ChangePasswordComponent} from "./pages/user/change-password/change-password.component";
 import {ChangeEmailComponent} from "./pages/user/change-email/change-email.component";
 

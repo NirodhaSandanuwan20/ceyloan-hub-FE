@@ -56,19 +56,11 @@ import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from './components/payment/payment.component';
 import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
 import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
 
-
-import { InternationalizationModule } from './internationalization/internationalization.module';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {TranslateLoader, TranslateModule, TranslatePipe} from '@ngx-translate/core';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, '../assets/locales/', '.json');
-}
 
 @NgModule({
   declarations: [
@@ -137,15 +129,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    NgxChartsModule,
-    InternationalizationModule.forRoot({ locale_id: 'en-US' }), // iniating with default language: en-US
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    NgxChartsModule
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],

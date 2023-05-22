@@ -1,15 +1,17 @@
-/*:root {
+:root {
   --card-height: 35vw;
   --card-margin: 4vw;
   --card-top-offset: 1em;
   --numcards: 4;
   --outline-width: 0px;
-}*/
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Mono:wght@300&display=swap');
-*{
+* {
   font-family: 'Lobster', cursive;
   font-family: 'Roboto Mono', monospace;
 }
+
 #cards {
 
   padding-bottom: calc(var(--numcards) * var(--card-top-offset)); /* Make place at bottom, as items will slide to that position*/
@@ -166,13 +168,22 @@ header {
   place-self: center;
   text-align: left;
 
-  display: grid;
+  display: inline;
   gap: 1em;
   place-items: start;
+}
+.card__content > div > h2 {
+  color: #3F51B5;
+}
+
+button{
+  padding: 3px;
+  margin: 1px;
 }
 
 .card__content > figure {
   grid-area: img;
+  background-position: center;
   overflow: hidden;
 }
 
@@ -215,4 +226,46 @@ aside {
 
 aside p {
   margin-bottom: 1em;
+}
+
+@media (max-width: 500px) {
+
+  .card__content > figure {
+    display: none;
+  }
+
+  .card__content > div {
+    grid-area: text;
+    width: 100% !important;
+    place-self: center;
+    text-align: left;
+    display: inline;
+    gap: 1em;
+    place-items: start;
+  }
+
+  .card__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .card {
+    border: 1px solid #3F51B5;
+  }
+
+  #card_4 > .card__content {
+    background-color: white !important;
+
+  }
+
+  .card__content > div > h2 {
+    color: #3F51B5;
+  }
+  .card__content > div > button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
 }
