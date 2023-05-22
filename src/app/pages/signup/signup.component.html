@@ -1,3 +1,4 @@
+<!--
 <div class="bootstrap-wrapper" style="margin-top: 75px">
   <div class="container">
     <div class="row">
@@ -9,10 +10,10 @@
 
           <h1 class="text-center">Register Here</h1>
 
-          <!-- {{ user | json }} -->
+          &lt;!&ndash; {{ user | json }} &ndash;&gt;
 
           <form [formGroup] = "signupForm">
-            <!-- Username field -->
+            &lt;!&ndash; Username field &ndash;&gt;
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
               <input
@@ -23,7 +24,7 @@
               />
             </mat-form-field>
 
-            <!-- Password field -->
+            &lt;!&ndash; Password field &ndash;&gt;
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Username</mat-label>
               <input
@@ -86,3 +87,206 @@
     </div>
   </div>
 </div>
+-->
+
+<!--<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<mat-horizontal-stepper [@.disabled]="true" [linear]="true" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>-->
+
+
+<!--<mat-horizontal-stepper [@.disabled]="true" [linear]="true" #stepper="matHorizontalStepper"  linear>
+  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>-->
+
+<div class="outer">
+  <div class="row">
+    <div class="col-8">
+      <mat-card>
+        <h1 class="text-center">Register Here</h1>
+
+        <mat-vertical-stepper [@.disabled]="true" [linear]="true" #stepper="matVerticalStepper" linear>
+          <mat-step [stepControl]="personalForm" [editable]="true">
+            <form [formGroup]="personalForm">
+              <ng-template matStepLabel>Personal Details</ng-template>
+
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input
+                  formControlName="email"
+                  matInput
+                  placeholder="Enter email"
+                  type="email"
+                />
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input
+                  placeholder="this is your login credential"
+                  formControlName="Username"
+                  type="text"
+                  matInput
+                />
+                <mat-hint>use email as your username</mat-hint>
+              </mat-form-field>
+
+              <div>
+                <button mat-raised-button matStepperNext color="primary" (click)="formSubmit()"
+                        [disabled]="personalForm.invalid">Next
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="verifyForm" [editable]="true">
+            <form [formGroup]="verifyForm">
+
+              <h3 class="text-center" style=" font-family: 'Lobster', cursive;
+  font-family: 'Roboto Mono', monospace;">We have send a verification code to <b>{{email}}</b></h3>
+              <ng-template matStepLabel>Email Verification</ng-template>
+              <mat-form-field class="form" appearance="outline">
+                <mat-label>Enter Verification Code</mat-label>
+                <input
+                  required
+                  formControlName="code"
+                  type="text"
+                  matInput
+                />
+              </mat-form-field>
+              <br>
+
+              <h5>nothing after 2 minuets ?&nbsp;&nbsp;<span (click)="resendMail()" class="anchor"><b>Resend code</b></span>
+              </h5>
+              <button style="width: 100%" type="submit" [disabled]="verifyForm.invalid" mat-raised-button
+                      color="primary"
+                      (click)="verify()">
+                Verify Now
+              </button>
+
+              <div>
+                <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="passwordForm" [editable]="true">
+            <form [formGroup]="passwordForm">
+              <ng-template matStepLabel>Create Password</ng-template>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                  formControlName="password"
+                  [type]="changeType?'password':'text'"
+                  placeholder="Create own strong Password"
+                  matInput
+                />
+                <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
+                <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Re enter password</mat-label>
+                <input
+                  formControlName="confirm"
+                  [type]="changeType?'password':'text'"
+                  placeholder="Re enter password"
+                  matInput
+                />
+                <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
+                <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
+                <div *ngIf="passwordForm.errors?.['passwordMismatcgError']">
+
+                  <small class="text-danger"><b>Error : Password mismatched !!</b></small>
+
+                </div>
+              </mat-form-field>
+              <div>
+
+                <button mat-button matStepperNext (click)="createPassword()">Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+
