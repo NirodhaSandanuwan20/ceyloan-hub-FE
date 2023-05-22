@@ -60,7 +60,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
 import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -129,7 +129,8 @@ import { ChangeEmailComponent } from './pages/user/change-email/change-email.com
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatExpansionModule
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],

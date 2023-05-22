@@ -1,3 +1,4 @@
+<!--
 <div class="outer">
   <div class="row">
     <div class="col-md-2">
@@ -66,5 +67,117 @@
   </div>
 </div>
 
+-->
 
 
+<div class="row">
+
+  <div class="col-12">
+
+    <div class="list">
+      <p style="text-align: center;font-weight: bold;font-size: 30px;margin-bottom: 20px">E-Book Shop</p>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>All Subjects</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              Buy your modules
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="search" style="display: flex;align-items: center;justify-content: center">
+            <mat-form-field class="text text-center" appearance="fill">
+              <mat-label>Search by subject name </mat-label>
+              <input
+                type="search"
+                (keyup.enter)="searchNow()"
+                [(ngModel)]="searchText"
+                matInput
+                placeholder="Ex: physics"
+              >
+              <mat-icon  (click)="searchNow()" matSuffix>search</mat-icon>
+              <mat-icon  (click)="clear()" matPrefix *ngIf="searchText.length">clear</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-12" *ngIf="categories.length == 0">
+            <mat-card>
+              <mat-card-content>
+                <h3>No results found for " {{searchText}} "</h3>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div *ngFor="let c of categories">
+
+
+            <div>{{ c.title }} Paper Package
+              <mat-icon
+                class="icon"
+                (click)="addCategory(c.cid,c.title)"
+                style="color:green;">
+                add
+              </mat-icon>
+            </div>
+
+
+            <mat-divider></mat-divider>
+
+
+          </div>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-divider></mat-divider><mat-divider></mat-divider> <mat-divider></mat-divider>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>My subscribed Modules</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              Edit my modules
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="col-md-12" *ngIf="selectedCategories.length == 0">
+            <mat-card>
+              <mat-card-content>
+                <h3>Seems like you have not subscribed any subject yet. First off all subscribe subject that you
+                  need.</h3>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div *ngFor="let c of selectedCategories">
+
+
+            <div>{{ c.title }} Paper Package
+              <mat-icon
+                class="icon"
+                (click)="deleteCategory(c.userCategoryId,c.cTitle)"
+                style="color:red;">
+                delete
+              </mat-icon>
+            </div>
+
+
+
+            <mat-divider></mat-divider>
+
+
+          </div>
+
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+
+  </div>
+
+
+</div>

@@ -7,17 +7,19 @@ import baseUrl from './helper';
 })
 export class CategoryService {
   constructor(private _http: HttpClient) {}
-  //load all the cateogries
-  public categories() {
-    return this._http.get(`${baseUrl}/category/`);
+
+
+  public categories(searchText) {
+    return this._http.get(`${baseUrl}/category/` + '?searchText=' + searchText);
   }
 
-  //add new category
+
+
   public addCategory(category) {
     return this._http.post(`${baseUrl}/category/`, category);
   }
 
-  //delete category
+
   public deleteCategory(categoryId:number) {
     return this._http.delete(`${baseUrl}/category/`+categoryId,{});
   }

@@ -34,7 +34,7 @@ export class UpdateQuizComponent implements OnInit {
       }
     );
 
-    this._cat.categories().subscribe(
+    this._cat.categories('').subscribe(
       (data: any) => {
         this.categories = data;
       },

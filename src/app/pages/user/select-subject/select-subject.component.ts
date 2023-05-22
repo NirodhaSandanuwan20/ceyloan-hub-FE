@@ -1,5 +1,6 @@
 import {DatePipe} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { MatAccordion } from '@angular/material/expansion';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {error} from 'console';
 import {CategoryService} from 'src/app/services/category.service';
@@ -19,8 +20,8 @@ export class SelectSubjectComponent implements OnInit {
   categories = [];
   selectedCategories: any = [];
   date = 'not yet';
-  hashcode;
-
+  searchText:string = '';
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   /* myDate = new Date(); */
 
   constructor(
@@ -39,11 +40,12 @@ export class SelectSubjectComponent implements OnInit {
 
 
   getAllCategories() {
-    this.categoryServeice.categories().subscribe(
+    console.log(this.searchText);
+    this.categoryServeice.categories(this.searchText).subscribe(
       (data: any) => {
         this.categories = data;
         console.log(data);
-        console.log('sidebar');
+        this.accordion.openAll();
       },
       (error) => {
         this.snackBar.open('Error in loading categories from server', '', {
@@ -143,17 +145,12 @@ export class SelectSubjectComponent implements OnInit {
   }
 
 
+  searchNow() {
+    this.getAllCategories();
+  }
 
-
-  generateHash() {
-    console.log('abc');
-    this.selectSubjectServeice.getHashCode(this.userId).subscribe(response => {
-        console.log(response);
-      }/*, (error) => {
-      console.log(error);
-      console.log(error.error.text);
-      this.hashcode = error.error.text;
-      console.log(this.hashcode);
-      }*/);
+  clear() {
+    this.searchText = '';
+    this.getAllCategories();
   }
 }

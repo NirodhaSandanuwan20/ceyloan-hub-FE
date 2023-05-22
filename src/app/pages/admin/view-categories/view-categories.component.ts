@@ -14,7 +14,7 @@ export class ViewCategoriesComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categoryService.categories().subscribe(
+    this.categoryService.categories('').subscribe(
       (data: any) => {
         //css
         this.categories = data;
@@ -29,7 +29,7 @@ export class ViewCategoriesComponent implements OnInit {
     );
   }
 
-  
+
 
   deleteCategory(categoryId: number) {
     Swal.fire({
