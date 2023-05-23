@@ -30,7 +30,7 @@
           </button>
         </ng-container>
 
-        <mat-vertical-stepper [@.disabled]="false" (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)" #stepper="matVerticalStepper" #stepper>
+        <mat-vertical-stepper [@.disabled]="false" (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)" #stepper="matVerticalStepper">
           <div class="a" *ngFor="let q of questions; let i = index;">
             <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
               <!--<ng-template matStepLabel><b></b></ng-template>-->
