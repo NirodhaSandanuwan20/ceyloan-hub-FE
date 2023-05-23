@@ -1,6 +1,6 @@
 
 import { ThisReceiver } from '@angular/compiler';
-import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import { ActivatedRoute, NavigationStart, Route, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -8,10 +8,11 @@ import Swal from 'sweetalert2';
 import { Question } from '../../../model/Question';
 import { map } from 'rxjs/operators';
 import { ImageProcessingService } from '../../../services/ImageProcessingService';
-import { any } from "codelyzer/util/function";
 import { DatePipe, LocationStrategy } from '@angular/common';
 import { HistoryService } from 'src/app/services/history.service';
-import { error, log } from 'console';
+import {MatStep, MatStepper, MatStepperIconContext} from '@angular/material/stepper';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
 
 @Component({
   selector: 'app-start',
@@ -20,7 +21,8 @@ import { error, log } from 'console';
   providers: [DatePipe]
 })
 export class StartComponent implements OnInit {
-
+  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('yourStep') yourStep: MatStep;
   date: string;
   myDate = new Date();
   qid;
@@ -48,7 +50,7 @@ export class StartComponent implements OnInit {
     private router: Router
   ) {
 
-    
+
   }
 
   ngOnInit(): void {
@@ -78,7 +80,7 @@ export class StartComponent implements OnInit {
             this.timer = this.questions[0].quiz.timeDuration * 60;
             this.startTimer();
           }
-          
+
         },
 
         (error) => {
@@ -89,8 +91,8 @@ export class StartComponent implements OnInit {
       );
 
   }
- 
-  
+
+
   preventBackButton() {
     history.pushState(null, null, location.href);
     this.locationSt.onPopState(() => {
@@ -99,8 +101,8 @@ export class StartComponent implements OnInit {
   }
 
 
-  
-  
+
+
   submitQuiz() {
     Swal.fire({
       title: 'Do you want to submit the quiz?',
@@ -114,7 +116,7 @@ export class StartComponent implements OnInit {
     });
   }
 
-  
+
   startTimer() {
     const t = window.setInterval(() => {
       // code
@@ -127,14 +129,14 @@ export class StartComponent implements OnInit {
     }, 1000);
   }
 
-  
+
   getFormattedTime() {
     let mm = Math.floor(this.timer / 60);
     let ss = this.timer - mm * 60;
     return `${mm} m : ${ss} s`;
   }
 
-  
+
   evalQuiz() {
     // calculation
     // call to sever  to check questions
@@ -170,7 +172,7 @@ export class StartComponent implements OnInit {
   }
 
 
- 
+
 
   saveHistory() {
     this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
@@ -195,7 +197,7 @@ export class StartComponent implements OnInit {
       console.log(error);
     });
   }
- 
+
 
 
 
@@ -204,5 +206,20 @@ export class StartComponent implements OnInit {
     this.loadQuestions();
   }
 
+  checkStatus(i: number) {
+    /*if( i + 1 === this.questions.length){
+      this.loadMore();
+    }*/
+    console.log(this.questions[i].givenAnswer);
+    if(this.questions[i].givenAnswer === null){
+      this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1) + ' - not marked yet';
+    }else{
+      this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1);
+    }
+  }
+  onStepClick(stepper: MatStepper, step: number) {
+    console.log(step);
+    this.checkStatus(step);
+  }
 }
 
