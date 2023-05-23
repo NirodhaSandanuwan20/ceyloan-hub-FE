@@ -221,5 +221,6 @@ export class StartComponent implements OnInit {
     console.log(step);
     this.checkStatus(step);
   }
+
 }
 
