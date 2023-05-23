@@ -7,12 +7,22 @@
   height: 100vh;
 }
 
-.inner{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.anchor{
+ text-decoration: underline;
+  color: #3F51B5;
 }
 
+.anchor:hover{
+  cursor: pointer;
+}
+
+.inner{
+  border-radius: 7px;
+  background-color: white;
+  box-shadow: 14px 8px 18px -1px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 14px 8px 18px -1px rgba(0,0,0,0.54);
+  -moz-box-shadow: 14px 8px 18px -1px rgba(0,0,0,0.54);
+}
 
 .full-width {
   width: 100%;
@@ -23,14 +33,4 @@ mat-icon:hover {
 }
 
 
-.mat-stepper-horizontal {
-  margin-top: 8px;
-}
 
-.mat-mdc-form-field {
-  margin-top: 16px;
-}
-
-mat-horizontal-stepper{
-  width: 100%;
-}

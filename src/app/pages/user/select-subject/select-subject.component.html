@@ -89,7 +89,7 @@
 
           <div class="search" style="display: flex;align-items: center;justify-content: center">
             <mat-form-field class="text text-center" appearance="fill">
-              <mat-label>Search by subject name </mat-label>
+              <mat-label>Search by subject name</mat-label>
               <input
                 type="search"
                 (keyup.enter)="searchNow()"
@@ -97,8 +97,8 @@
                 matInput
                 placeholder="Ex: physics"
               >
-              <mat-icon  (click)="searchNow()" matSuffix>search</mat-icon>
-              <mat-icon  (click)="clear()" matPrefix *ngIf="searchText.length">clear</mat-icon>
+              <mat-icon (click)="searchNow()" matSuffix>search</mat-icon>
+              <mat-icon (click)="clear()" matPrefix *ngIf="searchText.length">clear</mat-icon>
             </mat-form-field>
           </div>
 
@@ -113,14 +113,11 @@
           <div *ngFor="let c of categories">
 
 
-            <div>{{ c.title }} Paper Package
-              <mat-icon
-                class="icon"
-                (click)="addCategory(c.cid,c.title)"
-                style="color:green;">
-                add
-              </mat-icon>
-            </div>
+            <div>{{ c.title }} Papers Package -- <button mat-raised-button style="color: white;background-color:#3B5998;" (click)="addCategory(c.cid,c.title)">
+              <mat-icon>attach_money</mat-icon>
+              Buy Now
+            </button></div>
+
 
 
             <mat-divider></mat-divider>
@@ -131,7 +128,9 @@
 
         </mat-expansion-panel>
       </mat-accordion>
-      <mat-divider></mat-divider><mat-divider></mat-divider> <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
       <mat-accordion class="example-headers-align" multi>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -163,7 +162,6 @@
                 delete
               </mat-icon>
             </div>
-
 
 
             <mat-divider></mat-divider>

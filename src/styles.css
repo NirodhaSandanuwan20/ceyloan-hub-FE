@@ -4,13 +4,8 @@
   font-family: 'Lobster', cursive;
   font-family: 'Roboto Mono', monospace;
 }
-
-body {
-  height: 100%;
-  background: #f5f5f5;
-}
-body {
-  margin: 0;
+body{
+  background-color: #ECF2FF;
 }
 
 .text-center {

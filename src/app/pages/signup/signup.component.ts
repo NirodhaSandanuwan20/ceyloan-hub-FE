@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserService} from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 import {Router} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {passwordMatch} from "../../model/passwordMatch";
+import {MatStepper} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-signup',
@@ -22,15 +23,10 @@ export class SignupComponent implements OnInit {
 
   personalForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    Username: new FormControl('', [Validators.required, Validators.min(4)]),
   });
 
   verifyForm = new FormGroup({
     code: new FormControl('', [Validators.required])
-  });
-
-  usernameForm = new FormGroup({
-    Username: new FormControl('', [Validators.required, Validators.min(4)])
   });
 
   passwordForm = new FormGroup({
@@ -44,14 +40,19 @@ export class SignupComponent implements OnInit {
   changeType: boolean = true;
   email;
 
+  @ViewChild(MatStepper) stepper!: MatStepper;
+
   ngOnInit(): void {
   }
 
+  moveToStep(stepNumber: number) {
+    this.stepper.selectedIndex = stepNumber;
+  }
   formSubmit() {
-this.email = this.personalForm.get('email')?.value!;
+   this.email = this.personalForm.get('email')?.value!;
     let user = {
       email: this.personalForm.get('email')?.value!,
-      username: this.personalForm.get('Username')?.value!
+      username: this.personalForm.get('email')?.value!
     };
 
     //addUser: userservice
@@ -60,15 +61,18 @@ this.email = this.personalForm.get('email')?.value!;
         console.log(data);
         this.snack.open('Email Send Success', 'success', {
           duration: 3000,
+          panelClass:'green'
         });
       },
       (error) => {
         //error
         console.log(error);
-        // alert('something went wrong');
         this.snack.open(error.error.text, 'error', {
           duration: 3000,
+          horizontalPosition:"right",
+          verticalPosition:"top"
         });
+        this.moveToStep(0);
       }
     );
   }
@@ -87,11 +91,13 @@ this.email = this.personalForm.get('email')?.value!;
       console.log(response);
       this.snack.open('Verify Success', 'success', {
         duration: 3000,
+        panelClass:'green'
       });
     }, error => {
       this.snack.open('Invalid Otp', 'error', {
         duration: 3000,
       });
+      this.moveToStep(1);
     });
   }
 
@@ -108,10 +114,16 @@ this.email = this.personalForm.get('email')?.value!;
     console.log(this.email);
     this.userService.forgotPassowrd(this.verifyForm.get('code')?.value!, this.passwordForm.get('confirm')?.value!, this.email).subscribe(response => {
       console.log(response);
-      Swal.fire('Your password changed success .', 'Done', 'success');
+      this.snack.open('Account Create Success', 'succeeded', {
+        duration: 3000,
+        horizontalPosition:'right',
+        verticalPosition:'top',
+        panelClass:'green'
+
+      });
 
     }, error => {
-      Swal.fire('OTP is not matching !! ', '', 'error');
+      Swal.fire('Try Again later !! ', 'error', 'error');
     });
   }
 

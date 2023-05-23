@@ -24,6 +24,7 @@
             On Going Quiz <b>{{questions[0].quiz.title}} - {{questions[0].quiz.category.title}}</b>
           </h1>
         </ng-container>
+
         <mat-card *ngFor="let q of questions; let i = index; " class="mt10">
           <mat-card-content #myElement>
             <p>
