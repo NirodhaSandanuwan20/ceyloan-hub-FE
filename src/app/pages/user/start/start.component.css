@@ -1,3 +1,7 @@
+/**{
+  margin: 0!important;
+}*/
+
 .acc {
   display: flex;
   align-items: center;
@@ -26,100 +30,91 @@ h3 {
   padding: 10px;
   color: black;
 }
-
-.navq-outer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 300px;
-
-}
-
-.navq-inner {
-  width: auto;
-  height: auto;
-  position: fixed;
-  background-color: #3F51B5;
-  padding: 5px;
-  min-width: 150px;
-  max-height: 400px;
-  overflow: auto;
-  border: 2px solid white;
-}
-
 .img-box {
   width: 100%;
   min-height: 60px;
   height: auto;
 }
-
-.number-boxes {
-  height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 3px;
-  color: black;
-}
-
-.boxes {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.number-boxes:hover {
-  cursor: pointer;
-  background-color: darkcyan;
-  color: white;
-}
-
 input {
   width: 15px;
   height: 15px;
   accent-color: crimson;
 }
 
-.phone-timer {
-  padding-top: 5px;
-  width: 100%;
-  background-color: #3F51B5;
-  color: white;
-  font-weight: bold;
-  height: auto;
+
+
+
+.toggle-checkbox {
   display: none;
-  z-index: 1;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-}
-.phone-inner{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 }
 
-.phone-boxes {
+.toggle-button {
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100px;
   height: 30px;
-  width: 30px;
-  border-radius: 50%;
-  background-color: white;
+  background-color: #333;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.toggle-button:hover{
+  background-color: #3F51B5;
+}
+
+.popup {
+  border-radius: 5px;
+  position: fixed;
+  top: 25vh;
+  right: -300px;
+  width: 300px;
+  height: 50vh;
+  background-color: #6f7782;
+  transition: right 0.1s ease-in-out;
+  z-index: 2;
+}
+
+.popup-content {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 3px;
-  color: black;
+  padding: 20px;
 }
 
-@media screen and (max-width: 767px ) {
-  .phone-timer {
-    display: inline;
+.close-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.toggle-checkbox:checked ~ .popup {
+  right: 0;
+}
+
+
+@media (max-width: 1200px) {
+  .toggle-button {
+    top: 90%;
+    left: 80%;
   }
-
 }
+
+
+
+
 
 

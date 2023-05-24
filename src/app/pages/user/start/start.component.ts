@@ -8,11 +8,12 @@ import Swal from 'sweetalert2';
 import { Question } from '../../../model/Question';
 import { map } from 'rxjs/operators';
 import { ImageProcessingService } from '../../../services/ImageProcessingService';
-import { DatePipe, LocationStrategy } from '@angular/common';
+import {DatePipe, LocationStrategy, ViewportScroller} from '@angular/common';
 import { HistoryService } from 'src/app/services/history.service';
 import {MatStep, MatStepper, MatStepperIconContext} from '@angular/material/stepper';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
+import {WatchComponent} from "../../watch/watch.component";
 
 @Component({
   selector: 'app-start',
@@ -38,6 +39,8 @@ export class StartComponent implements OnInit {
   pipe: any;
   pageNumber = 0;
   showMoreBtn;
+  position = 'above';
+
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -47,7 +50,8 @@ export class StartComponent implements OnInit {
     private _quiz: QuizService,
     private historyService: HistoryService,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
+    private viewportScroller: ViewportScroller
   ) {
 
 
@@ -60,7 +64,7 @@ export class StartComponent implements OnInit {
     this.loadQuestions();
   }
 
-  // tslint:disable-next-line:typedef
+
   loadQuestions() {
     this._question.getQuestionsOfQuizForTest(this.qid,this.pageNumber)
       .pipe(
@@ -86,7 +90,7 @@ export class StartComponent implements OnInit {
         (error) => {
           console.log(error);
           Swal.fire('Oops', 'Empty Question For Now. Questions Will Be Added ASAP', 'error');
-          this.router.navigateByUrl('user-dashboard/0');
+          this.router.navigateByUrl('user-dashboard');
         }
       );
 
@@ -138,8 +142,6 @@ export class StartComponent implements OnInit {
 
 
   evalQuiz() {
-    // calculation
-    // call to sever  to check questions
     /* this._question.evalQuiz(this.questions).subscribe(
        (data: any) => {
          console.log(data);
@@ -152,7 +154,6 @@ export class StartComponent implements OnInit {
          console.log(error);
        }
      );*/
-    this.isSubmit = true;
     this.questions.forEach((q, i) => {
       if (q.givenAnswer === q.answer) {
         q.accuracy = true;
@@ -162,16 +163,10 @@ export class StartComponent implements OnInit {
         q.accuracy = false;
       }
     });
-    console.log('Correct Answers :' + this.correctAnswers);
-    console.log('Marks Got ' + this.marksGot);
-    console.log('attempted ' + this.attempted);
-    console.log(this.questions);
-    console.log(JSON.parse(localStorage.getItem('user')).id);
-    console.log();
+    this.viewportScroller.scrollToPosition([0, 0]);
     this.saveHistory();
+    this.isSubmit = true;
   }
-
-
 
 
   saveHistory() {
@@ -217,10 +212,14 @@ export class StartComponent implements OnInit {
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1);
     }
   }
+
   onStepClick(stepper: MatStepper, step: number) {
     console.log(step);
     this.checkStatus(step);
   }
+
+
+
 
 }
 

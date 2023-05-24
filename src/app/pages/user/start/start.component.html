@@ -1,217 +1,112 @@
 <div class="bootstrap-wrapper" *ngIf="!isSubmit">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="phone-timer">
-        <div class="phone-inner">
-          <h4 style="background-color: #e2e2e2;color: black;padding: 2px"><b>{{ getFormattedTime() }}</b></h4>
-        </div>
-        <div class="boxes">
-          <div class="row">
-            <div class="phone-boxes">10</div>
-            <div class="phone-boxes">20</div>
-            <div class="phone-boxes">30</div>
-            <div class="phone-boxes">40</div>
-            <div class="phone-boxes">50</div>
-          </div>
-        </div>
+
+
+
+
+  <input type="checkbox" id="toggle-popup" class="toggle-checkbox">
+  <label for="toggle-popup" class="toggle-button">
+    <div class="example-tooltip-host" matTooltip="To see time and submit button" [matTooltipPosition]='position'>
+    Console
+    </div>
+  </label>
+  <div class="popup">
+    <div class="popup-content">
+      <span style="color:white;font-weight:bold;font-size: 30px">{{ getFormattedTime() }}</span>
+      <button class="mt20" (click)="submitQuiz()" mat-raised-button color="primary">
+        Submit Quiz
+      </button>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-top: 10px!important;">
+    <div class="col-md-1"></div>
+
+
+    <!--Quiz-->
+    <div class="col-md-10 main">
+
+      <!-- question header -->
+      <div style="display:flex;align-items: center;justify-content: center;margin-bottom: 10px!important;"
+           *ngIf="questions">
+        <h1 class="mt20">
+          <b>{{questions[0].quiz.title}} - {{questions[0].quiz.category.title}}</b>
+        </h1>
+
       </div>
 
-      <div class="col-md-1"></div>
-      <!--Quiz-->
-      <div class="col-md-10 main">
-        <!-- questions -->
-        <ng-container *ngIf="questions">
-          <h1 class="mt20">
-            On Going Quiz <b>{{questions[0].quiz.title}} - {{questions[0].quiz.category.title}}</b>
-          </h1>
-          <h1 style="color: black;font-weight: bold;">{{ getFormattedTime() }}</h1>
-          <button class="mt20" (click)="submitQuiz()" mat-raised-button color="primary">
-            Submit Quiz
-          </button>
-        </ng-container>
+      <!-- questions -->
+      <mat-vertical-stepper [@.disabled]="false"
+                            (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)"
+                            #stepper="matVerticalStepper">
+        <div *ngFor="let q of questions; let i = index;">
+          <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
+            <!--<ng-template matStepLabel><b></b></ng-template>-->
 
-        <mat-vertical-stepper [@.disabled]="false" (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)" #stepper="matVerticalStepper">
-          <div class="a" *ngFor="let q of questions; let i = index;">
-            <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
-              <!--<ng-template matStepLabel><b></b></ng-template>-->
+            <div class="img-box" style="overflow: hidden">
+              <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
+            </div>
 
-              <div class="img-box" style="overflow: hidden">
-                <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
+            <mat-divider></mat-divider>
+            <br/>
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <input type="radio" [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option1 }}</b>
+
+
               </div>
-
-              <mat-divider></mat-divider>
-              <br />
-
-              <div class="row">
-                <div class="col-md-6">
-
-                  <input type="radio"  [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer" /><b>{{ q.option1 }}</b>
-
-
-
-                </div>
-                <div class="col-md-6">
-                  <input type="radio"  [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer" /><b>{{ q.option2 }}</b>
-                </div>
+              <div class="col-md-6">
+                <input type="radio" [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option2 }}</b>
               </div>
+            </div>
 
+            <div class="row mt20">
+              <div class="col-md-6">
+                <input type="radio" [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option3 }}</b>
+              </div>
+              <div class="col-md-6">
+                <input type="radio" [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option4 }}</b>
+              </div>
               <div class="row mt20">
-                <div class="col-md-6">
-                  <input type="radio"  [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer" /><b>{{ q.option3 }}</b>
-                </div>
-                <div class="col-md-6">
-                  <input type="radio"  [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer" /><b>{{ q.option4 }}</b>
-                </div>
-                <div class="row mt20">
-                  <div class="col-md-12" style="margin-left:15px">
-                    <input type="radio"  [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer" /><b>{{ q.option5
-                    }}</b>
-                  </div>
+                <div class="col-md-12" style="margin-left:15px">
+                  <input type="radio" [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option5
+                  }}</b>
                 </div>
               </div>
-              <div class="text-center">
-                <button style="margin-right: 5px" mat-raised-button color="primary" matStepperPrevious>Back</button>
-                <button mat-raised-button color="primary" matStepperNext  (click)="checkStatus(i)">Next</button>
-              </div>
-            </mat-step>
-          </div>
-        </mat-vertical-stepper>
+            </div>
+            <div class="text-center">
+              <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" matStepperNext (click)="checkStatus(i)">Next</button>
+            </div>
+          </mat-step>
+        </div>
+      </mat-vertical-stepper>
+
+      <!-- load more -->
 
         <div class="container text-center mt20 mb20">
           <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+            <div class="example-tooltip-host" matTooltip="Click here to load next 10 questions" [matTooltipPosition]='position'>
             Load More
+            </div>
           </button>
-        </div>
-
 
       </div>
 
-      <!--<div class="container text-center mt20 mb20">
-        <button (click)="submitQuiz()" mat-raised-button color="primary">
-          Submit Quiz
-        </button>
-      </div>-->
-      <!-- Time -->
-      <!--<div class="col-md-2" style="background-color: #3F51B5;margin: 0;padding: 0">
-        <div class="timer-outer">
-          <mat-card class="timer-inner">
-            <mat-card-content>
-              <h1 style="color: black;font-weight: bold;">{{ getFormattedTime() }}</h1>
-           </mat-card-content>
-            <mat-divider></mat-divider>
-            <button class="mt20" (click)="submitQuiz()" mat-raised-button color="primary">
-              Submit Quiz
-            </button>
-         </mat-card>
-        </div>
 
-
-
-        <div class="navq-outer">
-          <div class="navq-inner">
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes">1</div>
-                <div #id class="number-boxes">2</div>
-                <div #id class="number-boxes">3</div>
-                <div #id class="number-boxes">4</div>
-                <div #id class="number-boxes">5</div>
-                <div #id class="number-boxes">6</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(7)">7</div>
-                <div #id class="number-boxes" (click)="seekQuestion(8)">8</div>
-                <div #id class="number-boxes" (click)="seekQuestion(9)">9</div>
-                <div #id class="number-boxes" (click)="seekQuestion(10)">10</div>
-                <div #id class="number-boxes" (click)="seekQuestion(11)">11</div>
-                <div #id class="number-boxes" (click)="seekQuestion(12)">12</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(13)">13</div>
-                <div #id class="number-boxes" (click)="seekQuestion(14)">14</div>
-                <div #id class="number-boxes" (click)="seekQuestion(15)">15</div>
-                <div #id class="number-boxes" (click)="seekQuestion(16)">16</div>
-                <div #id class="number-boxes" (click)="seekQuestion(17)">17</div>
-                <div #id class="number-boxes" (click)="seekQuestion(18)">18</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(19)">19</div>
-                <div #id class="number-boxes" (click)="seekQuestion(20)">20</div>
-                <div #id class="number-boxes" (click)="seekQuestion(21)">21</div>
-                <div #id class="number-boxes" (click)="seekQuestion(22)">22</div>
-                <div #id class="number-boxes" (click)="seekQuestion(23)">23</div>
-                <div #id class="number-boxes" (click)="seekQuestion(24)">24</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(25)">25</div>
-                <div #id class="number-boxes" (click)="seekQuestion(26)">26</div>
-                <div #id class="number-boxes" (click)="seekQuestion(27)">27</div>
-                <div #id class="number-boxes" (click)="seekQuestion(28)">28</div>
-                <div #id class="number-boxes" (click)="seekQuestion(29)">29</div>
-                <div class="number-boxes">30</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(31)">31</div>
-                <div #id class="number-boxes" (click)="seekQuestion(32)">32</div>
-                <div #id class="number-boxes" (click)="seekQuestion(33)">33</div>
-                <div #id class="number-boxes" (click)="seekQuestion(34)">34</div>
-                <div #id class="number-boxes" (click)="seekQuestion(35)">35</div>
-                <div #id class="number-boxes" (click)="seekQuestion(36)">36</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(37)">37</div>
-                <div #id class="number-boxes" (click)="seekQuestion(38)">38</div>
-                <div #id class="number-boxes" (click)="seekQuestion(39)">39</div>
-                <div #id class="number-boxes" (click)="seekQuestion(40)">40</div>
-                <div #id class="number-boxes" (click)="seekQuestion(41)">41</div>
-                <div #id class="number-boxes" (click)="seekQuestion(42)">42</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(43)">43</div>
-                <div #id class="number-boxes" (click)="seekQuestion(44)">44</div>
-                <div #id class="number-boxes" (click)="seekQuestion(45)">45</div>
-                <div #id class="number-boxes" (click)="seekQuestion(46)">46</div>
-                <div #id class="number-boxes" (click)="seekQuestion(47)">47</div>
-                <div #id class="number-boxes" (click)="seekQuestion(48)">48</div>
-              </div>
-            </div>
-            <div class="boxes">
-              <div class="row">
-                <div #id class="number-boxes" (click)="seekQuestion(49)">49</div>
-                <div #id class="number-boxes" (click)="seekQuestion(50)">50</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-
-      </div>-->
     </div>
+
   </div>
 </div>
 
 
-<!-- result div -->
 <div class="bootstrap-wrapper" *ngIf="isSubmit">
   <div class="row mt20">
     <div class="col-md-2">
     </div>
+    <!-- result div -->
     <div class="col-md-8">
       <mat-card>
 
@@ -247,30 +142,30 @@
           </div>
 
           <mat-divider></mat-divider>
-          <br />
+          <br/>
 
           <div class="row">
             <div class="col-md-6">
-              <input  type="radio" disabled [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option1 }}
+              <input type="radio" disabled [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer"/>{{ q.option1 }}
             </div>
 
             <div class="col-md-6">
-              <input type="radio" disabled [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option2 }}
+              <input type="radio" disabled [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer"/>{{ q.option2 }}
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6">
-              <input type="radio" disabled [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option3 }}
+              <input type="radio" disabled [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer"/>{{ q.option3 }}
             </div>
             <div class="col-md-6">
-              <input type="radio" disabled [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option4 }}
+              <input type="radio" disabled [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer"/>{{ q.option4 }}
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6">
-              <input type="radio" disabled [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option5 }}
+              <input type="radio" disabled [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer"/>{{ q.option5 }}
             </div>
           </div>
 
@@ -289,6 +184,63 @@
 
         </mat-card-content>
       </mat-card>
+
+      <!--<mat-vertical-stepper [@.disabled]="false" (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)" #stepper="matVerticalStepper">
+        <div class="a" *ngFor="let q of questions; let i = index">
+          <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
+            <p>
+              <b>Q {{ i + 1 }})</b>
+              <span class="ml10" [innerHTML]="q.content"></span>
+            </p>
+
+            <div class="img-box" style="overflow: hidden">
+              <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
+            </div>
+
+            <mat-divider></mat-divider>
+            <br />
+
+            <div class="row">
+              <div class="col-md-6">
+                <input  type="radio" disabled [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option1 }}
+              </div>
+
+              <div class="col-md-6">
+                <input type="radio" disabled [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option2 }}
+              </div>
+            </div>
+
+            <div class="row mt20">
+              <div class="col-md-6">
+                <input type="radio" disabled [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option3 }}
+              </div>
+              <div class="col-md-6">
+                <input type="radio" disabled [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option4 }}
+              </div>
+            </div>
+
+            <div class="row mt20">
+              <div class="col-md-6">
+                <input type="radio" disabled [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option5 }}
+              </div>
+            </div>
+
+
+            <div class="acc">
+
+              <div *ngIf="!q.accuracy">
+                <h3 style="color: red">Your Answer is Wrong !! <br>Correct Answer : {{q.answer}}</h3>
+              </div>
+
+              <div *ngIf="q.accuracy">
+                <h3 style="color: blue">Your Answer is Correct !!</h3>
+              </div>
+
+            </div>
+          </mat-step>
+        </div>
+      </mat-vertical-stepper>-->
+
       <div class="text-center">
         <button class="text-center mt20" mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">
           Dashboard

@@ -62,7 +62,8 @@ import { ChangePasswordComponent } from './pages/user/change-password/change-pas
 import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
-
+import { WatchComponent } from './pages/watch/watch.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import {MatStepperModule} from '@angular/material/stepper';
     PaymentComponent,
     TodoListComponent,
     ChangePasswordComponent,
-    ChangeEmailComponent
+    ChangeEmailComponent,
+    WatchComponent
 ],
   imports: [
     BrowserModule,
@@ -134,6 +136,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     NgxChartsModule,
     MatExpansionModule,
     MatStepperModule,
+    MatTooltipModule,
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],
