@@ -57,7 +57,7 @@ input {
   transform: translateY(-50%);
   width: 100px;
   height: 30px;
-  background-color: #333;
+  background-color: #09042d;
   color: #fff;
   font-size: 20px;
   text-align: center;
@@ -77,7 +77,7 @@ input {
   right: -300px;
   width: 300px;
   height: 50vh;
-  background-color: #6f7782;
+  background-color: #09042d;
   transition: right 0.1s ease-in-out;
   z-index: 2;
 }
@@ -103,6 +103,20 @@ input {
 
 .toggle-checkbox:checked ~ .popup {
   right: 0;
+}
+
+.divider{
+  margin-top: 10px!important;
+  width: 100%;
+  background-color: white;
+  height: 2px;
+}
+
+.todo{
+  margin-top: 10px!important;
+  width: 100%;
+  background-color: white;
+  height: 100%;
 }
 
 

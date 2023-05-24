@@ -39,7 +39,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { SidebarComponent as UserSidebar } from './pages/user/sidebar/sidebar.component';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
-import { StartComponent } from './pages/user/start/start.component';
+import {DialogContentComponent, StartComponent} from './pages/user/start/start.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import {MatGridListModule} from "@angular/material/grid-list";
@@ -64,9 +64,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import { WatchComponent } from './pages/watch/watch.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
+    DialogContentComponent,
     AppComponent,
     NavbarComponent,
     FooterComponent,
@@ -137,6 +139,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatExpansionModule,
     MatStepperModule,
     MatTooltipModule,
+    MatDialogModule
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],

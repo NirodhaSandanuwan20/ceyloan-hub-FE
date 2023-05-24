@@ -10,9 +10,17 @@
   <div class="popup">
     <div class="popup-content">
       <span style="color:white;font-weight:bold;font-size: 30px">{{ getFormattedTime() }}</span>
-      <button class="mt20" (click)="submitQuiz()" mat-raised-button color="primary">
+      <button class="mt20" (click)="submitQuiz()" mat-raised-button>
         Submit Quiz
       </button>
+      <div class="divider"></div>
+
+      <button class="mt20" (click)="openPopup()" mat-raised-button>
+        <div class="example-tooltip-host" matTooltip="what u need to refer after paper or etc.." [matTooltipPosition]='position'>
+        + Add todo about paper
+        </div>
+      </button>
+
     </div>
   </div>
 

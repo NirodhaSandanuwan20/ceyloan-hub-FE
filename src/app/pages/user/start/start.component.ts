@@ -1,6 +1,6 @@
 
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -11,6 +11,9 @@ import {DatePipe, LocationStrategy, ViewportScroller} from '@angular/common';
 import { HistoryService } from 'src/app/services/history.service';
 import {MatStep, MatStepper} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {Todo} from '../todo-list/Todo';
+import {config} from 'rxjs';
 
 @Component({
   selector: 'app-start',
@@ -25,7 +28,6 @@ export class StartComponent implements OnInit {
   stepDuration: number; // Duration in seconds (2 minutes)
   countdown: number;
   countdownInterval: any;
-
   date: string;
   myDate = new Date();
   qid;
@@ -37,7 +39,7 @@ export class StartComponent implements OnInit {
   mm;
   pageNumber = 0;
   showMoreBtn;
-  position = 'above';
+  position = 'below';
 
 
   constructor(
@@ -50,21 +52,22 @@ export class StartComponent implements OnInit {
     private datePipe: DatePipe,
     private router: Router,
     private viewportScroller: ViewportScroller,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
   ) {
     this.startCountdown();
   }
 
   ngOnInit(): void {
    this.preventBackButton();
-    this.qid = this._route.snapshot.params.qid;
-    console.log(this.qid);
-    this.loadQuestions();
+   this.qid = this._route.snapshot.params.qid;
+   console.log(this.qid);
+   this.loadQuestions();
   }
 
 
   loadQuestions() {
-    this._question.getQuestionsOfQuizForTest(this.qid,this.pageNumber)
+    this._question.getQuestionsOfQuizForTest(this.qid, this.pageNumber)
       .pipe(
         map((x: Question[], i) => x.map((question: Question) => this.imageProcessingService.creatImages(question)))
       )
@@ -78,7 +81,7 @@ export class StartComponent implements OnInit {
           console.log(data);
           data.forEach(p => this.questions.push(p));
           console.log(this.questions.length);
-          if(this.questions.length === 5){
+          if (this.questions.length === 5){
             this.timer = this.questions[0].quiz.timeDuration * 60;
             this.startTimer();
             this.stepDuration = this.questions[0].quiz.timeDuration * 60 / this.questions[0].quiz.numberOfQuestions;
@@ -137,8 +140,8 @@ export class StartComponent implements OnInit {
 
 
   getFormattedTime() {
-    let mm = Math.floor(this.timer / 60);
-    let ss = this.timer - mm * 60;
+    const mm = Math.floor(this.timer / 60);
+    const ss = this.timer - mm * 60;
     return `${mm} m : ${ss} s`;
   }
 
@@ -173,10 +176,10 @@ export class StartComponent implements OnInit {
 
   saveHistory() {
     this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
-    let userId = JSON.parse(localStorage.getItem('user')).id;
-    let nowTime: any = this.getFormattedTime();
+    const userId = JSON.parse(localStorage.getItem('user')).id;
+    const nowTime: any = this.getFormattedTime();
 
-    let h = {
+    const h = {
       date: this.date,
       category: this.questions[0].quiz.category.title,
       title: this.questions[0].quiz.title,
@@ -208,7 +211,7 @@ export class StartComponent implements OnInit {
       this.loadMore();
     }*/
     console.log(this.questions[i].givenAnswer);
-    if(this.questions[i].givenAnswer === null){
+    if (this.questions[i].givenAnswer === null){
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1) + ' - not marked yet';
     }else{
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1);
@@ -228,7 +231,7 @@ export class StartComponent implements OnInit {
       this.countdown--;
       if (this.countdown === 0) {
         clearInterval(this.countdownInterval);
-        let message  = 'You have spent ' + this.stepDuration / 60 + ' (Avg time per Q) minutes on this problem. Hurry Up !'
+        const message  = 'You have spent ' + this.stepDuration / 60 + ' (Avg time per Q) minutes on this problem. Hurry Up !';
         this.openSnackBar(message);
       }
     }, 1000);
@@ -242,9 +245,72 @@ export class StartComponent implements OnInit {
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,
-      horizontalPosition:"right",
-      verticalPosition:"top",
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
     });
+  }
+
+  openPopup(): void {
+    const dialogRef = this.dialog.open(DialogContentComponent, {
+      width: '300px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+}
+
+
+@Component({
+  selector: 'app-dialog-content',
+  template: `
+    <h2>+ Add Todo</h2>
+    <form>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Describe task</mat-label>
+        <input matInput placeholder="EX: refer 2002 15 Q again " [(ngModel)]="name" name="name" required>
+      </mat-form-field>
+      <br>
+      <button style="margin-right: 5px" mat-raised-button color="primary" (click)="save()">add</button>
+      <button mat-raised-button (click)="close()">Cancel</button>
+    </form>
+  `,
+})
+
+
+export class DialogContentComponent {
+  name: string;
+  todos;
+  constructor(private dialogRef: MatDialogRef<DialogContentComponent>,
+              private snackBar: MatSnackBar,
+              ) { }
+
+  save(): void {
+
+    const retString = localStorage.getItem('todos');
+    this.todos = JSON.parse(retString);
+
+    console.log('Name:', this.name);
+    const todo = new Todo();
+    todo.name = this.name;
+    todo.isCompleted = true;
+    this.todos.push(todo);
+    const array = JSON.stringify(this.todos);
+    console.log(array);
+    localStorage.setItem('todos', array);
+    this.name = '';
+    this.dialogRef.close();
+    this.snackBar.open('task added to your list in profile', 'success', {
+      duration: 2000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    });
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
 }
