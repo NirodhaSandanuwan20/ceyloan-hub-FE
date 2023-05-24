@@ -235,6 +235,9 @@ aside p {
   }
 
   .card__content > div {
+    background-image: url("src/assets/card-2.jpg");
+    background-position: center;
+    color: white;
     grid-area: text;
     width: 100% !important;
     place-self: center;
@@ -243,6 +246,7 @@ aside p {
     gap: 1em;
     place-items: start;
   }
+
 
   .card__content {
     display: flex;

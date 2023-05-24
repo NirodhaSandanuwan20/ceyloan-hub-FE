@@ -1,8 +1,4 @@
-/*
-.example-spacer {
-  flex: 1 1 auto;
-}
-*/
+
 .nav-box:hover{
   background-color: #ff4081;
   cursor: pointer;

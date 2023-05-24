@@ -1,12 +1,10 @@
 <div class="bootstrap-wrapper" *ngIf="!isSubmit">
 
 
-
-
   <input type="checkbox" id="toggle-popup" class="toggle-checkbox">
   <label for="toggle-popup" class="toggle-button">
     <div class="example-tooltip-host" matTooltip="To see time and submit button" [matTooltipPosition]='position'>
-    Console
+      Console
     </div>
   </label>
   <div class="popup">
@@ -51,22 +49,19 @@
             <br/>
 
             <div class="row">
-              <div class="col-md-6">
-
+              <div class="col-md-6 col-sm-6 col-6">
                 <input type="radio" [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option1 }}</b>
-
-
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 col-sm-6 col-6">
                 <input type="radio" [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option2 }}</b>
               </div>
             </div>
 
             <div class="row mt20">
-              <div class="col-md-6">
+              <div class="col-md-6 col-sm-6 col-6">
                 <input type="radio" [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option3 }}</b>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 col-sm-6 col-6">
                 <input type="radio" [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option4 }}</b>
               </div>
               <div class="row mt20">
@@ -77,7 +72,8 @@
               </div>
             </div>
             <div class="text-center">
-              <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+              </button>
               <button mat-raised-button color="primary" matStepperNext (click)="checkStatus(i)">Next</button>
             </div>
           </mat-step>
@@ -86,12 +82,13 @@
 
       <!-- load more -->
 
-        <div class="container text-center mt20 mb20">
-          <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
-            <div class="example-tooltip-host" matTooltip="Click here to load next 10 questions" [matTooltipPosition]='position'>
+      <div class="container text-center mt20 mb20">
+        <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+          <div class="example-tooltip-host" matTooltip="Click here to load next 10 questions"
+               [matTooltipPosition]='position'>
             Load More
-            </div>
-          </button>
+          </div>
+        </button>
 
       </div>
 

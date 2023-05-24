@@ -1,7 +1,6 @@
 
-import { ThisReceiver } from '@angular/compiler';
-import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
-import { ActivatedRoute, NavigationStart, Route, Router } from '@angular/router';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import { ActivatedRoute,Router } from '@angular/router';
 import { QuestionService } from 'src/app/services/question.service';
 import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
@@ -10,10 +9,8 @@ import { map } from 'rxjs/operators';
 import { ImageProcessingService } from '../../../services/ImageProcessingService';
 import {DatePipe, LocationStrategy, ViewportScroller} from '@angular/common';
 import { HistoryService } from 'src/app/services/history.service';
-import {MatStep, MatStepper, MatStepperIconContext} from '@angular/material/stepper';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
-import {WatchComponent} from "../../watch/watch.component";
+import {MatStep, MatStepper} from '@angular/material/stepper';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-start',
@@ -24,19 +21,20 @@ import {WatchComponent} from "../../watch/watch.component";
 export class StartComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
   @ViewChild('yourStep') yourStep: MatStep;
+
+  stepDuration: number; // Duration in seconds (2 minutes)
+  countdown: number;
+  countdownInterval: any;
+
   date: string;
   myDate = new Date();
   qid;
   questions = [];
   marksGot = 0;
   correctAnswers = 0;
-  attempted = 0;
   isSubmit = false;
   timer: any;
   mm;
-  ss;
-  qNumber;
-  pipe: any;
   pageNumber = 0;
   showMoreBtn;
   position = 'above';
@@ -51,10 +49,10 @@ export class StartComponent implements OnInit {
     private historyService: HistoryService,
     private datePipe: DatePipe,
     private router: Router,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private snackBar: MatSnackBar
   ) {
-
-
+    this.startCountdown();
   }
 
   ngOnInit(): void {
@@ -83,6 +81,10 @@ export class StartComponent implements OnInit {
           if(this.questions.length === 5){
             this.timer = this.questions[0].quiz.timeDuration * 60;
             this.startTimer();
+            this.stepDuration = this.questions[0].quiz.timeDuration * 60 / this.questions[0].quiz.numberOfQuestions;
+            this.countdown = this.stepDuration;
+            console.log(this.countdown);
+            console.log(this.stepDuration);
           }
 
         },
@@ -216,10 +218,34 @@ export class StartComponent implements OnInit {
   onStepClick(stepper: MatStepper, step: number) {
     console.log(step);
     this.checkStatus(step);
+    clearInterval(this.countdownInterval);
+    this.resetCountdown();
   }
 
+  startCountdown(): void {
+    this.countdown = this.stepDuration;
+    this.countdownInterval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(this.countdownInterval);
+        let message  = 'You have spent ' + this.stepDuration / 60 + ' (Avg time per Q) minutes on this problem. Hurry Up !'
+        this.openSnackBar(message);
+      }
+    }, 1000);
+  }
 
+  resetCountdown(): void {
+    clearInterval(this.countdownInterval);
+    this.startCountdown();
+  }
 
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000,
+      horizontalPosition:"right",
+      verticalPosition:"top",
+    });
+  }
 
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const isMobile = this.detectMobile();
+
+    if (isMobile) {
+      this.renderer.addClass(document.body, 'portrait-mode');
+    } else {
+      this.renderer.removeClass(document.body, 'portrait-mode');
+    }
   }
 
+  detectMobile(): boolean {
+    return window.innerWidth < 376; // Adjust the threshold according to your requirements
+  }
 }
