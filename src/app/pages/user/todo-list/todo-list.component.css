@@ -1,4 +1,5 @@
 .outer{
+  width: 100%;
 }
 
 .done{
@@ -14,8 +15,15 @@
 .task:hover{
   cursor: pointer;
 }
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .form{
-  width: 100%!important;
+  width: 80%!important;
+  margin-right: 5px!important;
 }
 
 mat-icon:hover{
