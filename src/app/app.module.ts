@@ -65,6 +65,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { WatchComponent } from './pages/watch/watch.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -139,7 +140,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatExpansionModule,
     MatStepperModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRippleModule
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],

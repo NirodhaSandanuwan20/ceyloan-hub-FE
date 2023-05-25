@@ -9,50 +9,57 @@
 
       <div class="row" id="profile-outer">
         <div class="col-xl-6 col-lg-6 col-md-6 col-12" id="profile-details">
+          <mat-card>
 
-          <div class="text-center">
-            <img
-              src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-              alt=""
-              class="profile-image"
-            />
-            <h3>Add your photo</h3>
-          </div>
+            <div class="text-center">
+              <img
+                src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                alt=""
+                class="profile-image"
+              />
+              <h3>Add your photo</h3>
+            </div>
 
 
-          <!-- //table Details  -->
-          <table class="table-1 text-center table-striped table-bordered">
-            <tr>
-              <td>Username</td>
-              <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{{ usermail }}</td>
-            </tr>
-            <tr>
-              <td>Password</td>
-              <td>******</td>
-            </tr>
-            <tr>
-              <td>Status</td>
-              <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
-            </tr>
-            <tr>
-              <td>Actions</td>
-              <td>
-                <button mat-raised-button (click)="changePassword()">Change Password</button>
-                <button mat-raised-button style="margin-left: 5px!important;"
-                        routerLink="/change-email">Change Email
-                </button>
-              </td>
-            </tr>
-          </table>
+            <!-- //table Details  -->
+            <table class="table-1 text-center table-striped table-bordered">
+              <tr>
+                <td>Username</td>
+                <td>{{ user.username }}</td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>{{ usermail }}</td>
+              </tr>
+              <tr>
+                <td>Status</td>
+                <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+              </tr>
+              <tr>
+                <td>Change Email</td>
+                <td>
+                  <mat-icon
+                          routerLink="/change-email">change_circle
+                  </mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td>Change password</td>
+                <td>
+                  <mat-icon (click)="changePassword()">change_circle</mat-icon>
+                </td>
+              </tr>
+            </table>
+
+          </mat-card>
+
 
 
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-12" id="todo">
-          <app-todo-list></app-todo-list>
+          <mat-card [style.min-height.px]="480">
+            <app-todo-list></app-todo-list>
+          </mat-card>
         </div>
 
 

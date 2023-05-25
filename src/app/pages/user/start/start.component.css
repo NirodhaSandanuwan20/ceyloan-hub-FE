@@ -57,7 +57,7 @@ input {
   transform: translateY(-50%);
   width: 100px;
   height: 30px;
-  background-color: #09042d;
+  background-color: #6f7782;
   color: #fff;
   font-size: 20px;
   text-align: center;
@@ -74,10 +74,10 @@ input {
   border-radius: 5px;
   position: fixed;
   top: 25vh;
-  right: -300px;
+  left: -300px;
   width: 300px;
   height: 50vh;
-  background-color: #09042d;
+  background-color: #6f7782;
   transition: right 0.1s ease-in-out;
   z-index: 2;
 }
@@ -92,17 +92,21 @@ input {
 
 .close-button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px;
   background-color: #333;
-  color: #fff;
+  color: white;
   font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50%;
   cursor: pointer;
 }
 
+.boxbtn{
+  min-width: 80%;
+}
+
 .toggle-checkbox:checked ~ .popup {
-  right: 0;
+  left: 0;
 }
 
 .divider{
@@ -119,6 +123,37 @@ input {
   height: 100%;
 }
 
+input[type="radio"]:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+
+input[type="radio"]:disabled:checked + label {
+  font-weight: bold;
+  color: #074e8c;
+}
+
+
+.pause-div{
+  height: 100%;
+  width: 100vw;
+  background-color: #2c3e50;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pause-inner{
+  animation: sleep2 3s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 @media (max-width: 1200px) {
   .toggle-button {
@@ -129,6 +164,15 @@ input {
 
 
 
+@keyframes sleep2 {
+  0% {
 
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  120% {
 
+  }
+}
 

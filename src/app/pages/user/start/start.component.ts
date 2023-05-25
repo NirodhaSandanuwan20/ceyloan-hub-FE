@@ -1,14 +1,13 @@
-
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { QuestionService } from 'src/app/services/question.service';
-import { QuizService } from 'src/app/services/quiz.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {QuestionService} from 'src/app/services/question.service';
+import {QuizService} from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
-import { Question } from '../../../model/Question';
-import { map } from 'rxjs/operators';
-import { ImageProcessingService } from '../../../services/ImageProcessingService';
+import {Question} from '../../../model/Question';
+import {map} from 'rxjs/operators';
+import {ImageProcessingService} from '../../../services/ImageProcessingService';
 import {DatePipe, LocationStrategy, ViewportScroller} from '@angular/common';
-import { HistoryService } from 'src/app/services/history.service';
+import {HistoryService} from 'src/app/services/history.service';
 import {MatStep, MatStepper} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
@@ -40,6 +39,7 @@ export class StartComponent implements OnInit {
   pageNumber = 0;
   showMoreBtn;
   position = 'below';
+  pause = true;
 
 
   constructor(
@@ -59,10 +59,10 @@ export class StartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.preventBackButton();
-   this.qid = this._route.snapshot.params.qid;
-   console.log(this.qid);
-   this.loadQuestions();
+    this.preventBackButton();
+    this.qid = this._route.snapshot.params.qid;
+    console.log(this.qid);
+    this.loadQuestions();
   }
 
 
@@ -81,7 +81,7 @@ export class StartComponent implements OnInit {
           console.log(data);
           data.forEach(p => this.questions.push(p));
           console.log(this.questions.length);
-          if (this.questions.length === 5){
+          if (this.questions.length === 5) {
             this.timer = this.questions[0].quiz.timeDuration * 60;
             this.startTimer();
             this.stepDuration = this.questions[0].quiz.timeDuration * 60 / this.questions[0].quiz.numberOfQuestions;
@@ -110,8 +110,6 @@ export class StartComponent implements OnInit {
   }
 
 
-
-
   submitQuiz() {
     Swal.fire({
       title: 'Do you want to submit the quiz?',
@@ -121,12 +119,13 @@ export class StartComponent implements OnInit {
     }).then((e) => {
       if (e.isConfirmed) {
         this.evalQuiz();
+        this.stopCountdown();
       }
     });
   }
 
 
-  startTimer() {
+/*  startTimer() {
     const t = window.setInterval(() => {
       // code
       if (this.timer <= 0) {
@@ -136,6 +135,31 @@ export class StartComponent implements OnInit {
         this.timer--;
       }
     }, 1000);
+  }*/
+
+  timerInterval: any; // Property to store the interval ID
+
+  startTimer() {
+    this.timerInterval = setInterval(() => {
+      // code
+      if (this.timer <= 0) {
+        clearInterval(this.timerInterval);
+      } else {
+        this.timer--;
+      }
+    }, 1000);
+  }
+
+  pauseTimer() {
+    this.pause = false;
+    clearInterval(this.timerInterval);
+    this.stopCountdown();
+  }
+
+  resumeTimer() {
+    this.pause = true;
+    this.startTimer();
+    this.startCountdown();
   }
 
 
@@ -159,6 +183,7 @@ export class StartComponent implements OnInit {
          console.log(error);
        }
      );*/
+    this.loadMore();
     this.questions.forEach((q, i) => {
       if (q.givenAnswer === q.answer) {
         q.accuracy = true;
@@ -199,8 +224,6 @@ export class StartComponent implements OnInit {
   }
 
 
-
-
   loadMore() {
     this.pageNumber = this.pageNumber + 1;
     this.loadQuestions();
@@ -211,9 +234,9 @@ export class StartComponent implements OnInit {
       this.loadMore();
     }*/
     console.log(this.questions[i].givenAnswer);
-    if (this.questions[i].givenAnswer === null){
+    if (this.questions[i].givenAnswer === null) {
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1) + ' - not marked yet';
-    }else{
+    } else {
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1);
     }
   }
@@ -231,7 +254,7 @@ export class StartComponent implements OnInit {
       this.countdown--;
       if (this.countdown === 0) {
         clearInterval(this.countdownInterval);
-        const message  = 'You have spent ' + this.stepDuration / 60 + ' minutes (Avg time per Q) on this problem. Hurry Up !';
+        const message = 'You have spent ' + this.stepDuration / 60 + ' m on this problem. Hurry Up !!';
         this.openSnackBar(message);
       }
     }, 1000);
@@ -240,6 +263,10 @@ export class StartComponent implements OnInit {
   resetCountdown(): void {
     clearInterval(this.countdownInterval);
     this.startCountdown();
+  }
+
+  stopCountdown(): void {
+    clearInterval(this.countdownInterval);
   }
 
   openSnackBar(message: string): void {
@@ -283,9 +310,11 @@ export class StartComponent implements OnInit {
 export class DialogContentComponent {
   name: string;
   todos;
+
   constructor(private dialogRef: MatDialogRef<DialogContentComponent>,
               private snackBar: MatSnackBar,
-              ) { }
+  ) {
+  }
 
   save(): void {
 
