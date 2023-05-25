@@ -231,7 +231,7 @@ export class StartComponent implements OnInit {
       this.countdown--;
       if (this.countdown === 0) {
         clearInterval(this.countdownInterval);
-        const message  = 'You have spent ' + this.stepDuration / 60 + ' (Avg time per Q) minutes on this problem. Hurry Up !';
+        const message  = 'You have spent ' + this.stepDuration / 60 + ' minutes (Avg time per Q) on this problem. Hurry Up !';
         this.openSnackBar(message);
       }
     }, 1000);
@@ -244,7 +244,7 @@ export class StartComponent implements OnInit {
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
     });

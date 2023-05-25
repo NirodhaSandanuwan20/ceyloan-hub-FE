@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import {CategoryService} from 'src/app/services/category.service';
 import {LoginService} from 'src/app/services/login.service';
 import {ProfileService} from 'src/app/services/profile.service';
@@ -18,16 +18,6 @@ import {Router} from '@angular/router';
 
 export class ProfileComponent implements OnInit {
 
-  constructor(
-    private loginService: LoginService,
-    private profileService: ProfileService,
-    private categoryService: CategoryService,
-    private selectSubjectServeice: SelectSubjectService,
-    private userService: UserService,
-    private pipe: FilterSubjectPipe,
-    private router: Router
-  ) {
-  }
   cTitle;
   selectedCategories = [];
   series = [];
@@ -39,39 +29,40 @@ export class ProfileComponent implements OnInit {
   showMoreBtn;
   lineChart;
   usermail;
-
-
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  view;
   colorSchemePie = {
-    domain: ['#4e3295', '#d72c2c', '#B67A3D', '#5B6FC8', '#25706F']
+    domain: ['#2980b9', '#c0392b']
   };
-
-  viewPie: any[] = [700, 370];
-  /*Line CHart Begin*/
-  view: any[] = [700, 370];
-
-  // options
-  legendLineChart = true;
-  animations = true;
-  xAxis = true;
-  yAxis = true;
-  showYAxisLabel = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Date';
-  yAxisLabel = 'Marks';
-  timeline = true;
-
   colorSchemeLineChart = {
-    domain: ['#704FC4', '#4B852C', '#B67A3D', '#5B6FC8', '#25706F']
+    domain: ['#2980b9']
   };
+
+  constructor(
+    private loginService: LoginService,
+    private profileService: ProfileService,
+    private categoryService: CategoryService,
+    private selectSubjectServeice: SelectSubjectService,
+    private userService: UserService,
+    private pipe: FilterSubjectPipe,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.user = this.loginService.getUser();
     this.getAllSelectedCategories();
     this.getUserDetails();
+  }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.adjustChartDimensions();
+  }
+
+  adjustChartDimensions() {
+    const screenWidth = window.innerWidth;
+    this.view = [screenWidth - 20, 300];
   }
 
   getUserDetails(){
@@ -151,7 +142,6 @@ export class ProfileComponent implements OnInit {
     this.getHistoryForSubject(changeEvent.tab.textLabel);
   }
 
-
   loadMore() {
     this.pageNumber = this.pageNumber + 1;
     console.log(this.cTitle);
@@ -167,21 +157,5 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onSelect(event) {
-    console.log(event);
-  }
-
-  onActivate(data): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-
-  /*Line Chart End*/
-
-
-  ///////////////////////////////////////////////
 
 }

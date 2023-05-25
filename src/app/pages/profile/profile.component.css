@@ -38,6 +38,7 @@
 
 }
 
+
 .table-1 {
   width: 100%!important;
   border-collapse: collapse;
@@ -51,22 +52,7 @@
   padding: 15px 10px;
 }
 
-#table-div{
-  padding-top: 10px;
-  align-items: center;
-  justify-content: center;
-  box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  -webkit-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  -moz-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  height: auto;
-}
 
-#chart-div{
-  box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  -webkit-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  -moz-box-shadow: -8px 2px 14px 5px rgba(7, 6, 6, 0.71);
-  padding-top: 10px;
-}
 
 
 .profile-image {
@@ -107,6 +93,10 @@
 a{
   color: white;
   text-decoration: none;
+}
+
+.custom-expansion-panel {
+  background-color: #3F51B5;
 }
 
 mat-icon:hover{

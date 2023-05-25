@@ -1,10 +1,4 @@
 <div id="outer">
-  <!--<div class="container">
-    <div class="row">
-      <div class="col-xl-6 col-lg-6 col-md-6 col-12"></div>
-
-    </div>
-  </div>-->
 
   <mat-tab-group
     style="margin-bottom: 10px"
@@ -82,8 +76,18 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-12" id="table-div">
+
+      <mat-accordion multi>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>My history</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              <b>The performance is given in full detail</b>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
           <table class="table-2 table-striped table-bordered align-items-center justify-content-center">
 
@@ -117,48 +121,64 @@
             </button>
           </div>
 
-        </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>My progress</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              <b>Progress is visualized in a chart.</b>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-        <div class="col-xl-6 col-lg-6 col-md-12 col-12" id="chart-div">
-          <div class="row">
-            <div class="col-12">
-              <div class="line text-center">
-                <h3>Chart of Marks by date</h3>
-                <ngx-charts-line-chart
-                  [results]="lineChart"
-                  [view]="view"
-                  [scheme]="colorSchemeLineChart"
-                  [legend]="legendLineChart"
-                  [showXAxisLabel]="showXAxisLabel"
-                  [showYAxisLabel]="showYAxisLabel"
-                  [xAxis]="xAxis"
-                  [yAxis]="yAxis"
-                  [xAxisLabel]="xAxisLabel"
-                  [yAxisLabel]="yAxisLabel"
-                  [timeline]="timeline">
-                </ngx-charts-line-chart>
-              </div>
-            </div>
-            <div class="col-12">
-              <div class="pie text-center" style="margin-top: 20px!important;">
-                <h3>Chart of wrong and correct answers</h3>
-                <ngx-charts-advanced-pie-chart
-                  [results]="pieChartArray"
-                  [view]="viewPie"
-                  [scheme]="colorSchemePie"
-                  (select)="onSelect($event)"
-                  (activate)="onActivate($event)"
-                  (deactivate)="onDeactivate($event)">
-                </ngx-charts-advanced-pie-chart>
-              </div>
-            </div>
+          <ngx-charts-line-chart
+            [results]="lineChart"
+            [view]="view"
+            [scheme]="colorSchemeLineChart"
+            [legend]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [xAxisLabel]="'Table No'"
+            [yAxisLabel]="'Marks'"
+            [timeline]="true">
+          </ngx-charts-line-chart>
+
+          <div class="container text-center mt20 mb20">
+            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+              Load More
+            </button>
           </div>
 
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <b>My average</b>
+            </mat-panel-title>
+            <mat-panel-description>
+              <b>Summary of the current situation</b>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-        </div>
+          <ngx-charts-advanced-pie-chart
+            [results]="pieChartArray"
+            [view]="view"
+            [scheme]="colorSchemePie"
+          >
+          </ngx-charts-advanced-pie-chart>
 
-      </div>
+          <div class="container text-center mt20 mb20">
+            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+              Load More
+            </button>
+          </div>
 
+        </mat-expansion-panel>
+
+      </mat-accordion>
 
     </mat-tab>
 
