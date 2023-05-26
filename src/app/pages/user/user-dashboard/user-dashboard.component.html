@@ -46,13 +46,397 @@
               font-family: 'Lobster', cursive;
               font-family: 'Roboto Mono', monospace;
               text-decoration: underline">
-          All {{c.cTitle}} Quizzes
+          {{c.cTitle}} Quizzes
         </h1>
       </div>
 
-      <div class="row">
 
-        <div  *ngFor="let q of epicQuizzes">
+      <!--<div class="col-xl-5 col-lg-4 col-md-3 col-12">
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
+
+          <mat-card class="mb20 template">
+
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+              <mat-card-title>
+                {{ q.title }}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{ q.category.title }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-action>
+              <button
+                mat-raised-button
+                color="primary"
+                [routerLink]="'/instructions/' + q.qId"
+                class="ml10"
+                style="width: 90%"
+              >
+                Start MCQ
+              </button>
+
+              <button class="ml10 mt10" style="width: 90%" mat-raised-button color="primary"><a target="popup"
+                                                                                                [href]="q.paperLink">Second
+                Paper</a></button>
+            </mat-card-action>
+
+          </mat-card>
+
+        </div>
+        <div class="template" *ngFor="let q of epicQuizzes">
 
           <mat-card class="mb20 template">
 
@@ -85,24 +469,224 @@
 
         </div>
 
-        <div class="container text-center mt20 mb20">
-          <button (click)="loadMoreEpic()" mat-raised-button *ngIf="showMoreBtnEpic" color="primary">
-            Load More
-          </button>
-        </div>
 
-        <div class="col-md-12" *ngIf="epicQuizzes.length == 0">
-          <mat-card>
-            <mat-card-content>
-              <h1>No data in this category</h1>
-            </mat-card-content>
-          </mat-card>
-        </div>
-
-
-
-
+      <div class="text-center mt20 mb20">
+        <button (click)="loadMoreEpic()" mat-raised-button *ngIf="showMoreBtnEpic" color="primary">
+          Load More
+        </button>
       </div>
+
+      <div class="col-md-12" *ngIf="epicQuizzes.length == 0">
+        <mat-card>
+          <mat-card-content>
+            <h1>No data in this category</h1>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+    </div>-->
+
+      <div class="containers">
+
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+            <p style="color:white;"><b>{{ q.title }} {{ q.category.title }}</b></p>
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <div class="item">
+          <div class="inner" *ngFor="let q of epicQuizzes">
+
+
+            {{ q.title }}
+
+            {{ q.category.title }}
+
+
+            <button
+              [routerLink]="'/instructions/' + q.qId"
+            >
+              Start MCQ
+            </button>
+
+            <button>
+              <a target="popup" [href]="q.paperLink">Second Paper</a>
+            </button>
+
+
+          </div>
+        </div>
+        <!-- Add more items as needed -->
+      </div>
+
+
     </mat-tab>
 
     <mat-tab *ngIf="isEmpty" label="Add Subject">

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {CategoryService} from "../../../services/category.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SelectSubjectService} from "../../../services/select-subject.service";
@@ -19,6 +19,7 @@ export class UserDashboardComponent implements OnInit {
   showMoreBtnEpic;
   categoryName;
   isEmpty: boolean;
+  cols: number;
 
   constructor(
     private _quiz: QuizService,
@@ -29,9 +30,11 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.getSelectedCategory();
   }
+
 
   getSelectedCategory() {
     console.log(this.userId);
