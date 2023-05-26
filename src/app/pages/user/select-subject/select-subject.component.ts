@@ -146,4 +146,8 @@ export class SelectSubjectComponent implements OnInit {
     this.searchText = '';
     this.getAllCategories();
   }
+
+
+
+
 }

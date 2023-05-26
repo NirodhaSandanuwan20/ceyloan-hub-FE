@@ -20,6 +20,8 @@ export class UserDashboardComponent implements OnInit {
   categoryName;
   isEmpty: boolean;
   cols: number;
+  private searchText2: string;
+  private searchText1: string;
 
   constructor(
     private _quiz: QuizService,
@@ -46,7 +48,7 @@ export class UserDashboardComponent implements OnInit {
         if (this.selectedCategories.length === 0) {
           this.isEmpty = true;
           console.log('empty');
-        }else{
+        } else {
           this.isEmpty = false;
         }
       },
@@ -72,7 +74,7 @@ export class UserDashboardComponent implements OnInit {
     this._quiz.getActiveQuizzesOfCategory(this.categoryName, this.pageNumberEpic).subscribe(
       (data: any) => {
         console.log(data);
-        if (data.length === 2) {
+        if (data.length === 4) {
           this.showMoreBtnEpic = true;
         } else {
           this.showMoreBtnEpic = false;
@@ -89,6 +91,45 @@ export class UserDashboardComponent implements OnInit {
   loadMoreEpic() {
     this.pageNumberEpic = this.pageNumberEpic + 1;
     this.getQuiz();
+  }
+
+  getEpicQuiz() {
+    this._quiz.getActiveQuizzes(0, this.categoryName, this.searchText1).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.epicQuizzes = data;
+      },
+      (error) => {
+        console.log(error);
+        alert('error in loading all quizzes');
+      }
+    );
+  }
+
+
+  search() {
+    this.showMoreBtnEpic = false;
+    this.epicQuizzes = [];
+    this.getEpicQuiz();
+  }
+
+
+  clear1() {
+    this.epicQuizzes = [];
+    this.getQuiz();
+    this.showMoreBtnEpic = true;
+  }
+
+  onSelectionChange(event: any): void {
+    const selectedValue = event.value;
+    // Perform actions based on the selected value
+    console.log('Selected value:', selectedValue);
+    // Call other methods or update component properties as needed
+    if (selectedValue === undefined) {
+      this.clear1();
+    } else {
+      this.search();
+    }
   }
 
 }
