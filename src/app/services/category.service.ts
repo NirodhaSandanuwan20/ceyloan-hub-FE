@@ -10,7 +10,8 @@ export class CategoryService {
 
 
   public categories(searchText) {
-    return this._http.get(`${baseUrl}/category/` + '?searchText=' + searchText);
+    console.log(searchText);
+    return this._http.get(`${baseUrl}/category/all/` + '?searchText=' + searchText);
   }
 
 
@@ -21,6 +22,6 @@ export class CategoryService {
 
 
   public deleteCategory(categoryId:number) {
-    return this._http.delete(`${baseUrl}/category/`+categoryId,{});
+    return this._http.delete(`${baseUrl}/category`+categoryId,{});
   }
 }

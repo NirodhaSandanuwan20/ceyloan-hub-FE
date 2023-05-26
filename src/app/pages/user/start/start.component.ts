@@ -12,7 +12,8 @@ import {MatStep, MatStepper} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Todo} from '../todo-list/Todo';
-import {config} from 'rxjs';
+import {NavbarService} from "../../../services/navbar.service";
+
 
 @Component({
   selector: 'app-start',
@@ -54,6 +55,7 @@ export class StartComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
+    private navbarService: NavbarService
   ) {
     this.startCountdown();
   }
@@ -63,6 +65,7 @@ export class StartComponent implements OnInit {
     this.qid = this._route.snapshot.params.qid;
     console.log(this.qid);
     this.loadQuestions();
+    this.hideNavbar();
   }
 
 
@@ -195,6 +198,7 @@ export class StartComponent implements OnInit {
     });
     this.viewportScroller.scrollToPosition([0, 0]);
     this.saveHistory();
+    this.showNavbar();
     this.isSubmit = true;
   }
 
@@ -285,6 +289,14 @@ export class StartComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  hideNavbar(): void {
+    this.navbarService.setShowNavbar(false);
+  }
+
+  showNavbar(): void {
+    this.navbarService.setShowNavbar(true);
   }
 
 }

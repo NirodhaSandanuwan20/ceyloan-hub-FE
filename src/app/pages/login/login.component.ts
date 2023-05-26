@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 import {LoginService} from 'src/app/services/login.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -22,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private snack: MatSnackBar,
     private login: LoginService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -51,15 +52,13 @@ export class LoginComponent implements OnInit {
           //redirect ...ADMIN: admin-dashboard
           //redirect ...NORMAL:normal-dashboard
           if (this.login.getUserRole() == 'ADMIN') {
-            //admin dashboard
-            // window.location.href = '/admin';
+
             this.router.navigate(['admin']);
             this.login.loginStatusSubject.next(true);
           } else if (this.login.getUserRole() == 'NORMAL') {
-            //normal user dashbaord
-            // window.location.href = '/user-dashboard';
-            /* this.router.navigate(['user-dashboard/0']); */
-            this.router.navigate(['user-dashboard']);
+            const returnUrl = this.route.snapshot.queryParams.returnUrl || '/user-dashboard';
+            // Redirect the user back to the previous page or a default page (e.g., home) after successful login
+            this.router.navigateByUrl(returnUrl);
             this.login.loginStatusSubject.next(true);
           } else {
             this.login.logout();

@@ -169,7 +169,7 @@ input[type="radio"]:disabled:checked + label {
 
   }
   50% {
-    transform: scale(0.7);
+    transform: scale(1.3);
   }
   120% {
 

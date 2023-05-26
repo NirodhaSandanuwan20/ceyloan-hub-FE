@@ -1,7 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { log } from 'console';
 import { LoginService } from 'src/app/services/login.service';
+import {NavbarService} from "../../services/navbar.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +13,9 @@ export class NavbarComponent implements OnInit {
   user = null;
   role;
 
-  constructor(public login: LoginService) { }
+  constructor(public login: LoginService,
+              private navbarService: NavbarService
+              ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.login.isLoggedIn();
@@ -22,7 +23,7 @@ export class NavbarComponent implements OnInit {
     this.login.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.login.isLoggedIn();
       this.user = this.login.getUser();
-      this.checkUser()
+      this.checkUser();
 
 
     });
@@ -41,7 +42,7 @@ export class NavbarComponent implements OnInit {
     this.role = this.login.getUserRole();
 
     console.log(this.role);
-    
+
     if (this.role === 'NORMAL' || this.role === null ) {
       this.isAdmin = false;
     }
@@ -49,4 +50,9 @@ export class NavbarComponent implements OnInit {
       this.isAdmin = true;
     }
   }
+
+  get showNavbar(): boolean {
+    return this.navbarService.getShowNavbar();
+  }
+
 }

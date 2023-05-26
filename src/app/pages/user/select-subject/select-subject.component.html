@@ -113,7 +113,7 @@
           <div *ngFor="let c of categories">
 
 
-            <div>{{ c.title }} Papers Package -- <button mat-raised-button style="color: white;background-color:#3B5998;" (click)="addCategory(c.cid,c.title)">
+            <div>{{ c.title }} Papers Package -- <button mat-raised-button style="color: white;background-color:#3B5998;" routerLink="/specific-action" (click)="addCategory(c.cid,c.title)">
               <mat-icon>attach_money</mat-icon>
               Buy Now
             </button></div>

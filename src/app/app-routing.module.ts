@@ -1,36 +1,37 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
-import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
-import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AddCategoryComponent} from './pages/admin/add-category/add-category.component';
+import {AddQuestionComponent} from './pages/admin/add-question/add-question.component';
+import {AddQuizComponent} from './pages/admin/add-quiz/add-quiz.component';
 
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
-import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
-import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
-import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
-import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
-import { HomeComponent } from './pages/home/home.component';
-import { LoginComponent } from './pages/login/login.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { InstructionsComponent } from './pages/user/instructions/instructions.component';
-import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
-import { StartComponent } from './pages/user/start/start.component';
-import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
-import { AdminGuard } from './services/admin.guard';
-import { NormalGuard } from './services/normal.guard';
-import { AboutUsComponent } from "./components/about-us/about-us.component";
-import { CantactUsComponent } from "./components/cantact-us/cantact-us.component";
-import { DonationComponent } from "./components/donation/donation.component";
-import { NewsLetterComponent } from "./components/news-letter/news-letter.component";
-import { VerificationComponent } from "./pages/verification/verification.component";
-import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
-import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
-import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
+import {DashboardComponent} from './pages/admin/dashboard/dashboard.component';
+import {UpdateQuizComponent} from './pages/admin/update-quiz/update-quiz.component';
+import {ViewCategoriesComponent} from './pages/admin/view-categories/view-categories.component';
+import {ViewQuizQuestionsComponent} from './pages/admin/view-quiz-questions/view-quiz-questions.component';
+import {ViewQuizzesComponent} from './pages/admin/view-quizzes/view-quizzes.component';
+import {WelcomeComponent} from './pages/admin/welcome/welcome.component';
+import {HomeComponent} from './pages/home/home.component';
+import {LoginComponent} from './pages/login/login.component';
+import {ProfileComponent} from './pages/profile/profile.component';
+import {SignupComponent} from './pages/signup/signup.component';
+import {InstructionsComponent} from './pages/user/instructions/instructions.component';
+import {LoadQuizComponent} from './pages/user/load-quiz/load-quiz.component';
+import {StartComponent} from './pages/user/start/start.component';
+import {UserDashboardComponent} from './pages/user/user-dashboard/user-dashboard.component';
+import {AdminGuard} from './services/admin.guard';
+import {NormalGuard} from './services/normal.guard';
+import {AboutUsComponent} from "./components/about-us/about-us.component";
+import {CantactUsComponent} from "./components/cantact-us/cantact-us.component";
+import {DonationComponent} from "./components/donation/donation.component";
+import {NewsLetterComponent} from "./components/news-letter/news-letter.component";
+import {VerificationComponent} from "./pages/verification/verification.component";
+import {ForgotPasswordComponent} from './pages/user/forgot-password/forgot-password.component';
+import {QuizAttemptHistoryComponent} from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
+import {SelectSubjectComponent} from './pages/user/select-subject/select-subject.component';
 import {PaymentComponent} from "./components/payment/payment.component";
 import {ChangePasswordComponent} from "./pages/user/change-password/change-password.component";
 import {ChangeEmailComponent} from "./pages/user/change-email/change-email.component";
+import {AuthGuard} from "./services/auth.service";
 
 const routes: Routes = [
   {
@@ -137,22 +138,15 @@ const routes: Routes = [
   {
     path: 'select-subject',
     component: SelectSubjectComponent,
-    canActivate: [NormalGuard]
+  },
+  {
+    path: 'specific-action',
+    component: SelectSubjectComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
-    canActivate: [NormalGuard],
-    children: [
-      {
-        path: 'select-subject',
-        component: SelectSubjectComponent,
-      }
-      /*{
-        path: ':catId',
-        component: LoadQuizComponent,
-      },*/
-      ],
   },
   {
     path: 'start/:qid',
@@ -183,4 +177,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

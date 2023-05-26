@@ -33,8 +33,8 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.getAllCategories();
+    this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.getAllSelectedCategories();
   }
 
@@ -57,13 +57,6 @@ export class SelectSubjectComponent implements OnInit {
 
   addCategory(cid, title) {
     let text = "Do you want to add " + title + " as your subject ?"
-
-    console.log(cid);
-    console.log(title);
-
-    /* this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a'); */
-
-
     let c = {
       cid: cid,
       date: this.date,
