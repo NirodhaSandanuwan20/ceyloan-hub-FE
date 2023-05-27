@@ -12,7 +12,7 @@ import {MatStep, MatStepper} from '@angular/material/stepper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Todo} from '../todo-list/Todo';
-import {NavbarService} from "../../../services/navbar.service";
+import {NavbarService} from '../../../services/navbar.service';
 
 
 @Component({
@@ -41,7 +41,9 @@ export class StartComponent implements OnInit {
   showMoreBtn;
   position = 'below';
   pause = true;
-
+  timerInterval: any; // Property to store the interval ID
+   fullTime: number;
+   setterFlag: boolean = true;
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -69,6 +71,7 @@ export class StartComponent implements OnInit {
   }
 
 
+
   loadQuestions() {
     this._question.getQuestionsOfQuizForTest(this.qid, this.pageNumber)
       .pipe(
@@ -84,16 +87,11 @@ export class StartComponent implements OnInit {
           console.log(data);
           data.forEach(p => this.questions.push(p));
           console.log(this.questions.length);
-          if (this.questions.length === 5) {
-            this.timer = this.questions[0].quiz.timeDuration * 60;
-            this.startTimer();
-            this.stepDuration = this.questions[0].quiz.timeDuration * 60 / this.questions[0].quiz.numberOfQuestions;
-            this.countdown = this.stepDuration;
-            console.log(this.countdown);
-            console.log(this.stepDuration);
+          if (this.setterFlag){
+            this.setUpTime();
+            this.setterFlag = false;
           }
-
-        },
+          },
 
         (error) => {
           console.log(error);
@@ -104,6 +102,13 @@ export class StartComponent implements OnInit {
 
   }
 
+  setUpTime(){
+    this.timer = this.questions[0].quiz.timeDuration * 60;
+    this.fullTime = this.questions[0].quiz.timeDuration * 60;
+    this.startTimer();
+    this.stepDuration = this.questions[0].quiz.timeDuration * 60 / this.questions[0].quiz.numberOfQuestions;
+    this.countdown = this.stepDuration;
+  }
 
   preventBackButton() {
     history.pushState(null, null, location.href);
@@ -122,33 +127,24 @@ export class StartComponent implements OnInit {
     }).then((e) => {
       if (e.isConfirmed) {
         this.evalQuiz();
-        this.stopCountdown();
       }
     });
   }
-
-
-/*  startTimer() {
-    const t = window.setInterval(() => {
-      // code
-      if (this.timer <= 0) {
-        this.evalQuiz();
-        clearInterval(t);
-      } else {
-        this.timer--;
-      }
-    }, 1000);
-  }*/
-
-  timerInterval: any; // Property to store the interval ID
 
   startTimer() {
     this.timerInterval = setInterval(() => {
       // code
       if (this.timer <= 0) {
         clearInterval(this.timerInterval);
+        this.evalQuiz();
       } else {
         this.timer--;
+        if(this.timer === this.fullTime * 3 / 4 || this.timer === this.fullTime / 2 || this.timer === this.fullTime / 4 ){
+          this.openSnackBar('මිනිත්තු ' + (this.fullTime - this.timer) / 60 + ' ක් ගත වී අවසන්');
+        }
+        if(this.timer === 300){
+          this.openSnackBar('අවසන් මිනිත්තු 5 !! ');
+        }
       }
     }, 1000);
   }
@@ -173,6 +169,27 @@ export class StartComponent implements OnInit {
   }
 
 
+  startCountdown(): void {
+    this.countdown = this.stepDuration;
+    this.countdownInterval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(this.countdownInterval);
+        const message = 'You have spent ' + this.stepDuration / 60 + ' m on this problem. Hurry Up !!';
+        this.openSnackBar(message);
+      }
+    }, 1000);
+  }
+
+  resetCountdown(): void {
+    clearInterval(this.countdownInterval);
+    this.startCountdown();
+  }
+
+  stopCountdown(): void {
+    clearInterval(this.countdownInterval);
+  }
+
   evalQuiz() {
     /* this._question.evalQuiz(this.questions).subscribe(
        (data: any) => {
@@ -186,6 +203,8 @@ export class StartComponent implements OnInit {
          console.log(error);
        }
      );*/
+    this.countdown = 0;
+    this.timer = 0;
     this.loadMore();
     this.questions.forEach((q, i) => {
       if (q.givenAnswer === q.answer) {
@@ -252,29 +271,8 @@ export class StartComponent implements OnInit {
     this.resetCountdown();
   }
 
-  startCountdown(): void {
-    this.countdown = this.stepDuration;
-    this.countdownInterval = setInterval(() => {
-      this.countdown--;
-      if (this.countdown === 0) {
-        clearInterval(this.countdownInterval);
-        const message = 'You have spent ' + this.stepDuration / 60 + ' m on this problem. Hurry Up !!';
-        this.openSnackBar(message);
-      }
-    }, 1000);
-  }
-
-  resetCountdown(): void {
-    clearInterval(this.countdownInterval);
-    this.startCountdown();
-  }
-
-  stopCountdown(): void {
-    clearInterval(this.countdownInterval);
-  }
-
   openSnackBar(message: string): void {
-    this.snackBar.open(message, 'Close', {
+    this.snackBar.open(message, 'close', {
       duration: 5000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -305,16 +303,18 @@ export class StartComponent implements OnInit {
 @Component({
   selector: 'app-dialog-content',
   template: `
-    <h2>+ Add Todo</h2>
-    <form>
-      <mat-form-field appearance="fill" style="width: 100%">
-        <mat-label>Describe task</mat-label>
-        <input matInput placeholder="EX: refer 2002 15 Q again " [(ngModel)]="name" name="name" required>
-      </mat-form-field>
-      <br>
-      <button style="margin-right: 5px" mat-raised-button color="primary" (click)="save()">add</button>
-      <button mat-raised-button (click)="close()">Cancel</button>
-    </form>
+    <div>
+      <h2>+ Add Todo</h2>
+      <form >
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Describe task</mat-label>
+          <textarea style="height: auto"  matInput placeholder="EX: refer 2002 15 Q again " [(ngModel)]="name" name="name" required></textarea>
+        </mat-form-field>
+        <br>
+        <button style="margin-right: 5px" mat-raised-button color="primary" (click)="save()">add</button>
+        <button mat-raised-button (click)="close()">Cancel</button>
+      </form>
+    </div>
   `,
 })
 

@@ -84,108 +84,119 @@
         </div>
       </div>
 
-      <mat-accordion multi>
+      <div class="container-fluid">
+        <mat-accordion multi>
 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>My history</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              <b>The performance is given in full detail</b>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>My history</b>
+              </mat-panel-title>
+              <mat-panel-description>
+                <b>The performance is given in full detail</b>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-          <table class="table-2 table-striped table-bordered align-items-center justify-content-center">
+            <div class="container-fluid">
+              <table class="table-2 table-striped table-bordered align-items-center justify-content-center">
 
-            <thead>
-            <tr>
-              <th>No</th>
-              <th>Title</th>
-              <th>Category</th>
-              <th>Your Marks</th>
-              <th>Date & Time (Finished time)</th>
-              <th>Saved time</th>
-            </tr>
-            </thead>
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Your Marks</th>
+                  <th>Date & Time (Finished time)</th>
+                  <th>Saved time</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr *ngFor="let c of userHistory; let i =index">
-              <td>{{i + 1}}</td>
-              <td>{{c.category}}</td>
-              <td>{{c.title}}</td>
-              <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
-              <td>{{c.date}}</td>
-              <td>{{c.savedTime}}</td>
-            </tr>
-            </tbody>
+                <tbody>
+                <tr *ngFor="let c of userHistory; let i =index">
+                  <td>{{i + 1}}</td>
+                  <td>{{c.category}}</td>
+                  <td>{{c.title}}</td>
+                  <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
+                  <td>{{c.date}}</td>
+                  <td>{{c.savedTime}}</td>
+                </tr>
+                </tbody>
 
-          </table>
+              </table>
 
-          <div class="container text-center mt20 mb20">
-            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
-              Load More
-            </button>
-          </div>
+              <div class="container text-center mt20 mb20">
+                <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                  Load More
+                </button>
+              </div>
+            </div>
 
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>My progress</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              <b>Progress is visualized in a chart.</b>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>My progress</b>
+              </mat-panel-title>
+              <mat-panel-description>
+                <b>Progress is visualized in a chart.</b>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-          <ngx-charts-line-chart
-            [results]="lineChart"
-            [view]="view"
-            [scheme]="colorSchemeLineChart"
-            [legend]="true"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [xAxis]="true"
-            [yAxis]="true"
-            [xAxisLabel]="'Table No'"
-            [yAxisLabel]="'Marks'"
-            [timeline]="true">
-          </ngx-charts-line-chart>
+            <div class="" style="max-height: 100vh">
+              <ngx-charts-line-chart
+                [results]="lineChart"
+                [scheme]="colorSchemeLineChart"
+                [legend]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [xAxis]="true"
+                [yAxis]="true"
+                [xAxisLabel]="'Table No'"
+                [yAxisLabel]="'Marks'"
+                [timeline]="true">
+              </ngx-charts-line-chart>
+            </div>
 
-          <div class="container text-center mt20 mb20">
-            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
-              Load More
-            </button>
-          </div>
 
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>My average</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              <b>Summary of the current situation</b>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
 
-          <ngx-charts-advanced-pie-chart
-            [results]="pieChartArray"
-            [view]="view"
-            [scheme]="colorSchemePie"
-          >
-          </ngx-charts-advanced-pie-chart>
 
-          <div class="container text-center mt20 mb20">
-            <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
-              Load More
-            </button>
-          </div>
 
-        </mat-expansion-panel>
+            <div class="container text-center mt20 mb20">
+              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                Load More
+              </button>
+            </div>
 
-      </mat-accordion>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <b>My average</b>
+              </mat-panel-title>
+              <mat-panel-description>
+                <b>Summary of the current situation</b>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+
+            <div class="" style="max-height: 100vh">
+              <ngx-charts-advanced-pie-chart
+                [results]="pieChartArray"
+                [scheme]="colorSchemePie"
+              >
+              </ngx-charts-advanced-pie-chart>
+            </div>
+
+            <div class="container text-center mt20 mb20">
+              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                Load More
+              </button>
+            </div>
+
+          </mat-expansion-panel>
+
+        </mat-accordion>
+      </div>
 
     </mat-tab>
 

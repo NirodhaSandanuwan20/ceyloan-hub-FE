@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit {
   email;
 
   @ViewChild(MatStepper) stepper!: MatStepper;
+  editable: boolean = true;
 
   ngOnInit(): void {
   }
@@ -48,29 +49,39 @@ export class SignupComponent implements OnInit {
   moveToStep(stepNumber: number) {
     this.stepper.selectedIndex = stepNumber;
   }
+
   formSubmit() {
-   this.email = this.personalForm.get('email')?.value!;
+
+    this.email = this.personalForm.get('email')?.value!;
     let user = {
       email: this.personalForm.get('email')?.value!,
       username: this.personalForm.get('email')?.value!
     };
 
     //addUser: userservice
-    this.userService.addUser(user).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.snack.open('Email Send Success', 'success', {
-          duration: 3000,
-          panelClass:'green'
-        });
+    this.userService.addUser(user).subscribe((data: any) => {
+        if (data) {
+          this.snack.open('Email Send Success', 'success', {
+            duration: 3000,
+            horizontalPosition: "right",
+            verticalPosition: "top"
+          });
+        } else {
+          this.snack.open('Email already registered', 'erorr', {
+            duration: 3000,
+            horizontalPosition: "right",
+            verticalPosition: "top"
+          });
+          this.moveToStep(0);
+        }
       },
       (error) => {
         //error
         console.log(error);
         this.snack.open(error.error.text, 'error', {
           duration: 3000,
-          horizontalPosition:"right",
-          verticalPosition:"top"
+          horizontalPosition: "right",
+          verticalPosition: "top"
         });
         this.moveToStep(0);
       }
@@ -83,7 +94,7 @@ export class SignupComponent implements OnInit {
   }
 
   verify() {
-
+    this.editable = false;
     this.userService.verify(
       this.verifyForm.get('code')?.value!,
       this.email
@@ -91,7 +102,7 @@ export class SignupComponent implements OnInit {
       console.log(response);
       this.snack.open('Verify Success', 'success', {
         duration: 3000,
-        panelClass:'green'
+        panelClass: 'green'
       });
     }, error => {
       this.snack.open('Invalid Otp', 'error', {
@@ -116,15 +127,15 @@ export class SignupComponent implements OnInit {
       console.log(response);
       this.snack.open('Account Create Success', 'succeeded', {
         duration: 3000,
-        horizontalPosition:'right',
-        verticalPosition:'top',
-        panelClass:'green'
-
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+        panelClass: 'green'
       });
 
     }, error => {
       Swal.fire('Try Again later !! ', 'error', 'error');
     });
   }
+
 
 }

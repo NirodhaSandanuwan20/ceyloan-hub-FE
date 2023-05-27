@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   showMoreBtn;
   lineChart;
   usermail;
-  view;
+
   colorSchemePie = {
     domain: ['#2980b9', '#c0392b']
   };
@@ -54,16 +54,6 @@ export class ProfileComponent implements OnInit {
     this.getUserDetails();
   }
 
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.adjustChartDimensions();
-  }
-
-  adjustChartDimensions() {
-    const screenWidth = window.innerWidth;
-    this.view = [screenWidth - 20, 300];
-  }
 
   getUserDetails(){
     this.userService.getUser(this.userId).subscribe((response: any) => {
