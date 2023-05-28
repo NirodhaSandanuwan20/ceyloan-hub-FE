@@ -69,6 +69,7 @@
 
 -->
 
+<!--
 
 <div class="row">
 
@@ -113,7 +114,7 @@
           <div *ngFor="let c of categories">
 
 
-            <div>{{ c.title }} Papers Package -- <button mat-raised-button style="color: white;background-color:#3B5998;" routerLink="/specific-action" (click)="addCategory(c.cid,c.title)">
+            <div>{{ c.title }} Papers Package &#45;&#45; <button mat-raised-button style="color: white;background-color:#3B5998;" routerLink="/specific-action" (click)="addCategory(c.cid,c.title)">
               <mat-icon>attach_money</mat-icon>
               Buy Now
             </button></div>
@@ -179,3 +180,56 @@
 
 
 </div>
+-->
+
+<div class="outer">
+  <h1
+    class="text-center"
+    style="font-size:30px;
+              font-family: 'Lobster', cursive;
+              font-family: 'Roboto Mono', monospace;
+              text-decoration: underline;
+              margin: 20px 0px;
+         ">
+    Show your modules
+  </h1>
+
+  <div class="search" style="display: flex;align-items: center;justify-content: center">
+    <mat-form-field class="text text-center" appearance="fill">
+      <mat-label>Search by subject name</mat-label>
+      <input
+        type="search"
+        (keyup.enter)="searchNow()"
+        [(ngModel)]="searchText"
+        matInput
+        placeholder="Ex: physics"
+      >
+      <mat-icon (click)="searchNow()" matSuffix>search</mat-icon>
+      <mat-icon (click)="clear()" matPrefix *ngIf="searchText.length">clear</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="col-12" *ngIf="categories.length == 0">
+    <mat-card class="text-center">
+      <mat-card-content>
+        <h3>No results found for " {{searchText}} "</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="containers">
+    <div class="item" *ngFor="let q of categories">
+      <div class="inner">
+        <p style="color:white;"><b>{{ q.title }} Papers Package</b></p>
+        <button> Check out</button>
+        <button
+          routerLink="/specific-action" (click)="addCategory(q.cid,q.title)"
+        >Buy now</button>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
