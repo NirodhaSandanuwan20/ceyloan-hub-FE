@@ -103,8 +103,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Title</th>
-                  <th>Category</th>
+                  <th>Year</th>
                   <th>Your Marks</th>
                   <th>Date & Time (Finished time)</th>
                   <th>Saved time</th>
@@ -114,7 +113,6 @@
                 <tbody>
                 <tr *ngFor="let c of userHistory; let i =index">
                   <td>{{i + 1}}</td>
-                  <td>{{c.category}}</td>
                   <td>{{c.title}}</td>
                   <td>{{c.yourMarks}}/{{c.fullMarks}}</td>
                   <td>{{c.date}}</td>

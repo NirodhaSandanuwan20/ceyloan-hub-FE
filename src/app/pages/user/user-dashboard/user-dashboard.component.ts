@@ -74,7 +74,7 @@ export class UserDashboardComponent implements OnInit {
     this._quiz.getActiveQuizzesOfCategory(this.categoryName, this.pageNumberEpic).subscribe(
       (data: any) => {
         console.log(data);
-        if (data.length === 4) {
+        if (data.length === 12) {
           this.showMoreBtnEpic = true;
         } else {
           this.showMoreBtnEpic = false;

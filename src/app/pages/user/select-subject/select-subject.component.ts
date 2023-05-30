@@ -78,6 +78,11 @@ export class SelectSubjectComponent implements OnInit {
         this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
             console.log(Response);
             this.ngOnInit();
+            this.snackBar.open('Package Successfully Added', 'Success', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
           },
           (error) => {
             this.snackBar.open(error.error.text, 'Oops !!', {
