@@ -118,61 +118,13 @@ section {
   margin-bottom: 10px;
   color: #333;
 }
-
-.contact-form .input-box {
-  position: relative;
+.full-width{
   width: 100%;
-  margin-top: 10px;
 }
 
-.contact-form .input-box input,
-.contact-form .input-box textarea{
-  width: 100%;
-  padding: 5px 0;
-  font-size: 16px;
-  margin: 10px 0;
-  border: none;
-  border-bottom: 2px solid #333;
-  outline: none;
-  resize: none;
-}
 
-.contact-form .input-box span {
-  position: absolute;
-  left: 0;
-  padding: 5px 0;
-  font-size: 16px;
-  margin: 10px 0;
-  pointer-events: none;
-  transition: 0.5s;
-  color: #666;
-}
 
-.contact-form .input-box input:focus ~ span,
-.contact-form .input-box textarea:focus ~ span{
-  color: #e91e63;
-  font-size: 12px;
-  transform: translateY(-20px);
-}
 
-.contact-form .input-box input[type="submit"]
-{
-  width: 100%;
-  background: #00bcd4;
-  color: #FFF;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  font-size: 18px;
-  border: 1px solid #00bcd4;
-  transition: 0.5s;
-}
-
-.contact-form .input-box input[type="submit"]:hover
-{
-  background: #FFF;
-  color: #00bcd4;
-}
 
 @media (max-width: 991px) {
   section {

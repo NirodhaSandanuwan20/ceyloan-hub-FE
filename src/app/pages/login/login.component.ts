@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-  })
+  });
 
   show: boolean = true;
   changeType: boolean = true;
