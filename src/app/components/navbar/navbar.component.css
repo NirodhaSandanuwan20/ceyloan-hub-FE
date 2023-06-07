@@ -1,18 +1,154 @@
+/*
 
 .nav-box:hover{
-  background-color: #ff4081;
+  border-radius: 5px;
+  background-color: #aaaaaa;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
 }
 
-.nav-box{
+.special{
+  margin-right: 5px;
+ background-color: white;
+  border-radius: 5px;
+}
 
+.special > b{
+  color: #171B23;
 }
 
 .active{
-  background-color: black;
+  border-radius: 5px;
+  border-bottom: 5px solid white;
 }
+
 b{
   color: white;
 }
+*/
+
+
+.responsive-nav{
+  position: absolute;
+  width: 100%;
+  min-height: 300px;
+  background-color: #aaaaaa;
+  height: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+.outer{
+  width: 100%;
+  height: 80px;
+  display: flex;
+}
+
+.inners{
+  height: 100%;
+}
+
+.left{
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left > img {
+  width: 100px;
+}
+
+.center{
+  flex: 1;
+}
+
+.tags{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tags > ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li{
+  margin-right: 20px;
+}
+
+.tags > ul > li > a{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+  color: #3B82F6;
+}
+
+.active{
+  border-bottom: 4px solid #3B82F6;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.right{
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.right > button {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #3B82F6;
+  color: #3B82F6;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: white;
+}
+
+.toggle-div{
+  display: none;
+  height: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: right;
+}
+
+
+@media (max-width: 900px) {
+  .center, .right {
+    display: none;
+  }
+
+  .toggle-div{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 900px) {
+  .responsive-nav {
+    display: none;
+  }
+}
+
+
+
+

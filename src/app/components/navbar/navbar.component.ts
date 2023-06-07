@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import {NavbarService} from "../../services/navbar.service";
+import {NavbarService} from '../../services/navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   isAdmin ;
   user = null;
   role;
+  show: boolean = false;
 
   constructor(public login: LoginService,
               private navbarService: NavbarService
@@ -53,6 +54,10 @@ export class NavbarComponent implements OnInit {
 
   get showNavbar(): boolean {
     return this.navbarService.getShowNavbar();
+  }
+
+  openDropdown() {
+    this.show = !this.show;
   }
 
 }
