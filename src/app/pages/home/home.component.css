@@ -1,3 +1,4 @@
+/*
 :root {
   --card-height: 35vw;
   --card-margin: 4vw;
@@ -14,8 +15,8 @@
 
 #cards {
 
-  padding-bottom: calc(var(--numcards) * var(--card-top-offset)); /* Make place at bottom, as items will slide to that position*/
-  margin-bottom: var(--card-margin); /* Don't include the --card-margin in padding, as that will affect the scroll-timeline*/
+  padding-bottom: calc(var(--numcards) * var(--card-top-offset)); !* Make place at bottom, as items will slide to that position*!
+  margin-bottom: var(--card-margin); !* Don't include the --card-margin in padding, as that will affect the scroll-timeline*!
 }
 
 #card_1 {
@@ -48,18 +49,18 @@
 
   @scroll-timeline cards-element-scrolls-in-body {
     source: selector(body);
-    scroll-offsets: /* Start when the start edge touches the top of the scrollport */ selector(#cards) start 1,
-      /* End when the start edge touches the start of the scrollport */ selector(#cards) start 0
+    scroll-offsets: !* Start when the start edge touches the top of the scrollport *! selector(#cards) start 1,
+      !* End when the start edge touches the start of the scrollport *! selector(#cards) start 0
   ;
-    start: selector(#cards) start 1; /* Start when the start edge touches the top of the scrollport */
-    end: selector(#cards) start 0; /* End when the start edge touches the start of the scrollport */
+    start: selector(#cards) start 1; !* Start when the start edge touches the top of the scrollport *!
+    end: selector(#cards) start 0; !* End when the start edge touches the start of the scrollport *!
     time-range: 4s;
   }
 
   .card {
-    --index0: calc(var(--index) - 1); /* 0-based index */
-    --reverse-index: calc(var(--numcards) - var(--index0)); /* reverse index */
-    --reverse-index0: calc(var(--reverse-index) - 1); /* 0-based reverse index */
+    --index0: calc(var(--index) - 1); !* 0-based index *!
+    --reverse-index: calc(var(--numcards) - var(--index0)); !* reverse index *!
+    --reverse-index0: calc(var(--reverse-index) - 1); !* 0-based reverse index *!
   }
 
   .card__content {
@@ -84,7 +85,7 @@
   }
 }
 
-/** DEBUG **/
+!** DEBUG **!
 
 #debug {
   position: fixed;
@@ -104,9 +105,9 @@
 }
 
 
-/** PAGE STYLING **/
+!** PAGE STYLING **!
 
-* { /* Poor Man's Reset */
+* { !* Poor Man's Reset *!
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -273,3 +274,128 @@ aside p {
   }
 
 }
+*/
+
+
+
+
+.outer{
+  margin-top: 10px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.inners{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.one,two,three{
+  margin: 10px;
+  text-align: center;
+}
+
+.one > h2{
+  color: black;
+  font-weight: bold;
+}
+
+
+.two > h1{
+  color: black;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+
+.slider-inner{
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 2px solid #3B82F6;
+}
+
+.access-bar{
+  width: 100%;
+}
+.blocks{
+  min-height: 100px;
+  border: 2px solid #3B82F6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  border-radius: 10px;
+  background-color: #E8F1FF;
+}
+
+b{
+  color: #3B82F6;
+}
+mat-icon{
+  color: #3B82F6;
+}
+
+
+.blocks:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition-duration: 0.7s;
+}
+
+
+
+
+.slider {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider img {
+  width: 50%;
+  height: auto;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes slider-animation {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  33% { opacity: 1; }
+  53% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.slider img:nth-child(1) {
+  animation: slider-animation 10s infinite;
+}
+
+.slider img:nth-child(2) {
+  animation: slider-animation 10s infinite 5s;
+}
+
+.slider img:nth-child(3) {
+  animation: slider-animation 10s infinite 10s;
+}
+
+.slider img:nth-child(4) {
+  animation: slider-animation 10s infinite 15s;
+}
+
+.slider img:nth-child(5) {
+  animation: slider-animation 10s infinite 0s;
+}
+
+

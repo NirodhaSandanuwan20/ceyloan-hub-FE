@@ -114,11 +114,16 @@ mat-icon {
   padding: 10px;
   margin-right: 10px;
   border-radius: 5px;
-  border: 1px solid #3B82F6;
+  border: 3px solid #3B82F6;
   color: #3B82F6;
   font-size: 15px;
   font-weight: bold;
   background-color: white;
+}
+
+.right > button:hover {
+  color: white;
+  background-color: #3B82F6;
 }
 
 .toggle-div{
