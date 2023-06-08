@@ -347,7 +347,42 @@ mat-icon{
 
 
 .slider-outer{
-  height: 300px;
+  min-height: 400px;
+  height: auto;
   width: 100%;
-  border: 1px solid red;
+}
+
+.photos{
+  min-height: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8F1FF;
+  border-radius: 10px;
+  border: 2px solid #3B82F6;
+  margin-bottom: 5px;
+}
+
+.headers{
+  height: 75px;
+  width: 100%;
+  background-color: #565656;
+  display: flex;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.content{
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
 }

@@ -74,7 +74,7 @@ a{
 }
 
 .item:hover {
-  background-color: #3B82F6;
+  background-color: #E8F1FF;
   transform: scale(1.1);
   /* Increase the size by 20% */
 }
