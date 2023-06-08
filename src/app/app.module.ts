@@ -42,8 +42,8 @@ import { InstructionsComponent } from './pages/user/instructions/instructions.co
 import {DialogContentComponent, StartComponent} from './pages/user/start/start.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatRadioModule} from "@angular/material/radio";
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { CantactUsComponent } from './components/cantact-us/cantact-us.component';
 import { DonationComponent } from './components/donation/donation.component';
@@ -66,6 +66,7 @@ import { WatchComponent } from './pages/watch/watch.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -141,7 +142,8 @@ import {MatRippleModule} from '@angular/material/core';
     MatStepperModule,
     MatTooltipModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    CarouselModule.forRoot()
   ],
   providers: [authInterceptorProviders,FilterSubjectPipe],
   bootstrap: [AppComponent],

@@ -14,7 +14,6 @@
     .form-header {
       text-align: center;
       padding: 20px 20px;
-      font-family: 'Lobster', cursive;
     }
 
 
@@ -28,8 +27,9 @@
 
 <div class="container">
   <div class="inner">
+
     <h1 class="form-header">Sign Up</h1>
-    <mat-vertical-stepper [@.disabled]="true" #stepper="matVerticalStepper" linear>
+    <mat-vertical-stepper style="background-color:#dfe4ea " [@.disabled]="true" #stepper="matVerticalStepper" linear>
       <mat-step [stepControl]="personalForm" [editable]="editable">
         <form [formGroup]="personalForm">
           <ng-template matStepLabel>Personal Details</ng-template>
@@ -37,6 +37,7 @@
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Email</mat-label>
             <input
+              autofocus
               formControlName="email"
               matInput
               placeholder="Enter email"
@@ -136,6 +137,9 @@
         </div>
       </mat-step>
     </mat-vertical-stepper>
+
+    <h3 style="font-weight: bold" class="text-center">Already registered ? <a routerLink="/login">Login</a></h3>
+
   </div>
 </div>
 

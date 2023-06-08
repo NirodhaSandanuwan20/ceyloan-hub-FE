@@ -68,26 +68,26 @@
 
 <div class="outer">
   <div class="inners left">
-    <img src="assets/logo.png">
+    <img src="assets/logocrop.png">
   </div>
   <div class="inners center">
     <div class="tags">
       <ul>
 
         <li>
-          <a routerLink="/home" routerLinkActive="active">Home</a>
+          <a routerLink="/home" routerLinkActive="active">Home </a>
         </li>
         <li>
-          <a routerLink="/select-subject" routerLinkActive="active">Papers</a>
+          <a routerLink="/select-subject" routerLinkActive="active">Papers </a>
         </li>
         <li>
-          <a routerLink="/user-dashboard" routerLinkActive="active" *ngIf="isLoggedIn">PlayGround</a>
+          <a routerLink="/user-dashboard" routerLinkActive="active" *ngIf="isLoggedIn">PlayGround </a>
         </li>
-        <!--<li >
-          <a  routerLink="/contact-us" routerLinkActive="active">Contact Us</a>
-        </li>-->
+        <li >
+          <a  routerLink="/contact-us" routerLinkActive="active">Contact </a>
+        </li>
         <li>
-          <a routerLink="/about-us" routerLinkActive="active">About_Us</a>
+          <a routerLink="/about-us" routerLinkActive="active">About Us</a>
         </li>
         <!--<li >
           <a class="nav-link" routerLink="/donation" routerLinkActive="active">Donations</a>
@@ -118,32 +118,32 @@
 
 
 <div class="responsive-nav" *ngIf="show">
-  <button style="width: 80%" mat-raised-button color="primary" *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
-  <button style="width: 80%" mat-raised-button color="primary" *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
-  <button style="width: 80%" mat-raised-button color="primary" *ngIf="isLoggedIn" (click)="logout()">logout</button>
-  <button style="width: 80%" mat-raised-button color="primary" *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
+  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
+  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
+  <button class="resp-nav-btn" *ngIf="isLoggedIn" (click)="logout()">logout</button>
+  <button class="resp-nav-btn" *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
 
 
-  <button style="width: 80%" mat-raised-button color="primary" routerLink="/home" routerLinkActive="active">Home
+  <button class="resp-nav-btn" routerLink="/home" routerLinkActive="active">Home
   </button>
 
-  <button style="width: 80%" mat-raised-button color="primary" routerLink="/select-subject" routerLinkActive="active">
+  <button class="resp-nav-btn" routerLink="/select-subject" routerLinkActive="active">
     Buy Modules
   </button>
 
-  <button style="width: 80%" mat-raised-button color="primary" routerLink="/user-dashboard" routerLinkActive="active"
+  <button class="resp-nav-btn" routerLink="/user-dashboard" routerLinkActive="active"
           *ngIf="isLoggedIn">DashBoard
   </button>
 
-  <button style="width: 80%" mat-raised-button color="primary" routerLink="/about-us" routerLinkActive="active">About
+  <button class="resp-nav-btn" routerLink="/about-us" routerLinkActive="active">About
     Us
   </button>
 
-  <button style="width: 80%" mat-raised-button color="primary" routerLink="/admin" routerLinkActive="active"
+  <button class="resp-nav-btn" routerLink="/admin" routerLinkActive="active"
           *ngIf="isAdmin">Admin DashBoard
   </button>
 
-  <button style="width: 80%" mat-raised-button color="primary" (click)="openDropdown()">
+  <button class="resp-nav-btn" (click)="openDropdown()">
     <mat-icon>close</mat-icon>
   </button>
 

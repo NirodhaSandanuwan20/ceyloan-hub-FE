@@ -6,7 +6,9 @@
     >
 
     <mat-tab label="Profile">
-
+      <ng-template mat-tab-label>
+        <span class="bold-label">Profile</span>
+      </ng-template>
       <div class="row" id="profile-outer">
         <div class="col-xl-6 col-lg-6 col-md-6 col-12" id="profile-details">
           <mat-card>
@@ -69,15 +71,14 @@
     </mat-tab>
 
     <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle">
-
+      <ng-template mat-tab-label>
+        <span class="bold-label">{{c.cTitle}}</span>
+      </ng-template>
       <div class="row">
         <div class="col-12 text-center">
           <div class="header">
             <h1
-              style="font-size:30px;
-              font-family: 'Lobster', cursive;
-              font-family: 'Roboto Mono', monospace;
-              text-decoration: underline">
+              style="font-size:30px;">
               Let's take a look what you have done so far
             </h1>
           </div>
@@ -90,7 +91,7 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b>My history</b>
+                <b>01.My history</b>
               </mat-panel-title>
               <mat-panel-description>
                 <b>The performance is given in full detail</b>
@@ -123,17 +124,17 @@
               </table>
 
               <div class="container text-center mt20 mb20">
-                <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+                <button (click)="loadMore()" class="btn"  *ngIf="showMoreBtn" >
                   Load More
                 </button>
               </div>
             </div>
 
           </mat-expansion-panel>
-          <mat-expansion-panel>
+          <mat-expansion-panel [expanded]="isExpanded">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b>My progress</b>
+                <b>02.My progress</b>
               </mat-panel-title>
               <mat-panel-description>
                 <b>Progress is visualized in a chart.</b>
@@ -160,7 +161,7 @@
 
 
             <div class="container text-center mt20 mb20">
-              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+              <button (click)="loadMore()"  *ngIf="showMoreBtn" class="btn">
                 Load More
               </button>
             </div>
@@ -169,7 +170,7 @@
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <b>My average</b>
+                <b>03.My average</b>
               </mat-panel-title>
               <mat-panel-description>
                 <b>Summary of the current situation</b>
@@ -186,7 +187,7 @@
             </div>
 
             <div class="container text-center mt20 mb20">
-              <button (click)="loadMore()" mat-raised-button *ngIf="showMoreBtn" color="primary">
+              <button (click)="loadMore()" class="btn" *ngIf="showMoreBtn" >
                 Load More
               </button>
             </div>

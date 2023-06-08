@@ -191,7 +191,7 @@
               text-decoration: underline;
               margin: 20px 0px;
          ">
-    Show your modules
+    Buy modules now
   </h1>
 
   <div class="search" style="display: flex;align-items: center;justify-content: center">
@@ -220,7 +220,7 @@
   <div class="containers">
     <div class="item" *ngFor="let q of categories">
       <div class="inner">
-        <p style="color:white;"><b>{{ q.title }} Papers Package</b></p>
+        <p style="color:black;font-weight: bold"><b>{{ q.title }} Papers Package</b></p>
         <button> Check out</button>
         <button
           routerLink="/specific-action" (click)="addCategory(q.cid,q.title)"

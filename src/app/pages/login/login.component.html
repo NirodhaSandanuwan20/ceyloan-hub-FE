@@ -1,51 +1,51 @@
-<div class="bootstrap-wrapper" style="margin-top: 100px">
+<div class="border">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3 outer">
+      <div class="col-xl-6 col-lg-6 col-md-8 col-sm- 10 col-10 outer" style="margin: 0 auto;">
+
+        <div class="text-center">
+          <img src="assets/exam1.png" style="width: 100px;"/>
+        </div>
+
+        <h1 class="text-center">Login Here</h1>
+
+        <form [formGroup]="loginForm">
+          <!-- username field -->
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              formControlName="username"
+              matInput
+              autofocus
+            />
+            <mat-hint>your username</mat-hint>
+          </mat-form-field>
+
+          <!-- password field  -->
+
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>User Password</mat-label>
+            <input
+              formControlName="password"
+              [type]="changeType?'password':'text'"
+              matInput
+              placeholder="Enter your password here"
+
+            />
+            <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
+            <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
+          </mat-form-field>
+
           <div class="text-center">
-            <img src="../../../assets/logo.jpg" style="width: 100px;" alt="" />
+            <button style="width: 100%;" [disabled]="loginForm.invalid" (click)="formSubmit()" mat-raised-button
+                    color="primary" type="submit">
+              Login
+            </button>
+            <h5 class="forgot"> Forgot password ? <a routerLink="/forgot-password"> <b>Reset</b> </a></h5>
+            <h5 class="forgot">not register yet ? <a routerLink="/signup"> <b>Signup here</b> </a></h5>
           </div>
+        </form>
 
-          <h1 class="text-center" style="font-family: 'Lobster', cursive">Login_Here</h1>
-
-          <!-- {{ loginData | json }} -->
-          <form [formGroup]="loginForm">
-            <!-- username field -->
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>Username</mat-label>
-              <input
-                formControlName="username"
-                matInput
-              />
-              <mat-hint>your username</mat-hint>
-            </mat-form-field>
-
-            <!-- password field  -->
-
-            <mat-form-field class="full-width" appearance="outline">
-              <mat-label>User Password</mat-label>
-              <input
-                formControlName="password"
-                [type]="changeType?'password':'text'"
-                matInput
-                placeholder="Enter your password here"
-
-              />
-              <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
-              <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
-            </mat-form-field>
-
-            <div class="text-center">
-              <button style="width: 100%;" [disabled]="loginForm.invalid" (click)="formSubmit()" mat-raised-button color="primary" type="submit">
-                Login
-              </button>
-              <h5 class="forgot" routerLink="/forgot-password"> Forgot password ?</h5>
-              <h5>not register yet ? click signup here</h5>
-              <button routerLink="/signup" style="width:100%;margin-top: 1px;"  mat-raised-button color="accent">
-                Signup Here
-              </button>
-            </div>
-          </form>
       </div>
     </div>
   </div>

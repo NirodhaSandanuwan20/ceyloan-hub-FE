@@ -5,6 +5,9 @@
     >
 
     <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle">
+      <ng-template mat-tab-label>
+        <span class="bold-label">{{c.cTitle}}</span>
+      </ng-template>
       <div class="text-center col-12 mt10">
         <h1
           style="font-size:30px;
@@ -42,7 +45,7 @@
         <div class="item" *ngFor="let q of epicQuizzes">
           <div class="inner">
 
-            <p style="color:white;"><b>{{ q.title }} {{ q.category.title }}</b></p>
+            <p style="color:black;font-weight: bold"><b>{{ q.title }} {{ q.category.title }}</b></p>
 
             <button
               [routerLink]="'/instructions/' + q.qId"

@@ -50,15 +50,32 @@
 }
 
 
+.btn{
+  margin: 5px!important;
+  width: 100px;
+  color: #3B82F6;
+  background-color: white;
+  border: 3px solid #3B82F6;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.btn:hover{
+  color: white;
+  background-color: #3B82F6;
+}
 
 
 .profile-image {
   max-width: 150px;
   max-height: 150px;
-  border: 2px solid #ff4081;
+  border: 2px solid #3B82F6;
   border-radius: 50%;
 }
-
+.bold-label {
+  font-weight: bold;
+  color: #3B82F6;
+}
 
 .header {
    margin: 0 auto!important;

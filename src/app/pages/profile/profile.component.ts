@@ -17,7 +17,7 @@ import {Router} from '@angular/router';
 })
 
 export class ProfileComponent implements OnInit {
-
+  isExpanded: boolean = true;
   cTitle;
   selectedCategories = [];
   series = [];
@@ -31,10 +31,10 @@ export class ProfileComponent implements OnInit {
   usermail;
 
   colorSchemePie = {
-    domain: ['#2980b9', '#c0392b']
+    domain: ['#3B82F6', '#c0392b']
   };
   colorSchemeLineChart = {
-    domain: ['#2980b9']
+    domain: ['#3B82F6']
   };
 
   constructor(
