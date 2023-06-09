@@ -75,7 +75,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'news-letter',
+    path: 'test',
     component: NewsLetterComponent,
     pathMatch: 'full'
   },

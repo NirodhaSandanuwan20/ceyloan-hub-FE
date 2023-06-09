@@ -14,12 +14,13 @@ export class NewsLetterComponent implements OnInit {
   introShow = true;
   QuestionShow = false;
   position = 'below';
-  private timer: number;
-  private fullTime: number;
-  private stepDuration: number;
-  private countdown: number;
-  private timerInterval: any;
-  private countdownInterval: any;
+  timer: number;
+  fullTime: number;
+  stepDuration: number;
+  countdown: number;
+  timerInterval: any;
+  countdownInterval: any;
+  showAnswers  = false;
 
 
   constructor(
@@ -122,6 +123,11 @@ export class NewsLetterComponent implements OnInit {
   }
 
 
+  submit() {
+    this.QuestionShow = false;
+    this.showAnswers = true;
+    this.stopCountdown();
+  }
 }
 
 
