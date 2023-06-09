@@ -366,15 +366,17 @@ mat-icon{
 }
 
 .headers{
-  height: 75px;
+  height: 50px;
   width: 100%;
-  background-color: #565656;
+  background-color: #6c5ce7;
   display: flex;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: bold;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
 .content{

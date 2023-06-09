@@ -1,7 +1,7 @@
 /**{
 margin: 0!important;
 }*/
-.outer{
+.outer {
   width: 100%;
   height: 100vh;
 }
@@ -9,14 +9,14 @@ margin: 0!important;
 .item {
   width: 100%; /* Divs take up the full width of the container */
   min-height: 100px;
-  margin: 5px 5px!important;
+  margin: 5px 5px !important;
   border-radius: 5px;
   padding: 2px;
   transition: all 0.4s ease;
   background-color: #dfe6e9;
 }
 
-button{
+button {
   padding: 2px;
   width: 80%;
   background-color: white;
@@ -26,24 +26,36 @@ button{
   border-radius: 5px;
   border: none;
 }
-a{
+
+a {
   color: black;
   text-decoration: none;
 }
 
+.add-sub {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.inner{
+.inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+
+.add-sub > .inner > p {
+  font-weight: bold;
+  font-size: 45px;
+  margin: 50px;
 }
 
 .bold-label {
   font-weight: bold;
   color: #3B82F6;
 }
-
 
 
 @media (min-width: 600px) {
@@ -55,26 +67,27 @@ a{
 
   .item {
     width: 48%; /* Two divs per row on screens wider than 600px */
-    height: 100px!important;
+    height: 100px !important;
   }
 }
 
 @media (min-width: 900px) {
   .item {
     width: 31.33%; /* Three divs per row on screens wider than 900px */
-    height: 100px!important;
+    height: 100px !important;
   }
 }
 
 @media (min-width: 1200px) {
   .item {
     width: 23.5%; /* Four divs per row on screens wider than 1200px */
-    height: 100px!important;
+    height: 100px !important;
   }
 }
 
 .item:hover {
   background-color: #E8F1FF;
   transform: scale(1.1);
+  border: 3px solid #3B82F6;
   /* Increase the size by 20% */
 }

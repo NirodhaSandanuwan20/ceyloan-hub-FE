@@ -1,9 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Mono:wght@300&display=swap');
 *{
   font-family: 'Lobster', cursive;
   font-family: 'Roboto Mono', monospace;
 }
+
 body{
   background-color: #aaa69d;
 }

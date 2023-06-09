@@ -1,1 +1,586 @@
-<p>news-letter works!</p>
+<!--intro-->
+<div class="bootstrap-wrapper" *ngIf="introShow">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card class="mt20">
+          <mat-card-header>
+            <!-- heading -->
+            <mat-card-title>
+              පහත උපදෙස් කියවන්න
+            </mat-card-title>
+            <mat-card-subtitle> One step more to go</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content class="ml20">
+            <!-- content  -->
+
+            <h1>Test Paper - 2021 AL</h1>
+            <p></p>
+
+            <mat-divider></mat-divider>
+            <br/>
+            <h1>වැදගත් උපදෙස්</h1>
+
+            <ul>
+              <li>ඔබට <b>මිනිත්තු 120 </b> ක කාලයක් ලැබේ.</li>
+
+              <!-- Let the time of each questions is  2 minutes -->
+              <li>
+                නියමිත කාලය අවසන් උවහොත් ඒ වන විට අවසන් කර ඇති ප්‍රශ්න වලට ස්වයංක්රීයව ලකුණු ලැබේ.
+              </li>
+              <li>
+                මුළු ප්‍රශ්න <b>50 </b> ක් ඇතුලත් වේ.
+              </li>
+              <li>
+                එක් ප්‍රශ්නක් සදහා ලකුණු 1 බැගින් හිමි වේ
+              </li>
+              <li>සියලු ප්‍රශ්න බහුවරණ ගණයට ඇතුලත් වේ.</li>
+            </ul>
+
+            <mat-divider></mat-divider>
+            <br/>
+            <h1>Attempting Quiz</h1>
+            <ul>
+              <li>Click <b>Start Quiz</b> button to start the quiz</li>
+              <li>
+                The time will start the moment you click the Start Test button.
+              </li>
+              <li>
+                You can not resume this quiz, if interrupted due to any reason.
+              </li>
+              <li>Scroll down to move to next question.</li>
+              <li>Click on Submit Quiz button on completion of the quiz.</li>
+            </ul>
+          </mat-card-content>
+          <mat-card-actions class="text-center">
+            <!-- actions -->
+            <button
+              (click)="hideIntro()"
+              class=""
+              mat-raised-button
+              color="primary"
+            >
+              Start QUIZ
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+<!--intro  -  End-->
+
+
+<!--Paper-->
+<div class="paper" *ngIf="QuestionShow">
+  <!--popup-->
+
+  <input type="checkbox" id="toggle-popup" class="toggle-checkbox">
+  <label for="toggle-popup" class="toggle-button">
+    <div class="example-tooltip-host" matTooltip="To see time and submit button" [matTooltipPosition]='position'>
+      Console
+    </div>
+  </label>
+  <div class="popup">
+    <div class="popup-content">
+      <span style="color:white;font-weight:bold;font-size: 30px">{{ getFormattedTime() }}</span>
+      <div class="divider"></div>
+
+      <button class="mt20 boxbtn" mat-raised-button>
+        Submit Quiz
+      </button>
+
+      <button class="mt20 boxbtn" mat-raised-button>
+        <div class="example-tooltip-host" matTooltip="This is not working in test mode"
+             [matTooltipPosition]='position'>
+          + Add todo about paper
+        </div>
+      </button>
+
+      <button class="mt20 boxbtn" mat-raised-button (click)="pauseTimer()">
+        <div class="example-tooltip-host" matTooltip="Stop your timer"
+             [matTooltipPosition]='position'>
+          Pause paper
+        </div>
+      </button>
+
+      <button class="mt20 boxbtn" mat-raised-button>
+        <div class="example-tooltip-host" matTooltip="waiting.." [matTooltipPosition]='position'>
+          waiting feature
+        </div>
+      </button>
+
+      <label for="toggle-popup" class="close-button">
+        <div class="example-tooltip-host" matTooltip="To close console box" [matTooltipPosition]='position'>
+          <mat-icon>close</mat-icon>
+        </div>
+      </label>
+
+    </div>
+  </div>
+
+  <!--popup-End-->
+
+  <!--Question-->
+
+  <div class="col-md-10 main" style="margin: 0 auto;">
+
+    <div style="display:flex;align-items: center;justify-content: center;margin-bottom: 10px!important;"
+    >
+      <h1 class="mt20">
+        <b>Test Paper - 2021 AL Physics</b>
+      </h1>
+
+    </div>
+
+    <mat-card>
+      <mat-vertical-stepper [@.disabled]="false"
+                            (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)"
+                            #stepper="matVerticalStepper">
+
+        <mat-step #yourStep [editable]="true" label="Question 1) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 02) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 03) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 04) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 05) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 06) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 07) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 08) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 09) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+        <mat-step #yourStep [editable]="true" label="Question 10) ">
+          <div class="img-box" style="overflow: hidden">
+            <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+          </div>
+
+          <mat-divider></mat-divider>
+          <br/>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+            </div>
+
+          </div>
+
+          <div class="text-center">
+            <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
+            </button>
+            <button mat-raised-button color="primary" matStepperNext >Next</button>
+          </div>
+
+
+        </mat-step>
+
+
+      </mat-vertical-stepper>
+      </mat-card>
+
+  </div>
+
+
+
+
+  </div>
+
+
+
+<div class="pause-div" *ngIf="!pause"  matRipple
+     [matRippleCentered]="false"
+     [matRippleUnbounded]="true"
+     [matRippleRadius]="80"
+     [matRippleColor]="'#3498db'">
+  <div class="pause-inner">
+    <h1 class="text-center" style="color:white;font-size: 40px;font-family: 'Lobster', cursive">Your in sleep mode</h1>
+    <button class="mt20" mat-raised-button>
+      <div class="example-tooltip-host" (click)="resumeTimer()" matTooltip="Resume your timer"
+           [matTooltipPosition]='position'>
+        Lets back to work !! Resume Paper
+      </div>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+

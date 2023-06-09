@@ -218,61 +218,7 @@
           </mat-card-content>
         </mat-card>
 
-        <!--<mat-vertical-stepper [@.disabled]="false" (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)" #stepper="matVerticalStepper">
-          <div class="a" *ngFor="let q of questions; let i = index">
-            <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
-              <p>
-                <b>Q {{ i + 1 }})</b>
-                <span class="ml10" [innerHTML]="q.content"></span>
-              </p>
 
-              <div class="img-box" style="overflow: hidden">
-                <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
-              </div>
-
-              <mat-divider></mat-divider>
-              <br />
-
-              <div class="row">
-                <div class="col-md-6">
-                  <input  type="radio" disabled [value]="q.option1" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option1 }}
-                </div>
-
-                <div class="col-md-6">
-                  <input type="radio" disabled [value]="q.option2" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option2 }}
-                </div>
-              </div>
-
-              <div class="row mt20">
-                <div class="col-md-6">
-                  <input type="radio" disabled [value]="q.option3" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option3 }}
-                </div>
-                <div class="col-md-6">
-                  <input type="radio" disabled [value]="q.option4" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option4 }}
-                </div>
-              </div>
-
-              <div class="row mt20">
-                <div class="col-md-6">
-                  <input type="radio" disabled [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer" />{{ q.option5 }}
-                </div>
-              </div>
-
-
-              <div class="acc">
-
-                <div *ngIf="!q.accuracy">
-                  <h3 style="color: red">Your Answer is Wrong !! <br>Correct Answer : {{q.answer}}</h3>
-                </div>
-
-                <div *ngIf="q.accuracy">
-                  <h3 style="color: blue">Your Answer is Correct !!</h3>
-                </div>
-
-              </div>
-            </mat-step>
-          </div>
-        </mat-vertical-stepper>-->
 
         <div class="text-center">
           <button class="text-center mt20" mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">

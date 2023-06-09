@@ -35,10 +35,12 @@ h3 {
   min-height: 60px;
   height: auto;
 }
+
 input {
   width: 15px;
   height: 15px;
   accent-color: crimson;
+  cursor: pointer;
 }
 
 

@@ -81,9 +81,13 @@
     </mat-tab>
 
     <mat-tab *ngIf="isEmpty" label="Add Subject">
+      <ng-template mat-tab-label>
+        <span class="bold-label">Add Subject</span>
+      </ng-template>
       <div class="add-sub">
         <div class="inner">
-          <button mat-raised-button color="primary" routerLink="/select-subject">+ Add subject</button>
+          <p>Buy Module</p>
+          <button mat-raised-button color="primary" routerLink="/select-subject">Buy Now</button>
         </div>
       </div>
     </mat-tab>
