@@ -2,7 +2,7 @@
   <div class="bootstrap-wrapper" *ngIf="!isSubmit">
 
     <!--popup box item-->
-    <input type="checkbox" id="toggle-popup" class="toggle-checkbox">
+    <input checked type="checkbox" id="toggle-popup" class="toggle-checkbox">
     <label for="toggle-popup" class="toggle-button">
       <div class="example-tooltip-host" matTooltip="To see time and submit button" [matTooltipPosition]='position'>
         Console
@@ -13,27 +13,21 @@
         <span style="color:white;font-weight:bold;font-size: 30px">{{ getFormattedTime() }}</span>
         <div class="divider"></div>
 
-        <button class="mt20 boxbtn" (click)="submitQuiz()" mat-raised-button>
+        <button class="mt10 boxbtn" (click)="submitQuiz()" mat-raised-button>
           Submit Quiz
         </button>
 
-        <button class="mt20 boxbtn" (click)="openPopup()" mat-raised-button>
+        <button class="mt10 boxbtn" (click)="openPopup()" mat-raised-button>
           <div class="example-tooltip-host" matTooltip="what u need to refer after paper or etc.."
                [matTooltipPosition]='position'>
             + Add todo about paper
           </div>
         </button>
 
-        <button class="mt20 boxbtn" mat-raised-button>
+        <button class="mt10 boxbtn" mat-raised-button>
           <div class="example-tooltip-host"  (click)="pauseTimer()" matTooltip="Stop your timer"
                [matTooltipPosition]='position'>
             Pause paper
-          </div>
-        </button>
-
-        <button class="mt20 boxbtn" mat-raised-button>
-          <div class="example-tooltip-host" matTooltip="waiting.." [matTooltipPosition]='position'>
-            waiting feature
           </div>
         </button>
 

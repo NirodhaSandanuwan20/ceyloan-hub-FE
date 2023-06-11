@@ -118,10 +118,7 @@
 
 
 <div class="responsive-nav" *ngIf="show">
-  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
-  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
-  <button class="resp-nav-btn" *ngIf="isLoggedIn" (click)="logout()">logout</button>
-  <button class="resp-nav-btn" *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
+
 
 
   <button class="resp-nav-btn" routerLink="/home" routerLinkActive="active">Home
@@ -138,6 +135,11 @@
   <button class="resp-nav-btn" routerLink="/about-us" routerLinkActive="active">About
     Us
   </button>
+
+  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
+  <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
+  <button class="resp-nav-btn" *ngIf="isLoggedIn" (click)="logout()">logout</button>
+  <button class="resp-nav-btn" *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
 
   <button class="resp-nav-btn" routerLink="/admin" routerLinkActive="active"
           *ngIf="isAdmin">Admin DashBoard

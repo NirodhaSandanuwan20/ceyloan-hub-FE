@@ -23,14 +23,14 @@
             <h1>වැදගත් උපදෙස්</h1>
 
             <ul>
-              <li>ඔබට <b>මිනිත්තු 120 </b> ක කාලයක් ලැබේ.</li>
+              <li>ඔබට <b>මිනිත්තු X </b> ක කාලයක් ලැබේ.</li>
 
               <!-- Let the time of each questions is  2 minutes -->
               <li>
                 නියමිත කාලය අවසන් උවහොත් ඒ වන විට අවසන් කර ඇති ප්‍රශ්න වලට ස්වයංක්රීයව ලකුණු ලැබේ.
               </li>
               <li>
-                මුළු ප්‍රශ්න <b>50 </b> ක් ඇතුලත් වේ.
+                මුළු ප්‍රශ්න <b>X </b> ක් ඇතුලත් වේ.
               </li>
               <li>
                 එක් ප්‍රශ්නක් සදහා ලකුණු 1 බැගින් හිමි වේ
@@ -40,18 +40,19 @@
 
             <mat-divider></mat-divider>
             <br/>
-            <h1>Attempting Quiz</h1>
-            <ul>
-              <li>Click <b>Start Quiz</b> button to start the quiz</li>
-              <li>
-                The time will start the moment you click the Start Test button.
-              </li>
-              <li>
-                You can not resume this quiz, if interrupted due to any reason.
-              </li>
-              <li>Scroll down to move to next question.</li>
-              <li>Click on Submit Quiz button on completion of the quiz.</li>
-            </ul>
+            <h1>This is only simple demo</h1>
+            <p>
+              <b>
+                We would like to inform you that what you are about to experience is a simple demo version designed to
+                showcase the basic functionality and give you a preview of our product. Please note that this demo is not
+                the final or complete version of our product, and it may not include all the features or functionalities
+                that the actual product offers. The purpose of this demo is to provide you with a glimpse of what our
+                product can do and give you an idea of its potential. We appreciate your understanding and encourage you
+                to explore this demo to get a sense of our product's capabilities. For a comprehensive understanding of
+                the full range of features and functionalities, we recommend using paid papers. Thank you for trying our
+                test paper, and we hope you enjoy this demo experience.
+              </b>
+            </p>
           </mat-card-content>
           <mat-card-actions class="text-center">
             <!-- actions -->
@@ -98,7 +99,7 @@
         </div>
       </button>
 
-      <button class="mt20 boxbtn" mat-raised-button (click)="pauseTimer()" >
+      <button class="mt20 boxbtn" mat-raised-button (click)="pauseTimer()">
         <div class="example-tooltip-host" matTooltip="Stop your timer"
              [matTooltipPosition]='position'>
           Pause paper
@@ -149,25 +150,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -175,7 +176,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -190,25 +191,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -216,7 +217,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -231,25 +232,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -257,7 +258,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -272,25 +273,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -298,7 +299,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -313,25 +314,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -339,7 +340,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -354,25 +355,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -380,7 +381,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -395,25 +396,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -421,7 +422,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -436,25 +437,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -462,7 +463,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -477,25 +478,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -503,7 +504,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -518,25 +519,25 @@
 
           <div class="row">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option1" name="i" /><b> option 1 </b>
+              <input type="radio" value="q.option1" name="i"/><b> option 1 </b>
             </div>
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option2" name="i" /><b> option 2 </b>
-            </div>
-          </div>
-
-          <div class="row mt20">
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option3" name="i" /><b> option 3 </b>
-            </div>
-            <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option4" name="i" /><b> option 4 </b>
+              <input type="radio" value="q.option2" name="i"/><b> option 2 </b>
             </div>
           </div>
 
           <div class="row mt20">
             <div class="col-md-6 col-sm-6 col-6">
-              <input type="radio" value="q.option5" name="i" /><b> option 5 </b>
+              <input type="radio" value="q.option3" name="i"/><b> option 3 </b>
+            </div>
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option4" name="i"/><b> option 4 </b>
+            </div>
+          </div>
+
+          <div class="row mt20">
+            <div class="col-md-6 col-sm-6 col-6">
+              <input type="radio" value="q.option5" name="i"/><b> option 5 </b>
             </div>
 
           </div>
@@ -544,7 +545,7 @@
           <div class="text-center">
             <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
             </button>
-            <button mat-raised-button color="primary" matStepperNext >Next</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
           </div>
 
 
@@ -552,14 +553,12 @@
 
 
       </mat-vertical-stepper>
-      </mat-card>
+    </mat-card>
 
   </div>
 
 
-
-
-  </div>
+</div>
 <!--Paper End-->
 
 
@@ -571,17 +570,476 @@
 
   <div class="col-md-10 main" style="margin: 0 auto;">
 
-test answer sheet
+    <mat-card>
+      <mat-card-content class="text-center">
+        <h1 style="color: blue;font-size: 25px; align-items: center"> Test Paper
+          - 2021 AL Physics</h1>
+        <h1>Correct Answers : ??</h1>
+        <h1>Check out your mistakes now</h1>
+      </mat-card-content>
+      <mat-card-actions class="text-center">
+        <button mat-raised-button color="accent" [routerLink]="'/user-dashboard'">
+          Dashboard
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card>
+      01)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      02)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+        <div>
+          <h3 style="color: red">Your Answer is Wrong !! <br>Correct Answer : ??</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      03)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      04)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      05)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      06)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+        <div>
+          <h3 style="color: red">Your Answer is Wrong !! <br>Correct Answer : ??</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      07)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      08)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+        <div>
+          <h3 style="color: red">Your Answer is Wrong !! <br>Correct Answer : ??</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      09)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+
+      10)
+      <div class="img-box" style="overflow: hidden">
+        <img style="width:100%;" src="assets/q.jpeg" alt="Question img">
+      </div>
+
+      <mat-divider></mat-divider>
+      <br/>
+
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input checked type="radio" value="q.option1"/><b> option 1 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option2"/><b> option 2 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option3"/><b> option 3 </b>
+        </div>
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option4"/><b> option 4 </b>
+        </div>
+      </div>
+
+      <div class="row mt20">
+        <div class="col-md-6 col-sm-6 col-6">
+          <input disabled type="radio" value="q.option5"/><b> option 5 </b>
+        </div>
+
+      </div>
+
+      <div class="acc">
+
+
+        <div>
+          <h3 style="color: blue">Your Answer is Correct !!</h3>
+        </div>
+
+
+      </div>
+      <mat-divider></mat-divider>
+
+    </mat-card>
 
   </div>
-
-
 
 
 </div>
 <!--Answers ENd-->
 
-<div class="pause-div" *ngIf="!pause"  matRipple
+<div class="pause-div" *ngIf="!pause" matRipple
      [matRippleCentered]="false"
      [matRippleUnbounded]="true"
      [matRippleRadius]="80"

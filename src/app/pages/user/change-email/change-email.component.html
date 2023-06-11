@@ -1,5 +1,5 @@
 <div class="outer">
-  <div class="inner">
+  <div class="inner col-xl-4 col-lg-4 col-md-6 col-sm-11 col-11">
 
     <form [formGroup]="mailForm" class="form" *ngIf="show">
       <h1 class="text-center" style=" font-family: 'Lobster', cursive;
@@ -8,7 +8,7 @@
   font-family: 'Roboto Mono', monospace;">No worry just enter your email & verify it</h3>
       <mat-form-field style="width: 100%;" appearance="outline">
         <mat-label>Enter your new email</mat-label>
-        <input formControlName="email" type="email" matInput/>
+        <input autofocus formControlName="email" type="email" matInput/>
       </mat-form-field>
       <br>
 

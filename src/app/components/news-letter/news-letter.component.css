@@ -114,6 +114,12 @@ input {
 }
 
 
+.acc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @keyframes sleep2 {
   0% {
 

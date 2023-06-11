@@ -26,16 +26,15 @@ export class NewsLetterComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
   ) {
-    this.startCountdown();
   }
 
-  ngOnInit(): void {
-    this.setUpTime();
-  }
+  ngOnInit(): void {}
 
   hideIntro() {
     this.introShow = false;
     this.QuestionShow = true;
+    this.setUpTime();
+    this.startCountdown();
   }
 
   setUpTime(){
