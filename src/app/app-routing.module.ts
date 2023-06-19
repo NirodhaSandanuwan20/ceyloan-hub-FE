@@ -65,7 +65,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'payment-plans',
+    path: 'help-center',
     component: PaymentComponent,
     pathMatch: 'full'
   },
