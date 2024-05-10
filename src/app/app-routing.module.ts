@@ -28,10 +28,11 @@ import {VerificationComponent} from "./pages/verification/verification.component
 import {ForgotPasswordComponent} from './pages/user/forgot-password/forgot-password.component';
 import {QuizAttemptHistoryComponent} from './pages/admin/quiz-attempt-history/quiz-attempt-history.component';
 import {SelectSubjectComponent} from './pages/user/select-subject/select-subject.component';
-import {PaymentComponent} from "./components/payment/payment.component";
+import {HelpCenterComponent} from "./components/payment/help-center.component";
 import {ChangePasswordComponent} from "./pages/user/change-password/change-password.component";
 import {ChangeEmailComponent} from "./pages/user/change-email/change-email.component";
 import {AuthGuard} from "./services/auth.service";
+import {PaymentsSlipComponent} from "./pages/user/payments-slip/payments-slip.component";
 
 const routes: Routes = [
   {
@@ -66,7 +67,7 @@ const routes: Routes = [
   },
   {
     path: 'help-center',
-    component: PaymentComponent,
+    component: HelpCenterComponent,
     pathMatch: 'full'
   },
   {
@@ -172,6 +173,11 @@ const routes: Routes = [
   {
     path: 'change-email',
     component: ChangeEmailComponent,
+    canActivate: [NormalGuard],
+  },
+  {
+    path: 'payments-slip/:cid',
+    component: PaymentsSlipComponent,
     canActivate: [NormalGuard],
   }
 ];

@@ -7,6 +7,7 @@ import {CategoryService} from 'src/app/services/category.service';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import Swal from 'sweetalert2';
 import {LoginService} from "../../../services/login.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-select-subject',
@@ -31,7 +32,8 @@ export class SelectSubjectComponent implements OnInit {
     private selectSubjectServeice: SelectSubjectService,
     private categoryServeice: CategoryService,
     private snackBar: MatSnackBar,
-    public login: LoginService
+    public login: LoginService,
+    private _route: ActivatedRoute
     /* private datePipe: DatePipe */
   ) {
   }
@@ -41,6 +43,7 @@ export class SelectSubjectComponent implements OnInit {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.isLoggedIn = this.login.isLoggedIn();
     this.getAllSelectedCategories();
+
   }
 
 

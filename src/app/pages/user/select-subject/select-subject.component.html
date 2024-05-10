@@ -221,7 +221,7 @@
     <div class="item" *ngFor="let q of categories">
       <div class="inner">
         <p style="color:black;font-weight: bold"><b>{{ q.title }} Papers Package</b></p>
-        <button> Check out</button>
+        <button [routerLink]="'/payments-slip/' + q.cid"> Check out</button>
         <button
           routerLink="/specific-action" (click)="addCategory(q.cid,q.title)"
         >Buy now</button>

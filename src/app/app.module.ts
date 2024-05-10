@@ -56,7 +56,7 @@ import { QuizAttemptHistoryComponent } from './pages/admin/quiz-attempt-history/
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SelectSubjectComponent } from './pages/user/select-subject/select-subject.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { PaymentComponent } from './components/payment/payment.component';
+import { HelpCenterComponent } from './components/payment/help-center.component';
 import { TodoListComponent } from './pages/user/todo-list/todo-list.component';
 import { ChangePasswordComponent } from './pages/user/change-password/change-password.component';
 import { ChangeEmailComponent } from './pages/user/change-email/change-email.component';
@@ -67,6 +67,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { PaymentsSlipComponent } from './pages/user/payments-slip/payments-slip.component';
 
 @NgModule({
   declarations: [
@@ -103,11 +104,12 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     FilterSubjectPipe,
     QuizAttemptHistoryComponent,
     SelectSubjectComponent,
-    PaymentComponent,
+    HelpCenterComponent,
     TodoListComponent,
     ChangePasswordComponent,
     ChangeEmailComponent,
-    WatchComponent
+    WatchComponent,
+    PaymentsSlipComponent
 ],
   imports: [
     BrowserModule,
