@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit {
     private loginService: LoginService,
     private profileService: ProfileService,
     private categoryService: CategoryService,
-    private selectSubjectServeice: SelectSubjectService,
+    private selectSubjectService: SelectSubjectService,
     private userService: UserService,
     private pipe: FilterSubjectPipe,
     private router: Router
@@ -50,8 +50,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userId = JSON.parse(localStorage.getItem('user')).id;
     this.user = this.loginService.getUser();
-    this.getAllSelectedCategories();
     this.getUserDetails();
+    this.getAllSelectedCategories();
   }
 
 
@@ -65,14 +65,18 @@ export class ProfileComponent implements OnInit {
   }
 
   getAllSelectedCategories() {
-    this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe((response: any) => {
+    console.log('get ALL Selected Categories');
+    this.selectSubjectService.getSelectedUserCategory(this.userId).subscribe((response: any) => {
+        console.log(response);
         this.selectedCategories = response;
+        console.log(this.selectedCategories);
       },
       (error) => {
         console.log(error);
 
       }
     );
+    console.log('get ALL Selected Categories end point' );
   }
 
 

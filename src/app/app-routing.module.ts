@@ -147,7 +147,7 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [NormalGuard, AuthGuard],
   },
   {
     path: 'start/:qid',
@@ -166,11 +166,13 @@ const routes: Routes = [
   },
   {
     path: 'change-password',
-    component: ChangePasswordComponent
+    component: ChangePasswordComponent,
+    canActivate: [NormalGuard],
   },
   {
     path: 'change-email',
-    component: ChangeEmailComponent
+    component: ChangeEmailComponent,
+    canActivate: [NormalGuard],
   }
 ];
 

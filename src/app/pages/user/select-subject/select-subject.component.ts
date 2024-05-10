@@ -1,11 +1,12 @@
 import {DatePipe} from '@angular/common';
 import {Component, OnInit, ViewChild} from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import {MatAccordion} from '@angular/material/expansion';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {error} from 'console';
 import {CategoryService} from 'src/app/services/category.service';
 import {SelectSubjectService} from 'src/app/services/select-subject.service';
 import Swal from 'sweetalert2';
+import {LoginService} from "../../../services/login.service";
 
 @Component({
   selector: 'app-select-subject',
@@ -17,17 +18,20 @@ import Swal from 'sweetalert2';
 export class SelectSubjectComponent implements OnInit {
 
   userId;
+  isLoggedIn;
   categories = [];
   selectedCategories: any = [];
   date = 'not yet';
-  searchText:string = '';
+  searchText: string = '';
   @ViewChild(MatAccordion) accordion: MatAccordion;
+
   /* myDate = new Date(); */
 
   constructor(
     private selectSubjectServeice: SelectSubjectService,
     private categoryServeice: CategoryService,
     private snackBar: MatSnackBar,
+    public login: LoginService
     /* private datePipe: DatePipe */
   ) {
   }
@@ -35,6 +39,7 @@ export class SelectSubjectComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCategories();
     this.userId = JSON.parse(localStorage.getItem('user')).id;
+    this.isLoggedIn = this.login.isLoggedIn();
     this.getAllSelectedCategories();
   }
 
@@ -56,7 +61,7 @@ export class SelectSubjectComponent implements OnInit {
   }
 
   addCategory(cid, title) {
-    let text = 'Do you want to add ' + title + ' as your subject ?'
+    /*let text = 'Do you want to add ' + title + ' as your subject ?'
     let c = {
       cid: cid,
       date: this.date,
@@ -85,7 +90,7 @@ export class SelectSubjectComponent implements OnInit {
             });
           },
           (error) => {
-            this.snackBar.open(error.error.text, 'Oops !!', {
+            this.snackBar.open('Sign in before buy modules', 'Oops !!', {
               duration: 3000,
               horizontalPosition: 'center',
               verticalPosition: 'top'
@@ -93,9 +98,42 @@ export class SelectSubjectComponent implements OnInit {
 
           });
       }
-    });
+    });*/
+    let c = {
+      cid: cid,
+      date: this.date,
+      cTitle: title,
+      user: {
+        id: this.userId,
+      },
+    };
 
-  }
+    this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
+        console.log(Response);
+        this.ngOnInit();
+        this.snackBar.open('Package Successfully Added', 'Success', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+      },
+      (error) => {
+        console.log(error);
+        if(this.isLoggedIn){
+          this.snackBar.open('This package already added', 'Oops !!', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          });
+        }else {
+          this.snackBar.open('Sign in before buy modules', 'Oops !!', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          });
+        }
+       });
+ }
 
   getAllSelectedCategories() {
     console.log(this.userId);
@@ -151,8 +189,6 @@ export class SelectSubjectComponent implements OnInit {
     this.searchText = '';
     this.getAllCategories();
   }
-
-
 
 
 }

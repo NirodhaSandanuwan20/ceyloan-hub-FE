@@ -68,7 +68,7 @@
 
 <div class="outer" *ngIf="showNavbar">
   <div class="inners left">
-    <img src="assets/logocrop.png">
+    <img src="assets/Ceyloan.png">
   </div>
   <div class="inners center">
     <div class="tags">
@@ -78,16 +78,16 @@
           <a routerLink="/home" routerLinkActive="active">Home </a>
         </li>
         <li>
-          <a routerLink="/select-subject" routerLinkActive="active">Papers </a>
+          <a routerLink="/select-subject" routerLinkActive="active" >Store </a>
         </li>
         <li>
-          <a routerLink="/user-dashboard" routerLinkActive="active" *ngIf="isLoggedIn">PlayGround </a>
+          <a routerLink="/user-dashboard" routerLinkActive="active" *ngIf="!isAdmin && isLoggedIn">PlayGround </a>
         </li>
         <li >
-          <a  routerLink="/contact-us" routerLinkActive="active">Contact </a>
+          <a  routerLink="/contact-us" routerLinkActive="active" *ngIf="!isAdmin">Contact </a>
         </li>
         <li>
-          <a routerLink="/about-us" routerLinkActive="active">About Us</a>
+          <a routerLink="/about-us" routerLinkActive="active" *ngIf="!isAdmin">About Us</a>
         </li>
         <!--<li >
           <a class="nav-link" routerLink="/donation" routerLinkActive="active">Donations</a>

@@ -5,7 +5,7 @@
     (selectedTabChange)="myTabFocusChange($event)">
     >
 
-    <mat-tab label="Profile">
+    <!--<mat-tab label="Profile">
       <ng-template mat-tab-label>
         <span class="bold-label">Profile</span>
       </ng-template>
@@ -23,7 +23,7 @@
             </div>
 
 
-            <!-- //table Details  -->
+            &lt;!&ndash; //table Details  &ndash;&gt;
             <table class="table-1 text-center table-striped table-bordered">
               <tr>
                 <td>Username</td>
@@ -41,7 +41,7 @@
                 <td>Change Email</td>
                 <td>
                   <mat-icon
-                          routerLink="/change-email">change_circle
+                    routerLink="/change-email">change_circle
                   </mat-icon>
                 </td>
               </tr>
@@ -49,6 +49,12 @@
                 <td>Change password</td>
                 <td>
                   <mat-icon (click)="changePassword()">change_circle</mat-icon>
+                </td>
+              </tr>
+              <tr>
+                <td>See More</td>
+                <td>
+                  <mat-icon (click)="getAllSelectedCategories()">info</mat-icon>
                 </td>
               </tr>
             </table>
@@ -68,9 +74,9 @@
       </div>
 
 
-    </mat-tab>
+    </mat-tab>-->
 
-    <mat-tab *ngFor="let c of selectedCategories" [label]="c.cTitle">
+    <mat-tab label="abc" *ngFor="let c of selectedCategories" [label]="c.cTitle">
       <ng-template mat-tab-label>
         <span class="bold-label">{{c.cTitle}}</span>
       </ng-template>
@@ -199,7 +205,12 @@
 
     </mat-tab>
 
+
+
   </mat-tab-group>
+
+
+
 
 
 </div>
