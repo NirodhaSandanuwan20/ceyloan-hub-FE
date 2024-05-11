@@ -1,23 +1,17 @@
-<div class="bootstrap-wrapper" style="margin-top: 10px">
+<div class="outer" style="">
   <div class="row mt20">
-    <div class="col-md-12">
-      <!--<h1>
-        Add Question to <span style="font-weight: bold">{{ qTitle }} - {{ qCategory }}</span>
-      </h1>-->
+    <div class="col-md-6">
+
 
       <mat-card>
         <mat-card-header>
-          <mat-card-subtitle>
-            Enter the detail of the new question
-          </mat-card-subtitle>
+            <b> HELLO THERE, JUST UPLOAD YOUR PAYMENT SLIP HERE FOR {{ category.title.toUpperCase()}} PAPERS MODULE.
+            </b>
         </mat-card-header>
+
+
         <mat-card-content>
           <form class="mt20" (submit)="formSubmit()">
-
-
-
-
-
 
             <div class="col-md-6">
               <input
@@ -30,25 +24,113 @@
             </div>
 
 
-
-
             <div class="row">
 
-              <div *ngFor="let file of userPayments.slipImages; let i =index;" style="position: relative">
+              <div *ngFor="let file of userPayments.slipImages; let i =index;">
                 <span class="btn-remove-image" (click)="removeImage(i)">x</span>
-                <img [src]="file.url" width="auto">
+                <img [src]="file.url" width="50%">
               </div>
 
             </div>
 
 
-
-
-
             <div class="container text-center">
-              <button mat-raised-button color="primary">Add</button>
+              <button mat-raised-button color="primary" [disabled]="enableBtn">Add</button>
             </div>
           </form>
+
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+    <div class="col-md-6">
+
+
+      <mat-card class="payments-details">
+        <mat-card-header>
+            <b style="margin-bottom: 10px">OUR PAYMENT DETAILS</b>
+        </mat-card-header>
+
+
+        <mat-card-content>
+
+
+          <mat-accordion multi>
+
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Sampath Bank PLC</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Bank Of Ceylon</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>People's Bank</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>Hatton National Bank</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>NSB</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>NDB</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              sjkdfh
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <b>HSBC</b>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              0000 0000 0000 <br>
+              Nirodha Sandanuwan Adhikari <br>
+              Nochchiyagama Branch
+            </mat-expansion-panel>
+
+          </mat-accordion>
+
+
+
+
 
         </mat-card-content>
       </mat-card>

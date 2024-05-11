@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { QuestionService } from 'src/app/services/question.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {QuestionService} from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -14,13 +14,14 @@ import {FileHandle} from '../../../model/FileHandle';
 })
 
 export class AddQuestionComponent implements OnInit {
-  value1:string = 'පිළිතුර 1';
-  value2:string = 'පිළිතුර 2';
-  value3:string = 'පිළිතුර 3';
-  value4:string = 'පිළිතුර 4';
-  value5:string = 'පිළිතුර 5';
+  value1: string = 'පිළිතුර 1';
+  value2: string = 'පිළිතුර 2';
+  value3: string = 'පිළිතුර 3';
+  value4: string = 'පිළිතුර 4';
+  value5: string = 'පිළිතුර 5';
+  @ViewChild('selectFile', {static: false}) selectFileInput: ElementRef;
 
-
+  enableBtn = true;
   public Editor = ClassicEditor;
   qId;
   qTitle;
@@ -36,12 +37,14 @@ export class AddQuestionComponent implements OnInit {
     answer: '',
     questionImages: []
   };
+
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.qId = this.route.snapshot.params.qid;
@@ -84,6 +87,7 @@ export class AddQuestionComponent implements OnInit {
         this.question.option5 = '';
         this.question.answer = ''; */
         this.question.questionImages = [];
+        this.selectFileInput.nativeElement.value = '';
       },
       (error) => {
         Swal.fire('Error', 'Error in adding question', 'error');
@@ -103,6 +107,7 @@ export class AddQuestionComponent implements OnInit {
         )
       };
       this.question.questionImages.push(fileHandle);
+      this.enableBtn = false;
     }
   }
 
@@ -126,6 +131,8 @@ export class AddQuestionComponent implements OnInit {
   // tslint:disable-next-line:typedef
   removeImage(i: number) {
     this.question.questionImages.splice(i, 1);
+    this.enableBtn = true;
+    this.selectFileInput.nativeElement.value = '';
   }
 
 

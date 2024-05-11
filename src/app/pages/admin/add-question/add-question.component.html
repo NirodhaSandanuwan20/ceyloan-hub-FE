@@ -149,30 +149,30 @@
                 >
               </div>
 
-              
+
 
 
               <div class="row">
-                
+
                     <div *ngFor="let file of question.questionImages; let i =index;" style="position: relative">
                       <span class="btn-remove-image" (click)="removeImage(i)">x</span>
                       <img [src]="file.url" width="auto">
                     </div>
-                  
+
               </div>
-              
-              
+
+
 
 
 
             <div class="container text-center">
-              <button mat-raised-button color="primary">Add</button>
+              <button mat-raised-button color="primary" [disabled] = "enableBtn">Add</button>
             </div>
           </form>
-          
+
         </mat-card-content>
       </mat-card>
-      
+
     </div>
   </div>
 </div>

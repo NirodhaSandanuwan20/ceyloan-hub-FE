@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileHandle} from "../../../model/FileHandle";
 import {Question} from "../../../model/Question";
 import {ActivatedRoute} from "@angular/router";
@@ -7,6 +7,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {UserPayments} from "../../../model/UserPayments";
 import Swal from "sweetalert2";
 import {LoginService} from "../../../services/login.service";
+import {CategoryService} from "../../../services/category.service";
 
 @Component({
   selector: 'app-payments-slip',
@@ -14,16 +15,27 @@ import {LoginService} from "../../../services/login.service";
   styleUrls: ['./payments-slip.component.css']
 })
 export class PaymentsSlipComponent implements OnInit {
+  user;
+  enableBtn = true;
+  cid;
+  category;
+  @ViewChild('selectFile', { static: false }) selectFileInput: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
     private questionService: QuestionService,
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
+    private loginService: LoginService,
+    private categoryService: CategoryService,
   ) {
   }
 
   ngOnInit(): void {
+    this.user = this.loginService.getUser();
+    this.cid = this._route.snapshot.params.cid;
+    this.getCategory();
+    console.log(this.user);
   }
 
 
@@ -34,6 +46,17 @@ export class PaymentsSlipComponent implements OnInit {
     },
     slipImages: []
   };
+
+  getCategory(){
+    this.category = this.categoryService.GetCategory(this.cid).subscribe(
+      (data: any) => {
+        this.category = data;
+        console.log(this.category);
+      },error => {
+        console.log(error);
+      }
+    );
+  }
 
   onFileSelected(event) {
     if (event.target.files) {
@@ -46,6 +69,8 @@ export class PaymentsSlipComponent implements OnInit {
         )
       };
       this.userPayments.slipImages.push(fileHandle);
+      console.log("onflieselected");
+      this.enableBtn = false;
     }
   }
 
@@ -63,17 +88,19 @@ export class PaymentsSlipComponent implements OnInit {
         userPayments.slipImages[i].file.name
       );
     }
+    console.log("prepareformdata");
     return formData;
   }
 
-  // tslint:disable-next-line:typedef
   removeImage(i: number) {
     this.userPayments.slipImages.splice(i, 1);
+    this.enableBtn = true;
+    this.selectFileInput.nativeElement.value = '';
+
   }
 
 
   formSubmit() {
-    console.log(this.userPayments);
     const paymentsFormData = this.prepareFormData(this.userPayments);
     this.questionService.addSlip(paymentsFormData).subscribe(
       (data: any) => {
@@ -86,6 +113,10 @@ export class PaymentsSlipComponent implements OnInit {
         this.question.option5 = '';
         this.question.answer = ''; */
         this.userPayments.slipImages = [];
+        this.selectFileInput.nativeElement.value = '';
+        this.enableBtn = true;
+
+
       },
       (error) => {
         console.log(error);
