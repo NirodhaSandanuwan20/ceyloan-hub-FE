@@ -68,7 +68,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { PaymentsSlipComponent } from './pages/user/payments-slip/payments-slip.component';
-
+import { MyModulesComponent } from './pages/user/my-modules/my-modules.component';
+import {MatTableModule} from '@angular/material/table';
+import { AccessControlComponent } from './pages/admin/access-control/access-control.component';
 @NgModule({
   declarations: [
     DialogContentComponent,
@@ -109,9 +111,13 @@ import { PaymentsSlipComponent } from './pages/user/payments-slip/payments-slip.
     ChangePasswordComponent,
     ChangeEmailComponent,
     WatchComponent,
-    PaymentsSlipComponent
+    PaymentsSlipComponent,
+    MyModulesComponent,
+    AccessControlComponent
 ],
   imports: [
+    MatSlideToggleModule,
+    MatTableModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

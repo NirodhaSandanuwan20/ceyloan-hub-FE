@@ -41,7 +41,7 @@ export class UserDashboardComponent implements OnInit {
   getSelectedCategory() {
     console.log(this.userId);
 
-    this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
+    this.selectSubjectServeice.getPaidUserCategory(this.userId).subscribe(response => {
         console.log(response);
         this.selectedCategories = response;
         console.log(this.selectedCategories.length);

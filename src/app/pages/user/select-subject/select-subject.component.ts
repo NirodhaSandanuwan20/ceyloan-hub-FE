@@ -62,9 +62,10 @@ export class SelectSubjectComponent implements OnInit {
       }
     );
   }
+/*
 
   addCategory(cid, title) {
-    /*let text = 'Do you want to add ' + title + ' as your subject ?'
+    /!*let text = 'Do you want to add ' + title + ' as your subject ?'
     let c = {
       cid: cid,
       date: this.date,
@@ -101,7 +102,7 @@ export class SelectSubjectComponent implements OnInit {
 
           });
       }
-    });*/
+    });*!/
     let c = {
       cid: cid,
       date: this.date,
@@ -137,6 +138,7 @@ export class SelectSubjectComponent implements OnInit {
         }
        });
  }
+*/
 
   getAllSelectedCategories() {
     console.log(this.userId);

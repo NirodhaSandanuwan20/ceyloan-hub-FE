@@ -15,10 +15,16 @@ export class SelectSubjectService {
     return this.http.post(`${baseUrl}/my-category/`, c);
   }
 
-
+//pending  and paid
   public getSelectedUserCategory(userId:number) {
     console.log(userId);
     return this.http.get(`${baseUrl}/my-category/`+userId);
+  }
+
+//activated
+  getPaidUserCategory(userId) {
+    console.log(userId);
+    return this.http.get(`${baseUrl}/my-category/`+'?userId='+userId,{});
   }
 
   public deleteSelectedUserCategory(userCategoryId:number) {
@@ -33,4 +39,7 @@ export class SelectSubjectService {
   }
 
 
+  getAllUserCategory(cid,b,email) {
+    return this.http.get(`${baseUrl}/my-category/all/`+ "?cid=" + cid + "&b=" + b + "&email=" + email);
+  }
 }

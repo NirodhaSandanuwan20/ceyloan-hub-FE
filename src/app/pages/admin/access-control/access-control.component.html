@@ -1,0 +1,56 @@
+<mat-form-field class="example-form-field">
+  <mat-label>Enter user email</mat-label>
+  <input matInput type="text" [(ngModel)]="value">
+
+</mat-form-field>
+
+
+<mat-slide-toggle
+  class="example-margin"
+  [color]="color"
+  [(ngModel)]="isActivated">
+</mat-slide-toggle>
+
+
+<button mat-raised-button color="primary" (click)="searchNow()">Search</button>
+
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Username">
+    <th mat-header-cell *matHeaderCellDef> <b>Module</b> </th>
+    <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Module">
+    <th mat-header-cell *matHeaderCellDef> <b>Module</b> </th>
+    <td mat-cell *matCellDef="let element"> {{element.cTitle}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Status">
+    <th mat-header-cell *matHeaderCellDef> <b>Status</b> </th>
+    <td mat-cell *matCellDef="let element" >
+      <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="element.paid">
+      </mat-slide-toggle>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Pay Slip">
+    <th mat-header-cell *matHeaderCellDef> <b>Pay Slip</b> </th>
+    <td mat-cell *matCellDef="let element" >
+<mat-icon>image</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

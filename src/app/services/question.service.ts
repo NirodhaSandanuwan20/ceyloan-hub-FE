@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import baseUrl from './helper';
-import {UserPayments} from "../model/UserPayments";
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +28,5 @@ export class QuestionService {
   //eval quiz
   public evalQuiz(questions) {
     return this._http.post(`${baseUrl}/question/eval-quiz`, questions);
-  }
-
-  addSlip(userPayments) {
-    return this._http.post(`${baseUrl}/payments/`, userPayments);
   }
 }

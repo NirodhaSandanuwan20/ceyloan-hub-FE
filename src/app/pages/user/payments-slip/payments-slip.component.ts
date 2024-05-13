@@ -1,13 +1,16 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileHandle} from "../../../model/FileHandle";
 import {Question} from "../../../model/Question";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {QuestionService} from "../../../services/question.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserPayments} from "../../../model/UserPayments";
 import Swal from "sweetalert2";
 import {LoginService} from "../../../services/login.service";
 import {CategoryService} from "../../../services/category.service";
+import {PaymentsService} from "../../../services/payments.service";
+import {SelectSubjectService} from "../../../services/select-subject.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-payments-slip',
@@ -16,18 +19,25 @@ import {CategoryService} from "../../../services/category.service";
 })
 export class PaymentsSlipComponent implements OnInit {
   user;
+  userId = JSON.parse(localStorage.getItem('user')).id;
+  email = JSON.parse(localStorage.getItem('user')).email;
   enableBtn = true;
   cid;
   category;
+  date = 'ew';
   @ViewChild('selectFile', { static: false }) selectFileInput: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
-    private questionService: QuestionService,
+    private paymentsService: PaymentsService,
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
     private loginService: LoginService,
     private categoryService: CategoryService,
+    private router: Router,
+    private selectSubjectServeice: SelectSubjectService,
+    private snackBar: MatSnackBar,
+
   ) {
   }
 
@@ -42,7 +52,7 @@ export class PaymentsSlipComponent implements OnInit {
   userPayments: UserPayments = {
     categoryId: this._route.snapshot.params.cid,
     user: {
-      id: JSON.parse(localStorage.getItem('user')).id,
+      id: this.userId,
     },
     slipImages: []
   };
@@ -52,7 +62,7 @@ export class PaymentsSlipComponent implements OnInit {
       (data: any) => {
         this.category = data;
         console.log(this.category);
-      },error => {
+      }, error => {
         console.log(error);
       }
     );
@@ -102,26 +112,102 @@ export class PaymentsSlipComponent implements OnInit {
 
   formSubmit() {
     const paymentsFormData = this.prepareFormData(this.userPayments);
-    this.questionService.addSlip(paymentsFormData).subscribe(
+    this.addCategory();
+    let msg = this.category.title + ' papers module will be added withing 15 minutes ';
+    this.paymentsService.addSlip(paymentsFormData).subscribe(
       (data: any) => {
-        Swal.fire('Success ', 'Question Added. Add Another one', 'success');
-        /* this.question.content = '';
-        this.question.option1 = '';
-        this.question.option2 = '';
-        this.question.option3 = '';
-        this.question.option4 = '';
-        this.question.option5 = '';
-        this.question.answer = ''; */
+        Swal.fire('Success ',msg , 'success');
         this.userPayments.slipImages = [];
         this.selectFileInput.nativeElement.value = '';
         this.enableBtn = true;
+/*
+        this.router.navigateByUrl('home');
+*/
 
 
       },
       (error) => {
         console.log(error);
-        Swal.fire('Error', 'Error in adding question', 'error');
+        Swal.fire('Error', 'Error while proceeding, Try again', 'error');
       }
     );
   }
+
+  addCategory() {
+    /*let text = 'Do you want to add ' + title + ' as your subject ?'
+    let c = {
+      cid: cid,
+      date: this.date,
+      cTitle: title,
+      user: {
+        id: this.userId,
+      },
+    };
+
+    Swal.fire({
+      title: text,
+      showCancelButton: true,
+      confirmButtonText: `Submit`,
+      icon: 'info',
+    }).then((e) => {
+      console.log(c);
+
+      if (e.isConfirmed) {
+        this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
+            console.log(Response);
+            this.ngOnInit();
+            this.snackBar.open('Package Successfully Added', 'Success', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
+          },
+          (error) => {
+            this.snackBar.open('Sign in before buy modules', 'Oops !!', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'top'
+            });
+
+          });
+      }
+    });*/
+    let c = {
+      cid: this.cid,
+      date: this.date,
+      cTitle: this.category.title,
+      user: {
+        id: this.userId,
+      },
+    };
+
+    this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
+        console.log(Response);
+        /*this.snackBar.open('Package Successfully Added', 'Success', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });*/
+      },
+      (error) => {
+        console.log(error);
+        this.snackBar.open('Error Occurred', 'Oops !!', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        /*else {
+                  this.snackBar.open('Sign in before buy modules', 'Oops !!', {
+                    duration: 3000,
+                    horizontalPosition: 'center',
+                    verticalPosition: 'bottom'
+                  });
+                }*/
+      });
+  }
+
+
 }
+
+
+

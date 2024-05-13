@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Module">
+    <th mat-header-cell *matHeaderCellDef> <b>Module</b> </th>
+    <td mat-cell *matCellDef="let element"> {{element.cTitle}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Status">
+    <th mat-header-cell *matHeaderCellDef> <b>Status (Activated / Pending)</b> </th>
+    <td mat-cell *matCellDef="let element" >
+      <span *ngIf="element.paid; else unpaid">Activated</span>
+      <ng-template #unpaid>Pending..</ng-template>
+      <!--<mat-icon>pending_actions</mat-icon>
+      <mat-icon>check_circle</mat-icon>-->
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Delete">
+    <th mat-header-cell *matHeaderCellDef> <b>Delete Module</b> </th>
+    <td mat-cell *matCellDef="let element" >
+      <span *ngIf="element.paid;"><mat-icon>delete</mat-icon></span>
+      <!--<mat-icon>pending_actions</mat-icon>
+      <mat-icon>check_circle</mat-icon>-->
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+

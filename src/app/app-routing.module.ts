@@ -33,6 +33,7 @@ import {ChangePasswordComponent} from "./pages/user/change-password/change-passw
 import {ChangeEmailComponent} from "./pages/user/change-email/change-email.component";
 import {AuthGuard} from "./services/auth.service";
 import {PaymentsSlipComponent} from "./pages/user/payments-slip/payments-slip.component";
+import {AccessControlComponent} from "./pages/admin/access-control/access-control.component";
 
 const routes: Routes = [
   {
@@ -127,6 +128,10 @@ const routes: Routes = [
         component: UpdateQuizComponent,
       },
       {
+        path: 'access',
+        component: AccessControlComponent,
+      },
+      {
         path: 'view-questions/:qid/:title',
         component: ViewQuizQuestionsComponent,
       },
@@ -139,11 +144,6 @@ const routes: Routes = [
   {
     path: 'select-subject',
     component: SelectSubjectComponent,
-  },
-  {
-    path: 'specific-action',
-    component: SelectSubjectComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'user-dashboard',
