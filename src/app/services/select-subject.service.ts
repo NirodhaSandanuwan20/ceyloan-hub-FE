@@ -42,4 +42,9 @@ export class SelectSubjectService {
   getAllUserCategory(cid,b,email) {
     return this.http.get(`${baseUrl}/my-category/all/`+ "?cid=" + cid + "&b=" + b + "&email=" + email);
   }
+
+  paymentStatus(userCategoryId: any) {
+    return this.http.put(`${baseUrl}/my-category/` + userCategoryId, {});
+  }
+
 }

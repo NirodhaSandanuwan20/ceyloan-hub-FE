@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {Question} from "../model/Question";
 import {FileHandle} from "../model/FileHandle";
 import {Slip} from "../model/Slip";
@@ -10,6 +10,31 @@ import {Slip} from "../model/Slip";
 export class ImageProcessingService {
 
   constructor(private sanitizer: DomSanitizer) {
+  }
+
+
+
+  private dataURItoBlob1(dataURI: string, mimeType: string): Blob {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([int8Array], { type: mimeType });
+  }
+
+  public async convertPicByteToPng(picByte: string, fileName: string): Promise<SafeUrl> {
+    const byteCharacters = atob(picByte);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: 'image/png' });
+    const file = new File([blob], `${fileName}.png`, { type: 'image/png' });
+    const fileURL = URL.createObjectURL(file);
+    return this.sanitizer.bypassSecurityTrustUrl(fileURL);
   }
 
   // tslint:disable-next-line:typedef
@@ -68,4 +93,8 @@ export class ImageProcessingService {
     const blob = new Blob([int8Array], {type: imageType});
     return blob;
   }
+
+
+
+
 }
