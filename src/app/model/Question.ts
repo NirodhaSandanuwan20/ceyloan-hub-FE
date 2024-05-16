@@ -1,4 +1,4 @@
-import {FileHandle} from "./FileHandle";
+import {FileHandle} from './FileHandle';
 
 export interface Question {
   quiz: {};

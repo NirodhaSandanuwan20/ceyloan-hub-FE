@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {CategoryService} from '../../../services/category.service';
+import {Component, OnInit} from '@angular/core';
 import {SelectSubjectService} from '../../../services/select-subject.service';
 import {ThemePalette} from '@angular/material/core';
+import {PaymentsService} from "../../../services/payments.service";
+import {map} from "rxjs/operators";
+import {ImageProcessingService} from '../../../services/ImageProcessingService';
+import {Slip} from "../../../model/Slip";
 
 @Component({
   selector: 'app-access-control',
@@ -19,10 +22,15 @@ export class AccessControlComponent implements OnInit {
 
   value = '';
   isActivated = true;
+  paymentSlip;
+  clickSlip = false;
 
   constructor(
     private selectSubjectServeice: SelectSubjectService,
-  ) { }
+    private paymentsService: PaymentsService,
+    private imageProcessingService: ImageProcessingService,
+    ) {
+  }
 
   ngOnInit(): void {
     this.searchNow();
@@ -55,4 +63,40 @@ export class AccessControlComponent implements OnInit {
   }
 
 
+/*  getSlip(element) {
+    console.log(element.payments_id);
+    this.paymentsService.getSlip(element.payments_id)
+      .pipe(
+        map((x: Slip[], i) => x.map((slip: Slip) => this.imageProcessingService.creatSlip(slip)))
+      )
+      .subscribe(
+        (data: Slip[]) => {
+        console.log(data);
+        this.paymentSlip = data;
+        console.log(this.paymentSlip);
+        console.log(this.paymentSlip.slipImages[0]);
+        this.clickSlip = true;
+      },
+      (error) => {
+        console.log(error);
+
+      }
+    );
+  }*/
+
+  getSlip(element) {
+    console.log(element.payments_id);
+    this.paymentsService.getSlip(element.payments_id)
+      .subscribe(resp => {
+        this.paymentSlip = resp;
+        console.log(this.paymentSlip);
+        console.log(this.paymentSlip.slipImages[0]);
+        this.clickSlip = true;
+      },
+      (error) => {
+        console.log(error);
+
+      }
+    );
+  }
 }

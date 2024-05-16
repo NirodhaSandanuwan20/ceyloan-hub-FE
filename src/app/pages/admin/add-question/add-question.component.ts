@@ -88,6 +88,7 @@ export class AddQuestionComponent implements OnInit {
         this.question.answer = ''; */
         this.question.questionImages = [];
         this.selectFileInput.nativeElement.value = '';
+        this.enableBtn = true;
       },
       (error) => {
         Swal.fire('Error', 'Error in adding question', 'error');

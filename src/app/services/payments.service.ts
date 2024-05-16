@@ -12,4 +12,9 @@ export class PaymentsService {
   addSlip(userPayments) {
     return this._http.post(`${baseUrl}/payments/`, userPayments);
   }
+
+  getSlip(payments_id) {
+    return this._http.get(`${baseUrl}/payments/`+payments_id,{});
+  }
+
 }

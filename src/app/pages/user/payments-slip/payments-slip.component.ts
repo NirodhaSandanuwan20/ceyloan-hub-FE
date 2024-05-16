@@ -26,6 +26,7 @@ export class PaymentsSlipComponent implements OnInit {
   category;
   date = 'ew';
   @ViewChild('selectFile', { static: false }) selectFileInput: ElementRef;
+  private payments_id: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,18 +113,17 @@ export class PaymentsSlipComponent implements OnInit {
 
   formSubmit() {
     const paymentsFormData = this.prepareFormData(this.userPayments);
-    this.addCategory();
+
     let msg = this.category.title + ' papers module will be added withing 15 minutes ';
     this.paymentsService.addSlip(paymentsFormData).subscribe(
       (data: any) => {
+        console.log(data.paymentsId);
         Swal.fire('Success ',msg , 'success');
         this.userPayments.slipImages = [];
         this.selectFileInput.nativeElement.value = '';
         this.enableBtn = true;
-/*
-        this.router.navigateByUrl('home');
-*/
-
+        this.payments_id = data.paymentsId;
+        this.addCategory();
 
       },
       (error) => {
@@ -176,6 +176,7 @@ export class PaymentsSlipComponent implements OnInit {
       cid: this.cid,
       date: this.date,
       cTitle: this.category.title,
+      payments_id: this.payments_id,
       user: {
         id: this.userId,
       },
