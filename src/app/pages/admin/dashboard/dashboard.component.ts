@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatTabChangeEvent} from "@angular/material/tabs";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,4 +13,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  myTabFocusChange($event: MatTabChangeEvent) {
+
+  }
 }

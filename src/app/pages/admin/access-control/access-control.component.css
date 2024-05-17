@@ -12,14 +12,45 @@
 
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 80%;
+  margin-left: 20px;
 }
 
 .mat-table {
   overflow: auto;
-  max-height: 500px;
+  max-height: 100vh;
+  width: 100%;
 }
 
-.slip:hover{
+.slip:hover {
   cursor: pointer;
+}
+
+.inner-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.outer-row{
+  background-color: #2c3e50;
+}
+
+.container {
+  display: flex;
+  height: 70vh;
+}
+.box {
+  flex: 1;
+  display: flex;
+}
+.box-1 {
+  display: flex;
+  flex-direction: column;
+}
+.box-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d0d0d0;
 }

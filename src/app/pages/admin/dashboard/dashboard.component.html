@@ -1,13 +1,59 @@
-<div class="bootstrap-wrapper" style="margin-top: 10px">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2">
-        <app-sidebar></app-sidebar>
-      </div>
+<div class="outer">
+  <mat-tab-group
+    style="margin-bottom: 10px"
+    (selectedTabChange)="myTabFocusChange($event)">
+    >
 
-      <div class="col-md-10">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label" routerLink="/admin">Welcome</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label" routerLink="/admin/categories">Categories</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label" routerLink="/admin/add-category">Add Categories</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label"  routerLink="/admin/quizzes">Quizzes</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label"  routerLink="/admin/add-quiz">Add Quizzes</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label"  routerLink="/admin/access">Access Control</span>
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <span class="bold-label"  routerLink="/admin/access"><a target="popup" href="https://dashboard.tawk.to/#/dashboard/64564a98ad80445890eb73e8"> Help Center</a></span>
+      </ng-template>
+
+
+
+    </mat-tab>
+
+
+
+
+
+  </mat-tab-group>
 </div>
+
+<router-outlet></router-outlet>

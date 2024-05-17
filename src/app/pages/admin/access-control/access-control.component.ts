@@ -6,6 +6,8 @@ import {map} from "rxjs/operators";
 import {ImageProcessingService} from '../../../services/ImageProcessingService';
 import {Slip} from "../../../model/Slip";
 import {SafeUrl} from "@angular/platform-browser";
+import Swal from "sweetalert2";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-access-control',
@@ -22,7 +24,7 @@ export class AccessControlComponent implements OnInit {
   color: ThemePalette = 'accent';
 
   value = '';
-  isActivated = true;
+  isActivated = false;
   paymentSlip;
   clickSlip = false;
   pic;
@@ -33,6 +35,7 @@ export class AccessControlComponent implements OnInit {
     private selectSubjectService: SelectSubjectService,
     private paymentsService: PaymentsService,
     private imageProcessingService: ImageProcessingService,
+    private snackBar: MatSnackBar,
   ) {
   }
 
@@ -96,14 +99,33 @@ export class AccessControlComponent implements OnInit {
   }
 
   applyPaymentSetting(element) {
-    console.log(element.userCategoryId);
-    this.selectSubjectService.paymentStatus(element.userCategoryId).subscribe(resp => {
-        console.log(resp);
-        this.ngOnInit();
-      },
-      (error) => {
-        console.log(error);
+
+    Swal.fire({
+      title: 'Confirm your action',
+      showCancelButton: true,
+      confirmButtonText: `Submit`,
+      icon: 'info',
+    }).then((e) => {
+
+      if (e.isConfirmed) {
+        this.selectSubjectService.paymentStatus(element.userCategoryId).subscribe(resp => {
+            console.log(resp);
+            this.ngOnInit();
+          },
+          (error) => {
+            this.snackBar.open('Unexpected error while processing. Try again', 'Oops !!', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom'
+            });
+          }
+        );
+
+      }else {
+        this.searchNow();
       }
-    );
+    });
   }
 }
+
+
