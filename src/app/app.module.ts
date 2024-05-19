@@ -12,13 +12,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './pages/home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { authInterceptorProviders } from './services/auth.interceptor';
+import {AuthInterceptor, authInterceptorProviders} from './services/auth.interceptor';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -153,7 +153,7 @@ import { AccessControlComponent } from './pages/admin/access-control/access-cont
     MatRippleModule,
     CarouselModule.forRoot()
   ],
-  providers: [authInterceptorProviders,FilterSubjectPipe],
+  providers: [authInterceptorProviders, FilterSubjectPipe , { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -100,10 +100,6 @@ const routes: Routes = [
         component: WelcomeComponent,
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
         path: 'categories',
         component: ViewCategoriesComponent,
       },
