@@ -37,22 +37,21 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.get('email').value!,
       password: this.loginForm.get('password').value!
     };
-    //request to server to generate token
+    // Request to server to generate token
     this.login.generateToken(loginData).subscribe(
       (data: any) => {
         console.log('success');
         console.log(data);
 
-        //login...
+        // Login...
         this.login.loginUser(data.token);
 
         this.login.getCurrentUser().subscribe((user: any) => {
           this.login.setUser(user);
           console.log(user);
-          //redirect ...ADMIN: admin-dashboard
-          //redirect ...NORMAL:normal-dashboard
+          // Redirect ...ADMIN: admin-dashboard
+          // Redirect ...NORMAL: normal-dashboard
           if (this.login.getUserRole() == 'ADMIN') {
-
             this.router.navigate(['admin']);
             this.login.loginStatusSubject.next(true);
           } else if (this.login.getUserRole() == 'NORMAL') {
@@ -66,14 +65,25 @@ export class LoginComponent implements OnInit {
         });
       },
       (error) => {
-        console.log('Error !');
         console.log(error);
-        this.snack.open('Invalid Details !! Try again', '', {
+
+        // Determine the type of error and display appropriate message
+        let errorMessage = 'An error occurred. Please try again.';
+        if (error.status === 401) {
+          errorMessage = 'Please check your username and password.';
+        } else if (error.status === 404) {
+          errorMessage = 'User not found! Please check your username.';
+        } else if (error.status === 500) {
+          errorMessage = 'Internal Server Error! Please try again later.';
+        }
+
+        this.snack.open(errorMessage, '', {
           duration: 3000,
         });
       }
     );
   }
+
 
   showPassword() {
     this.show = !this.show;
