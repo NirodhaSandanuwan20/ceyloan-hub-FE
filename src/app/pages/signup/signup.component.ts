@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
 
   personalForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
+    firstName: new FormControl('', [Validators.required]),
   });
 
   verifyForm = new FormGroup({
@@ -55,7 +56,7 @@ export class SignupComponent implements OnInit {
     this.email = this.personalForm.get('email')?.value!;
     let user = {
       email: this.personalForm.get('email')?.value!,
-      username: this.personalForm.get('email')?.value!
+      firstName: this.personalForm.get('firstName')?.value!,
     };
 
     //addUser: userservice

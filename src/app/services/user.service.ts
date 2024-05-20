@@ -14,17 +14,17 @@ export class UserService {
   public addUser(user: any) {
     console.log(user);
 
-    return this.http.post(`${baseUrl}/user/`, user);
+    return this.http.post(`${baseUrl}/user/send`, user);
   }
 
   public verify(code: string, email: string): Observable<any> {
     console.log(code);
     console.log(email);
-    return this.http.post(`${baseUrl}/user/`+code+'?email='+email,{});
+    return this.http.post(`${baseUrl}/user/verify/`+code+'?email='+email,{});
   }
 
   resendMail(email: string) {
-    return this.http.post(`${baseUrl}/user/`+'?email='+email,{});
+    return this.http.post(`${baseUrl}/user/resend`+'?email='+email,{});
   }
 
   forgotPassowrd(otp:string,newPassword:string,mail: string) {

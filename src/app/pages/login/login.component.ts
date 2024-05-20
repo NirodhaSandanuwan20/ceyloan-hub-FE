@@ -12,7 +12,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     console.log('login btn clicked');
 
     let loginData = {
-      username: this.loginForm.get('username').value!,
+      email: this.loginForm.get('email').value!,
       password: this.loginForm.get('password').value!
     };
     //request to server to generate token
