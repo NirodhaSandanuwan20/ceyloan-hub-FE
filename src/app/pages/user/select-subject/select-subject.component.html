@@ -1,198 +1,5 @@
-<!--
-<div class="outer">
-  <div class="row">
-    <div class="col-md-2">
-      <mat-list>
-        <h1 class="text-center">Available Subjects</h1>
-        <div class="col-md-12" *ngIf="categories.length == 0">
-          <mat-card>
-            <mat-card-content>
-              <h3>Seems like admin have not added any subject yet. Please Be patient. We well add ASAP !!
-                need.</h3>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <mat-list-item *ngFor="let c of categories">
-
-
-          <div mat-line>{{ c.title }}</div>
-
-          <span class="material-symbols-outlined">
-                        <mat-icon class="icon" (click)="addCategory(c.cid,c.title)" mat-list-icon
-                                  style="color:green;margin-left: 20px;">add</mat-icon>
-
-                     </span>
-
-
-          <mat-divider></mat-divider>
-
-
-        </mat-list-item>
-      </mat-list>
-    </div>
-
-    <div class="col-md-2">
-      <mat-list>
-        <h1 class="text-center">Subscribed Subjects</h1>
-        <mat-list-item *ngFor="let c of selectedCategories">
-
-
-
-          <div mat-line>{{ c.cTitle }}</div>
-
-          <span class="material-symbols-outlined">
-                        <mat-icon class="icon" mat-list-icon style="color:green;margin-left: 20px;">done</mat-icon>
-                    </span>
-          <span class="material-symbols-outlined">
-                        <mat-icon class="icon" (click)="deleteCategory(c.userCategoryId,c.cTitle)" mat-list-icon
-                                  style="color:red;margin-left: 20px;">delete</mat-icon>
-                    </span>
-
-
-          <mat-divider></mat-divider>
-
-
-        </mat-list-item>
-        <div class="col-md-12" *ngIf="selectedCategories.length == 0">
-          <mat-card>
-            <mat-card-content>
-              <h3>Seems like you have not subscribed any subject yet. First off all subscribe subject that you
-                need.</h3>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </mat-list>
-    </div>
-
-  </div>
-</div>
-
--->
-
-<!--
-
-<div class="row">
-
-  <div class="col-12">
-
-    <div class="list">
-      <p style="text-align: center;font-weight: bold;font-size: 30px;margin-bottom: 20px">E-Book Shop</p>
-      <mat-accordion multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>All Subjects</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              Buy modules
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <div class="search" style="display: flex;align-items: center;justify-content: center">
-            <mat-form-field class="text text-center" appearance="fill">
-              <mat-label>Search by subject name</mat-label>
-              <input
-                type="search"
-                (keyup.enter)="searchNow()"
-                [(ngModel)]="searchText"
-                matInput
-                placeholder="Ex: physics"
-              >
-              <mat-icon (click)="searchNow()" matSuffix>search</mat-icon>
-              <mat-icon (click)="clear()" matPrefix *ngIf="searchText.length">clear</mat-icon>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-12" *ngIf="categories.length == 0">
-            <mat-card>
-              <mat-card-content>
-                <h3>No results found for " {{searchText}} "</h3>
-              </mat-card-content>
-            </mat-card>
-          </div>
-
-          <div *ngFor="let c of categories">
-
-
-            <div>{{ c.title }} Papers Package &#45;&#45; <button mat-raised-button style="color: white;background-color:#3B5998;" routerLink="/specific-action" (click)="addCategory(c.cid,c.title)">
-              <mat-icon>attach_money</mat-icon>
-              Buy Now
-            </button></div>
-
-
-
-            <mat-divider></mat-divider>
-
-
-          </div>
-
-
-        </mat-expansion-panel>
-      </mat-accordion>
-      <mat-divider></mat-divider>
-      <mat-divider></mat-divider>
-      <mat-divider></mat-divider>
-      <mat-accordion class="example-headers-align" multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <b>My subscribed Modules</b>
-            </mat-panel-title>
-            <mat-panel-description>
-              Edit my modules
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <div class="col-md-12" *ngIf="selectedCategories.length == 0">
-            <mat-card>
-              <mat-card-content>
-                <h3>Seems like you have not subscribed any subject yet. First off all subscribe subject that you
-                  need.</h3>
-              </mat-card-content>
-            </mat-card>
-          </div>
-
-          <div *ngFor="let c of selectedCategories">
-
-
-            <div>{{ c.cTitle }} Paper Package
-              <mat-icon
-                class="icon"
-                (click)="deleteCategory(c.userCategoryId,c.cTitle)"
-                style="color:red;">
-                delete
-              </mat-icon>
-            </div>
-
-
-            <mat-divider></mat-divider>
-
-
-          </div>
-
-
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-
-
-  </div>
-
-
-</div>
--->
 
 <div class="outer">
-  <h1
-    class="text-center"
-    style="font-size:30px;
-              font-family: 'Lobster', cursive;
-              font-family: 'Roboto Mono', monospace;
-              text-decoration: underline;
-              margin: 20px 0px;
-         ">
-    Buy modules now
-  </h1>
 
   <div class="search" style="display: flex;align-items: center;justify-content: center">
     <mat-form-field class="text text-center" appearance="fill">
@@ -212,7 +19,17 @@
   <div class="col-12" *ngIf="categories.length == 0">
     <mat-card class="text-center">
       <mat-card-content>
-        <h3>No results found for " {{searchText}} "</h3>
+        <div class="inner">
+
+          <div class="show">
+            <p>No results found for "{{searchText}}"</p>
+            <img width="50%" src="assets/empty.svg" alt="">
+          </div>
+
+
+
+
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

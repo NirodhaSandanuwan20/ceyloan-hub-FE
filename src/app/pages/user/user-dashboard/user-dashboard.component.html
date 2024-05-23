@@ -72,7 +72,17 @@
       <div class="col-md-12" *ngIf="epicQuizzes.length == 0">
         <mat-card>
           <mat-card-content>
-            <h1>search results not found for year "{{ this.searchText1}}"</h1>
+            <div class="inner">
+
+              <div class="show">
+                <p>No results found for "{{searchText1}}"</p>
+                <img width="40%" src="assets/empty.svg" alt="">
+              </div>
+
+
+
+
+            </div>
           </mat-card-content>
         </mat-card>
       </div>
@@ -84,12 +94,21 @@
       <ng-template mat-tab-label>
         <span class="bold-label">Add Subject</span>
       </ng-template>
-      <div class="add-sub">
+
+
         <div class="inner">
-          <p>Buy Module</p>
-          <button mat-raised-button color="primary" routerLink="/select-subject">Buy Now</button>
+
+          <div class="show">
+            <p>Hello there! Now let's begin learning! First, choose your modules.</p>
+            <img width="50%" src="assets/hello.svg" alt="">
+            <button style="width: 50%;margin: 10px;" mat-raised-button color="primary" routerLink="/select-subject">Buy Now</button>
+          </div>
+
+
+
+
         </div>
-      </div>
+
     </mat-tab>
 
   </mat-tab-group>

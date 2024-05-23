@@ -14,12 +14,19 @@
   width: 50%;
 }
 
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.show{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px;
+}
 
-
-
-
-/*=========================================================================================*/
 
 .item {
   width: 100%; /* Divs take up the full width of the container */
@@ -85,4 +92,9 @@ button{
 
   /* Increase the size by 20% */
 }
+
+
+
+
+
 
