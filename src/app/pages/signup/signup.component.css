@@ -10,14 +10,6 @@
   justify-content: center;
 }
 
-.anchor{
- text-decoration: underline;
-  color: #3F51B5;
-}
-
-.anchor:hover{
-  cursor: pointer;
-}
 
 .inner{
   border-radius: 7px;

@@ -20,7 +20,7 @@ export function passwordMatch(password: string, confirm_password: string) {
 
       return null;
 
-    return { passwordMismatcgError: true }
+    return { passwordMismatchError: true }
 
   }
 

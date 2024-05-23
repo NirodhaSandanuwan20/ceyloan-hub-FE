@@ -29,7 +29,7 @@
   <div class="inner">
 
     <h1 class="form-header">Sign Up</h1>
-    <mat-vertical-stepper style="background-color:#dfe4ea " [@.disabled]="true" #stepper="matVerticalStepper" linear>
+    <mat-vertical-stepper style="background-color:#dfe4ea " [@.disabled]="true" #stepper="matVerticalStepper" [linear]="true">
       <mat-step [stepControl]="personalForm" [editable]="editable">
         <form [formGroup]="personalForm">
           <ng-template matStepLabel>Personal Details</ng-template>
@@ -55,9 +55,9 @@
           </mat-form-field>
 
           <div>
-            <button mat-raised-button matStepperNext color="primary" (click)="formSubmit()"
+            <button mat-raised-button matStepperNext color="primary" (click)="SignUpWithMail(stepper)"
                     [disabled]="personalForm.invalid">
-              <mat-icon>arrow_forward</mat-icon>
+              Next Step
             </button>
           </div>
         </form>
@@ -80,14 +80,16 @@
           </mat-form-field>
           <br>
 
-          <h5>nothing after 2 minuets ?&nbsp;&nbsp;<span (click)="resendMail()" class="anchor"><b>Resend code</b></span>
-          </h5>
-          <div>
-            <button mat-raised-button color="primary" matStepperPrevious>
-              <mat-icon>arrow_back</mat-icon>
-            </button>
-            <button mat-raised-button color="primary" matStepperNext (click)="verify()" [disabled]="verifyForm.invalid">
-              <mat-icon>arrow_forward</mat-icon>
+
+
+
+            <h4 *ngIf="isResendDisabled">Nothing after {{ getFormattedTime() }} ?&nbsp;&nbsp;</h4>
+
+
+          <div style="flex-direction: row;display: flex" >
+            <button mat-raised-button color="primary" *ngIf="!isResendDisabled" (click)="resendMail()" >Resend code</button>
+            <button mat-raised-button color="primary"  matStepperNext (click)="verifyOtp()" [disabled]="verifyForm.invalid">
+              Verify OTP
             </button>
           </div>
         </form>
@@ -117,15 +119,15 @@
             />
             <mat-icon matSuffix *ngIf="!show" (click)="showPassword()">visibility</mat-icon>
             <mat-icon matSuffix *ngIf="show" (click)="showPassword()">visibility_off</mat-icon>
-            <div *ngIf="passwordForm.errors?.['passwordMismatcgError']">
+            <div *ngIf="passwordForm.errors?.['passwordMismatchError']">
 
-              <small class="text-danger"><b>Error : Password mismatched !!</b></small>
+              <small class="text-danger"><b>Password mismatched</b></small>
 
             </div>
           </mat-form-field>
           <div>
 
-            <button mat-raised-button color="primary" matStepperNext [disabled]="passwordForm.invalid" (click)="createPassword()">Next</button>
+            <button mat-raised-button color="primary" matStepperNext [disabled]="passwordForm.invalid" (click)="EnableUser()">Next</button>
           </div>
         </form>
       </mat-step>
