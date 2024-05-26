@@ -159,7 +159,6 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [NormalGuard],
   },
   {
     path: 'change-password',
