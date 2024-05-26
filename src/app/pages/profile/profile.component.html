@@ -5,7 +5,7 @@
     (selectedTabChange)="myTabFocusChange($event)">
     >
 
-    <!--<mat-tab label="Profile">
+    <mat-tab label="Profile">
       <ng-template mat-tab-label>
         <span class="bold-label">Profile</span>
       </ng-template>
@@ -13,17 +13,10 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-12" id="profile-details">
           <mat-card>
 
-            <div class="text-center">
-              <img
-                src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                alt=""
-                class="profile-image"
-              />
-              <h3>Add your photo</h3>
-            </div>
 
 
-            &lt;!&ndash; //table Details  &ndash;&gt;
+
+            <!-- //table Details  -->
             <table class="table-1 text-center table-striped table-bordered">
               <tr>
                 <td>Username</td>
@@ -38,23 +31,27 @@
                 <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
               </tr>
               <tr>
-                <td>Change Email</td>
+                <td>Email</td>
                 <td>
-                  <mat-icon
-                    routerLink="/change-email">change_circle
-                  </mat-icon>
+                  <button routerLink="/change-email" class="btn">
+                    Change
+                  </button>
                 </td>
               </tr>
               <tr>
-                <td>Change password</td>
+                <td>Password</td>
                 <td>
-                  <mat-icon (click)="changePassword()">change_circle</mat-icon>
+                  <button (click)="changePassword()" class="btn">
+                    Change
+                  </button>
                 </td>
               </tr>
               <tr>
-                <td>See More</td>
+                <td>Take a break</td>
                 <td>
-                  <mat-icon (click)="getAllSelectedCategories()">info</mat-icon>
+                  <button (click)="logout()" class="btn">
+                    Logout
+                  </button>
                 </td>
               </tr>
             </table>
@@ -66,7 +63,67 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-12" id="todo">
           <mat-card [style.min-height.px]="480">
-            <app-todo-list></app-todo-list>
+
+            <div class="outer">
+              <h1 style="text-align: center;font-family: 'Lobster', cursive;
+  font-family: 'Roboto Mono', monospace;">My Todos</h1>
+
+
+              <div class="container">
+                <mat-form-field appearance="fill" class="form">
+                  <mat-label>Enter task here</mat-label>
+                  <input
+                    matInput
+                    placeholder="Describe your task"
+                    [(ngModel)]="newTodo"
+                    type="text"
+                    (keydown.enter)="saveTodo()"
+                  >
+                  <div matSuffix matTooltip="click me to add"
+                       [matTooltipPosition]="'above'">
+                    <mat-icon  (click)="saveTodo()">add</mat-icon>
+                  </div>
+
+                </mat-form-field>
+
+
+                <table class="table table-striped mt20">
+                  <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Task</th>
+                    <th>Current Status</th>
+                    <th>Delete task</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let todo of todos;let i = index;">
+                    <th scope="row">{{i + 1}}</th>
+                    <td class="{{(!todo.isCompleted)?'done':''}} task" (click)="done(i)">
+                      <div matSuffix matTooltip="click me change task status"
+                           [matTooltipPosition]="'above'">
+                        {{todo.name}}
+                      </div>
+                    </td>
+                    <td style="color: red">
+                      <mat-icon class="{{(!todo.isCompleted)?'hide':'show'}}">close</mat-icon>
+                      <mat-icon class="{{(!todo.isCompleted)?'hide':'show'}}">sentiment_very_dissatisfied</mat-icon>
+                      <mat-icon style="color: #3B82F6" class="{{(!todo.isCompleted)?'show':'hide'}}">done</mat-icon>
+                      <mat-icon style="color:#3B82F6" class="{{(!todo.isCompleted)?'show':'hide'}}">mood</mat-icon>
+
+                    </td>
+                    <th (click)="remove(i)">
+                      <mat-icon>delete</mat-icon>
+                    </th>
+                  </tr>
+                  </tbody>
+                </table>
+                <h2 *ngIf="todos.length==0" class="text-center">-</h2>
+
+              </div>
+
+            </div>
+
           </mat-card>
         </div>
 
@@ -74,7 +131,7 @@
       </div>
 
 
-    </mat-tab>-->
+    </mat-tab>
 
     <mat-tab label="abc" *ngFor="let c of selectedCategories" [label]="c.cTitle">
       <ng-template mat-tab-label>
@@ -158,9 +215,11 @@
                 [yAxis]="true"
                 [xAxisLabel]="'Table No'"
                 [yAxisLabel]="'Marks'"
-                [timeline]="true">
+                [timeline]="true"
+                [xAxisTickFormatting]="xAxisTickFormatting">
               </ngx-charts-line-chart>
             </div>
+
 
 
 

@@ -88,18 +88,8 @@
   margin-left: 5px;
 }
 
-.example-header-image {
-  background-image: url("/assets/exam1.png");
-  background-size: cover;
-}
 
-.outer{
-  padding-top: 10px;
-  width: 100%;
-  min-height:100vh;
-  height: auto;
-  border: 1px solid red;
-}
+
 .template{
   margin-right: 10px;
 }
@@ -124,6 +114,37 @@ mat-icon:hover{
 
 
 
+.outer{
+  width: 100%;
+}
+
+.done{
+  text-decoration: line-through;
+}
+.show{
+  display: inline;
+}
+.hide{
+  display: none;
+}
+
+.task:hover{
+  cursor: pointer;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form{
+  width: 80%!important;
+  margin-right: 5px!important;
+}
+
+mat-icon:hover{
+  cursor: pointer;
+}
 
 
 

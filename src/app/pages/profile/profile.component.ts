@@ -8,6 +8,8 @@ import {MatTabChangeEvent} from '@angular/material/tabs';
 import {UserService} from '../../services/user.service';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
+import {Todo} from "../user/todo-list/Todo";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -30,6 +32,9 @@ export class ProfileComponent implements OnInit {
   lineChart;
   usermail;
 
+  todos: Todo[] = [];
+  newTodo: string;
+
   colorSchemePie = {
     domain: ['#3B82F6', '#c0392b']
   };
@@ -44,7 +49,8 @@ export class ProfileComponent implements OnInit {
     private selectSubjectService: SelectSubjectService,
     private userService: UserService,
     private pipe: FilterSubjectPipe,
-    private router: Router
+    private router: Router,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +62,7 @@ export class ProfileComponent implements OnInit {
 
 
   getUserDetails(){
+    console.log(this.userId);
     this.userService.getUser(this.userId).subscribe((response: any) => {
       console.log(response);
       this.usermail = response.email;
@@ -65,9 +72,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getAllSelectedCategories() {
-    console.log('get ALL Selected Categories');
+    console.log(this.userId);
     this.selectSubjectService.getSelectedUserCategory(this.userId).subscribe((response: any) => {
-        console.log(response);
+        console.log('get ALL Selected Categories' + response);
         this.selectedCategories = response;
         console.log(this.selectedCategories);
       },
@@ -83,6 +90,8 @@ export class ProfileComponent implements OnInit {
   getHistoryForSubject(cTitle: string) {
     console.log(this.userHistory);
     this.profileService.getHistoryForSub(cTitle, this.userId, this.pageNumber).subscribe((response: any) => {
+        console.log('get history for sub' + response);
+
         if (response.length === 10) {
           this.showMoreBtn = true;
         } else {
@@ -102,10 +111,10 @@ export class ProfileComponent implements OnInit {
     let length = 0;
 
     this.userHistory.forEach((p, i) => {
-      allMarks = allMarks + parseInt(p.yourMarks);
+      allMarks += parseInt(p.yourMarks, 10);
       length = i;
       this.series.push({
-        name: i + 1,
+        name: (i + 1).toString(),
         value: p.yourMarks
       });
     });
@@ -124,7 +133,10 @@ export class ProfileComponent implements OnInit {
       name: 'Marks',
       series: this.series
     }];
+  }
 
+  xAxisTickFormatting(val: number): string {
+    return val.toString(); // ensures the value is displayed as an integer
   }
 
 
@@ -152,4 +164,45 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  getTodo(){
+    let retString = localStorage.getItem('todos');
+    this.todos = JSON.parse(retString);
+  }
+  saveTodo(){
+    if(this.newTodo){
+      let todo = new Todo();
+      todo.name = this.newTodo;
+      todo.isCompleted = true;
+      this.todos.push(todo);
+      console.log(this.todos);
+      let array = JSON.stringify(this.todos);
+      console.log(array);
+      localStorage.setItem('todos', array);
+      this.newTodo = '';
+    }else {
+      this.snack.open('Empty task description ', 'error', {
+        duration: 3000,
+        horizontalPosition:'center',
+        verticalPosition:'top'
+      });
+    }
+  }
+
+  done(id: number){
+    this.todos[id].isCompleted = !this.todos[id].isCompleted;
+    let array = JSON.stringify(this.todos);
+    localStorage.setItem('todos', array);
+  }
+
+  remove(id:number){
+    this.todos = this.todos.filter((v,i) => i !== id);
+    let array = JSON.stringify(this.todos);
+    localStorage.setItem('todos', array);
+  }
+
+  logout() {
+    console.log("clicked");
+    this.loginService.logout();
+    window.location.reload();
+  }
 }

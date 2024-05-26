@@ -108,8 +108,7 @@
   <div class="inners right">
     <button *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
     <button *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
-    <button *ngIf="isLoggedIn" (click)="logout()">logout</button>
-    <button *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
+    <button *ngIf="isLoggedIn" [routerLink]="'/profile'">Profile</button>
   </div>
   <div class="toggle-div">
     <mat-icon style="width: 50px" (click)="openDropdown()">menu</mat-icon>
@@ -138,8 +137,7 @@
 
   <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/login'">login</button>
   <button class="resp-nav-btn" *ngIf="!isLoggedIn" [routerLink]="'/signup'">signup</button>
-  <button class="resp-nav-btn" *ngIf="isLoggedIn" (click)="logout()">logout</button>
-  <button class="resp-nav-btn" *ngIf="isLoggedIn" [routerLink]="'/profile'">profile</button>
+  <button class="resp-nav-btn" *ngIf="isLoggedIn" [routerLink]="'/profile'">Profile</button>
 
   <button class="resp-nav-btn" routerLink="/admin" routerLinkActive="active"
           *ngIf="isAdmin">Admin DashBoard

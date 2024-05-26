@@ -30,15 +30,6 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  public logout() {
-
-    this.login.logout();
-    window.location.reload();
-    /*this.login.loginStatusSubject.next(false);*/
-
-  }
-
-
   checkUser() {
     this.role = this.login.getUserRole();
 
