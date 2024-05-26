@@ -28,4 +28,10 @@ export class CategoryService {
   public GetCategory(categoryId:number) {
     return this._http.get(`${baseUrl}/category/`+categoryId,{});
   }
+
+  public nonePaidCategories(searchText,userId) {
+    console.log(searchText);
+    console.log(searchText);
+    return this._http.get(`${baseUrl}/category/none-paid-category/` + '?searchText=' + searchText + '&userId=' + userId);
+  }
 }

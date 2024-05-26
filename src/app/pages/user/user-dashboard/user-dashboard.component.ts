@@ -27,7 +27,7 @@ export class UserDashboardComponent implements OnInit {
     private _quiz: QuizService,
     private cat: CategoryService,
     private snack: MatSnackBar,
-    private selectSubjectServeice: SelectSubjectService,
+    private selectSubjectService: SelectSubjectService,
   ) {
   }
 
@@ -41,7 +41,7 @@ export class UserDashboardComponent implements OnInit {
   getSelectedCategory() {
     console.log(this.userId);
 
-    this.selectSubjectServeice.getPaidUserCategory(this.userId).subscribe(response => {
+    this.selectSubjectService.getPaidUserCategory(this.userId).subscribe(response => {
         console.log(response);
         this.selectedCategories = response;
         console.log(this.selectedCategories.length);

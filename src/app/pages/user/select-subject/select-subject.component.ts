@@ -24,7 +24,6 @@ export class SelectSubjectComponent implements OnInit {
   selectedCategories: any = [];
   date = 'not yet';
   searchText: string = '';
-  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   /* myDate = new Date(); */
 
@@ -40,28 +39,40 @@ export class SelectSubjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategories();
-    this.userId = JSON.parse(localStorage.getItem('user')).id;
-    this.isLoggedIn = this.login.isLoggedIn();
-    this.getAllSelectedCategories();
-
   }
 
 
   getAllCategories() {
-    console.log(this.searchText);
-    this.categoryServeice.categories(this.searchText).subscribe(
-      (data: any) => {
-        this.categories = data;
-        console.log(data);
-        this.accordion.openAll();
-      },
-      (error) => {
-        this.snackBar.open('Error in loading categories from server', '', {
-          duration: 3000,
-        });
-      }
-    );
+    console.log();
+    if (!this.login.isLoggedIn()){
+      this.categoryServeice.categories(this.searchText).subscribe(
+        (data: any) => {
+          this.categories = data;
+          console.log(data);
+        },
+        (error) => {
+          this.snackBar.open('Error in loading categories from server', '', {
+            duration: 3000,
+          });
+        }
+      );
+    }else{
+      this.userId = this.login.getUser().id;
+      this.categoryServeice.nonePaidCategories(this.searchText , this.userId).subscribe(
+        (data: any) => {
+          this.categories = data;
+          console.log(data);
+        },
+        (error) => {
+          this.snackBar.open('Error in loading categories from server', '', {
+            duration: 3000,
+          });
+        }
+      );
+    }
+
   }
+
 /*
 
   addCategory(cid, title) {
@@ -140,20 +151,6 @@ export class SelectSubjectComponent implements OnInit {
  }
 */
 
-  getAllSelectedCategories() {
-    console.log(this.userId);
-
-    this.selectSubjectServeice.getSelectedUserCategory(this.userId).subscribe(response => {
-        console.log(response);
-        this.selectedCategories = response;
-      },
-      (error) => {
-        //error
-        console.log(error);
-
-      }
-    );
-  }
 
 
   deleteCategory(userCategoryId, cTitle) {
