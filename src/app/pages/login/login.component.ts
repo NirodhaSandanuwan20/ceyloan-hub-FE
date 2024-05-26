@@ -64,16 +64,16 @@ export class LoginComponent implements OnInit {
           }
         });
       },
-      (error) => {
-        console.log(error);
+      (errorResp) => {
+        console.log(errorResp);
 
         // Determine the type of error and display appropriate message
         let errorMessage = 'An error occurred. Please try again.';
-        if (error.status === 401) {
-          errorMessage = 'Please check your username and password.';
-        } else if (error.status === 404) {
-          errorMessage = 'User not found! Please check your username.';
-        } else if (error.status === 500) {
+        if (errorResp.status === 401) {
+          errorMessage = errorResp.error;
+        } else if (errorResp.status === 404) {
+          errorMessage = errorResp.error;
+        } else if (errorResp.status === 500) {
           errorMessage = 'Internal Server Error! Please try again later.';
         }
 
