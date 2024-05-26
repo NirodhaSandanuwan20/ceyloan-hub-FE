@@ -172,6 +172,13 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="Decline">
+        <th mat-header-cell *matHeaderCellDef><b>Decline</b></th>
+        <td (click)="declinePayment(element)" mat-cell *matCellDef="let element">
+          <mat-icon class="slip">block</mat-icon>
+        </td>
+      </ng-container>
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

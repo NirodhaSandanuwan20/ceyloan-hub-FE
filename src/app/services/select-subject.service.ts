@@ -47,4 +47,8 @@ export class SelectSubjectService {
     return this.http.put(`${baseUrl}/my-category/` + userCategoryId, {});
   }
 
+  declinePayment(userCategoryId: any) {
+    console.log(userCategoryId);
+    return this.http.delete(`${baseUrl}/my-category/decline/` + userCategoryId, {});
+  }
 }

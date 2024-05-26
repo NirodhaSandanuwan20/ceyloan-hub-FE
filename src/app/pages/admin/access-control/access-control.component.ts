@@ -18,7 +18,7 @@ export class AccessControlComponent implements OnInit {
   searchText: any;
   selectedCategories;
   ELEMENT_DATA;
-  displayedColumns: string[] = ['Username', 'Module', 'Status', 'Pay Slip'];
+  displayedColumns: string[] = ['Username', 'Module', 'Status', 'Pay Slip', 'Decline'];
   dataSource;
 
   color: ThemePalette = 'accent';
@@ -101,7 +101,7 @@ export class AccessControlComponent implements OnInit {
   applyPaymentSetting(element) {
 
     Swal.fire({
-      title: 'Confirm your action',
+      title: 'Are you sure about this activation ? ',
       showCancelButton: true,
       confirmButtonText: `Submit`,
       icon: 'info',
@@ -109,6 +109,34 @@ export class AccessControlComponent implements OnInit {
 
       if (e.isConfirmed) {
         this.selectSubjectService.paymentStatus(element.userCategoryId).subscribe(resp => {
+            console.log(resp);
+            this.ngOnInit();
+          },
+          (error) => {
+            this.snackBar.open('Unexpected error while processing. Try again', 'Oops !!', {
+              duration: 3000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom'
+            });
+          }
+        );
+
+      }else {
+        this.searchNow();
+      }
+    });
+  }
+
+  declinePayment(element) {
+    Swal.fire({
+      title: 'Are you sure about this declaration ? ',
+      showCancelButton: true,
+      confirmButtonText: `Submit`,
+      icon: 'info',
+    }).then((e) => {
+
+      if (e.isConfirmed) {
+        this.selectSubjectService.declinePayment(element.userCategoryId).subscribe(resp => {
             console.log(resp);
             this.ngOnInit();
           },
