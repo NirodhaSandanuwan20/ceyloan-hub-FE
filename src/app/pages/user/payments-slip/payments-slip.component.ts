@@ -1,8 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileHandle} from "../../../model/FileHandle";
-import {Question} from "../../../model/Question";
 import {ActivatedRoute, Router} from "@angular/router";
-import {QuestionService} from "../../../services/question.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {UserPayments} from "../../../model/UserPayments";
 import Swal from "sweetalert2";
@@ -11,6 +9,7 @@ import {CategoryService} from "../../../services/category.service";
 import {PaymentsService} from "../../../services/payments.service";
 import {SelectSubjectService} from "../../../services/select-subject.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotificationService} from "../../../services/notification.service";
 
 @Component({
   selector: 'app-payments-slip',
@@ -38,6 +37,7 @@ export class PaymentsSlipComponent implements OnInit {
     private router: Router,
     private selectSubjectServeice: SelectSubjectService,
     private snackBar: MatSnackBar,
+    private notificationService: NotificationService
 
   ) {
   }
@@ -124,7 +124,6 @@ export class PaymentsSlipComponent implements OnInit {
         this.enableBtn = true;
         this.payments_id = data.paymentsId;
         this.addCategory();
-
       },
       (error) => {
         console.log(error);
@@ -134,44 +133,6 @@ export class PaymentsSlipComponent implements OnInit {
   }
 
   addCategory() {
-    /*let text = 'Do you want to add ' + title + ' as your subject ?'
-    let c = {
-      cid: cid,
-      date: this.date,
-      cTitle: title,
-      user: {
-        id: this.userId,
-      },
-    };
-
-    Swal.fire({
-      title: text,
-      showCancelButton: true,
-      confirmButtonText: `Submit`,
-      icon: 'info',
-    }).then((e) => {
-      console.log(c);
-
-      if (e.isConfirmed) {
-        this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
-            console.log(Response);
-            this.ngOnInit();
-            this.snackBar.open('Package Successfully Added', 'Success', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top'
-            });
-          },
-          (error) => {
-            this.snackBar.open('Sign in before buy modules', 'Oops !!', {
-              duration: 3000,
-              horizontalPosition: 'center',
-              verticalPosition: 'top'
-            });
-
-          });
-      }
-    });*/
     let c = {
       cid: this.cid,
       date: this.date,
@@ -184,11 +145,7 @@ export class PaymentsSlipComponent implements OnInit {
 
     this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
         console.log(Response);
-        /*this.snackBar.open('Package Successfully Added', 'Success', {
-          duration: 3000,
-          horizontalPosition: 'center',
-          verticalPosition: 'bottom'
-        });*/
+        this.notificationService.updateNotificationCount(1);
       },
       (error) => {
         console.log(error);
@@ -197,13 +154,6 @@ export class PaymentsSlipComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'bottom'
         });
-        /*else {
-                  this.snackBar.open('Sign in before buy modules', 'Oops !!', {
-                    duration: 3000,
-                    horizontalPosition: 'center',
-                    verticalPosition: 'bottom'
-                  });
-                }*/
       });
   }
 

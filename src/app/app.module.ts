@@ -37,6 +37,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { SidebarComponent as UserSidebar } from './pages/user/sidebar/sidebar.component';
+import { NotificationService } from './services/notification.service';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import {DialogContentComponent, StartComponent} from './pages/user/start/start.component';
@@ -71,6 +72,7 @@ import { PaymentsSlipComponent } from './pages/user/payments-slip/payments-slip.
 import { MyModulesComponent } from './pages/user/my-modules/my-modules.component';
 import {MatTableModule} from '@angular/material/table';
 import { AccessControlComponent } from './pages/admin/access-control/access-control.component';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     DialogContentComponent,
@@ -116,6 +118,7 @@ import { AccessControlComponent } from './pages/admin/access-control/access-cont
     AccessControlComponent
 ],
   imports: [
+    MatBadgeModule,
     MatSlideToggleModule,
     MatTableModule,
     BrowserModule,

@@ -37,7 +37,10 @@
   <div class="containers">
     <div class="item" *ngFor="let q of categories">
       <div class="inner">
-        <p style="color:black;font-weight: bold"><b>{{ q.title }} Papers Package</b></p>
+        <p>{{ q.title }} Papers Package</p>
+<!--
+        <p ><b>{{ q.description }}</b></p>
+-->
         <button [routerLink]="'/payments-slip/' + q.cid" > Check out</button>
 
       </div>

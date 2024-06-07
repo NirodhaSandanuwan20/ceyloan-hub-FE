@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import {NavbarService} from '../../services/navbar.service';
+import {NotificationService} from "../../services/notification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -13,9 +15,12 @@ export class NavbarComponent implements OnInit {
   user = null;
   role;
   show: boolean = false;
+  notificationCount: number = 0;
 
   constructor(public login: LoginService,
-              private navbarService: NavbarService
+              private navbarService: NavbarService,
+              private notificationService: NotificationService,
+              private router: Router
               ) { }
 
   ngOnInit(): void {
@@ -28,6 +33,21 @@ export class NavbarComponent implements OnInit {
 
 
     });
+    this.notificationService.currentCount.subscribe(count => {
+      this.notificationCount = count;
+    });
+  }
+
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
+
+  onProfileButtonClick() {
+    // Reset the notification count when the profile button is clicked
+    this.notificationService.resetNotificationCount();
+    this.router.navigate(['/profile'], { queryParams: { openPanel: 'panel1' } });
   }
 
   checkUser() {

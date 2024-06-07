@@ -7,9 +7,10 @@ import {FilterSubjectPipe} from './filter-subject.pipe';
 import {MatTabChangeEvent} from '@angular/material/tabs';
 import {UserService} from '../../services/user.service';
 import Swal from 'sweetalert2';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Todo} from "../user/todo-list/Todo";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatAccordion} from "@angular/material/expansion";
 
 
 @Component({
@@ -42,15 +43,21 @@ export class ProfileComponent implements OnInit {
     domain: ['#3B82F6']
   };
 
+
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+  panelOpenState = false;
+
+
+  isEmptyData: boolean;
+
   constructor(
     private loginService: LoginService,
     private profileService: ProfileService,
-    private categoryService: CategoryService,
     private selectSubjectService: SelectSubjectService,
     private userService: UserService,
-    private pipe: FilterSubjectPipe,
     private router: Router,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +65,12 @@ export class ProfileComponent implements OnInit {
     this.user = this.loginService.getUser();
     this.getUserDetails();
     this.getAllSelectedCategories();
+    this.route.queryParams.subscribe(params => {
+      const openPanel = params['openPanel'];
+      if (openPanel === 'panel1') {
+        this.panelOpenState = true;
+      }
+    });
   }
 
 
@@ -73,8 +86,7 @@ export class ProfileComponent implements OnInit {
 
   getAllSelectedCategories() {
     console.log(this.userId);
-    this.selectSubjectService.getSelectedUserCategory(this.userId).subscribe((response: any) => {
-        console.log('get ALL Selected Categories' + response);
+    this.selectSubjectService.getPaidUserCategory(this.userId).subscribe((response: any) => {
         this.selectedCategories = response;
         console.log(this.selectedCategories);
       },
@@ -91,6 +103,10 @@ export class ProfileComponent implements OnInit {
     console.log(this.userHistory);
     this.profileService.getHistoryForSub(cTitle, this.userId, this.pageNumber).subscribe((response: any) => {
         console.log('get history for sub' + response);
+
+        if (response.length === 0){
+          this.isEmptyData = true;
+        }
 
         if (response.length === 10) {
           this.showMoreBtn = true;
@@ -203,6 +219,6 @@ export class ProfileComponent implements OnInit {
   logout() {
     console.log("clicked");
     this.loginService.logout();
-    window.location.reload();
+    this.router.navigate(['/login']);
   }
 }
