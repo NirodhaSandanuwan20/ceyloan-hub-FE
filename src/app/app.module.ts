@@ -9,6 +9,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -37,7 +38,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import { SidebarComponent as UserSidebar } from './pages/user/sidebar/sidebar.component';
-import { NotificationService } from './services/notification.service';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import {DialogContentComponent, StartComponent} from './pages/user/start/start.component';
@@ -119,6 +120,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 ],
   imports: [
     MatBadgeModule,
+    MatBottomSheetModule,
     MatSlideToggleModule,
     MatTableModule,
     BrowserModule,
@@ -130,6 +132,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     FormsModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatProgressBarModule,
     MatCardModule,
     MatToolbarModule,
     MatIconModule,

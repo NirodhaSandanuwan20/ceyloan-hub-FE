@@ -159,6 +159,7 @@ export class ProfileComponent implements OnInit {
   myTabFocusChange(changeEvent: MatTabChangeEvent) {
     this.pageNumber = 0;
     this.userHistory = [];
+    this.isEmptyData = false;
     console.log(changeEvent.tab.textLabel);
     this.cTitle = changeEvent.tab.textLabel;
     this.getHistoryForSubject(changeEvent.tab.textLabel);

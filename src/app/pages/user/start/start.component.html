@@ -1,44 +1,39 @@
 
   <div class="bootstrap-wrapper" *ngIf="!isSubmit">
 
-    <!--popup box item-->
-    <input checked type="checkbox" id="toggle-popup" class="toggle-checkbox">
-    <label for="toggle-popup" class="toggle-button">
-      <div class="example-tooltip-host" matTooltip="To see time and submit button" [matTooltipPosition]='position'>
-        Console
-      </div>
-    </label>
+    <button mat-raised-button (click)="openBottomSheet(bottomSheetTemplate)" class="bottom-sheet-button">
+      Console
+    </button>
     <div class="popup">
-      <div class="popup-content">
-        <span style="color:white;font-weight:bold;font-size: 30px">{{ getFormattedTime() }}</span>
-        <div class="divider"></div>
 
-        <button class="mt10 boxbtn" (click)="submitQuiz()" mat-raised-button>
-          Submit Quiz
-        </button>
 
-        <button class="mt10 boxbtn" (click)="openPopup()" mat-raised-button>
-          <div class="example-tooltip-host" matTooltip="what u need to refer after paper or etc.."
-               [matTooltipPosition]='position'>
-            + Add todo about paper
-          </div>
-        </button>
 
-        <button class="mt10 boxbtn" mat-raised-button>
-          <div class="example-tooltip-host"  (click)="pauseTimer()" matTooltip="Stop your timer"
-               [matTooltipPosition]='position'>
-            Pause paper
-          </div>
-        </button>
 
-        <label for="toggle-popup" class="close-button">
-          <div class="example-tooltip-host" matTooltip="To close console box" [matTooltipPosition]='position'>
-            <mat-icon>close</mat-icon>
-          </div>
-        </label>
-
-      </div>
     </div>
+
+    <ng-template #bottomSheetTemplate>
+      <mat-nav-list class="centered-list">
+        <a mat-list-item (click)="bottomSheetRef.dismiss()">
+          <span class="centered-item">{{ getFormattedTime() }}</span>
+        </a>
+
+        <mat-progress-bar mode="buffer" [value]="progressValue" [bufferValue]="bufferValue"></mat-progress-bar>
+
+        <a mat-list-item (click)="bottomSheetRef.dismiss(); submitQuiz()">
+          <span class="centered-item">Submit Quiz</span>
+        </a>
+        <a mat-list-item (click)="bottomSheetRef.dismiss(); pauseTimer()" matTooltip="Stop your timer" [matTooltipPosition]='position' class="example-tooltip-host">
+          <span class="centered-item">Pause paper</span>
+        </a>
+        <a mat-list-item (click)="bottomSheetRef.dismiss(); openPopup()" matTooltip="What you need to refer after paper or etc.." [matTooltipPosition]='position' class="example-tooltip-host">
+          <span class="centered-item">Add todos</span>
+        </a>
+      </mat-nav-list>
+    </ng-template>
+
+
+
+
     <!--popup box item end-->
 
     <div class="row" style="margin-top: 10px!important;">

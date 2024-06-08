@@ -1,19 +1,19 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {QuestionService} from 'src/app/services/question.service';
-import {QuizService} from 'src/app/services/quiz.service';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuestionService } from 'src/app/services/question.service';
+import { QuizService } from 'src/app/services/quiz.service';
 import Swal from 'sweetalert2';
-import {Question} from '../../../model/Question';
-import {map} from 'rxjs/operators';
-import {ImageProcessingService} from '../../../services/ImageProcessingService';
-import {DatePipe, LocationStrategy, ViewportScroller} from '@angular/common';
-import {HistoryService} from 'src/app/services/history.service';
-import {MatStep, MatStepper} from '@angular/material/stepper';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {Todo} from '../todo-list/Todo';
-import {NavbarService} from '../../../services/navbar.service';
-
+import { Question } from '../../../model/Question';
+import { map } from 'rxjs/operators';
+import { ImageProcessingService } from '../../../services/ImageProcessingService';
+import { DatePipe, LocationStrategy, ViewportScroller } from '@angular/common';
+import { HistoryService } from 'src/app/services/history.service';
+import { MatStep, MatStepper } from '@angular/material/stepper';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Todo } from '../todo-list/Todo';
+import { NavbarService } from '../../../services/navbar.service';
+import {MatBottomSheet, MatBottomSheetRef} from "@angular/material/bottom-sheet";
 
 @Component({
   selector: 'app-start',
@@ -42,8 +42,20 @@ export class StartComponent implements OnInit {
   position = 'below';
   pause = true;
   timerInterval: any; // Property to store the interval ID
-   fullTime: number;
-   setterFlag: boolean = true;
+  fullTime: number;
+  setterFlag = true;
+  isSubmitting = false; // Flag to prevent multiple submissions
+
+  startTime: Date; // Start time of the quiz
+  timeSpent: number; // Time spent on the quiz in seconds
+
+  progressValue: number = 0;
+  bufferValue: number = 100;
+  elapsedTime: number = 0;
+
+  @ViewChild('bottomSheetTemplate') bottomSheetTemplate: TemplateRef<any>;
+
+  bottomSheetRef: MatBottomSheetRef;
 
   constructor(
     private imageProcessingService: ImageProcessingService,
@@ -57,7 +69,8 @@ export class StartComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private bottomSheet: MatBottomSheet,
   ) {
     this.startCountdown();
   }
@@ -68,9 +81,12 @@ export class StartComponent implements OnInit {
     console.log(this.qid);
     this.loadQuestions();
     this.hideNavbar();
+    this.startTime = new Date(); // Record the start time when the quiz begins
   }
 
-
+  openBottomSheet(template: TemplateRef<any>): void {
+    this.bottomSheetRef = this.bottomSheet.open(template);
+  }
 
   loadQuestions() {
     this._question.getQuestionsOfQuizForTest(this.qid, this.pageNumber)
@@ -87,22 +103,20 @@ export class StartComponent implements OnInit {
           console.log(data);
           data.forEach(p => this.questions.push(p));
           console.log(this.questions.length);
-          if (this.setterFlag){
+          if (this.setterFlag) {
             this.setUpTime();
             this.setterFlag = false;
           }
-          },
-
+        },
         (error) => {
           console.log(error);
           Swal.fire('Oops', 'Empty Question For Now. Questions Will Be Added ASAP', 'error');
           this.router.navigateByUrl('user-dashboard');
         }
       );
-
   }
 
-  setUpTime(){
+  setUpTime() {
     this.timer = this.questions[0].quiz.timeDuration * 60;
     this.fullTime = this.questions[0].quiz.timeDuration * 60;
     this.startTimer();
@@ -116,7 +130,6 @@ export class StartComponent implements OnInit {
       history.pushState(null, null, location.href);
     });
   }
-
 
   submitQuiz() {
     Swal.fire({
@@ -133,20 +146,27 @@ export class StartComponent implements OnInit {
 
   startTimer() {
     this.timerInterval = setInterval(() => {
-      // code
       if (this.timer <= 0) {
         clearInterval(this.timerInterval);
         this.evalQuiz();
       } else {
         this.timer--;
-        if(this.timer === this.fullTime * 3 / 4 || this.timer === this.fullTime / 2 || this.timer === this.fullTime / 4 ){
-          this.openSnackBar('මිනිත්තු ' + (this.fullTime - this.timer) / 60 + ' ක් ගත වී අවසන්');
+        this.elapsedTime++;
+        this.updateProgressBar();
+        if (this.timer === this.fullTime * 3 / 4 || this.timer === this.fullTime / 2 || this.timer === this.fullTime / 4) {
+          this.openSnackBar('Elapsed time notification');
         }
-        if(this.timer === 300){
-          this.openSnackBar('අවසන් මිනිත්තු 5 !! ');
+        if (this.timer === 300) {
+          this.openSnackBar('Final 5 minutes notification');
         }
       }
     }, 1000);
+  }
+
+  updateProgressBar() {
+    console.log(this.bufferValue);
+    console.log(this.progressValue);
+    this.progressValue = (this.elapsedTime / this.fullTime) * 100;
   }
 
   pauseTimer() {
@@ -161,13 +181,11 @@ export class StartComponent implements OnInit {
     this.startCountdown();
   }
 
-
   getFormattedTime() {
-    const mm = Math.floor(this.timer / 60);
-    const ss = this.timer - mm * 60;
-    return `${mm} m : ${ss} s`;
+     this.mm = Math.floor(this.timer / 60);
+    const ss = this.timer - this.mm * 60;
+    return `${this.mm} m : ${ss} s`;
   }
-
 
   startCountdown(): void {
     this.countdown = this.stepDuration;
@@ -191,18 +209,10 @@ export class StartComponent implements OnInit {
   }
 
   evalQuiz() {
-    /* this._question.evalQuiz(this.questions).subscribe(
-       (data: any) => {
-         console.log(data);
-         this.marksGot = data.marksGot;
-         this.correctAnswers = data.correctAnswers;
-         this.attempted = data.attempted;
-         this.isSubmit = true;
-       },
-       (error) => {
-         console.log(error);
-       }
-     );*/
+    if (this.isSubmitting) return; // Prevent multiple submissions
+    this.isSubmitting = true;
+
+    console.log('evalQuiz called');
     this.countdown = 0;
     this.timer = 0;
     this.loadMore();
@@ -216,13 +226,25 @@ export class StartComponent implements OnInit {
       }
     });
     this.viewportScroller.scrollToPosition([0, 0]);
-    this.saveHistory();
+
+    // Calculate the time spent
+    const endTime = new Date();
+    this.timeSpent = Math.floor((endTime.getTime() - this.startTime.getTime()) / 1000); // Time spent in seconds
+    const timeSpentFormatted = this.formatTime(this.timeSpent); // Format time spent
+
+    this.saveHistory(timeSpentFormatted);
     this.showNavbar();
     this.isSubmit = true;
   }
 
+  formatTime(seconds: number): string {
+    const mm = Math.floor(seconds / 60);
+    const ss = seconds % 60;
+    return `${mm < 10 ? '0' : ''}${mm}:${ss < 10 ? '0' : ''}${ss}`;
+  }
 
-  saveHistory() {
+  saveHistory(timeSpent: string) {
+    console.log('saveHistory called');
     this.date = this.datePipe.transform(this.myDate, 'yyyy-MM-dd  h:mm a');
     const userId = JSON.parse(localStorage.getItem('user')).id;
     const nowTime: any = this.getFormattedTime();
@@ -233,7 +255,7 @@ export class StartComponent implements OnInit {
       title: this.questions[0].quiz.title,
       fullMarks: this.questions[0].quiz.maxMarks,
       yourMarks: this.marksGot,
-      savedTime: nowTime,
+      savedTime: timeSpent,// Include the formatted time spent
       qid: this.qid,
       user: {
         id: userId,
@@ -246,16 +268,12 @@ export class StartComponent implements OnInit {
     });
   }
 
-
   loadMore() {
     this.pageNumber = this.pageNumber + 1;
     this.loadQuestions();
   }
 
   checkStatus(i: number) {
-    /*if( i + 1 === this.questions.length){
-      this.loadMore();
-    }*/
     console.log(this.questions[i].givenAnswer);
     if (this.questions[i].givenAnswer === null) {
       this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1) + ' - not marked yet';
@@ -296,19 +314,17 @@ export class StartComponent implements OnInit {
   showNavbar(): void {
     this.navbarService.setShowNavbar(true);
   }
-
 }
-
 
 @Component({
   selector: 'app-dialog-content',
   template: `
     <div>
       <h2>+ Add Todo</h2>
-      <form >
+      <form>
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Describe task</mat-label>
-          <textarea style="height: auto"  matInput placeholder="EX: refer 2002 15 Q again " [(ngModel)]="name" name="name" required></textarea>
+          <textarea style="height: auto" matInput placeholder="EX: refer 2002 15 Q again" [(ngModel)]="name" name="name" required></textarea>
         </mat-form-field>
         <br>
         <button style="margin-right: 5px" mat-raised-button color="primary" (click)="save()">add</button>
@@ -317,19 +333,15 @@ export class StartComponent implements OnInit {
     </div>
   `,
 })
-
-
 export class DialogContentComponent {
   name: string;
   todos;
 
   constructor(private dialogRef: MatDialogRef<DialogContentComponent>,
               private snackBar: MatSnackBar,
-  ) {
-  }
+  ) { }
 
   save(): void {
-
     const retString = localStorage.getItem('todos');
     this.todos = JSON.parse(retString);
 
@@ -343,7 +355,7 @@ export class DialogContentComponent {
     localStorage.setItem('todos', array);
     this.name = '';
     this.dialogRef.close();
-    this.snackBar.open('task added to your list in profile', 'success', {
+    this.snackBar.open('Task added to your list in profile', 'success', {
       duration: 2000,
       horizontalPosition: 'right',
       verticalPosition: 'top',
@@ -353,6 +365,4 @@ export class DialogContentComponent {
   close(): void {
     this.dialogRef.close();
   }
-
 }
-

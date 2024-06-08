@@ -159,6 +159,43 @@ input[type="radio"]:disabled:checked + label {
   justify-content: center;
 }
 
+
+.bottom-sheet-button {
+  position: fixed;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  z-index: 2;
+  padding: 10px;
+  background-color: #1976d2;
+  color: white;
+  border-radius: 4px;
+}
+
+
+.centered-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centered-item {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.example-tooltip-host {
+  text-align: center;
+  width: 100%;
+}
+
+.mat-list-item {
+  justify-content: center;
+}
+
+
 @media (max-width: 1200px) {
   .toggle-button {
     top: 10%;
