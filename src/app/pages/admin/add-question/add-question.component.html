@@ -1,18 +1,45 @@
 <div class="bootstrap-wrapper" style="margin-top: 10px">
   <div class="row mt20">
-    <div class="col-md-12">
+    <div class="col-md-12" style="display:flex;flex-direction: column;justify-content: center;align-items: center">
       <h1>
         Add Question to <span style="font-weight: bold">{{ qTitle }} - {{ qCategory }}</span>
       </h1>
 
-      <mat-card>
-        <mat-card-header>
-          <mat-card-subtitle>
-            Enter the detail of the new question
-          </mat-card-subtitle>
-        </mat-card-header>
+      <mat-card style="width: 80%;min-height: 70vh;height: auto">
+
         <mat-card-content>
-          <form class="mt20" (submit)="formSubmit()">
+          <form class="mt20" [formGroup]="QuestionsForm">
+
+
+            <div class="col-md-12" style="display: flex;align-items: center;justify-content: center;flex-direction: row;margin-bottom: 20px">
+
+              <input
+                type="file"
+                multiple
+                value="select"
+                formControlName="image"
+                #selectFile
+                (change)="onFileSelected($event)"
+              >
+
+              <div class="container text-center">
+                <button mat-raised-button style="width: 20%" color="primary" [disabled]="QuestionsForm.invalid ||  question.questionImages.length == 0" (click)="formSubmit()" >Add</button>
+              </div>
+
+            </div>
+
+
+
+
+            <div class="row">
+
+              <div *ngFor="let file of question.questionImages; let i =index;" style="position: relative">
+                <span class="btn-remove-image" (click)="removeImage(i)">x</span>
+                <img [src]="file.url" width="80%">
+              </div>
+
+            </div>
+
             <!-- content field -->
 
             <!-- <mat-form-field class="w100">
@@ -27,12 +54,6 @@
               ></textarea>
             </mat-form-field> -->
 
-            <ckeditor
-              [editor]="Editor"
-              name="content"
-              [(ngModel)]="question.content"
-            ></ckeditor>
-
             <!-- options -->
 
             <div class="row">
@@ -42,9 +63,7 @@
                 <mat-form-field class="w100">
                   <mat-label>Enter Option1</mat-label>
                   <input
-                    required
-                    [(ngModel)]="value1"
-                    name="option1"
+                    formControlName="option1"
                     type="text"
                     matInput
                   />
@@ -55,9 +74,7 @@
                 <mat-form-field class="w100">
                   <mat-label>Enter Option2</mat-label>
                   <input
-                    required
-                    [(ngModel)]="value2"
-                    name="option2"
+                    formControlName="option2"
                     type="text"
                     matInput
                   />
@@ -71,8 +88,7 @@
                 <mat-form-field class="w100">
                   <mat-label>Enter Option3</mat-label>
                   <input
-                    [(ngModel)]="value3"
-                    name="option3"
+                    formControlName="option3"
                     type="text"
                     matInput
                   />
@@ -83,8 +99,7 @@
                 <mat-form-field class="w100">
                   <mat-label>Enter Option4</mat-label>
                   <input
-                    [(ngModel)]="value4"
-                    name="option4"
+                    formControlName="option4"
                     type="text"
                     matInput
                   />
@@ -93,11 +108,10 @@
               <div class="row">
               <div class="col-md-6">
                 <!-- option5 -->
-                <mat-form-field class="w100" style="margin-left: 18px;width: 200px;">
+                <mat-form-field class="w100" >
                   <mat-label>Enter Option5</mat-label>
                   <input
-                    [(ngModel)]="value5"
-                    name="option5"
+                    formControlName="option5"
                     type="text"
                     matInput
                   />
@@ -109,65 +123,37 @@
             <!-- answer -->
             <mat-form-field class="w100">
               <mat-label>Select Answer</mat-label>
-              <mat-select required [(ngModel)]="question.answer" name="answer">
+              <mat-select  [(ngModel)]="question.answer" formControlName="answer">
                 <mat-option
-                  *ngIf="question.option1"
-                  [value]="question.option1"
-                  >{{ question.option1 }}</mat-option
+                  *ngIf="this.QuestionsForm.get('option1').value!"
+                  [value]="this.QuestionsForm.get('option1').value!"
+                  >{{ this.QuestionsForm.get('option1').value! }}</mat-option
                 >
                 <mat-option
-                  *ngIf="question.option2"
-                  [value]="question.option2"
-                  >{{ question.option2 }}</mat-option
+                  *ngIf="this.QuestionsForm.get('option2').value!"
+                  [value]="this.QuestionsForm.get('option2').value!"
+                  >{{ this.QuestionsForm.get('option2').value! }}</mat-option
                 >
                 <mat-option
-                  *ngIf="question.option3"
-                  [value]="question.option3"
-                  >{{ question.option3 }}</mat-option
+                  *ngIf="this.QuestionsForm.get('option3').value!"
+                  [value]="this.QuestionsForm.get('option3').value!"
+                  >{{ this.QuestionsForm.get('option3').value! }}</mat-option
                 >
                 <mat-option
-                  *ngIf="question.option4"
-                  [value]="question.option4"
-                  >{{ question.option4 }}</mat-option
+                  *ngIf="this.QuestionsForm.get('option4').value!"
+                  [value]="this.QuestionsForm.get('option4').value!"
+                  >{{ this.QuestionsForm.get('option4').value! }}</mat-option
                 >
                 <mat-option
-                  *ngIf="question.option5"
-                  [value]="question.option5"
-                >{{ question.option5 }}</mat-option
+                  *ngIf="this.QuestionsForm.get('option5').value!"
+                  [value]="this.QuestionsForm.get('option5').value!"
+                >{{ this.QuestionsForm.get('option5').value! }}</mat-option
                 >
               </mat-select>
 
             </mat-form-field>
 
-              <div class="col-md-6">
-                <input
-                  type="file"
-                  multiple
-                  value="select"
-                  #selectFile
-                  (change)="onFileSelected($event)"
-                >
-              </div>
 
-
-
-
-              <div class="row">
-
-                    <div *ngFor="let file of question.questionImages; let i =index;" style="position: relative">
-                      <span class="btn-remove-image" (click)="removeImage(i)">x</span>
-                      <img [src]="file.url" width="auto">
-                    </div>
-
-              </div>
-
-
-
-
-
-            <div class="container text-center">
-              <button mat-raised-button color="primary" [disabled] = "enableBtn">Add</button>
-            </div>
           </form>
 
         </mat-card-content>

@@ -4,12 +4,6 @@
     <button mat-raised-button (click)="openBottomSheet(bottomSheetTemplate)" class="bottom-sheet-button">
       Console
     </button>
-    <div class="popup">
-
-
-
-
-    </div>
 
     <ng-template #bottomSheetTemplate>
       <mat-nav-list class="centered-list">
@@ -17,7 +11,7 @@
           <span class="centered-item">{{ getFormattedTime() }}</span>
         </a>
 
-        <mat-progress-bar mode="buffer" [value]="progressValue" [bufferValue]="bufferValue"></mat-progress-bar>
+        <mat-progress-bar mode="buffer" [value]="progressValue" [bufferValue]="0"></mat-progress-bar>
 
         <a mat-list-item (click)="bottomSheetRef.dismiss(); submitQuiz()">
           <span class="centered-item">Submit Quiz</span>
@@ -32,9 +26,6 @@
     </ng-template>
 
 
-
-
-    <!--popup box item end-->
 
     <div class="row" style="margin-top: 10px!important;">
       <div class="col-md-1"></div>

@@ -2,10 +2,11 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {QuestionService} from 'src/app/services/question.service';
 import Swal from 'sweetalert2';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Question} from '../../../model/Question';
 import {FileHandle} from '../../../model/FileHandle';
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-question',
@@ -14,26 +15,33 @@ import {FileHandle} from '../../../model/FileHandle';
 })
 
 export class AddQuestionComponent implements OnInit {
-  value1: string = 'පිළිතුර 1';
-  value2: string = 'පිළිතුර 2';
-  value3: string = 'පිළිතුර 3';
-  value4: string = 'පිළිතුර 4';
-  value5: string = 'පිළිතුර 5';
+
+  QuestionsForm = new FormGroup({
+    image: new FormControl('', Validators.required),
+    option1: new FormControl('', Validators.required),
+    option2: new FormControl('', Validators.required),
+    option3: new FormControl('', Validators.required),
+    option4: new FormControl('', Validators.required),
+    option5: new FormControl('', Validators.required),
+    answer: new FormControl('', Validators.required),
+  });
+
+
   @ViewChild('selectFile', {static: false}) selectFileInput: ElementRef;
 
-  enableBtn = true;
-  public Editor = ClassicEditor;
+
+
   qId;
   qTitle;
   qCategory;
   question: Question = {
     quiz: {},
     content: '',
-    option1: this.value1,
-    option2: this.value2,
-    option3: this.value3,
-    option4: this.value4,
-    option5: this.value5,
+    option1: 'පිළිතුර 1',
+    option2: 'පිළිතුර 2',
+    option3: 'පිළිතුර 3',
+    option4: 'පිළිතුර 4',
+    option5: 'පිළිතුර 5',
     answer: '',
     questionImages: []
   };
@@ -42,7 +50,8 @@ export class AddQuestionComponent implements OnInit {
     private route: ActivatedRoute,
     private questionService: QuestionService,
     private sanitizer: DomSanitizer,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private mat: MatSnackBar
   ) {
   }
 
@@ -54,31 +63,28 @@ export class AddQuestionComponent implements OnInit {
       this.qId = params.qid;
       this.qTitle = params.title;
       this.qCategory = params.category;
+      this.QuestionsForm.patchValue({
+        option1: 'පිළිතුර 1',
+        option2: 'පිළිතුර 2',
+        option3: 'පිළිතුර 3',
+        option4: 'පිළිතුර 4',
+        option5: 'පිළිතුර 5'
+      });
     });
 
   }
 
   // tslint:disable-next-line:typedef
   formSubmit() {
-    if (this.question.content.trim() === '' || this.question.content == null) {
-      return;
-    }
-
-    if (this.question.option1.trim() === '' || this.question.option1 == null) {
-      return;
-    }
-    if (this.question.option2.trim() === '' || this.question.option2 == null) {
-      return;
-    }
-    if (this.question.answer.trim() === '' || this.question.answer == null) {
-      return;
-    }
-    console.log(this.question);
 
     const questionFormData = this.prepareFormData(this.question);
     this.questionService.addQuestion(questionFormData).subscribe(
       (data: any) => {
-        Swal.fire('Success ', 'Question Added. Add Another one', 'success');
+        this.mat.open('Question Added', 'Success', {
+          duration: 5000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+        });
         /* this.question.content = '';
         this.question.option1 = '';
         this.question.option2 = '';
@@ -88,7 +94,6 @@ export class AddQuestionComponent implements OnInit {
         this.question.answer = ''; */
         this.question.questionImages = [];
         this.selectFileInput.nativeElement.value = '';
-        this.enableBtn = true;
       },
       (error) => {
         Swal.fire('Error', 'Error in adding question', 'error');
@@ -108,7 +113,6 @@ export class AddQuestionComponent implements OnInit {
         )
       };
       this.question.questionImages.push(fileHandle);
-      this.enableBtn = false;
     }
   }
 
@@ -132,7 +136,6 @@ export class AddQuestionComponent implements OnInit {
   // tslint:disable-next-line:typedef
   removeImage(i: number) {
     this.question.questionImages.splice(i, 1);
-    this.enableBtn = true;
     this.selectFileInput.nativeElement.value = '';
   }
 
