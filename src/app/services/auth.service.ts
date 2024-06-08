@@ -2,6 +2,7 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {LoginService} from './login.service';
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -25,19 +26,18 @@ export class AuthGuard implements CanActivate {
 
 
   }
+
+  private logoutSubject = new Subject<void>();
+
+  logout$ = this.logoutSubject.asObservable();
+
+  logout() {
+    this.login.logout();
+    this.logoutSubject.next();
+  }
+
+
+
 }
 
 
-/*
- else {
-      if (state.url === '/specific-action') {
-        // Redirect to login page with current URL as a parameter
-        this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-
-      } else {
-        // Redirect to login page for the specific action
-        this.router.navigate(['/login']);
-      }
-      return false;
-    }
-*/

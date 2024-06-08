@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Todo} from "../user/todo-list/Todo";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatAccordion} from "@angular/material/expansion";
+import {AuthGuard} from "../../services/auth.service";
 
 
 @Component({
@@ -52,6 +53,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
+    private authService: AuthGuard,
     private profileService: ProfileService,
     private selectSubjectService: SelectSubjectService,
     private userService: UserService,
@@ -218,8 +220,6 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    console.log("clicked");
-    this.loginService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }

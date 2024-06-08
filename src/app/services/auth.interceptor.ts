@@ -10,11 +10,13 @@ import {Observable, throwError} from 'rxjs';
 import {LoginService} from './login.service';
 import {Router} from "@angular/router";
 import {catchError} from "rxjs/operators";
+import {AuthGuard} from "./auth.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private login: LoginService,
               private router: Router,
+              private authService: AuthGuard,
   ) {
   }
 
@@ -38,8 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401 || error.status === 0) {
           // Token expired or unauthorized request
           console.log("inside");
-          this.login.logout();
-          this.router.navigate(['/login']);
+          this.authService.logout();
         }
         return throwError(error);
       }));

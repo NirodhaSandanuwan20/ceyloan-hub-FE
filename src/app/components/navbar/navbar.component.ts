@@ -3,6 +3,7 @@ import { LoginService } from 'src/app/services/login.service';
 import {NavbarService} from '../../services/navbar.service';
 import {NotificationService} from "../../services/notification.service";
 import {Router} from "@angular/router";
+import {AuthGuard} from "../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -16,15 +17,20 @@ export class NavbarComponent implements OnInit {
   role;
   show: boolean = false;
   notificationCount: number = 0;
+  menuOpen = false;
+
 
   constructor(public login: LoginService,
               private navbarService: NavbarService,
               private notificationService: NotificationService,
-              private router: Router
+              private router: Router,
+              private authService: AuthGuard
               ) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.login.isLoggedIn();
+    this.authService.logout$.subscribe(() => {
+      this.isLoggedIn = false;
+    });
     this.user = this.login.getUser();
     this.login.loginStatusSubject.asObservable().subscribe((data) => {
       this.isLoggedIn = this.login.isLoggedIn();
