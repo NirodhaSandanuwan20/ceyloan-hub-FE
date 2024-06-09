@@ -68,9 +68,6 @@
                 <mat-panel-title>
                   My Module List
                 </mat-panel-title>
-                <mat-panel-description>
-                  Check your module status
-                </mat-panel-description>
               </mat-expansion-panel-header>
               <app-my-modules></app-my-modules>
 
@@ -81,9 +78,6 @@
                 <mat-panel-title>
                   My Todo List
                 </mat-panel-title>
-                <mat-panel-description>
-                  Plan your daily routing
-                </mat-panel-description>
               </mat-expansion-panel-header>
 
               <div class="outer">
@@ -145,6 +139,15 @@
               </div>
 
             </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  My Notifications
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+
+            </mat-expansion-panel>
           </mat-accordion>
 
 
@@ -176,7 +179,8 @@
 
         <div class="empty" *ngIf="isEmptyData">
           <img width="25%" src="assets/stars.svg" alt="">
-          <h3 style="'Roboto Mono', monospace;margin: 10px">Oops, There is no prior record to analyze your performance.</h3>
+          <h3 style="'Roboto Mono', monospace;margin: 10px">Oops, There is no prior record to analyze your
+            performance.</h3>
         </div>
 
 
@@ -193,7 +197,7 @@
             </mat-expansion-panel-header>
 
 
-            <div class="container-fluid" >
+            <div class="container-fluid">
               <table class="table-2 table-striped table-bordered align-items-center justify-content-center">
 
                 <thead>
@@ -223,7 +227,7 @@
                   Load More
                 </button>
               </div>
-            </div >
+            </div>
 
           </mat-expansion-panel>
           <mat-expansion-panel [expanded]="isExpanded">
@@ -236,7 +240,7 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
-            <div class="" style="max-height: 100vh" >
+            <div class="" style="max-height: 100vh">
               <ngx-charts-line-chart
                 [results]="lineChart"
                 [scheme]="colorSchemeLineChart"
@@ -271,7 +275,7 @@
             </mat-expansion-panel-header>
 
 
-            <div class="" style="max-height: 100vh" >
+            <div class="" style="max-height: 100vh">
               <ngx-charts-advanced-pie-chart
                 [results]="pieChartArray"
                 [scheme]="colorSchemePie"

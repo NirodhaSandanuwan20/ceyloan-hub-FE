@@ -11,7 +11,6 @@ export class MyModulesComponent implements OnInit {
   userId;
   ELEMENT_DATA;
   isEmpty;
-  displayedColumns: string[] = ['Module', 'Status', 'Delete'];
   dataSource;
 
 
