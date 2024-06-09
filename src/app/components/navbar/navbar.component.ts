@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from 'src/app/services/login.service';
 import {NavbarService} from '../../services/navbar.service';
 import {NotificationService} from "../../services/notification.service";
 import {Router} from "@angular/router";
-import {AuthGuard} from "../../services/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -11,40 +10,43 @@ import {AuthGuard} from "../../services/auth.service";
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  isLoggedIn = false;
-  isAdmin ;
+  isLoggedIn;
+  isAdmin;
   user = null;
   role;
   show: boolean = false;
   notificationCount: number = 0;
-  menuOpen = false;
+  hidden = false;
 
 
   constructor(public login: LoginService,
               private navbarService: NavbarService,
               private notificationService: NotificationService,
               private router: Router,
-              private authService: AuthGuard
-              ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.authService.logout$.subscribe(() => {
-      this.isLoggedIn = false;
-    });
     this.user = this.login.getUser();
-    this.login.loginStatusSubject.asObservable().subscribe((data) => {
-      this.isLoggedIn = this.login.isLoggedIn();
-      this.user = this.login.getUser();
-      this.checkUser();
+    this.loginDetails();
+    this.setNotifications();
+    this.user = this.login.getUser();
+    this.checkUser();
+  }
 
 
-    });
+  private loginDetails() {
+    console.log('login details method ');
+    this.isLoggedIn = this.login.isLoggedIn();
+    console.log(this.isLoggedIn);
+  }
+
+  private setNotifications() {
     this.notificationService.currentCount.subscribe(count => {
       this.notificationCount = count;
     });
   }
 
-  hidden = false;
 
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
@@ -53,7 +55,7 @@ export class NavbarComponent implements OnInit {
   onProfileButtonClick() {
     // Reset the notification count when the profile button is clicked
     this.notificationService.resetNotificationCount();
-    this.router.navigate(['/profile'], { queryParams: { openPanel: 'panel1' } });
+    this.router.navigate(['/profile'], {queryParams: {openPanel: 'panel1'}});
   }
 
   checkUser() {
@@ -61,10 +63,10 @@ export class NavbarComponent implements OnInit {
 
     console.log(this.role);
 
-    if (this.role === 'NORMAL' || this.role === null ) {
+    if (this.role === 'NORMAL' || this.role === null) {
       this.isAdmin = false;
     }
-    if (this.role === 'ADMIN' ) {
+    if (this.role === 'ADMIN') {
       this.isAdmin = true;
     }
   }
@@ -73,8 +75,13 @@ export class NavbarComponent implements OnInit {
     return this.navbarService.getShowNavbar();
   }
 
+  get setNavbar(): boolean {
+    return this.navbarService.getLoggedIn();
+  }
+
   openDropdown() {
     this.show = !this.show;
   }
+
 
 }

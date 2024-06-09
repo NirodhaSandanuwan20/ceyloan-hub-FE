@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class NavbarService {
   private showNavbar: boolean = true;
+  private isLoggedIn: boolean = true;
   constructor() { }
 
 
@@ -15,4 +16,14 @@ export class NavbarService {
   setShowNavbar(value: boolean): void {
     this.showNavbar = value;
   }
+
+
+  getLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  setLoggedIn(value: boolean): void {
+    this.isLoggedIn = value;
+  }
+
 }

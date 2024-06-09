@@ -15,8 +15,6 @@ import {AuthGuard} from "./auth.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(private login: LoginService,
-              private router: Router,
-              private authService: AuthGuard,
   ) {
   }
 
@@ -38,9 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.log(error.status);
         if (error.status === 401 || error.status === 0) {
-          // Token expired or unauthorized request
-          console.log("inside");
-          this.authService.logout();
+          this.login.logout();
         }
         return throwError(error);
       }));

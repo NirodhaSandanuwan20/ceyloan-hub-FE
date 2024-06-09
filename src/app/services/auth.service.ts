@@ -27,14 +27,6 @@ export class AuthGuard implements CanActivate {
 
   }
 
-  private logoutSubject = new Subject<void>();
-
-  logout$ = this.logoutSubject.asObservable();
-
-  logout() {
-    this.login.logout();
-    this.logoutSubject.next();
-  }
 
 
 

@@ -171,6 +171,11 @@ mat-icon {
 
   }
 }
+.custom-icon {
+  color:#3B82F6;
+  margin: 20px;
+}
+
 
 @media (min-width: 900px) {
   .responsive-nav {

@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private loginService: LoginService,
-    private authService: AuthGuard,
     private profileService: ProfileService,
     private selectSubjectService: SelectSubjectService,
     private userService: UserService,
@@ -220,6 +219,6 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.loginService.logout();
   }
 }

@@ -1,18 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import baseUrl from './helper';
-import { log } from 'console';
 import {Router} from "@angular/router";
+import {NavbarService} from "./navbar.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  public loginStatusSubject = new Subject<boolean>();
 
-  constructor(private http: HttpClient,
-              private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private navbarService: NavbarService,
+    private router: Router) {
+  }
 
   //current user: which is loggedin
   public getCurrentUser() {
@@ -34,6 +35,7 @@ export class LoginService {
 
   //isLogin: user is logged in or not
   public isLoggedIn(): boolean {
+    console.log('login service method ' + !!localStorage.getItem('token'));
     return !!localStorage.getItem('token');
   }
 
@@ -41,6 +43,7 @@ export class LoginService {
   public logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.navbarService.setLoggedIn(false);
     this.router.navigate(['/login']);
     return true;
   }

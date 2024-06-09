@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import {LoginService} from 'src/app/services/login.service';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {NavbarService} from "../../services/navbar.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private snack: MatSnackBar,
     private login: LoginService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private navbarService: NavbarService,
   ) {
   }
 
@@ -52,17 +54,16 @@ export class LoginComponent implements OnInit {
           // Redirect ...ADMIN: admin-dashboard
           // Redirect ...NORMAL: normal-dashboard
           if (this.login.getUserRole() == 'ADMIN') {
-            this.router.navigate(['admin']);
-            this.login.loginStatusSubject.next(true);
+            this.router.navigate(['admin/access']);
           } else if (this.login.getUserRole() == 'NORMAL') {
             const returnUrl = this.route.snapshot.queryParams.returnUrl || '/user-dashboard';
             // Redirect the user back to the previous page or a default page (e.g., home) after successful login
             this.router.navigateByUrl(returnUrl);
-            this.login.loginStatusSubject.next(true);
           } else {
             this.login.logout();
           }
         });
+        this.navbarService.setLoggedIn(true);
       },
       (errorResp) => {
         console.log(errorResp);
