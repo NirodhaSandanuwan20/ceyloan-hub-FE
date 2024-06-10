@@ -12,6 +12,7 @@ import {Todo} from "../user/todo-list/Todo";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatAccordion} from "@angular/material/expansion";
 import {AuthGuard} from "../../services/auth.service";
+import {NotificationService} from "../../services/notification.service";
 
 
 @Component({
@@ -51,6 +52,8 @@ export class ProfileComponent implements OnInit {
 
   isEmptyData: boolean;
 
+  notifications: any[] = [];
+
   constructor(
     private loginService: LoginService,
     private profileService: ProfileService,
@@ -58,7 +61,8 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private snack: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit(): void {
@@ -72,8 +76,29 @@ export class ProfileComponent implements OnInit {
         this.panelOpenState = true;
       }
     });
+    this.loadNewNotifications();
   }
 
+
+  loadNewNotifications(): void {
+    this.notificationService.getNewNotifications(this.user.id).subscribe((data: any) => {
+      this.notifications = data;
+      console.log(data)
+    });
+  }
+
+  loadAllNotifications(): void {
+    this.notificationService.getAllNotifications(this.user.id).subscribe((data: any) => {
+      this.notifications = data;
+    });
+  }
+
+  markAsRead(notificationId: number): void {
+    this.notificationService.markNotificationAsSeen(notificationId).subscribe(() => {
+      this.notifications = this.notifications.filter(notification => notification.id !== notificationId);
+    });
+    this.ngOnInit();
+  }
 
   getUserDetails(){
     console.log(this.userId);

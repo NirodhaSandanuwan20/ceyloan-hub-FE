@@ -1,6 +1,7 @@
 // src/app/services/notification.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,28 @@ import { BehaviorSubject } from 'rxjs';
 export class NotificationService {
   private notificationCount = new BehaviorSubject<number>(0);
   currentCount = this.notificationCount.asObservable();
+  private baseUrl = 'http://localhost:8080/notification';
 
-  constructor() {}
+  constructor(private http: HttpClient) { }
 
-  updateNotificationCount(count: number) {
-    this.notificationCount.next(count);
+  getNewNotifications(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/new?userId=${userId}`);
   }
 
-  resetNotificationCount() {
-    this.notificationCount.next(0);
+  /*markNotificationAsSeen(notificationId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/mark-seen`, { notificationId });
+  }*/
+
+  markNotificationAsSeen(notificationId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/mark-seen?notificationId=${notificationId}`, {});
+  }
+
+  notifyProductPurchase(userId: number, message: string): Observable<any> {
+    const body = { userId, message };
+    return this.http.post<any>(`${this.baseUrl}/add`, body);
+  }
+
+  getAllNotifications(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/all?userId=${userId}`);
   }
 }

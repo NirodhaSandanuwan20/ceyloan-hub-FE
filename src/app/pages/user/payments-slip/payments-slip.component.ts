@@ -28,7 +28,6 @@ export class PaymentsSlipComponent implements OnInit {
   private payments_id: any;
 
   constructor(
-    private route: ActivatedRoute,
     private paymentsService: PaymentsService,
     private sanitizer: DomSanitizer,
     private _route: ActivatedRoute,
@@ -144,8 +143,9 @@ export class PaymentsSlipComponent implements OnInit {
     };
 
     this.selectSubjectServeice.addUserCategory(c).subscribe((Response) => {
-        console.log(Response);
-        this.notificationService.updateNotificationCount(1);
+        console.log(this.userId);
+        let msg = this.category.title + ' papers module will be added withing 15 minutes ';
+        this.notificationService.notifyProductPurchase(this.userId, msg).subscribe();
       },
       (error) => {
         console.log(error);

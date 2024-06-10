@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {LoginService} from 'src/app/services/login.service';
 import {NavbarService} from '../../services/navbar.service';
 import {NotificationService} from "../../services/notification.service";
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   role;
   show: boolean = false;
   notificationCount: number = 0;
-  hidden = false;
+  userId: number;
 
 
   constructor(public login: LoginService,
@@ -29,9 +29,15 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.login.getUser();
     this.loginDetails();
-    this.setNotifications();
-    this.user = this.login.getUser();
     this.checkUser();
+    this.loadNewNotifications();
+  }
+
+
+  loadNewNotifications(): void {
+    this.notificationService.getNewNotifications(this.user.id).subscribe((data: any) => {
+      this.notificationCount = data.length;
+    });
   }
 
 
@@ -41,20 +47,9 @@ export class NavbarComponent implements OnInit {
     console.log(this.isLoggedIn);
   }
 
-  private setNotifications() {
-    this.notificationService.currentCount.subscribe(count => {
-      this.notificationCount = count;
-    });
-  }
 
-
-  toggleBadgeVisibility() {
-    this.hidden = !this.hidden;
-  }
 
   onProfileButtonClick() {
-    // Reset the notification count when the profile button is clicked
-    this.notificationService.resetNotificationCount();
     this.router.navigate(['/profile'], {queryParams: {openPanel: 'panel1'}});
   }
 

@@ -78,13 +78,13 @@
           <a routerLink="/home" routerLinkActive="active">Home </a>
         </li>
         <li>
-          <a routerLink="/select-subject" routerLinkActive="active" >Store </a>
+          <a routerLink="/select-subject" routerLinkActive="active">Store </a>
         </li>
         <li>
           <a routerLink="/user-dashboard" routerLinkActive="active" *ngIf="!isAdmin && setNavbar">PlayGround </a>
         </li>
-        <li >
-          <a  routerLink="/contact-us" routerLinkActive="active" *ngIf="!isAdmin">Contact </a>
+        <li>
+          <a routerLink="/contact-us" routerLinkActive="active" *ngIf="!isAdmin">Contact </a>
         </li>
         <li>
           <a routerLink="/about-us" routerLinkActive="active" *ngIf="!isAdmin">About Us</a>
@@ -109,7 +109,7 @@
     <button *ngIf="!setNavbar" [routerLink]="'/login'">login</button>
     <button *ngIf="!setNavbar" [routerLink]="'/signup'">signup</button>
 
-    <div class="notification" *ngIf="setNavbar && !isAdmin">
+    <!--<div class="notification" *ngIf="setNavbar && !isAdmin">
       <mat-icon
         [matBadge]="notificationCount > 0 ? notificationCount : null"
         matBadgeColor="primary"
@@ -118,18 +118,41 @@
         class="custom-icon">
         notifications
       </mat-icon>
+    </div>-->
+
+    <div class="notification" *ngIf="setNavbar && !isAdmin">
+      <mat-icon
+        class="custom-icon"
+        [matBadge]="notificationCount > 0 ? notificationCount : null"
+        matBadgeColor="primary"
+        matBadgePosition="before"
+        (click)="onProfileButtonClick()"
+      >
+        notifications
+      </mat-icon>
+
+      <mat-menu #menu="matMenu" yPosition="above">
+        <ng-container *ngFor="let notification of notifications">
+
+
+          <button mat-menu-item>
+            <span>{{ notification.message }}</span>
+            <mat-icon (click)="markAsRead(notification.id)">new</mat-icon>
+          </button>
+        </ng-container>
+      </mat-menu>
     </div>
+
 
     <button *ngIf=" setNavbar" [routerLink]="'/profile'">Profile</button>
   </div>
   <div class="toggle-div">
-    <mat-icon style="width: 50px"  (click)="openDropdown()">menu</mat-icon>
+    <mat-icon style="width: 50px" (click)="openDropdown()">menu</mat-icon>
   </div>
 </div>
 
 
 <div class="responsive-nav" *ngIf="show">
-
 
 
   <button class="resp-nav-btn" routerLink="/home" routerLinkActive="active">Home
