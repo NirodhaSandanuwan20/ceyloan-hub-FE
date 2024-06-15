@@ -177,6 +177,19 @@ mat-icon {
 }
 
 
+.dialog-content {
+  min-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;  /* Prevent horizontal scrolling */
+  padding: 0 16px;
+}
+
+.mat-list-item {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 @media (min-width: 900px) {
   .responsive-nav {
     display: none;

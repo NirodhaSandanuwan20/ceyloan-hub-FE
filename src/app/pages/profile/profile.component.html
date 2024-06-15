@@ -70,22 +70,7 @@
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
-              <button (click)="loadAllNotifications()">get all notification</button>
 
-              <ng-container *ngFor="let notification of notifications; let index;">
-                <div class="notification-item">
-                  <mat-list-item>
-                    <span matLine>{{notification.message}}</span>
-                    <mat-icon
-                      *ngIf="notification.new"
-                      (click)="markAsRead(notification.id)"
-                    >mark_chat_read</mat-icon>
-                    <mat-icon
-                      *ngIf="!notification.new"
-                    ></mat-icon>
-                  </mat-list-item>
-                </div>
-              </ng-container>
             </mat-expansion-panel>
 
             <mat-expansion-panel>

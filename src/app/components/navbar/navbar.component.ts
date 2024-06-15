@@ -1,8 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {LoginService} from 'src/app/services/login.service';
 import {NavbarService} from '../../services/navbar.service';
 import {NotificationService} from "../../services/notification.service";
 import {Router} from "@angular/router";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-navbar',
@@ -18,11 +19,18 @@ export class NavbarComponent implements OnInit {
   notificationCount: number = 0;
   userId: number;
 
+  @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
+
+  private dialogRef: MatDialogRef<any>;
+
+  notification: any;
+
 
   constructor(public login: LoginService,
               private navbarService: NavbarService,
               private notificationService: NotificationService,
               private router: Router,
+              private dialog: MatDialog
   ) {
   }
 
@@ -33,10 +41,50 @@ export class NavbarComponent implements OnInit {
     this.loadNewNotifications();
   }
 
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(this.dialogTemplate, {
+      width: '600px',
+      maxHeight: '90vh'  // Ensure dialog doesn't exceed viewport height
+    });
+
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.onDialogClose();
+    });
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
+  onDialogClose(): void {
+    this.notificationCount = 0;
+    for (let i = 0; i < this.notification.length; i++) {
+      if(this.notification[i].new == true){
+        console.log(i);
+        this.markAsRead(this.notification[i].id);
+      }
+
+    }
+  }
+
 
   loadNewNotifications(): void {
     this.notificationService.getNewNotifications(this.user.id).subscribe((data: any) => {
       this.notificationCount = data.length;
+      this.notification = data;
+      console.log(this.notification);
+    });
+  }
+
+  markAsRead(notificationId: number): void {
+    this.notificationService.markNotificationAsSeen(notificationId).subscribe(() => {
+      this.notification = this.notification.filter(notification => notification.id !== notificationId);
+    });
+  }
+
+  loadAllNotifications(): void {
+    this.notificationService.getAllNotifications(this.user.id).subscribe((data: any) => {
+      this.notification = data;
     });
   }
 
@@ -47,11 +95,6 @@ export class NavbarComponent implements OnInit {
     console.log(this.isLoggedIn);
   }
 
-
-
-  onProfileButtonClick() {
-    this.router.navigate(['/profile'], {queryParams: {openPanel: 'panel1'}});
-  }
 
   checkUser() {
     this.role = this.login.getUserRole();
