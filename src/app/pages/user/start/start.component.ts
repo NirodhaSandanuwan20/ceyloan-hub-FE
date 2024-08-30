@@ -273,13 +273,19 @@ export class StartComponent implements OnInit {
     this.loadQuestions();
   }
 
+  getStepLabel(i: number): string {
+    const answer = this.questions[i].givenAnswer;
+    if (answer === null || answer === undefined) {
+      return `Question ${i + 1} `;
+    } else {
+      return `Question ${i + 1} ✔️`;
+    }
+  }
+
   checkStatus(i: number) {
     console.log(this.questions[i].givenAnswer);
-    if (this.questions[i].givenAnswer === null) {
-      this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1) + ' - not marked yet';
-    } else {
-      this.stepper._steps.toArray()[i].label = 'Question ' + (i + 1);
-    }
+    // Updating the label directly based on the current step status
+    this.stepper._steps.toArray()[i].label = this.getStepLabel(i);
   }
 
   onStepClick(stepper: MatStepper, step: number) {
@@ -288,6 +294,7 @@ export class StartComponent implements OnInit {
     clearInterval(this.countdownInterval);
     this.resetCountdown();
   }
+
 
   openSnackBar(message: string): void {
     this.snackBar.open(message, 'close', {

@@ -117,7 +117,6 @@ export class PaymentsSlipComponent implements OnInit {
     this.paymentsService.addSlip(paymentsFormData).subscribe(
       (data: any) => {
         console.log(data.paymentsId);
-        Swal.fire('Success ',msg , 'success');
         this.userPayments.slipImages = [];
         this.selectFileInput.nativeElement.value = '';
         this.enableBtn = true;
@@ -146,6 +145,12 @@ export class PaymentsSlipComponent implements OnInit {
         console.log(this.userId);
         let msg = this.category.title + ' papers module will be added withing 15 minutes ';
         this.notificationService.notifyProductPurchase(this.userId, msg).subscribe();
+        this.router.navigateByUrl('/home');
+        this.snackBar.open(msg, 'Oops !!', {
+          duration: 3000,
+          horizontalPosition: 'right',
+          verticalPosition: 'top'
+        });
       },
       (error) => {
         console.log(error);

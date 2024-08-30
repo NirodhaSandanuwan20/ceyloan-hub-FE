@@ -48,11 +48,8 @@
           <mat-vertical-stepper [@.disabled]="false"
                                 (selectionChange)="onStepClick(stepper, $event.previouslySelectedIndex)"
                                 #stepper="matVerticalStepper">
-
             <div *ngFor="let q of questions; let i = index;">
-              <mat-step #yourStep [editable]="true" label="Question {{ i + 1 }}) ">
-                <!--<ng-template matStepLabel><b></b></ng-template>-->
-
+              <mat-step #yourStep [editable]="true" label="{{ getStepLabel(i) }}">
                 <div class="img-box" style="overflow: hidden">
                   <img style="width:100%;" [src]="q.questionImages[0].url" alt="Question img">
                 </div>
@@ -78,20 +75,18 @@
                   </div>
                   <div class="row mt20">
                     <div class="col-md-12" style="margin-left:15px">
-                      <input type="radio" [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option5
-                      }}</b>
+                      <input type="radio" [value]="q.option5" [name]="i" [(ngModel)]="q.givenAnswer"/><b>{{ q.option5 }}</b>
                     </div>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back
-                  </button>
+                  <button style="margin-right: 5px!important;" mat-raised-button color="primary" matStepperPrevious>Back</button>
                   <button mat-raised-button color="primary" matStepperNext (click)="checkStatus(i)">Next</button>
                 </div>
               </mat-step>
             </div>
-
           </mat-vertical-stepper>
+
         </mat-card>
         <!-- load more -->
 
